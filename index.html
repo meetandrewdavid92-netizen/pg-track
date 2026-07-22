@@ -134,6 +134,40 @@
   .focusteaser{text-align:center;color:var(--mut);font-size:.82rem;font-weight:600;
     padding:10px 14px 2px;line-height:1.55}
   .focuscta{max-width:280px;margin:12px auto 6px}
+
+  /* Question bank (Practice tab) */
+  .tooltoggle{display:flex;justify-content:space-between;align-items:center;cursor:pointer;
+    font-size:.98rem;font-weight:700;text-align:left}
+  .tooltoggle .chev{color:var(--violet);transition:transform .2s;font-size:.9rem}
+  #timerBox:not(.collapsed) .tooltoggle .chev{transform:rotate(90deg)}
+  #timerBox.collapsed .body{display:none}
+  #timerBox .body{margin-top:12px}
+  .big{text-align:center}
+  .topic{border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.55);
+    margin-bottom:10px;overflow:hidden}
+  .topichead{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px;cursor:pointer}
+  .topicname{font-weight:700;font-size:.95rem;line-height:1.35}
+  .topicsub{display:block;font-size:.64rem;color:var(--violet);text-transform:uppercase;
+    letter-spacing:.6px;font-weight:800;margin-bottom:3px}
+  .topicmeta{display:flex;align-items:center;gap:9px;color:var(--mut);flex:0 0 auto}
+  .cnt{background:rgba(139,123,240,.14);color:var(--violet);font-weight:800;font-size:.74rem;
+    padding:3px 10px;border-radius:20px}
+  .topichead .chev{transition:transform .2s;color:var(--violet)}
+  .topic:not(.collapsed) .topichead .chev{transform:rotate(90deg)}
+  .topic.collapsed .qwrap{display:none}
+  .qwrap{padding:2px 13px 8px}
+  .qcard{padding:14px;border-radius:14px;background:rgba(255,255,255,.7);border:1px solid var(--line);margin-bottom:12px}
+  .qstem{font-size:.9rem;font-weight:600;line-height:1.55;margin-bottom:10px}
+  .opt{display:block;width:100%;text-align:left;padding:11px 14px;margin:7px 0;border-radius:12px;
+    border:1px solid var(--line);background:rgba(255,255,255,.8);color:var(--ink);font-size:.86rem;
+    line-height:1.45;cursor:pointer;transition:.12s}
+  .opt:active{transform:scale(.99)}
+  .opt.locked{cursor:default}
+  .opt.correct{background:rgba(79,203,176,.18);border-color:rgba(79,203,176,.55);color:#1f8f77;font-weight:700}
+  .opt.wrong{background:rgba(239,120,150,.16);border-color:rgba(239,120,150,.55);color:#c94b73;font-weight:700}
+  .qexp{display:none;margin-top:9px;padding:11px 13px;border-radius:12px;
+    background:rgba(139,123,240,.09);font-size:.83rem;line-height:1.55;color:#413d5c}
+  .qexp.show{display:block}
 </style>
 </head>
 <body>
@@ -156,18 +190,25 @@
     <div id="libFeed"></div>
   </section>
 
-  <!-- TIMER -->
+  <!-- PRACTICE (question bank + timer tool) -->
   <section class="screen" id="scr-timer">
-    <div class="card" id="timerBox">
-      <h2>Section Timer</h2>
-      <p style="color:var(--mut);font-size:.82rem">36 questions · 42 minutes · no going back. Attempt on paper, then start.</p>
-      <div class="big" id="timerDisp">42:00</div>
-      <button class="btn" id="timerBtn" onclick="timerToggle()">Start 42-minute section</button>
-      <button class="btn ghost" onclick="timerReset()">Reset</button>
+    <div class="card collapsed" id="timerBox">
+      <div class="tooltoggle" onclick="this.closest('.card').classList.toggle('collapsed')">
+        <span>⏱️ Timed section practice</span><span class="chev">▸</span>
+      </div>
+      <div class="body">
+        <p style="color:var(--mut);font-size:.82rem">36 questions · 42 minutes · no going back. Attempt on paper, then start.</p>
+        <div class="big" id="timerDisp">42:00</div>
+        <button class="btn" id="timerBtn" onclick="timerToggle()">Start 42-minute section</button>
+        <button class="btn ghost" onclick="timerReset()">Reset</button>
+        <p style="color:var(--mut);font-size:.78rem;margin-top:10px">Marking: +4 correct · −1 wrong · unattempted 0. Guess only when you can eliminate two options.</p>
+      </div>
     </div>
     <div class="card">
-      <h2>Marking</h2>
-      <p>+4 correct · −1 wrong · unattempted 0. Guess only when you can eliminate two options.</p>
+      <h2>Question Bank</h2>
+      <p id="qbankIntro" style="color:var(--mut);font-size:.82rem"></p>
+      <div class="filters" id="qSubjects"></div>
+      <div id="qbankFeed"></div>
     </div>
   </section>
 
@@ -230,7 +271,7 @@
 <nav>
   <button class="on" onclick="go('home',this)"><span class="ico">🏠</span>This Week</button>
   <button onclick="go('lib',this)"><span class="ico">📚</span>Library</button>
-  <button onclick="go('timer',this)"><span class="ico">⏱️</span>Timer</button>
+  <button onclick="go('timer',this)"><span class="ico">🧠</span>Practice</button>
   <button onclick="go('track',this)"><span class="ico">✅</span>Tracker</button>
   <button onclick="go('about',this)"><span class="ico">✨</span>Program</button>
 </nav>
@@ -269,6 +310,63 @@ const CONTENT = [
     title:"Welcome to the PG Track",
     html:`<p>This portal is your content library, test schedule and tracker. New material lands here every week — a real ward case turned into exam teaching, plus your timed test.</p>
           <p><b>Rhythm:</b> case pack mid-week → timed test before the session → live 2-hour session weekly.</p>` },
+];
+
+/* ================= QUESTION BANK =================
+   Verified MCQs from discussed cases. Append new ones (subject + topic
+   tagged) as cases are covered — the Practice tab groups them automatically.
+   ans is the 0-indexed correct option.
+   =================================================== */
+const QBANK = [
+  {subject:"Paediatrics", topic:"Iron deficiency anemia (cow's milk)", date:"2026-07-22",
+   q:"A 16-month-old listed for elective circumcision is found on pre-op workup to have Hb 7.4 g/dL, microcytic hypochromic RBCs, low serum iron, low ferritin and high TIBC. Diet history: over 700 mL of cow's milk daily with poor solid intake. Most appropriate immediate management?",
+   opts:["Proceed with surgery under GA with blood cross-matched","Defer surgery; start oral elemental iron and reduce cow's milk intake","Give one unit of packed red cells, then proceed with surgery","Start empirical antihelminthic therapy and reassess in 1 week"],
+   ans:1, exp:"Elective surgery is deferred for significant anemia (Hb 7.4); correct with iron and dietary change — not transfusion for an asymptomatic, non-urgent case."},
+
+  {subject:"Paediatrics", topic:"Iron deficiency anemia (cow's milk)", date:"2026-07-22",
+   q:"Which single mechanism does NOT contribute to cow's-milk-associated iron deficiency anemia in toddlers?",
+   opts:["Low iron content and poor bioavailability of cow's milk","Displacement of iron-rich weaning foods from the diet","Occult GI blood loss from milk-protein enteropathy","Direct destruction of red cells by lactose in cow's milk"],
+   ans:3, exp:"Lactose does not cause haemolysis; the real mechanisms are poor bioavailability, dietary displacement and occult GI blood loss."},
+
+  {subject:"Paediatrics", topic:"Microcytic anemia — differentials", date:"2026-07-22",
+   q:"A child's CBC shows Hb 8.2 g/dL, MCV 58 fl, RBC count 5.2 million/µL. What does the Mentzer index suggest, and what next?",
+   opts:["Index >13 — iron deficiency; start iron and recheck","Index <13 — thalassemia trait; iron studies and HbA2 electrophoresis indicated","Index not calculable from these values","Index <13 — confirms iron deficiency; start empirical iron"],
+   ans:1, exp:"Mentzer index = 58/5.2 = 11.2 (<13), pointing to thalassemia trait — needs iron studies + HbA2, not empirical iron."},
+
+  {subject:"Paediatrics", topic:"Iron deficiency anemia (cow's milk)", date:"2026-07-22",
+   q:"Per current guidance, cow's milk should not be a primary drink before what age, and what is the recommended maximum daily volume after 1 year?",
+   opts:["6 months; no limit needed","9 months; up to 32 oz/day","12 months; 16–24 oz/day (2–3 cups)","12 months; unlimited if iron-rich foods are also given"],
+   ans:2, exp:"AAP/IAP: no cow's milk before 12 months; 16–24 oz/day (2–3 cups) thereafter."},
+
+  {subject:"Paediatrics", topic:"Iron deficiency anemia (cow's milk)", date:"2026-07-22",
+   q:"Correct elemental iron dose and minimum duration of therapy for a toddler with confirmed IDA?",
+   opts:["1–2 mg/kg/day for 2 weeks","3–6 mg/kg/day, continued ~3 months after Hb normalizes","10 mg/kg/day for 6 weeks only","IV iron sucrose regardless of severity"],
+   ans:1, exp:"3–6 mg/kg/day elemental iron, continued ~3 months past Hb normalization to rebuild stores."},
+
+  {subject:"Paediatrics", topic:"Iron deficiency anemia (cow's milk)", date:"2026-07-22",
+   q:"A peripheral smear from an anemic toddler shows microcytic hypochromic cells with marked anisopoikilocytosis and occasional pencil-shaped cells. Most consistent with:",
+   opts:["Thalassemia major","Iron deficiency anemia","Megaloblastic anemia","Hereditary spherocytosis"],
+   ans:1, exp:"Microcytic, hypochromic cells with anisopoikilocytosis and pencil cells is the classic IDA smear."},
+
+  {subject:"Paediatrics", topic:"Iron deficiency anemia (cow's milk)", date:"2026-07-22",
+   q:"In a toddler with a background febrile illness, serum ferritin is reported as 'normal' despite strong suspicion of iron deficiency. Most likely explanation?",
+   opts:["Ferritin is unaffected by inflammation, so iron deficiency is excluded","Ferritin is an acute-phase reactant and can be falsely normal/elevated during inflammation","The child cannot have iron deficiency if ferritin is normal, regardless of context","Ferritin is only useful in adults, not children"],
+   ans:1, exp:"Ferritin rises with inflammation/infection and can mask true iron deficiency; interpret cautiously in sick children."},
+
+  {subject:"Paediatrics", topic:"Iron deficiency anemia (cow's milk)", date:"2026-07-22",
+   q:"After starting oral iron for confirmed IDA, the earliest objective marker of an adequate response, and its timing, is:",
+   opts:["Rise in Hb by day 2","Reticulocyte count peaking around day 5–7","Normalization of MCV by day 3","Resolution of pallor by day 1"],
+   ans:1, exp:"Reticulocytosis peaking at day 5–7 is the earliest reliable sign of response; Hb rise and symptom resolution lag."},
+
+  {subject:"Paediatrics", topic:"Microcytic anemia — differentials", date:"2026-07-22",
+   q:"Which lab finding best distinguishes iron deficiency anemia from anemia of chronic disease, given both can show low serum iron?",
+   opts:["Serum iron level alone","Hemoglobin level alone","TIBC — elevated in IDA, reduced or normal in anemia of chronic disease","MCV alone, as both are always microcytic"],
+   ans:2, exp:"TIBC is the discriminator: high in IDA, low/normal in anemia of chronic disease."},
+
+  {subject:"Paediatrics", topic:"Iron deficiency anemia (cow's milk)", date:"2026-07-22",
+   q:"A 14-month-old with chronic excessive cow's milk intake and undiagnosed IDA is most specifically at risk of which long-term complication?",
+   opts:["Developmental delay and pica","Precocious puberty","Sensorineural hearing loss","Nephrotic syndrome"],
+   ans:0, exp:"Developmental delay and pica are the classically tested long-term complications of untreated toddler IDA."},
 ];
 
 /* ============ Subject tracker (19 NBEMS subjects) ============ */
@@ -395,6 +493,54 @@ function renderTrack(){
 }
 function tick(n,v){ticks[n]=v;localStorage.setItem(TKEY,JSON.stringify(ticks));renderTrack();}
 renderTrack();
+
+/* ---- Question bank (Practice tab): subject → topic → interactive MCQs ---- */
+let qSubj="All";
+function qCardHTML(x){
+  const qi=QBANK.indexOf(x);
+  return `<div class="qcard" data-qi="${qi}">
+    <div class="qstem">${x.q}</div>
+    <div class="opts">${x.opts.map((o,i)=>
+      `<button class="opt" onclick="answerQ(this,${qi},${i})">${String.fromCharCode(65+i)}. ${o}</button>`).join("")}</div>
+    <div class="qexp"><b>Answer: ${String.fromCharCode(65+x.ans)}.</b> ${x.exp}</div>
+  </div>`;
+}
+function answerQ(btn,qi,i){
+  const card=btn.closest(".qcard");
+  if(card.classList.contains("done"))return;
+  card.classList.add("done");
+  const x=QBANK[qi];
+  card.querySelectorAll(".opt").forEach((o,idx)=>{
+    o.classList.add("locked");
+    if(idx===x.ans)o.classList.add("correct");
+  });
+  if(i!==x.ans)btn.classList.add("wrong");
+  card.querySelector(".qexp").classList.add("show");
+}
+function renderQBank(){
+  const subjects=[...new Set(QBANK.map(x=>x.subject))].sort();
+  $("#qbankIntro").textContent=`${QBANK.length} verified question${QBANK.length===1?"":"s"} from cases we've discussed — the bank grows every week. Tap an option to check yourself.`;
+  $("#qSubjects").innerHTML=["All",...subjects].map(s=>
+    `<button class="${s===qSubj?'on':''}" onclick="qSubj='${s}';renderQBank()">${s}</button>`).join("");
+  const items=QBANK.filter(x=>qSubj==="All"||x.subject===qSubj);
+  const grouped={};
+  items.forEach(x=>{(grouped[x.subject]??={});(grouped[x.subject][x.topic]??=[]).push(x);});
+  let html="";
+  Object.keys(grouped).sort().forEach(sub=>{
+    Object.keys(grouped[sub]).sort().forEach(top=>{
+      const qs=grouped[sub][top];
+      html+=`<div class="topic collapsed">
+        <div class="topichead" onclick="this.closest('.topic').classList.toggle('collapsed')">
+          <span class="topicname">${qSubj==="All"?'<span class="topicsub">'+sub+'</span>':''}${top}</span>
+          <span class="topicmeta"><span class="cnt">${qs.length}</span><span class="chev">▸</span></span>
+        </div>
+        <div class="qwrap">${qs.map(qCardHTML).join("")}</div>
+      </div>`;
+    });
+  });
+  $("#qbankFeed").innerHTML=html||`<p style="color:var(--mut);font-size:.86rem">No questions in this subject yet.</p>`;
+}
+renderQBank();
 
 /* 42-min section timer */
 let tLeft=42*60,tInt=null;
