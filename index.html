@@ -168,6 +168,8 @@
   .qexp{display:none;margin-top:9px;padding:11px 13px;border-radius:12px;
     background:rgba(139,123,240,.09);font-size:.83rem;line-height:1.55;color:#413d5c}
   .qexp.show{display:block}
+  .qretry{display:none;margin-top:10px;font-size:.76rem;font-weight:700;color:var(--violet);cursor:pointer;user-select:none}
+  .qcard.done .qretry{display:inline-block}
 
   /* Library read / unread */
   .libgroup{font-size:.7rem;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;
@@ -561,12 +563,12 @@ renderTrack();
 const SKEY="pgtrack-stats";
 let stats=JSON.parse(localStorage.getItem(SKEY)||"{}");
 function qKey(x){return x.subject+"§"+x.q;}
-function recordAnswer(x,correct){
+function recordAnswer(x,correct,pick){
   const k=qKey(x);
   const r=stats[k]||{seen:0,correct:0,wrong:0};
   r.seen++;
   if(correct){r.correct++;r.due=false;}else{r.wrong++;r.due=true;}
-  r.lastCorrect=correct;
+  r.lastCorrect=correct;r.lastPick=pick;
   stats[k]=r;localStorage.setItem(SKEY,JSON.stringify(stats));
 }
 function topicStats(){
@@ -583,14 +585,24 @@ function topicStats(){
 function dueQuestions(){return QBANK.filter(x=>stats[qKey(x)]&&stats[qKey(x)].due);}
 function weakCount(){return topicStats().filter(t=>t.correct/t.seen<0.7).length;}
 
-/* interactive MCQ card (shared by Bank + Review) */
-function qCardHTML(x){
+/* interactive MCQ card (shared by Bank + Review).
+   Rebuilds the answered state from saved stats so a worked question stays
+   worked across tab switches and reloads. forceFresh=true (Review) ignores
+   history so the JMO re-attempts. */
+function qCardHTML(x,forceFresh){
   const qi=QBANK.indexOf(x);
-  return `<div class="qcard" data-qi="${qi}">
+  const s=stats[qKey(x)];
+  const answered=!forceFresh&&s&&s.lastPick!=null;
+  const opts=x.opts.map((o,i)=>{
+    let cls="opt";
+    if(answered){cls+=" locked";if(i===x.ans)cls+=" correct";else if(i===s.lastPick)cls+=" wrong";}
+    return `<button class="${cls}" onclick="answerQ(this,${qi},${i})">${String.fromCharCode(65+i)}. ${o}</button>`;
+  }).join("");
+  return `<div class="qcard${answered?' done':''}" data-qi="${qi}">
     <div class="qstem">${x.q}</div>
-    <div class="opts">${x.opts.map((o,i)=>
-      `<button class="opt" onclick="answerQ(this,${qi},${i})">${String.fromCharCode(65+i)}. ${o}</button>`).join("")}</div>
-    <div class="qexp"><b>Answer: ${String.fromCharCode(65+x.ans)}.</b> ${x.exp}</div>
+    <div class="opts">${opts}</div>
+    <div class="qexp${answered?' show':''}"><b>Answer: ${String.fromCharCode(65+x.ans)}.</b> ${x.exp}</div>
+    <div class="qretry" onclick="retryQ(this)">↺ Try again</div>
   </div>`;
 }
 function answerQ(btn,qi,i){
@@ -601,8 +613,14 @@ function answerQ(btn,qi,i){
   card.querySelectorAll(".opt").forEach((o,idx)=>{o.classList.add("locked");if(idx===x.ans)o.classList.add("correct");});
   if(!correct)btn.classList.add("wrong");
   card.querySelector(".qexp").classList.add("show");
-  recordAnswer(x,correct);
+  recordAnswer(x,correct,i);
   updateSegBadges();
+}
+function retryQ(el){
+  const card=el.closest(".qcard");
+  card.classList.remove("done");
+  card.querySelectorAll(".opt").forEach(o=>o.classList.remove("locked","correct","wrong"));
+  card.querySelector(".qexp").classList.remove("show");
 }
 
 let practiceView="bank",qSubj="All";
@@ -644,7 +662,7 @@ function renderBank(){
           <span class="topicname">${qSubj==="All"?'<span class="topicsub">'+sub+'</span>':''}${top}</span>
           <span class="topicmeta"><span class="cnt">${qs.length}</span><span class="chev">▸</span></span>
         </div>
-        <div class="qwrap">${qs.map(qCardHTML).join("")}</div>
+        <div class="qwrap">${qs.map(q=>qCardHTML(q)).join("")}</div>
       </div>`;
     });
   });
@@ -659,7 +677,7 @@ function renderReview(){
   $("#practiceBody").innerHTML=`<div class="card">
     <h2>Review your mistakes</h2>
     <p class="submut">${due.length} question${due.length===1?"":"s"} you last got wrong. Get one right and it retires from this list.</p>
-    <div>${due.map(qCardHTML).join("")}</div></div>`;
+    <div>${due.map(q=>qCardHTML(q,true)).join("")}</div></div>`;
 }
 function renderWeak(){
   const ts=topicStats();
