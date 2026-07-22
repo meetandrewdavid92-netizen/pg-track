@@ -180,6 +180,32 @@
   .footright{display:flex;align-items:center;gap:12px}
   .miniact{font-size:.74rem;font-weight:700;color:var(--soft);cursor:pointer;user-select:none}
   .miniact:active{color:var(--violet)}
+
+  /* Practice segmented control + review + weak spots */
+  .seg{display:flex;gap:6px;background:rgba(139,123,240,.08);border:1px solid var(--line);
+    border-radius:16px;padding:5px;margin-bottom:14px}
+  .seg button{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;border:none;
+    background:none;color:var(--mut);font-size:.8rem;font-weight:700;padding:10px 4px;border-radius:12px;cursor:pointer;transition:.15s}
+  .seg button.on{background:#fff;color:var(--violet);box-shadow:0 6px 14px -8px rgba(120,100,230,.55)}
+  .segbadge{background:linear-gradient(90deg,var(--violet),var(--sky));color:#fff;font-size:.64rem;
+    font-weight:800;padding:1px 7px;border-radius:20px;min-width:18px;text-align:center}
+  .submut{color:var(--mut);font-size:.82rem;margin-bottom:10px;line-height:1.5}
+  .emptybox{text-align:center;color:var(--mut);padding:26px 14px;font-size:.9rem;line-height:1.55}
+  .emptybox .big2{font-size:2rem;display:block;margin-bottom:10px}
+  .wtopic{padding:15px 0;border-bottom:1px solid var(--line)}
+  .wtopic:last-child{border-bottom:none;padding-bottom:2px}
+  .wtophead{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+  .wtopname{font-weight:700;font-size:.92rem;line-height:1.35}
+  .wtopsub{display:block;font-size:.63rem;color:var(--violet);text-transform:uppercase;letter-spacing:.6px;font-weight:800;margin-bottom:2px}
+  .acc{font-weight:800;font-size:.82rem;flex:0 0 auto}
+  .accbar{height:8px;background:rgba(139,123,240,.12);border-radius:20px;overflow:hidden;margin:6px 0 0}
+  .accbar i{display:block;height:100%;border-radius:20px}
+  .revise{display:inline-block;font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;
+    color:#c94b73;background:rgba(239,120,150,.16);padding:2px 9px;border-radius:20px;margin-left:8px;vertical-align:middle}
+  .points{margin-top:10px;padding:11px 13px;background:rgba(246,169,126,.10);border-radius:12px}
+  .points .plab{font-size:.66rem;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:#d47a44;margin-bottom:6px}
+  .points ul{margin:0 0 0 16px;font-size:.83rem;line-height:1.55;color:#413d5c}
+  .points li{margin-bottom:4px}
 </style>
 </head>
 <body>
@@ -216,12 +242,8 @@
         <p style="color:var(--mut);font-size:.78rem;margin-top:10px">Marking: +4 correct · −1 wrong · unattempted 0. Guess only when you can eliminate two options.</p>
       </div>
     </div>
-    <div class="card">
-      <h2>Question Bank</h2>
-      <p id="qbankIntro" style="color:var(--mut);font-size:.82rem"></p>
-      <div class="filters" id="qSubjects"></div>
-      <div id="qbankFeed"></div>
-    </div>
+    <div class="seg" id="practiceSeg"></div>
+    <div id="practiceBody"></div>
   </section>
 
   <!-- TRACKER -->
@@ -403,7 +425,8 @@ function go(name,btn){
   $("#scr-"+name).classList.add("on");
   document.querySelectorAll("nav button").forEach(b=>b.classList.remove("on"));
   btn.classList.add("on");
-  if(name==="lib"&&typeof renderLib==="function")renderLib();  /* refresh read/unread grouping */
+  if(name==="lib"&&typeof renderLib==="function")renderLib();          /* refresh read/unread grouping */
+  if(name==="timer"&&typeof renderPractice==="function")renderPractice(); /* refresh review/weak counts */
   window.scrollTo(0,0);
 }
 
@@ -532,8 +555,35 @@ function renderTrack(){
 function tick(n,v){ticks[n]=v;localStorage.setItem(TKEY,JSON.stringify(ticks));renderTrack();}
 renderTrack();
 
-/* ---- Question bank (Practice tab): subject → topic → interactive MCQs ---- */
-let qSubj="All";
+/* ================= Practice tab: Bank + Review + Weak spots ================= */
+/* Per-phone practice stats. Key derived from content so it survives QBANK
+   reordering (only resets if a question's wording is edited). */
+const SKEY="pgtrack-stats";
+let stats=JSON.parse(localStorage.getItem(SKEY)||"{}");
+function qKey(x){return x.subject+"§"+x.q;}
+function recordAnswer(x,correct){
+  const k=qKey(x);
+  const r=stats[k]||{seen:0,correct:0,wrong:0};
+  r.seen++;
+  if(correct){r.correct++;r.due=false;}else{r.wrong++;r.due=true;}
+  r.lastCorrect=correct;
+  stats[k]=r;localStorage.setItem(SKEY,JSON.stringify(stats));
+}
+function topicStats(){
+  const map={};
+  QBANK.forEach(x=>{
+    const s=stats[qKey(x)];if(!s||!s.seen)return;
+    const tk=x.subject+"||"+x.topic;
+    const t=map[tk]||(map[tk]={subject:x.subject,topic:x.topic,seen:0,correct:0,points:[]});
+    t.seen+=s.seen;t.correct+=s.correct;
+    if(s.due)t.points.push(x.exp);          /* missed point → revision list */
+  });
+  return Object.values(map);
+}
+function dueQuestions(){return QBANK.filter(x=>stats[qKey(x)]&&stats[qKey(x)].due);}
+function weakCount(){return topicStats().filter(t=>t.correct/t.seen<0.7).length;}
+
+/* interactive MCQ card (shared by Bank + Review) */
 function qCardHTML(x){
   const qi=QBANK.indexOf(x);
   return `<div class="qcard" data-qi="${qi}">
@@ -547,19 +597,41 @@ function answerQ(btn,qi,i){
   const card=btn.closest(".qcard");
   if(card.classList.contains("done"))return;
   card.classList.add("done");
-  const x=QBANK[qi];
-  card.querySelectorAll(".opt").forEach((o,idx)=>{
-    o.classList.add("locked");
-    if(idx===x.ans)o.classList.add("correct");
-  });
-  if(i!==x.ans)btn.classList.add("wrong");
+  const x=QBANK[qi];const correct=(i===x.ans);
+  card.querySelectorAll(".opt").forEach((o,idx)=>{o.classList.add("locked");if(idx===x.ans)o.classList.add("correct");});
+  if(!correct)btn.classList.add("wrong");
   card.querySelector(".qexp").classList.add("show");
+  recordAnswer(x,correct);
+  updateSegBadges();
 }
-function renderQBank(){
+
+let practiceView="bank",qSubj="All";
+function renderPractice(){
+  const counts={bank:QBANK.length,review:dueQuestions().length,weak:weakCount()};
+  const segs=[["bank","Bank"],["review","Review"],["weak","Weak spots"]];
+  $("#practiceSeg").innerHTML=segs.map(([k,label])=>
+    `<button data-k="${k}" class="${k===practiceView?'on':''}" onclick="practiceView='${k}';renderPractice()">${label}${counts[k]?`<span class="segbadge">${counts[k]}</span>`:''}</button>`).join("");
+  if(practiceView==="bank")renderBank();
+  else if(practiceView==="review")renderReview();
+  else renderWeak();
+}
+function updateSegBadges(){
+  const counts={bank:QBANK.length,review:dueQuestions().length,weak:weakCount()};
+  document.querySelectorAll("#practiceSeg button").forEach(b=>{
+    const n=counts[b.dataset.k];const badge=b.querySelector(".segbadge");
+    if(n){badge?badge.textContent=n:b.insertAdjacentHTML("beforeend",`<span class="segbadge">${n}</span>`);}
+    else if(badge)badge.remove();
+  });
+}
+function renderBank(){
+  $("#practiceBody").innerHTML=`<div class="card">
+    <h2>Question Bank</h2>
+    <p class="submut">${QBANK.length} verified question${QBANK.length===1?"":"s"} from cases we've discussed — the bank grows every week. Tap an option to check yourself.</p>
+    <div class="filters" id="qSubjects"></div>
+    <div id="qbankFeed"></div></div>`;
   const subjects=[...new Set(QBANK.map(x=>x.subject))].sort();
-  $("#qbankIntro").textContent=`${QBANK.length} verified question${QBANK.length===1?"":"s"} from cases we've discussed — the bank grows every week. Tap an option to check yourself.`;
   $("#qSubjects").innerHTML=["All",...subjects].map(s=>
-    `<button class="${s===qSubj?'on':''}" onclick="qSubj='${s}';renderQBank()">${s}</button>`).join("");
+    `<button class="${s===qSubj?'on':''}" onclick="qSubj='${s}';renderBank()">${s}</button>`).join("");
   const items=QBANK.filter(x=>qSubj==="All"||x.subject===qSubj);
   const grouped={};
   items.forEach(x=>{(grouped[x.subject]??={});(grouped[x.subject][x.topic]??=[]).push(x);});
@@ -576,9 +648,44 @@ function renderQBank(){
       </div>`;
     });
   });
-  $("#qbankFeed").innerHTML=html||`<p style="color:var(--mut);font-size:.86rem">No questions in this subject yet.</p>`;
+  $("#qbankFeed").innerHTML=html||`<p class="submut">No questions in this subject yet.</p>`;
 }
-renderQBank();
+function renderReview(){
+  const due=dueQuestions();
+  if(!due.length){
+    $("#practiceBody").innerHTML=`<div class="card"><div class="emptybox"><span class="big2">✅</span>No mistakes to review right now. Questions you get wrong land here so you can re-drill them until they stick.</div></div>`;
+    return;
+  }
+  $("#practiceBody").innerHTML=`<div class="card">
+    <h2>Review your mistakes</h2>
+    <p class="submut">${due.length} question${due.length===1?"":"s"} you last got wrong. Get one right and it retires from this list.</p>
+    <div>${due.map(qCardHTML).join("")}</div></div>`;
+}
+function renderWeak(){
+  const ts=topicStats();
+  if(!ts.length){
+    $("#practiceBody").innerHTML=`<div class="card"><div class="emptybox"><span class="big2">📊</span>Answer some practice questions and your weak spots — with the exact points to revise — will build here automatically.</div></div>`;
+    return;
+  }
+  ts.sort((a,b)=>a.correct/a.seen-b.correct/b.seen);
+  let html=`<div class="card"><h2>Weak spots — from your practice</h2>
+    <p class="submut">Topics sorted weakest first. The points below are pulled from the questions you missed — revise these.</p>`;
+  ts.forEach(t=>{
+    const pct=Math.round(t.correct/t.seen*100);
+    const col=pct<50?"#ef7896":pct<70?"#f6a97e":"#4fcbb0";
+    const weak=pct<70;
+    html+=`<div class="wtopic">
+      <div class="wtophead">
+        <span class="wtopname"><span class="wtopsub">${t.subject}</span>${t.topic}${weak?'<span class="revise">revise</span>':''}</span>
+        <span class="acc" style="color:${col}">${pct}%</span>
+      </div>
+      <div class="accbar"><i style="width:${pct}%;background:${col}"></i></div>
+      ${t.points.length?`<div class="points"><div class="plab">Points to nail</div><ul>${t.points.map(p=>`<li>${p}</li>`).join("")}</ul></div>`:""}
+    </div>`;
+  });
+  $("#practiceBody").innerHTML=html+`</div>`;
+}
+renderPractice();
 
 /* 42-min section timer */
 let tLeft=42*60,tInt=null;
