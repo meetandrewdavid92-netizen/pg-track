@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0f1b2d">
+<title>PG Track</title>
+<style>
+  :root{
+    --bg:#0f1b2d; --card:#18293f; --card2:#1f3350; --ink:#e8eef7; --mut:#8fa3bd;
+    --acc:#4fc3f7; --gold:#ffd54f; --ok:#66bb6a; --line:#2a3f5c; --danger:#ef5350;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink);
+       min-height:100vh;padding-bottom:84px}
+  header{padding:18px 16px 10px;position:sticky;top:0;background:linear-gradient(var(--bg) 80%,transparent);z-index:5}
+  header h1{font-size:1.25rem;letter-spacing:.3px}
+  header h1 span{color:var(--acc)}
+  header p{color:var(--mut);font-size:.8rem;margin-top:2px}
+  .wrap{padding:0 14px;max-width:640px;margin:0 auto}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:12px}
+  .card h2{font-size:.95rem;margin-bottom:8px;color:var(--gold)}
+  .card h3{font-size:1rem;margin:10px 0 6px;color:var(--acc)}
+  .card p{font-size:.9rem;line-height:1.55;color:var(--ink);margin-bottom:8px}
+  .card ul,.card ol{margin:0 0 8px 18px;font-size:.9rem;line-height:1.55}
+  .card table{width:100%;border-collapse:collapse;font-size:.82rem;margin:8px 0;display:block;overflow-x:auto}
+  .card th,.card td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+  .card th{background:var(--card2);color:var(--gold)}
+  .tag{display:inline-block;font-size:.68rem;padding:2px 9px;border-radius:20px;background:var(--card2);
+       color:var(--acc);border:1px solid var(--line);margin-right:6px;margin-bottom:6px}
+  .tag.case{color:var(--gold)} .tag.test{color:var(--ok)} .tag.notice{color:var(--danger)}
+  .meta{color:var(--mut);font-size:.72rem;margin-bottom:8px}
+  .btn{display:block;width:100%;padding:13px;border:none;border-radius:12px;background:var(--acc);color:#062033;
+       font-size:.95rem;font-weight:700;text-align:center;cursor:pointer;margin-top:8px}
+  .btn.ghost{background:var(--card2);color:var(--acc);border:1px solid var(--line)}
+  .collapsed .body{display:none}
+  .toggle{color:var(--mut);font-size:.78rem;cursor:pointer;user-select:none;padding:4px 0}
+  nav{position:fixed;bottom:0;left:0;right:0;display:flex;background:var(--card);border-top:1px solid var(--line);
+      padding-bottom:env(safe-area-inset-bottom);z-index:10}
+  nav button{flex:1;background:none;border:none;color:var(--mut);font-size:.68rem;padding:9px 0 7px;cursor:pointer}
+  nav button .ico{display:block;font-size:1.25rem;margin-bottom:2px}
+  nav button.on{color:var(--acc)}
+  .screen{display:none}.screen.on{display:block}
+  .prog{height:8px;background:var(--card2);border-radius:6px;overflow:hidden;margin:6px 0 2px}
+  .prog i{display:block;height:100%;background:var(--ok);border-radius:6px;transition:width .3s}
+  .subj{display:flex;align-items:center;gap:10px;padding:9px 4px;border-bottom:1px solid var(--line);font-size:.88rem}
+  .subj:last-child{border-bottom:none}
+  .subj input{width:19px;height:19px;accent-color:var(--ok)}
+  .subj .n{flex:1}
+  .subj .w{color:var(--mut);font-size:.7rem}
+  .filters{display:flex;gap:6px;overflow-x:auto;padding-bottom:8px}
+  .filters button{flex:0 0 auto;font-size:.72rem;padding:5px 12px;border-radius:20px;border:1px solid var(--line);
+       background:var(--card);color:var(--mut);cursor:pointer}
+  .filters button.on{background:var(--acc);color:#062033;border-color:var(--acc);font-weight:700}
+  #timerBox{font-variant-numeric:tabular-nums;text-align:center}
+  #timerBox .big{font-size:2.6rem;font-weight:800;letter-spacing:2px;color:var(--gold)}
+  #timerBox.warn .big{color:var(--danger)}
+  .foot{color:var(--mut);font-size:.7rem;text-align:center;padding:14px 0 6px;line-height:1.5}
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <h1 id="appTitle"></h1>
+  <p id="appSub"></p>
+</header>
+
+<div class="wrap">
+
+  <!-- HOME -->
+  <section class="screen on" id="scr-home">
+    <div id="homeFeed"></div>
+  </section>
+
+  <!-- LIBRARY -->
+  <section class="screen" id="scr-lib">
+    <div class="filters" id="libFilters"></div>
+    <div id="libFeed"></div>
+  </section>
+
+  <!-- TEST TIMER -->
+  <section class="screen" id="scr-timer">
+    <div class="card" id="timerBox">
+      <h2>Section Timer — Real Exam Discipline</h2>
+      <p style="color:var(--mut);font-size:.8rem">36 questions · 42 minutes · no going back. Attempt on paper, then start.</p>
+      <div class="big" id="timerDisp">42:00</div>
+      <button class="btn" id="timerBtn" onclick="timerToggle()">Start 42-minute section</button>
+      <button class="btn ghost" onclick="timerReset()">Reset</button>
+    </div>
+    <div class="card">
+      <h2>Marking</h2>
+      <p>+4 correct · −1 wrong · unattempted 0. Guess only when you can eliminate two options.</p>
+    </div>
+  </section>
+
+  <!-- TRACKER -->
+  <section class="screen" id="scr-track">
+    <div class="card">
+      <h2>Subject Tracker</h2>
+      <p style="color:var(--mut);font-size:.78rem">First-pass completion. Ticks are saved on this phone only — this is <b>your</b> map.</p>
+      <div class="prog"><i id="trackBar" style="width:0%"></i></div>
+      <p class="meta" id="trackPct"></p>
+      <div id="subjList"></div>
+    </div>
+    <div class="card">
+      <h2>Order of attack (working JMO)</h2>
+      <ol>
+        <li><b>Bank the easy marks first:</b> Microbiology, Anatomy, PSM — ~35 direct marks.</li>
+        <li><b>Then the heavyweights:</b> Medicine, Surgery, OBGYN — vignette + image drills.</li>
+        <li><b>Short subjects</b> in duty fragments; <b>images every single week</b>.</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="screen" id="scr-about">
+    <div class="card">
+      <h2>What this program is</h2>
+      <p>Work here, get coached to NEET PG — using your own patients as the syllabus.</p>
+      <ul>
+        <li>Weekly 2-hour live session with your consultant</li>
+        <li>Your ward cases converted into exam one-pagers &amp; MCQs</li>
+        <li>Weekly timed test in the real exam format (36 Q / 42 min / +4−1)</li>
+        <li>Personal weak-area analysis and a duty-proof study plan</li>
+        <li>Exam-season leave planning and strategy</li>
+      </ul>
+      <p style="color:var(--mut);font-size:.8rem">Cost to you: nothing. This program exists only at this hospital.</p>
+    </div>
+    <div class="card">
+      <h2>If you leave</h2>
+      <p>Everything generated during your time here is yours to keep. Live sessions, new content and analysis continue only for serving JMOs.</p>
+    </div>
+    <div class="card">
+      <h2>Install on your phone</h2>
+      <p><b>Android (Chrome):</b> ⋮ menu → <i>Add to Home screen</i>.<br>
+         <b>iPhone (Safari):</b> Share → <i>Add to Home Screen</i>.</p>
+    </div>
+  </section>
+
+  <div class="foot" id="footBrand"></div>
+</div>
+
+<nav>
+  <button class="on" onclick="go('home',this)"><span class="ico">🏠</span>This Week</button>
+  <button onclick="go('lib',this)"><span class="ico">📚</span>Library</button>
+  <button onclick="go('timer',this)"><span class="ico">⏱️</span>Timer</button>
+  <button onclick="go('track',this)"><span class="ico">✅</span>Tracker</button>
+  <button onclick="go('about',this)"><span class="ico">ℹ️</span>Program</button>
+</nav>
+
+<script>
+/* ================= CONFIG — edit these once ================= */
+const CONFIG = {
+  hospital: "Mission Hospital",          // set real name in October
+  program:  "PG Track",
+  doctor:   "Dr. Andy",
+  contact:  "",                          // e.g. programme email
+};
+
+/* ================= CONTENT =================
+   Paste new entries generated by the "JMO Academy Engine" Claude Project
+   AT THE TOP of this array. Newest first. Allowed types:
+   "case" | "onepager" | "test" | "notice"
+   =========================================== */
+const CONTENT = [
+  { id:"2026-07-22-cows-milk-anemia", date:"2026-07-22", type:"case", subject:"Paediatrics",
+    title:"Case of the Week: Preoperative Anemia in a Toddler (Cow's Milk Anemia)",
+    html:`<p><b>The case:</b> 16-month-old, listed for elective circumcision. Pre-op workup: Hb 7.4 g/dL, microcytic, hypochromic. Excessive cow's milk intake. Iron low, ferritin low, TIBC high. Surgery deferred; started on oral iron.</p>
+          <h3>What the exam asks</h3>
+          <table><tr><th>Angle</th><th>High-yield point</th></tr>
+          <tr><td>Diagnosis</td><td>Iron deficiency anemia from excess cow's milk — commonest toddler anemia worldwide</td></tr>
+          <tr><td>Mechanism</td><td>Low bioavailable iron in milk + displaces iron-rich foods + occult GI blood loss + casein inhibits iron absorption</td></tr>
+          <tr><td>IDA vs thalassemia trait</td><td>Mentzer index (MCV/RBC): &gt;13 → IDA; &lt;13 → thalassemia trait, confirm with HbA2</td></tr>
+          <tr><td>Guidance</td><td>No cow's milk before 12 months; 16–24 oz/day (2–3 cups) after</td></tr>
+          <tr><td>Treatment</td><td>Elemental iron 3–6 mg/kg/day, continued ~3 months after Hb normalizes</td></tr>
+          <tr><td>Monitoring</td><td>Reticulocyte response peaks day 5–7 — earliest sign therapy is working</td></tr></table>
+          <h3>Image angles</h3>
+          <ul><li>Peripheral smear: microcytic, hypochromic, pencil cells</li>
+          <li>Mentzer index calculation from given indices instead of a picture</li>
+          <li>Bone marrow iron stain (absent stores) as a distractor image</li></ul>
+          <p><b>Pearls:</b> ferritin is an acute-phase reactant — can be falsely normal in infection. TIBC is high in IDA, low/normal in anemia of chronic disease. Untreated toddler IDA is linked to developmental delay and pica.</p>` },
+
+  { id:"2026-11-01-welcome", date:"2026-11-01", type:"notice", subject:"Program",
+    title:"Welcome to the PG Track",
+    html:`<p>This portal is your content library, test schedule and tracker. New material lands here every week — a real ward case turned into exam teaching, plus your timed test.</p>
+          <p><b>Rhythm:</b> case pack mid-week → timed test before the session → live 2-hour session weekly.</p>` },
+
+  { id:"2026-11-01-sample-case", date:"2026-11-01", type:"case", subject:"Paediatrics",
+    title:"SAMPLE — Case of the Week: 3-year-old with fever and refusal to walk",
+    html:`<p><b>The case:</b> 3-year-old boy, fever 4 days, refusing to bear weight on the right leg. Tender right hip, ESR 68, X-ray normal. Treated as septic arthritis after ultrasound-guided aspiration.</p>
+          <h3>What the exam asks</h3>
+          <table><tr><th>Angle</th><th>High-yield point</th></tr>
+          <tr><td>First investigation</td><td>Ultrasound hip — effusion; X-ray normal early</td></tr>
+          <tr><td>Kocher criteria</td><td>Fever &gt;38.5, non-weight-bearing, ESR &gt;40, WBC &gt;12,000</td></tr>
+          <tr><td>Organism</td><td>Staph aureus overall; K. kingae in &lt;4 y</td></tr>
+          <tr><td>Treatment</td><td>Urgent drainage + IV antibiotics — joint is an emergency</td></tr></table>
+          <h3>Image angles</h3>
+          <ul><li>USG hip with joint effusion</li><li>MRI in unresolving cases</li><li>Late X-ray: femoral head destruction (missed case)</li></ul>
+          <p><b>Pearls:</b> transient synovitis is the mimic — well child, low markers. Don't wait for X-ray changes. Aspirate before antibiotics where possible.</p>` },
+];
+
+/* ============ Subject tracker list (19 NBEMS subjects) ============ */
+const SUBJECTS = [
+  ["Anatomy","easy-mark bank"],["Physiology",""],["Biochemistry",""],
+  ["Pathology",""],["Pharmacology",""],["Microbiology","easy-mark bank"],
+  ["Forensic Medicine",""],["PSM","easy-mark bank"],
+  ["Medicine","heavyweight"],["Surgery","heavyweight"],["OBGYN","heavyweight"],
+  ["Paediatrics",""],["Orthopaedics",""],["ENT",""],["Ophthalmology",""],
+  ["Dermatology",""],["Psychiatry",""],["Radiology","image-heavy"],["Anaesthesia",""],
+];
+
+/* ================= app logic ================= */
+const $=q=>document.querySelector(q);
+document.title=CONFIG.program;
+$("#appTitle").innerHTML=`${CONFIG.hospital} <span>${CONFIG.program}</span>`;
+$("#appSub").textContent=`Coached by ${CONFIG.doctor} · NEET PG, from the ward up`;
+$("#footBrand").innerHTML=`${CONFIG.hospital} ${CONFIG.program} · ${CONFIG.doctor}${CONFIG.contact?" · "+CONFIG.contact:""}<br>Content generated from real de-identified ward cases, reviewed by your consultant.`;
+
+function go(name,btn){
+  document.querySelectorAll(".screen").forEach(s=>s.classList.remove("on"));
+  $("#scr-"+name).classList.add("on");
+  document.querySelectorAll("nav button").forEach(b=>b.classList.remove("on"));
+  btn.classList.add("on");
+  window.scrollTo(0,0);
+}
+
+function cardHTML(item,collapsed){
+  return `<div class="card ${collapsed?'collapsed':''}" id="c-${item.id}">
+    <span class="tag ${item.type}">${item.type.toUpperCase()}</span><span class="tag">${item.subject}</span>
+    <div class="meta">${item.date}</div>
+    <h3 style="margin-top:2px">${item.title}</h3>
+    <div class="body">${item.html}</div>
+    <div class="toggle" onclick="document.getElementById('c-${item.id}').classList.toggle('collapsed')">▸ show / hide</div>
+  </div>`;
+}
+
+/* Home: latest 3 expanded */
+$("#homeFeed").innerHTML =
+  CONTENT.slice(0,3).map(i=>cardHTML(i,false)).join("") ||
+  `<div class="card"><p>No content yet — first week's material lands soon.</p></div>`;
+
+/* Library with filters */
+const TYPES=["all","case","onepager","test","notice"];
+let libType="all";
+function renderLib(){
+  $("#libFilters").innerHTML=TYPES.map(t=>
+    `<button class="${t===libType?'on':''}" onclick="libType='${t}';renderLib()">${t}</button>`).join("");
+  const items=CONTENT.filter(i=>libType==="all"||i.type===libType);
+  $("#libFeed").innerHTML=items.map(i=>cardHTML(i,true)).join("")||`<div class="card"><p>Nothing here yet.</p></div>`;
+}
+renderLib();
+
+/* Tracker (localStorage per phone) */
+const TKEY="pgtrack-subjects";
+let ticks=JSON.parse(localStorage.getItem(TKEY)||"{}");
+function renderTrack(){
+  $("#subjList").innerHTML=SUBJECTS.map(([n,w],ix)=>`
+    <label class="subj"><input type="checkbox" ${ticks[n]?"checked":""} onchange="tick('${n}',this.checked)">
+    <span class="n">${n}</span><span class="w">${w}</span></label>`).join("");
+  const done=SUBJECTS.filter(([n])=>ticks[n]).length;
+  const pct=Math.round(done/SUBJECTS.length*100);
+  $("#trackBar").style.width=pct+"%";
+  $("#trackPct").textContent=`${done} / ${SUBJECTS.length} subjects first-passed (${pct}%)`;
+}
+function tick(n,v){ticks[n]=v;localStorage.setItem(TKEY,JSON.stringify(ticks));renderTrack();}
+renderTrack();
+
+/* 42-min section timer */
+let tLeft=42*60,tInt=null;
+function fmt(s){return String(Math.floor(s/60)).padStart(2,"0")+":"+String(s%60).padStart(2,"0");}
+function timerToggle(){
+  if(tInt){clearInterval(tInt);tInt=null;$("#timerBtn").textContent="Resume";return;}
+  $("#timerBtn").textContent="Pause";
+  tInt=setInterval(()=>{
+    tLeft--;
+    $("#timerDisp").textContent=fmt(Math.max(tLeft,0));
+    if(tLeft===300)$("#timerBox").classList.add("warn");
+    if(tLeft<=0){clearInterval(tInt);tInt=null;$("#timerDisp").textContent="TIME";
+      $("#timerBtn").textContent="Start 42-minute section";
+      if(navigator.vibrate)navigator.vibrate([300,150,300]);}
+  },1000);
+}
+function timerReset(){clearInterval(tInt);tInt=null;tLeft=42*60;
+  $("#timerBox").classList.remove("warn");$("#timerDisp").textContent="42:00";
+  $("#timerBtn").textContent="Start 42-minute section";}
+</script>
+</body>
+</html>

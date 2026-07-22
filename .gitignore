@@ -1,0 +1,10 @@
+# Track ONLY the deployable portal. Everything else stays local.
+# This protects answer keys, per-JMO analysis, and study plans from ever
+# reaching GitHub/Vercel.
+
+# Ignore everything by default...
+*
+
+# ...then un-ignore only what the public app needs.
+!index.html
+!.gitignore
