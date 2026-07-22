@@ -340,12 +340,15 @@ function openCase(id){
   setTimeout(()=>{
     const el=document.querySelector('#libFeed .card[data-id="'+CSS.escape(id)+'"]');
     if(el){el.classList.remove("collapsed");el.scrollIntoView({behavior:"smooth",block:"start"});}
-  },60);
+    else toast("That case isn't in the library yet.");
+  },120);
 }
-window.addEventListener("load",()=>{
+function routeFromHash(){
   const m=location.hash.match(/c=([^&]+)/);
   if(m)openCase(decodeURIComponent(m[1]));
-});
+}
+routeFromHash();                                   /* runs on first open */
+window.addEventListener("hashchange",routeFromHash); /* runs when app already open */
 
 /* Tracker (localStorage per phone) */
 const TKEY="pgtrack-subjects";
