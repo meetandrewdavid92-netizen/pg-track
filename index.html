@@ -168,6 +168,18 @@
   .qexp{display:none;margin-top:9px;padding:11px 13px;border-radius:12px;
     background:rgba(139,123,240,.09);font-size:.83rem;line-height:1.55;color:#413d5c}
   .qexp.show{display:block}
+
+  /* Library read / unread */
+  .libgroup{font-size:.7rem;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;
+    color:var(--violet);margin:4px 2px 12px;display:flex;align-items:center;gap:8px}
+  .libgroup.muted{color:var(--soft);margin-top:22px}
+  .libgroup.allread{color:#22a389}
+  .card.unread{border-color:rgba(139,123,240,.45);box-shadow:0 12px 30px -12px rgba(120,100,230,.4)}
+  .card.read{opacity:.6}
+  .tag.unreadtag{background:linear-gradient(90deg,var(--violet),var(--sky));color:#fff}
+  .footright{display:flex;align-items:center;gap:12px}
+  .miniact{font-size:.74rem;font-weight:700;color:var(--soft);cursor:pointer;user-select:none}
+  .miniact:active{color:var(--violet)}
 </style>
 </head>
 <body>
@@ -391,39 +403,65 @@ function go(name,btn){
   $("#scr-"+name).classList.add("on");
   document.querySelectorAll("nav button").forEach(b=>b.classList.remove("on"));
   btn.classList.add("on");
+  if(name==="lib"&&typeof renderLib==="function")renderLib();  /* refresh read/unread grouping */
   window.scrollTo(0,0);
 }
 
-/* Card toggles ITSELF via closest() — no id lookup, so duplicate cards
-   across Home and Library each toggle independently. */
-function cardHTML(item,collapsed){
-  return `<div class="card ${collapsed?'collapsed':''}" data-id="${item.id}">
-    <div class="tags"><span class="tag ${item.type}">${item.type}</span><span class="tag subj">${item.subject}</span></div>
+/* Card toggles ITSELF — expanding it in the Library marks it read.
+   showBadge=true only in the Library, so Home stays a clean latest-feed. */
+function cardHTML(item,collapsed,showBadge){
+  const isRead=showBadge&&readMap[item.id];
+  const unread=showBadge&&!isRead;
+  return `<div class="card ${collapsed?'collapsed':''} ${unread?'unread':''} ${isRead?'read':''}" data-id="${item.id}">
+    <div class="tags"><span class="tag ${item.type}">${item.type}</span><span class="tag subj">${item.subject}</span>${unread?'<span class="tag unreadtag">new</span>':''}</div>
     <div class="meta">${item.date}</div>
     <h3 style="margin-top:2px">${item.title}</h3>
     <div class="body">${item.html}</div>
     <div class="cardfoot">
-      <div class="toggle" onclick="this.closest('.card').classList.toggle('collapsed')">
+      <div class="toggle" onclick="toggleCard(this,'${item.id}')">
         <span class="chev">▸</span><span class="lbl"></span>
       </div>
-      <div class="share" onclick="shareCase(event,'${item.id}')">⤴ Share</div>
+      <div class="footright">
+        ${isRead?`<div class="miniact" onclick="setUnread(event,'${item.id}')">↺ Mark unread</div>`:''}
+        <div class="share" onclick="shareCase(event,'${item.id}')">⤴ Share</div>
+      </div>
     </div>
   </div>`;
 }
 
-/* Home: latest 3 expanded */
+/* Read/unread state (per phone) */
+const RKEY="pgtrack-read";
+let readMap=JSON.parse(localStorage.getItem(RKEY)||"{}");
+function saveRead(){localStorage.setItem(RKEY,JSON.stringify(readMap));}
+function markRead(id){if(!readMap[id]){readMap[id]=true;saveRead();}}
+function setUnread(ev,id){ev.stopPropagation();delete readMap[id];saveRead();renderLib();}
+function toggleCard(el,id){
+  const card=el.closest(".card");
+  const willExpand=card.classList.contains("collapsed");
+  card.classList.toggle("collapsed");
+  if(willExpand){markRead(id);card.classList.remove("unread");}  /* don't re-sort mid-read */
+}
+
+/* Home: latest 3 expanded (no read badges — it's the latest feed) */
 $("#homeFeed").innerHTML =
-  CONTENT.slice(0,3).map(i=>cardHTML(i,false)).join("") ||
+  CONTENT.slice(0,3).map(i=>cardHTML(i,false,false)).join("") ||
   `<div class="card"><p>No content yet — first week's material lands soon.</p></div>`;
 
-/* Library with filters */
+/* Library: unread grouped on top, read dimmed below */
 const TYPES=["all","case","onepager","test","notice"];
 let libType="all";
 function renderLib(){
   $("#libFilters").innerHTML=TYPES.map(t=>
     `<button class="${t===libType?'on':''}" onclick="libType='${t}';renderLib()">${t}</button>`).join("");
   const items=CONTENT.filter(i=>libType==="all"||i.type===libType);
-  $("#libFeed").innerHTML=items.map(i=>cardHTML(i,true)).join("")||`<div class="card"><p>Nothing here yet.</p></div>`;
+  if(!items.length){$("#libFeed").innerHTML=`<div class="card"><p>Nothing here yet.</p></div>`;return;}
+  const unread=items.filter(i=>!readMap[i.id]);
+  const read=items.filter(i=>readMap[i.id]);
+  let html="";
+  if(unread.length) html+=`<div class="libgroup">🔵 New / unread · ${unread.length}</div>`+unread.map(i=>cardHTML(i,true,true)).join("");
+  else html+=`<div class="libgroup allread">✓ All caught up</div>`;
+  if(read.length) html+=`<div class="libgroup muted">Already read · ${read.length}</div>`+read.map(i=>cardHTML(i,true,true)).join("");
+  $("#libFeed").innerHTML=html;
 }
 renderLib();
 
