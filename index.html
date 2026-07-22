@@ -71,12 +71,23 @@
     box-shadow:none}
 
   .collapsed .body{display:none}
+  .cardfoot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:6px}
   .toggle{display:inline-flex;align-items:center;gap:6px;color:var(--violet);font-size:.8rem;
-    font-weight:700;cursor:pointer;user-select:none;padding:8px 0 2px;margin-top:4px}
+    font-weight:700;cursor:pointer;user-select:none;padding:8px 0 2px}
   .toggle .chev{transition:transform .2s;display:inline-block}
   .card:not(.collapsed) .toggle .chev{transform:rotate(90deg)}
   .card:not(.collapsed) .toggle .lbl::after{content:"Hide"}
   .card.collapsed .toggle .lbl::after{content:"Read"}
+  .share{display:inline-flex;align-items:center;gap:6px;font-size:.78rem;font-weight:700;cursor:pointer;
+    color:var(--violet);background:rgba(139,123,240,.10);border:1px solid var(--line);
+    padding:7px 14px;border-radius:30px;transition:.15s}
+  .share:active{transform:scale(.97);background:rgba(139,123,240,.18)}
+
+  #toast{position:fixed;left:50%;bottom:104px;transform:translateX(-50%) translateY(20px);
+    background:var(--ink);color:#fff;font-size:.82rem;font-weight:600;padding:11px 18px;border-radius:14px;
+    box-shadow:0 12px 30px -8px rgba(40,30,90,.5);opacity:0;pointer-events:none;transition:.25s;z-index:30;
+    max-width:80%;text-align:center}
+  #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
   nav{position:fixed;bottom:0;left:0;right:0;display:flex;z-index:10;
     padding:8px 10px calc(8px + env(safe-area-inset-bottom));
@@ -200,6 +211,8 @@
   <div class="foot" id="footBrand"></div>
 </div>
 
+<div id="toast"></div>
+
 <nav>
   <button class="on" onclick="go('home',this)"><span class="ico">🏠</span>This Week</button>
   <button onclick="go('lib',this)"><span class="ico">📚</span>Library</button>
@@ -272,13 +285,16 @@ function go(name,btn){
 /* Card toggles ITSELF via closest() — no id lookup, so duplicate cards
    across Home and Library each toggle independently. */
 function cardHTML(item,collapsed){
-  return `<div class="card ${collapsed?'collapsed':''}">
+  return `<div class="card ${collapsed?'collapsed':''}" data-id="${item.id}">
     <div class="tags"><span class="tag ${item.type}">${item.type}</span><span class="tag subj">${item.subject}</span></div>
     <div class="meta">${item.date}</div>
     <h3 style="margin-top:2px">${item.title}</h3>
     <div class="body">${item.html}</div>
-    <div class="toggle" onclick="this.closest('.card').classList.toggle('collapsed')">
-      <span class="chev">▸</span><span class="lbl"></span>
+    <div class="cardfoot">
+      <div class="toggle" onclick="this.closest('.card').classList.toggle('collapsed')">
+        <span class="chev">▸</span><span class="lbl"></span>
+      </div>
+      <div class="share" onclick="shareCase(event,'${item.id}')">⤴ Share</div>
     </div>
   </div>`;
 }
@@ -298,6 +314,38 @@ function renderLib(){
   $("#libFeed").innerHTML=items.map(i=>cardHTML(i,true)).join("")||`<div class="card"><p>Nothing here yet.</p></div>`;
 }
 renderLib();
+
+/* ---- Share a single case: native share sheet → you pick the recipient ---- */
+function toast(msg){
+  const t=$("#toast");t.textContent=msg;t.classList.add("show");
+  clearTimeout(toast._t);toast._t=setTimeout(()=>t.classList.remove("show"),2600);
+}
+async function shareCase(ev,id){
+  ev.stopPropagation();
+  const item=CONTENT.find(x=>x.id===id);if(!item)return;
+  const url=location.origin+location.pathname+"#c="+encodeURIComponent(id);
+  const text=`${item.title} — ${CONFIG.hospital} ${CONFIG.program}`;
+  if(navigator.share){
+    try{await navigator.share({title:item.title,text,url});}catch(e){}
+  }else{
+    try{await navigator.clipboard.writeText(url);toast("Link copied — paste it into WhatsApp");}
+    catch(e){prompt("Copy this link to share:",url);}
+  }
+}
+
+/* ---- Deep link: opening #c=<id> jumps straight to that case, expanded ---- */
+function openCase(id){
+  go("lib",document.querySelectorAll("nav button")[1]);
+  libType="all";renderLib();
+  setTimeout(()=>{
+    const el=document.querySelector('#libFeed .card[data-id="'+CSS.escape(id)+'"]');
+    if(el){el.classList.remove("collapsed");el.scrollIntoView({behavior:"smooth",block:"start"});}
+  },60);
+}
+window.addEventListener("load",()=>{
+  const m=location.hash.match(/c=([^&]+)/);
+  if(m)openCase(decodeURIComponent(m[1]));
+});
 
 /* Tracker (localStorage per phone) */
 const TKEY="pgtrack-subjects";
