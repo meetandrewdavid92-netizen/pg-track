@@ -127,6 +127,13 @@
   #timerBox.warn .big{background:linear-gradient(90deg,#f4739a,var(--peach));
     -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
   .foot{color:var(--soft);font-size:.7rem;text-align:center;padding:16px 6px 8px;line-height:1.6;font-weight:500}
+
+  /* Focus mode — a shared link shows ONLY that one case, no nav */
+  body.focus{padding-bottom:28px}
+  body.focus nav{display:none}
+  .focusteaser{text-align:center;color:var(--mut);font-size:.82rem;font-weight:600;
+    padding:10px 14px 2px;line-height:1.55}
+  .focuscta{max-width:280px;margin:12px auto 6px}
 </style>
 </head>
 <body>
@@ -206,6 +213,13 @@
       <p><b>Android (Chrome):</b> ⋮ menu → <i>Add to Home screen</i>.<br>
          <b>iPhone (Safari):</b> Share → <i>Add to Home Screen</i>.</p>
     </div>
+  </section>
+
+  <!-- FOCUS (single shared case) -->
+  <section class="screen" id="scr-focus">
+    <div id="focusFeed"></div>
+    <p class="focusteaser" id="focusTeaser"></p>
+    <button class="btn ghost focuscta" onclick="exitFocus()">About the PG Track →</button>
   </section>
 
   <div class="foot" id="footBrand"></div>
@@ -333,21 +347,38 @@ async function shareCase(ev,id){
   }
 }
 
-/* ---- Deep link: opening #c=<id> jumps straight to that case, expanded ---- */
-function openCase(id){
-  go("lib",document.querySelectorAll("nav button")[1]);
-  libType="all";renderLib();
-  setTimeout(()=>{
-    const el=document.querySelector('#libFeed .card[data-id="'+CSS.escape(id)+'"]');
-    if(el){el.classList.remove("collapsed");el.scrollIntoView({behavior:"smooth",block:"start"});}
-    else toast("That case isn't in the library yet.");
-  },120);
+/* ---- Focus mode: a shared #c=<id> link shows ONLY that one case ---- */
+function focusCardHTML(item){
+  return `<div class="card" data-id="${item.id}">
+    <div class="tags"><span class="tag ${item.type}">${item.type}</span><span class="tag subj">${item.subject}</span></div>
+    <div class="meta">${item.date}</div>
+    <h3 style="margin-top:2px">${item.title}</h3>
+    <div class="body">${item.html}</div>
+    <div class="cardfoot"><span></span>
+      <div class="share" onclick="shareCase(event,'${item.id}')">⤴ Share</div>
+    </div>
+  </div>`;
+}
+function showFocus(id){
+  const item=CONTENT.find(x=>x.id===id);
+  if(!item){exitFocus();return;}
+  $("#focusFeed").innerHTML=focusCardHTML(item);
+  $("#focusTeaser").textContent=`One case from the ${CONFIG.hospital} ${CONFIG.program} — weekly NEET PG coaching for our resident doctors.`;
+  document.querySelectorAll(".screen").forEach(s=>s.classList.remove("on"));
+  $("#scr-focus").classList.add("on");
+  document.body.classList.add("focus");
+  window.scrollTo(0,0);
+}
+function exitFocus(){
+  document.body.classList.remove("focus");
+  history.replaceState(null,"",location.pathname);   /* drop the #c= hash */
+  go("about",document.querySelectorAll("nav button")[4]);
 }
 function routeFromHash(){
   const m=location.hash.match(/c=([^&]+)/);
-  if(m)openCase(decodeURIComponent(m[1]));
+  if(m)showFocus(decodeURIComponent(m[1]));
 }
-routeFromHash();                                   /* runs on first open */
+routeFromHash();                                     /* runs on first open */
 window.addEventListener("hashchange",routeFromHash); /* runs when app already open */
 
 /* Tracker (localStorage per phone) */
