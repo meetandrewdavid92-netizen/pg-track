@@ -152,6 +152,11 @@
   .topicmeta{display:flex;align-items:center;gap:9px;color:var(--mut);flex:0 0 auto}
   .cnt{background:rgba(139,123,240,.14);color:var(--violet);font-weight:800;font-size:.74rem;
     padding:3px 10px;border-radius:20px}
+  .tprog{background:rgba(139,123,240,.14);color:var(--violet);font-weight:800;font-size:.72rem;
+    padding:3px 10px;border-radius:20px;white-space:nowrap}
+  .tprog.part{background:rgba(246,169,126,.20);color:#d47a44}
+  .tprog.done{background:rgba(79,203,176,.22);color:#1f8f77}
+  .topic.topicdone{border-color:rgba(79,203,176,.4);background:rgba(79,203,176,.06)}
   .topichead .chev{transition:transform .2s;color:var(--violet)}
   .topic:not(.collapsed) .topichead .chev{transform:rotate(90deg)}
   .topic.collapsed .qwrap{display:none}
@@ -615,6 +620,7 @@ function answerQ(btn,qi,i){
   card.querySelector(".qexp").classList.add("show");
   recordAnswer(x,correct,i);
   updateSegBadges();
+  updateTopicHead(card);
 }
 function retryQ(el){
   const card=el.closest(".qcard");
@@ -623,7 +629,24 @@ function retryQ(el){
   card.querySelector(".qexp").classList.remove("show");
 }
 
-let practiceView="bank",qSubj="All";
+let practiceView="bank",qSubj="All",qStatusFilter="all";
+/* per-topic progress: how many of a topic's questions have been attempted */
+function attemptedCount(qs){return qs.filter(x=>{const s=stats[qKey(x)];return s&&s.seen>0;}).length;}
+function topicState(att,total){return att===0?"none":(att>=total?"done":"part");}
+function tprogInfo(att,total){
+  if(att===0)return{cls:"tprog",txt:String(total)};
+  if(att>=total)return{cls:"tprog done",txt:"✓ done"};
+  return{cls:"tprog part",txt:att+"/"+total};
+}
+function updateTopicHead(card){                 /* live-update the topic badge as questions are answered */
+  const topic=card.closest(".topic");if(!topic)return;
+  const qcards=topic.querySelectorAll(".qcard");let att=0;
+  qcards.forEach(c=>{const s=stats[qKey(QBANK[+c.dataset.qi])];if(s&&s.seen>0)att++;});
+  const info=tprogInfo(att,qcards.length);
+  const prog=topic.querySelector(".tprog");
+  prog.className=info.cls;prog.textContent=info.txt;
+  topic.classList.toggle("topicdone",att>=qcards.length);
+}
 function renderPractice(){
   const counts={bank:QBANK.length,review:dueQuestions().length,weak:weakCount()};
   const segs=[["bank","Bank"],["review","Review"],["weak","Weak spots"]];
@@ -646,27 +669,35 @@ function renderBank(){
     <h2>Question Bank</h2>
     <p class="submut">${QBANK.length} verified question${QBANK.length===1?"":"s"} from cases we've discussed — the bank grows every week. Tap an option to check yourself.</p>
     <div class="filters" id="qSubjects"></div>
+    <div class="filters" id="qStatus"></div>
     <div id="qbankFeed"></div></div>`;
   const subjects=[...new Set(QBANK.map(x=>x.subject))].sort();
   $("#qSubjects").innerHTML=["All",...subjects].map(s=>
     `<button class="${s===qSubj?'on':''}" onclick="qSubj='${s}';renderBank()">${s}</button>`).join("");
+  const STATUS=[["all","All"],["none","Not attempted"],["part","In progress"],["done","Done"]];
+  $("#qStatus").innerHTML=STATUS.map(([k,l])=>
+    `<button class="${k===qStatusFilter?'on':''}" onclick="qStatusFilter='${k}';renderBank()">${l}</button>`).join("");
   const items=QBANK.filter(x=>qSubj==="All"||x.subject===qSubj);
   const grouped={};
   items.forEach(x=>{(grouped[x.subject]??={});(grouped[x.subject][x.topic]??=[]).push(x);});
-  let html="";
+  let html="",shown=0;
   Object.keys(grouped).sort().forEach(sub=>{
     Object.keys(grouped[sub]).sort().forEach(top=>{
       const qs=grouped[sub][top];
-      html+=`<div class="topic collapsed">
+      const att=attemptedCount(qs),st=topicState(att,qs.length);
+      if(qStatusFilter!=="all"&&qStatusFilter!==st)return;   /* attempted / not-attempted filter */
+      shown++;
+      const info=tprogInfo(att,qs.length);
+      html+=`<div class="topic collapsed ${st==="done"?"topicdone":""}">
         <div class="topichead" onclick="this.closest('.topic').classList.toggle('collapsed')">
           <span class="topicname">${qSubj==="All"?'<span class="topicsub">'+sub+'</span>':''}${top}</span>
-          <span class="topicmeta"><span class="cnt">${qs.length}</span><span class="chev">▸</span></span>
+          <span class="topicmeta"><span class="${info.cls}">${info.txt}</span><span class="chev">▸</span></span>
         </div>
         <div class="qwrap">${qs.map(q=>qCardHTML(q)).join("")}</div>
       </div>`;
     });
   });
-  $("#qbankFeed").innerHTML=html||`<p class="submut">No questions in this subject yet.</p>`;
+  $("#qbankFeed").innerHTML=shown?html:`<p class="submut">No topics ${qStatusFilter==="none"?"left to start":qStatusFilter==="done"?"completed yet":"in progress"} here.</p>`;
 }
 function renderReview(){
   const due=dueQuestions();
