@@ -175,6 +175,8 @@
   .qexp.show{display:block}
   .qretry{display:none;margin-top:10px;font-size:.76rem;font-weight:700;color:var(--violet);cursor:pointer;user-select:none}
   .qcard.done .qretry{display:inline-block}
+  .qsrc{display:inline-block;font-size:.6rem;font-weight:800;letter-spacing:.6px;text-transform:uppercase;
+    color:var(--soft);background:rgba(139,123,240,.09);padding:2px 9px;border-radius:20px;margin-bottom:9px}
 
   /* Library read / unread */
   .libgroup{font-size:.7rem;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;
@@ -604,6 +606,7 @@ function qCardHTML(x,forceFresh){
     return `<button class="${cls}" onclick="answerQ(this,${qi},${i})">${String.fromCharCode(65+i)}. ${o}</button>`;
   }).join("");
   return `<div class="qcard${answered?' done':''}" data-qi="${qi}">
+    <span class="qsrc">${x.src||"Case"}</span>
     <div class="qstem">${x.q}</div>
     <div class="opts">${opts}</div>
     <div class="qexp${answered?' show':''}"><b>Answer: ${String.fromCharCode(65+x.ans)}.</b> ${x.exp}</div>
