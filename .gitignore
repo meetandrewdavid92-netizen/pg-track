@@ -8,3 +8,9 @@
 # ...then un-ignore only what the public app needs.
 !index.html
 !.gitignore
+
+# PWA shell — needed for install-to-home-screen and offline use.
+!manifest.webmanifest
+!sw.js
+!icons/
+!icons/*.png

@@ -5,6 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#f3f0ff">
 <title>PG Track</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="PG Track">
 <style>
   :root{
     --bg1:#f4f1ff; --bg2:#eaf4ff; --bg3:#fdf2fb;
@@ -247,6 +253,8 @@
   .qcard.done .qretry{display:inline-block}
   .qsrc{display:inline-block;font-size:.6rem;font-weight:800;letter-spacing:.6px;text-transform:uppercase;
     color:var(--soft);background:rgba(139,123,240,.09);padding:2px 9px;border-radius:20px;margin-bottom:9px}
+  .qsched{display:none;margin-top:8px;font-size:.71rem;font-weight:700;letter-spacing:.2px;color:var(--mut)}
+  .qsched.show{display:block}
 
   /* Library read / unread */
   .libgroup{font-size:.7rem;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;
@@ -455,6 +463,7 @@
       <h2>Install It</h2>
       <p><b>Android (Chrome):</b> ⋮ menu → <i>Add to Home screen</i>.<br>
          <b>iPhone (Safari):</b> Share → <i>Add to Home Screen</i>.</p>
+      <p style="color:var(--mut);font-size:.82rem">Once installed it <b>works without signal</b> — the whole library and question bank are stored on your phone. Open it on a ward with no data and everything is still there; new material syncs the next time you have a connection.</p>
     </div>
   </section>
 
@@ -767,7 +776,7 @@ function renderYield(){
   $("#yStats").innerHTML=`
     <div class="yst"><b>${Math.round(big3)}</b><span>marks in Surgery + OBGYN + Medicine alone</span></div>
     <div class="yst"><b>${Math.round(top5)}</b><span>marks in the 5 highest-yield subjects</span></div>
-    <div class="yst"><b>${YIELD.n.toLocaleString("en-IN")}</b><span>real exam questions analysed</span></div>`;
+    <div class="yst"><b>${YIELD.n.toLocaleString("en-IN")}</b><span>of those carried a subject label</span></div>`;
 
   const tiers=["Bank first","Core grind","Steady","Late/triage"];
   const blurb={"Bank first":"Best marks per hour — start here.",
@@ -1024,13 +1033,41 @@ function buildPlan(quiet){
 const SKEY="pgtrack-stats";
 let stats=JSON.parse(localStorage.getItem(SKEY)||"{}");
 function qKey(x){return x.subject+"§"+x.q;}
+
+/* ---- Spaced repetition (Leitner ladder) ----
+   The Plan tab promises five touches per topic (day 0 · 1 · 7 · 30 · final),
+   so the bank has to actually deliver them. A question answered correctly does
+   NOT retire — it climbs a box and returns just as it's about to fade. Answered
+   wrong, it drops to box 0 and is due again the same day.
+   BOXES[box] = days until the next sighting. */
+const BOXES=[0,1,3,7,30,90];
+const DAYMS=86400000;
+function todayNum(){const d=new Date();return Math.floor((d-d.getTimezoneOffset()*60000)/DAYMS);}
+function schedule(r){r.next=todayNum()+BOXES[r.box];}
+function isDue(r){return !!r&&r.box!=null&&r.next<=todayNum();}
+function schedText(r){
+  const d=BOXES[r.box];
+  return d?`✓ Next review in ${d} day${d===1?"":"s"}`
+          :"↻ Due again today — it stays in the pile until it sticks";
+}
+
+/* Records written before the ladder existed only carried a boolean `due`. */
+(function migrateStats(){
+  let dirty=false;
+  Object.values(stats).forEach(r=>{if(r.box==null){r.box=r.due?0:1;schedule(r);dirty=true;}});
+  if(dirty)localStorage.setItem(SKEY,JSON.stringify(stats));
+})();
+
 function recordAnswer(x,correct,pick){
   const k=qKey(x);
-  const r=stats[k]||{seen:0,correct:0,wrong:0};
+  const r=stats[k]||{seen:0,correct:0,wrong:0,box:0};
   r.seen++;
-  if(correct){r.correct++;r.due=false;}else{r.wrong++;r.due=true;}
+  if(correct){r.correct++;r.box=Math.min(r.box+1,BOXES.length-1);}
+  else{r.wrong++;r.box=0;}
+  schedule(r);
   r.lastCorrect=correct;r.lastPick=pick;
   stats[k]=r;localStorage.setItem(SKEY,JSON.stringify(stats));
+  return r;
 }
 function topicStats(){
   const map={};
@@ -1039,11 +1076,17 @@ function topicStats(){
     const tk=x.subject+"||"+x.topic;
     const t=map[tk]||(map[tk]={subject:x.subject,topic:x.topic,seen:0,correct:0,points:[]});
     t.seen+=s.seen;t.correct+=s.correct;
-    if(s.due)t.points.push(x.exp);          /* missed point → revision list */
+    if(s.box===0)t.points.push(x.exp);      /* still-unproven point → revision list */
   });
   return Object.values(map);
 }
-function dueQuestions(){return QBANK.filter(x=>stats[qKey(x)]&&stats[qKey(x)].due);}
+function dueQuestions(){return QBANK.filter(x=>isDue(stats[qKey(x)]));}
+function scheduledQuestions(){return QBANK.filter(x=>{const s=stats[qKey(x)];return s&&s.box!=null;});}
+function nextDueInDays(){
+  const t=todayNum();
+  const ds=scheduledQuestions().map(x=>stats[qKey(x)].next-t).filter(d=>d>0);
+  return ds.length?Math.min(...ds):null;
+}
 function weakCount(){return topicStats().filter(t=>t.correct/t.seen<0.7).length;}
 
 /* interactive MCQ card (shared by Bank + Review).
@@ -1064,6 +1107,7 @@ function qCardHTML(x,forceFresh){
     <div class="qstem">${x.q}</div>
     <div class="opts">${opts}</div>
     <div class="qexp${answered?' show':''}"><b>Answer: ${String.fromCharCode(65+x.ans)}.</b> ${x.exp}</div>
+    <div class="qsched${answered?' show':''}">${answered?schedText(s):""}</div>
     <div class="qretry" onclick="retryQ(this)">↺ Try again</div>
   </div>`;
 }
@@ -1075,7 +1119,9 @@ function answerQ(btn,qi,i){
   card.querySelectorAll(".opt").forEach((o,idx)=>{o.classList.add("locked");if(idx===x.ans)o.classList.add("correct");});
   if(!correct)btn.classList.add("wrong");
   card.querySelector(".qexp").classList.add("show");
-  recordAnswer(x,correct,i);
+  const r=recordAnswer(x,correct,i);
+  const sch=card.querySelector(".qsched");
+  if(sch){sch.textContent=schedText(r);sch.classList.add("show");}
   updateSegBadges();
   updateTopicHead(card);
 }
@@ -1106,7 +1152,7 @@ function updateTopicHead(card){                 /* live-update the topic badge a
 }
 function renderPractice(){
   const counts={bank:QBANK.length,review:dueQuestions().length,weak:weakCount()};
-  const segs=[["bank","Bank"],["review","Review"],["weak","Weak spots"]];
+  const segs=[["bank","Bank"],["review","Due"],["weak","Weak spots"]];
   $("#practiceSeg").innerHTML=segs.map(([k,label])=>
     `<button data-k="${k}" class="${k===practiceView?'on':''}" onclick="practiceView='${k}';renderPractice()">${label}${counts[k]?`<span class="segbadge">${counts[k]}</span>`:''}</button>`).join("");
   if(practiceView==="bank")renderBank();
@@ -1159,12 +1205,15 @@ function renderBank(){
 function renderReview(){
   const due=dueQuestions();
   if(!due.length){
-    $("#practiceBody").innerHTML=`<div class="card"><div class="emptybox"><span class="big2">✅</span>No mistakes to review right now. Questions you get wrong land here so you can re-drill them until they stick.</div></div>`;
+    const sched=scheduledQuestions().length,nd=nextDueInDays();
+    $("#practiceBody").innerHTML=`<div class="card"><div class="emptybox"><span class="big2">✅</span>
+      Nothing due today.${sched?`<br><br><b>${sched}</b> question${sched===1?"":"s"} on the revision ladder${nd?` — next batch in <b>${nd} day${nd===1?"":"s"}</b>`:""}.`
+      :" Answer some questions in the Bank and they'll come back here on a spaced schedule — 1, 3, 7, 30, 90 days — timed to hit just before you'd forget them."}</div></div>`;
     return;
   }
   $("#practiceBody").innerHTML=`<div class="card">
-    <h2>Review your mistakes</h2>
-    <p class="submut">${due.length} question${due.length===1?"":"s"} you last got wrong. Get one right and it retires from this list.</p>
+    <h2>Due today</h2>
+    <p class="submut">${due.length} question${due.length===1?"":"s"} scheduled for revision. Right answer → it moves down the ladder (1 → 3 → 7 → 30 → 90 days). Wrong → it's back tomorrow. This is the five-touch schedule from your Plan, run automatically.</p>
     <div>${due.map(q=>qCardHTML(q,true)).join("")}</div></div>`;
 }
 function renderWeak(){
@@ -1193,24 +1242,72 @@ function renderWeak(){
 }
 renderPractice();
 
-/* 42-min section timer */
-let tLeft=42*60,tInt=null;
+/* ================= 42-min section timer =================
+   Anchored to a wall-clock deadline, NOT a count of ticks. The instruction is
+   "attempt on paper, then start" — so the phone sits face-down with the screen
+   off, and mobile browsers throttle or freeze setInterval in a backgrounded
+   tab. Counting ticks would silently hand the JMO extra minutes on a test
+   whose whole point is the time pressure. */
+let tLeft=42*60,tEnd=null,tInt=null;
 function fmt(s){return String(Math.floor(s/60)).padStart(2,"0")+":"+String(s%60).padStart(2,"0");}
-function timerToggle(){
-  if(tInt){clearInterval(tInt);tInt=null;$("#timerBtn").textContent="Resume";return;}
-  $("#timerBtn").textContent="Pause";
-  tInt=setInterval(()=>{
-    tLeft--;
-    $("#timerDisp").textContent=fmt(Math.max(tLeft,0));
-    if(tLeft===300)$("#timerBox").classList.add("warn");
-    if(tLeft<=0){clearInterval(tInt);tInt=null;$("#timerDisp").textContent="TIME";
-      $("#timerBtn").textContent="Start 42-minute section";
-      if(navigator.vibrate)navigator.vibrate([300,150,300]);}
-  },1000);
+function timerTick(){
+  tLeft=Math.max(0,Math.round((tEnd-Date.now())/1000));
+  $("#timerDisp").textContent=tLeft?fmt(tLeft):"TIME";
+  $("#timerBox").classList.toggle("warn",tLeft<=300);
+  if(!tLeft)timerDone();
 }
-function timerReset(){clearInterval(tInt);tInt=null;tLeft=42*60;
+function timerDone(){
+  clearInterval(tInt);tInt=null;tEnd=null;
+  $("#timerBtn").textContent="Start 42-minute section";
+  if(navigator.vibrate)navigator.vibrate([300,150,300]);
+  beep();
+}
+function timerToggle(){
+  if(tInt){                                    /* pause: freeze what's left */
+    clearInterval(tInt);tInt=null;
+    tLeft=Math.max(0,Math.round((tEnd-Date.now())/1000));tEnd=null;
+    $("#timerBtn").textContent="Resume";return;
+  }
+  if(tLeft<=0)tLeft=42*60;
+  armAudio();                                  /* must happen inside the tap — see beep() */
+  tEnd=Date.now()+tLeft*1000;
+  $("#timerBtn").textContent="Pause";
+  tInt=setInterval(timerTick,250);             /* 250ms so a throttled tab re-syncs instantly */
+  timerTick();
+}
+function timerReset(){
+  clearInterval(tInt);tInt=null;tEnd=null;tLeft=42*60;
   $("#timerBox").classList.remove("warn");$("#timerDisp").textContent="42:00";
-  $("#timerBtn").textContent="Start 42-minute section";}
+  $("#timerBtn").textContent="Start 42-minute section";
+}
+/* iPhone has no navigator.vibrate, so without a sound the end of the section
+   passes unnoticed. iOS also refuses to start audio unless the context was
+   created during a user gesture — hence arming it on the Start tap. */
+let actx=null;
+function armAudio(){
+  try{const C=window.AudioContext||window.webkitAudioContext;if(!C)return;
+    actx=actx||new C();if(actx.state==="suspended")actx.resume();}catch(e){}
+}
+function beep(){
+  if(!actx)return;
+  try{
+    [0,.5,1].forEach(t=>{
+      const o=actx.createOscillator(),g=actx.createGain(),at=actx.currentTime+t;
+      o.type="sine";o.frequency.value=880;o.connect(g);g.connect(actx.destination);
+      g.gain.setValueAtTime(.0001,at);
+      g.gain.exponentialRampToValueAtTime(.35,at+.02);
+      g.gain.exponentialRampToValueAtTime(.0001,at+.35);
+      o.start(at);o.stop(at+.4);
+    });
+  }catch(e){}
+}
+/* a hidden tab stops painting; re-sync the moment they look at it */
+document.addEventListener("visibilitychange",()=>{if(!document.hidden&&tInt)timerTick();});
+
+/* ---- Offline: register the service worker (see sw.js) ---- */
+if("serviceWorker" in navigator){
+  window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));
+}
 </script>
 </body>
 </html>
