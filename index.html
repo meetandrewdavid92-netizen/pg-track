@@ -182,6 +182,20 @@
   .frag{margin-bottom:10px}
   .frag h4{margin:0;font-size:.76rem;color:var(--violet)}
   .frag p{margin:2px 0 0;font-size:.74rem;color:var(--mut);line-height:1.45}
+  .mixbar{display:flex;height:9px;border-radius:9px;overflow:hidden;margin:7px 0 5px;
+          background:rgba(139,123,240,.10)}
+  .mixbar i{display:block;height:100%}
+  .mxn{background:var(--sky)} .mxr{background:var(--violet)} .mxt{background:var(--peach)}
+  .mixkey{display:flex;flex-wrap:wrap;gap:9px;font-size:.64rem;color:var(--mut);font-weight:600}
+  .mixkey em{display:inline-block;width:8px;height:8px;border-radius:3px;margin-right:4px;
+             vertical-align:middle;font-style:normal}
+  .prev{color:var(--violet);font-size:.64rem;font-weight:700;display:block}
+  .rvnote{font-size:.74rem;color:var(--mut);line-height:1.5;margin-top:8px}
+  .rtab td:first-child{white-space:nowrap;font-weight:700}
+  .vs{width:100%;border-collapse:collapse;font-size:.74rem;margin-top:8px}
+  .vs td{padding:6px 6px 6px 0;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.4}
+  .vs td:first-child{color:var(--mut);text-decoration:line-through}
+  .vs td:last-child{color:var(--ink);font-weight:600}
   @media(max-width:360px){ .pform{grid-template-columns:1fr} .ystats{flex-wrap:wrap} }
 
   /* Focus mode — a shared link shows ONLY that one case, no nav */
@@ -353,7 +367,7 @@
   <section class="screen" id="scr-plan">
     <div class="card">
       <h2>Your Duty-Proof Plan</h2>
-      <p style="color:var(--mut);font-size:.82rem">Built for a JMO working full shifts. Tell it the truth about your hours — a plan you can't keep is worse than no plan.</p>
+      <p style="color:var(--mut);font-size:.82rem">Built for a JMO working full shifts. Tell it the truth about your hours — a plan you can't keep is worse than no plan. Revision hours are <b>budgeted in from week one</b>, not left to the end.</p>
       <div class="pform">
         <label>Exam date
           <input type="date" id="pDate">
@@ -827,31 +841,60 @@ function buildPlan(quiet){
   const perWeek=Math.max(1,+(rawWeek-lost).toFixed(1));
   const total=Math.round(perWeek*weeks);
 
+  const ph=stage==="fresh"?[.55,.28,.17]:stage==="partial"?[.42,.33,.25]:[.20,.40,.40];
+  /* Phase lengths must add up to the weeks actually left, or a short runway
+     reports three 1-week phases inside a 1-week plan. */
+  let phw=ph.map(p=>Math.floor(weeks*p));
+  for(let i=0;phw.reduce((a,b)=>a+b,0)<weeks;i=(i+1)%3)phw[i]++;
+
+  /* Marks come from the SECOND and third contact with a topic, not the first —
+     a first pass never revisited is close to gone by exam day. So the weekly
+     budget is split three ways from week one instead of being spent entirely on
+     new content, and the split tilts further toward revision each phase. */
+  const MIX=[[.58,.27,.15],[.34,.46,.20],[0,.72,.28]]; /* new · revision · test+review */
+  const bucket=[0,0,0];
+  phw.forEach((w,i)=>MIX[i].forEach((f,k)=>bucket[k]+=w*perWeek*f));
+  const newT=Math.round(bucket[0]), revT=Math.round(bucket[1]), tstT=Math.round(bucket[2]);
+  const contentT=Math.max(1,newT+revT);
+
   /* Hours are allocated by NEED (marks x difficulty), because you cannot skip a
      heavy subject just because it is expensive. But the ORDER is by yield, so
      the cheap marks are banked first and a wrecked month costs you the dear
      ones, not the cheap ones. */
   const S=YIELD.subjects.map(x=>({...x,need:x.w*x.load}));
   const needSum=S.reduce((a,x)=>a+x.need,0);
-  S.forEach(x=>{x.hrs=Math.max(1,Math.round(x.need/needSum*total));});
+  S.forEach(x=>{
+    x.hrs=Math.max(2,Math.round(x.need/needSum*contentT));
+    x.rev=Math.max(1,Math.round(x.hrs*revT/contentT));
+    x.first=Math.max(1,x.hrs-x.rev);
+  });
   const byYield=[...S].sort((a,b)=>b.y-a.y);
 
-  const ph=stage==="fresh"?[.55,.28,.17]:stage==="partial"?[.42,.33,.25]:[.20,.40,.40];
-  /* Phase lengths must add up to the weeks actually left, or a short runway
-     reports three 1-week phases inside a 1-week plan. */
-  let phw=ph.map(p=>Math.floor(weeks*p));
-  for(let i=0;phw.reduce((a,b)=>a+b,0)<weeks;i=(i+1)%3)phw[i]++;
-  const phName=["Build — first pass","Intensity — tests + weak spots","Revision only — no new content"];
+  const phName=["Build — first pass + first revisions","Intensity — revision overtakes new content","Revision only — no new content"];
   const phBody=[
-    "New subjects in yield order. One weekly test throughout, without exception.",
-    "Two tests a week. Every wrong answer becomes a Weak-spots entry you revisit within 7 days.",
-    "No new topics. Only your own wrong answers, the image drills, and full-length papers."];
+    "New subjects in yield order — but every topic is revisited next day and again on day 7, from week one. One weekly test throughout, without exception.",
+    "Two tests a week. Revision is now the bigger half of your hours: every wrong answer becomes a Weak-spots entry you revisit within 7 days, and each subject gets a full sweep.",
+    "No new topics — none, however tempting. Your own wrong answers, the one-page topic sheets, image drills, and full-length papers."];
+
+  /* The date new content must stop is the single most useful line in the plan —
+     without it, first-pass reading eats the revision block. */
+  const revStart=new Date(exam.getTime()-phw[2]*7*864e5);
+  const fmt=d=>d.toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"});
+
+  const touches=[
+    ["Touch 1","Day 0","Read the topic, then immediately do 10 questions on it. Reading without questions does not count as a touch.","Full slot"],
+    ["Touch 2","Next day","Blank paper, from memory, before opening anything. Then check — and read only what you could not recall.","10 min"],
+    ["Touch 3","Day 7","Redo only the questions you got wrong. Not the chapter.","15 min"],
+    ["Touch 4","Day 30","20 one-liners on the topic. Under 70% and it goes back into the day-7 queue.","15 min"],
+    ["Touch 5","Final block","Your wrong answers and your one-page sheet only.","10 min"]];
 
   const fragments=[
     ["Pre-round, 20 min","10 one-liner MCQs — Pharmacology, Anatomy, Radiology. Shortest stems in the paper."],
+    ["First 10 min of every session","Yesterday's topic recalled from memory before you open anything new. This is Touch 2 and it is non-negotiable."],
     ["Post-lunch lull, 30 min","One topic from the current subject. Read, then immediately do questions on it."],
-    ["Night-duty quiet spell","Micro / Forensic / PSM one-liners. Do not start a new topic on a night."],
-    ["Day off, longest block","The vignette subjects — Surgery, Paediatrics, Dermatology. These need an unbroken sitting."]];
+    ["Night-duty quiet spell","Micro / Forensic / PSM one-liners, or the Weak-spots list. Do not start a new topic on a night."],
+    ["Day off, longest block","The vignette subjects — Surgery, Paediatrics, Dermatology. These need an unbroken sitting."],
+    ["One fixed day a week","Revision day: nothing new. The last 7 days' topics plus every wrong answer from this week's test."]];
 
   const done=Object.keys(ticks).filter(k=>ticks[k]).length;
   $("#planOut").innerHTML=`
@@ -866,22 +909,79 @@ function buildPlan(quiet){
   </div>
 
   <div class="card">
+    <h2>How Those Hours Are Spent</h2>
+    <div class="mixbar">
+      <i class="mxn" style="width:${newT/total*100}%"></i>
+      <i class="mxr" style="width:${revT/total*100}%"></i>
+      <i class="mxt" style="width:${tstT/total*100}%"></i></div>
+    <div class="mixkey">
+      <span><em class="mxn"></em>New content ${newT} h</span>
+      <span><em class="mxr"></em>Revision ${revT} h</span>
+      <span><em class="mxt"></em>Tests + reviewing them ${tstT} h</span></div>
+    <p class="rvnote"><b>${Math.round((revT+tstT)/total*100)}%</b> of your time is spent on
+      material you have already seen once. That is deliberate. The mark you gain comes from the
+      second and third contact with a topic — a first pass never revisited is close to gone by
+      exam day. A JMO who first-passes 19 subjects and revises none will score below one who
+      first-passes 12 and revises all 12.</p>
+    <p class="rvnote"><b>New content stops on ${fmt(revStart)}.</b> Anything not first-passed by
+      that date is dropped, not squeezed in. Protect that line — every year, someone loses their
+      revision block to a subject they were "almost done with".</p>
+  </div>
+
+  <div class="card">
     <h2>Three Phases</h2>
     ${phw.map((w,i)=>w?`<div class="phase">
       <h4>${phName[i]} <span>${w} week${w===1?"":"s"}</span></h4>
-      <p>${phBody[i]}</p></div>`:"").join("")}
+      <p>${phBody[i]}</p>
+      <div class="mixbar">
+        <i class="mxn" style="width:${MIX[i][0]*100}%"></i>
+        <i class="mxr" style="width:${MIX[i][1]*100}%"></i>
+        <i class="mxt" style="width:${MIX[i][2]*100}%"></i></div>
+      <div class="mixkey"><span>Per week: ${(perWeek*MIX[i][0]).toFixed(1)} h new ·
+        <b style="color:var(--violet)">${(perWeek*MIX[i][1]).toFixed(1)} h revision</b> ·
+        ${(perWeek*MIX[i][2]).toFixed(1)} h test</span></div>
+      </div>`:"").join("")}
+  </div>
+
+  <div class="card">
+    <h2>The Five Touches</h2>
+    <p style="color:var(--mut);font-size:.82rem">Every topic you first-pass gets scheduled
+      revisits — spaced, and getting shorter each time. Put the next touch date beside the topic
+      the day you finish it, or it will not happen.</p>
+    <table class="ptab rtab"><tr><th></th><th>When</th><th>What you do</th><th>Time</th></tr>
+    ${touches.map(t=>`<tr><td>${t[0]}</td><td>${t[1]}</td>
+      <td class="pfirst" style="font-size:.7rem">${t[2]}</td><td>${t[3]}</td></tr>`).join("")}
+    </table>
+    <p class="rvnote">Total across all five touches is roughly <b>50 minutes per topic beyond the
+      first read</b> — that is what the ${revT} revision hours above are actually buying.</p>
+  </div>
+
+  <div class="card">
+    <h2>Revision That Works vs Revision That Feels Good</h2>
+    <table class="vs">
+      <tr><td>Rereading notes and highlighting</td><td>Blank-paper recall first, then check what you missed</td></tr>
+      <tr><td>Making fresh notes on the second pass</td><td>One page per topic, made once, never rewritten</td></tr>
+      <tr><td>Revising the subject you enjoy</td><td>Practice tab → <b>Weak spots</b> — it is built from your own wrong answers</td></tr>
+      <tr><td>Redoing the whole chapter</td><td>Redoing only the questions you got wrong</td></tr>
+      <tr><td>Revision "when there is time"</td><td>A fixed revision day every week, protected like a duty</td></tr>
+    </table>
   </div>
 
   <div class="card">
     <h2>Hours Per Subject</h2>
     <p style="color:var(--mut);font-size:.82rem">Listed in the order you should start them —
       highest yield first. Hours are allocated by marks × difficulty, so heavyweights still
-      get their share; only the <b>sequence</b> favours cheap marks.</p>
-    <table class="ptab"><tr><th>#</th><th>Subject</th><th>Hours</th><th>Marks</th><th>Start with</th></tr>
+      get their share; only the <b>sequence</b> favours cheap marks. Each subject's budget is
+      already split — the revision hours are booked, not left over.</p>
+    <table class="ptab"><tr><th>#</th><th>Subject</th><th>1st pass<br>+ revision</th><th>Marks</th><th>Start with</th></tr>
     ${byYield.map((x,i)=>`<tr${ticks[x.s==="PSM"?"PSM":x.s]?' class="pdone"':''}>
-      <td>${i+1}</td><td><b>${x.s}</b></td><td>${x.hrs} h</td>
+      <td>${i+1}</td><td><b>${x.s}</b></td>
+      <td>${x.first} h<span class="prev">+${x.rev} h rev</span></td>
       <td>${Math.round(x.m)}</td><td class="pfirst">${x.topics.slice(0,2).join(", ")}</td></tr>`).join("")}
     </table>
+    <p class="rvnote">Short one-liner subjects (Microbiology, Forensic, PSM, Biochemistry) revise
+      fastest — by the fourth touch they take 10 minutes. That is why they are also the ones to
+      bank early: they keep paying every single revision cycle.</p>
   </div>
 
   <div class="card">
@@ -893,9 +993,10 @@ function buildPlan(quiet){
     <h2>When The Week Is Wrecked</h2>
     <p>A bad week is normal in a mission hospital. The rule is fixed, so you never have to decide when you are exhausted:</p>
     <ul>
-      <li><b>Drop new content.</b> Not the test.</li>
+      <li><b>Drop new content.</b> Not the revision, not the test.</li>
       <li><b>Keep the weekly test</b> even if you have read nothing. A bad score on an honest test is data; a skipped test is a hole.</li>
-      <li><b>Keep the 20-minute one-liner drill.</b> It survives any shift.</li>
+      <li><b>Keep the 10-minute recall</b> of your last topics, and the 20-minute one-liner drill. Both survive any shift.</li>
+      <li><b>Missed touches get requeued, not skipped.</b> A topic that misses its day-7 touch goes to the front of the next revision day — losing a revisit costs more than losing a new topic.</li>
       <li><b>Do not try to catch up.</b> Rejoin the plan where it now is. Chasing lost weeks is how people quit.</li>
     </ul>
   </div>`;
