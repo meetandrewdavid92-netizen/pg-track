@@ -256,6 +256,40 @@
   .qsched{display:none;margin-top:8px;font-size:.71rem;font-weight:700;letter-spacing:.2px;color:var(--mut)}
   .qsched.show{display:block}
 
+  /* ---- Mock (36-Q scored section, drawn from the bank) ---- */
+  .mockhero{text-align:center;padding:6px 4px 4px}
+  .mockhero .big3{font-size:2.6rem;font-weight:850;line-height:1;
+    background:linear-gradient(90deg,var(--violet),var(--sky));
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .mockhero .lbl3{color:var(--mut);font-size:.78rem;font-weight:600;margin-top:4px}
+  .mockwarn{margin-top:10px;padding:10px 12px;border-radius:12px;font-size:.78rem;line-height:1.5;
+    background:rgba(246,169,126,.14);color:#a5652e}
+  .mqnum{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;
+    border-radius:50%;background:rgba(139,123,240,.14);color:var(--violet);font-size:.72rem;
+    font-weight:800;margin-right:8px;flex:0 0 auto;vertical-align:middle}
+  .mqcard.unattempted{border-color:rgba(246,169,126,.5)}
+  .opt.picked{border-color:var(--violet);background:rgba(139,123,240,.10)}
+  .opt.skipped-mark{border-style:dashed}
+  .mockbar{position:fixed;left:0;right:0;z-index:8;display:flex;align-items:center;gap:12px;
+    padding:10px 16px;background:rgba(255,255,255,.92);border-top:1px solid var(--glass-brd);
+    backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+    box-shadow:0 -10px 26px -14px rgba(90,70,180,.3)}
+  .mockbar .mbtime{font-weight:850;font-variant-numeric:tabular-nums;font-size:1.1rem;letter-spacing:.5px}
+  .mockbar.warn .mbtime{color:#c94b73}
+  .mockbar .mbanswered{flex:1;font-size:.72rem;color:var(--mut);font-weight:600}
+  .mockbar button{flex:0 0 auto;padding:10px 18px;border:none;border-radius:14px;font-size:.82rem;
+    font-weight:750;cursor:pointer;color:#fff;background:linear-gradient(90deg,var(--violet),var(--sky))}
+  .mrtag{display:inline-block;font-size:.62rem;font-weight:800;letter-spacing:.5px;text-transform:uppercase;
+    padding:2px 9px;border-radius:20px;margin-left:6px;vertical-align:middle}
+  .mrtag.ok{background:rgba(79,203,176,.18);color:#1f8f77}
+  .mrtag.no{background:rgba(239,120,150,.16);color:#c94b73}
+  .mrtag.skip{background:rgba(139,123,240,.10);color:var(--mut)}
+  .mhist{margin-top:12px}
+  .mhrow{display:flex;justify-content:space-between;font-size:.78rem;padding:7px 0;
+    border-bottom:1px solid var(--line);color:#413d5c}
+  .mhrow:last-child{border-bottom:none}
+  .mhrow b{color:var(--violet)}
+
   /* Library read / unread */
   .libgroup{font-size:.7rem;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;
     color:var(--violet);margin:4px 2px 12px;display:flex;align-items:center;gap:8px}
@@ -319,10 +353,10 @@
   <section class="screen" id="scr-timer">
     <div class="card collapsed" id="timerBox">
       <div class="tooltoggle" onclick="this.closest('.card').classList.toggle('collapsed')">
-        <span>⏱️ Timed section practice</span><span class="chev">▸</span>
+        <span>⏱️ Paper-test timer</span><span class="chev">▸</span>
       </div>
       <div class="body">
-        <p style="color:var(--mut);font-size:.82rem">36 questions · 42 minutes · no going back. Attempt on paper, then start.</p>
+        <p style="color:var(--mut);font-size:.82rem">For a printed test (e.g. this week's test sheet) — 42 minutes, no going back. Attempt on paper, then start. For a scored digital section from the question bank, use <b>Mock</b> below instead.</p>
         <div class="big" id="timerDisp">42:00</div>
         <button class="btn" id="timerBtn" onclick="timerToggle()">Start 42-minute section</button>
         <button class="btn ghost" onclick="timerReset()">Reset</button>
@@ -478,6 +512,15 @@
 </div>
 
 <div id="toast"></div>
+
+<!-- Lives outside .screen deliberately: .screen has a fade-in animation, and a
+     position:fixed element nested inside an animating ancestor would briefly
+     use that ancestor as its containing block instead of the viewport. -->
+<div class="mockbar" id="mockBar" style="display:none">
+  <span class="mbtime">42:00</span>
+  <span class="mbanswered">0 / 0 answered</span>
+  <button onclick="if(confirm('Submit now? You cannot change answers after this.'))submitMock()">Submit</button>
+</div>
 
 <nav>
   <button class="on" data-scr="home" onclick="go('home',this)"><span class="ico">🏠</span>Week</button>
@@ -663,6 +706,7 @@ function go(name,btn){
   if(name==="lib"&&typeof renderLib==="function")renderLib();          /* refresh read/unread grouping */
   if(name==="timer"&&typeof renderPractice==="function")renderPractice(); /* refresh review/weak counts */
   if(name==="plan"&&typeof renderTrack==="function"&&$("#planOut").innerHTML)buildPlan(true); /* pull in new Tracker ticks */
+  if(typeof syncMockBar==="function")syncMockBar();  /* hide the floating mock bar on every other screen */
   window.scrollTo(0,0);
 }
 
@@ -1176,17 +1220,19 @@ function updateTopicHead(card){                 /* live-update the topic badge a
   prog.className=info.cls;prog.textContent=info.txt;
   topic.classList.toggle("topicdone",att>=qcards.length);
 }
+function mockBadgeText(){return(mock&&!mock.submitted)?`${mockAnsweredCount()}/${mock.total}`:"";}
 function renderPractice(){
-  const counts={bank:QBANK.length,review:dueQuestions().length,weak:weakCount()};
-  const segs=[["bank","Bank"],["review","Due"],["weak","Weak spots"]];
+  const counts={mock:mockBadgeText(),bank:QBANK.length,review:dueQuestions().length,weak:weakCount()};
+  const segs=[["mock","Mock"],["bank","Bank"],["review","Due"],["weak","Weak spots"]];
   $("#practiceSeg").innerHTML=segs.map(([k,label])=>
     `<button data-k="${k}" class="${k===practiceView?'on':''}" onclick="practiceView='${k}';renderPractice()">${label}${counts[k]?`<span class="segbadge">${counts[k]}</span>`:''}</button>`).join("");
-  if(practiceView==="bank")renderBank();
+  if(practiceView==="mock")renderMock();
+  else if(practiceView==="bank")renderBank();
   else if(practiceView==="review")renderReview();
   else renderWeak();
 }
 function updateSegBadges(){
-  const counts={bank:QBANK.length,review:dueQuestions().length,weak:weakCount()};
+  const counts={mock:mockBadgeText(),bank:QBANK.length,review:dueQuestions().length,weak:weakCount()};
   document.querySelectorAll("#practiceSeg button").forEach(b=>{
     const n=counts[b.dataset.k];const badge=b.querySelector(".segbadge");
     if(n){badge?badge.textContent=n:b.insertAdjacentHTML("beforeend",`<span class="segbadge">${n}</span>`);}
@@ -1266,6 +1312,190 @@ function renderWeak(){
   });
   $("#practiceBody").innerHTML=html+`</div>`;
 }
+
+/* ================= Mock (36-Q scored digital section) =================
+   Draws a full NEET PG section from the bank, weighted by the same measured
+   subject shares as the Yield tab, timed like the real exam, and blind (no
+   correctness shown) until submitted. On submit, every answer runs through
+   the same recordAnswer() the Bank uses, so a wrong mock answer lands in
+   Due exactly like a wrong Bank answer would -- one spaced-repetition ladder,
+   fed from both places. */
+const MKEY="pg_mock_v1",MHKEY="pg_mock_hist";
+let mock=JSON.parse(localStorage.getItem(MKEY)||"null");
+let mInt=null;
+function saveMock(){mock?localStorage.setItem(MKEY,JSON.stringify(mock)):localStorage.removeItem(MKEY);}
+function mockHistory(){return JSON.parse(localStorage.getItem(MHKEY)||"[]");}
+function pushMockHistory(e){const h=mockHistory();h.unshift(e);localStorage.setItem(MHKEY,JSON.stringify(h.slice(0,20)));}
+
+/* Weighted draw: same subject shares as Yield, capped by what's actually in
+   the bank per subject -- a thin subject just contributes fewer questions
+   rather than blocking the section from filling. */
+function buildMockSet(){
+  const pools={};
+  QBANK.forEach((x,qi)=>{(pools[x.subject]??=[]).push(qi);});
+  Object.values(pools).forEach(arr=>{
+    for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}
+  });
+  const wmap={};YIELD.subjects.forEach(s=>wmap[s.s]=s.w);
+  const total=Math.min(36,QBANK.length);
+  const selected=[];
+  while(selected.length<total){
+    const avail=Object.keys(pools).filter(s=>pools[s].length);
+    if(!avail.length)break;
+    const sumW=avail.reduce((a,s)=>a+(wmap[s]||1),0);
+    let r=Math.random()*sumW,chosen=avail[avail.length-1];
+    for(const s of avail){r-=(wmap[s]||1);if(r<=0){chosen=s;break;}}
+    selected.push(pools[chosen].pop());
+  }
+  for(let i=selected.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[selected[i],selected[j]]=[selected[j],selected[i]];}
+  return selected;
+}
+function startMock(){
+  const qis=buildMockSet();
+  if(!qis.length){toast("Bank is empty — add questions first.");return;}
+  mock={qis,picks:{},tEnd:Date.now()+42*60*1000,submitted:false,total:qis.length,startedAt:Date.now()};
+  saveMock();
+  renderMock();
+}
+function mockAnsweredCount(){return mock?Object.keys(mock.picks).length:0;}
+function mockOptionClick(ev,qi,i){
+  if(!mock||mock.submitted)return;
+  mock.picks[qi]=i;saveMock();
+  const card=ev.currentTarget.closest(".mqcard");
+  card.classList.remove("unattempted");
+  card.querySelectorAll(".opt").forEach((o,idx)=>o.classList.toggle("picked",idx===i));
+  updateMockBar();
+}
+/* The bar is a single static element (see markup) shown/hidden rather than
+   rebuilt, so it survives #practiceBody re-renders without losing its fixed
+   position or restarting the 300ms containing-block window on every tick. */
+function syncMockBar(){
+  const bar=$("#mockBar");
+  const show=mock&&!mock.submitted&&practiceView==="mock"&&document.querySelector("#scr-timer.on");
+  bar.style.display=show?"flex":"none";
+  if(show){
+    const nav=document.querySelector("nav");
+    bar.style.bottom=(nav?nav.offsetHeight:64)+"px";
+    updateMockBar();
+  }
+}
+function updateMockBar(){
+  const bar=$("#mockBar");if(!bar||!mock||mock.submitted)return;
+  const left=Math.max(0,Math.round((mock.tEnd-Date.now())/1000));
+  bar.querySelector(".mbtime").textContent=fmt(left);
+  bar.classList.toggle("warn",left<=300);
+  bar.querySelector(".mbanswered").textContent=`${mockAnsweredCount()} / ${mock.total} answered`;
+  updateSegBadges();
+  if(left<=0)submitMock();
+}
+function mockTick(){if(mock&&!mock.submitted)updateMockBar();}
+document.addEventListener("visibilitychange",()=>{if(!document.hidden&&mock&&!mock.submitted)updateMockBar();});
+
+function submitMock(){
+  if(!mock||mock.submitted)return;
+  clearInterval(mInt);mInt=null;
+  let correct=0,wrong=0,skipped=0;
+  const bySubj={};
+  mock.qis.forEach(qi=>{
+    const x=QBANK[qi],pick=mock.picks.hasOwnProperty(qi)?mock.picks[qi]:null;
+    const s=(bySubj[x.subject]??={correct:0,wrong:0,skipped:0,total:0});
+    s.total++;
+    if(pick==null){skipped++;s.skipped++;}
+    else if(pick===x.ans){correct++;s.correct++;recordAnswer(x,true,pick);}
+    else{wrong++;s.wrong++;recordAnswer(x,false,pick);}
+  });
+  mock.submitted=true;
+  mock.result={correct,wrong,skipped,marks:correct*4-wrong,max:mock.total*4,bySubj};
+  saveMock();
+  pushMockHistory({date:new Date().toISOString().slice(0,10),marks:mock.result.marks,
+    max:mock.result.max,correct,wrong,skipped,total:mock.total});
+  updateSegBadges();
+  renderMock();
+  syncMockBar();
+}
+function discardMock(){mock=null;saveMock();updateSegBadges();renderMock();syncMockBar();}
+
+function renderMock(){
+  if(!mock)renderMockIntro();
+  else if(!mock.submitted)renderMockRun();
+  else renderMockReport();
+}
+function renderMockIntro(){
+  clearInterval(mInt);mInt=null;
+  syncMockBar();
+  const n=Math.min(36,QBANK.length);
+  const hist=mockHistory();
+  $("#practiceBody").innerHTML=`<div class="card">
+    <h2>Mock Section</h2>
+    <div class="mockhero"><div class="big3">${n}</div><div class="lbl3">questions · 42 minutes · scored +4/−1</div></div>
+    <p style="color:var(--mut);font-size:.85rem;margin-top:14px">Draws a full section from the bank, weighted by the same subject shares as the <b>Yield</b> tab — so a mock mirrors the real exam's mix rather than just what you've studied lately. No answers are revealed until you submit, and it submits itself if the clock runs out first. Every wrong answer lands in <b>Due</b> immediately — exactly like a Bank mistake would.</p>
+    ${n<36?`<div class="mockwarn">Bank has only <b>${n}</b> question${n===1?"":"s"} right now, so this mock uses all of them instead of a full 36. It reaches a real section size as the bank grows — nothing about the mock has to change when it does.</div>`:""}
+    <button class="btn" onclick="startMock()">Start mock section</button>
+  </div>
+  ${hist.length?`<div class="card"><h2>Past Mocks</h2><div class="mhist">${hist.map(h=>
+    `<div class="mhrow"><span>${h.date} · ${h.correct}/${h.total} correct, ${h.skipped} skipped</span><b>${h.marks}/${h.max}</b></div>`).join("")}</div></div>`:""}`;
+}
+function renderMockRun(){
+  const html=mock.qis.map((qi,i)=>{
+    const x=QBANK[qi],pick=mock.picks[qi];
+    const opts=x.opts.map((o,idx)=>
+      `<button class="opt${pick===idx?" picked":""}" onclick="mockOptionClick(event,${qi},${idx})">${String.fromCharCode(65+idx)}. ${o}</button>`).join("");
+    return `<div class="qcard mqcard${pick==null?" unattempted":""}" data-qi="${qi}">
+      <span class="mqnum">${i+1}</span><span class="qsrc">${x.subject}</span>
+      <div class="qstem">${x.q}</div>
+      <div class="opts">${opts}</div>
+    </div>`;
+  }).join("");
+  $("#practiceBody").innerHTML=`<div class="card">
+    <h2>Mock Section — in progress</h2>
+    <p class="submut">Tap an option to select it — change it any time before submitting. Nothing is marked right or wrong until the section ends.</p>
+    </div><div style="padding-bottom:88px">${html}</div>`;
+  syncMockBar();
+  clearInterval(mInt);mInt=setInterval(mockTick,1000);
+}
+function renderMockReport(){
+  clearInterval(mInt);mInt=null;
+  syncMockBar();
+  const r=mock.result;
+  const rows=mock.qis.map((qi,i)=>{
+    const x=QBANK[qi],pick=mock.picks.hasOwnProperty(qi)?mock.picks[qi]:null;
+    const tag=pick==null?'<span class="mrtag skip">Not attempted</span>'
+      :pick===x.ans?'<span class="mrtag ok">Correct</span>':'<span class="mrtag no">Wrong</span>';
+    const opts=x.opts.map((o,idx)=>{
+      let cls="opt locked";
+      if(idx===x.ans)cls+=" correct";else if(idx===pick)cls+=" wrong";
+      return `<button class="${cls}" disabled>${String.fromCharCode(65+idx)}. ${o}</button>`;
+    }).join("");
+    return `<div class="qcard mqcard" data-qi="${qi}">
+      <span class="mqnum">${i+1}</span><span class="qsrc">${x.subject}</span>${tag}
+      <div class="qstem">${x.q}</div>
+      <div class="opts">${opts}</div>
+      <div class="qexp show"><b>Answer: ${String.fromCharCode(65+x.ans)}.</b> ${x.exp}</div>
+    </div>`;
+  }).join("");
+  const subjRows=Object.entries(r.bySubj).sort((a,b)=>b[1].total-a[1].total)
+    .map(([s,t])=>`<tr><td>${s}</td><td>${t.correct}/${t.total}</td><td>${t.correct*4-t.wrong}</td></tr>`).join("");
+  $("#practiceBody").innerHTML=`<div class="card">
+    <h2>Mock Section — Report</h2>
+    <div class="ystats">
+      <div class="yst"><b>${r.marks}</b><span>of ${r.max} marks</span></div>
+      <div class="yst"><b>${r.correct}</b><span>correct</span></div>
+      <div class="yst"><b>${r.wrong}</b><span>wrong</span></div>
+      <div class="yst"><b>${r.skipped}</b><span>skipped</span></div>
+    </div>
+    <table><tr><th>Subject</th><th>Correct</th><th>Marks</th></tr>${subjRows}</table>
+    <button class="btn" onclick="discardMock()">Start a fresh mock</button>
+  </div>
+  <div>${rows}</div>`;
+}
+/* Resume across reloads: if a mock's clock already ran out while the app was
+   closed, finalize it now rather than leaving a zombie in-progress state;
+   otherwise land the JMO straight back where they left off. */
+if(mock&&!mock.submitted){
+  if(Date.now()>=mock.tEnd)submitMock();
+  else practiceView="mock";
+}
+
 renderPractice();
 
 /* ================= 42-min section timer =================
