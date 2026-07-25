@@ -128,6 +128,62 @@
     -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
   .foot{color:var(--soft);font-size:.7rem;text-align:center;padding:16px 6px 8px;line-height:1.6;font-weight:500}
 
+  /* ---- Yield tab ---- */
+  .ystats{display:flex;gap:8px;margin-top:10px}
+  .yst{flex:1;background:rgba(139,123,240,.07);border:1px solid var(--line);
+       border-radius:14px;padding:10px 8px;text-align:center}
+  .yst b{display:block;font-size:1.35rem;color:var(--violet);line-height:1.1}
+  .yst span{font-size:.6rem;color:var(--mut);line-height:1.25;display:block;margin-top:3px}
+  .ytier{margin-top:14px}
+  .ytier h4{font-size:.78rem;margin:0 0 8px;padding-left:8px;line-height:1.3}
+  .ytier h4 em{display:block;font-style:normal;font-weight:500;color:var(--mut);font-size:.68rem}
+  .yrow{border-bottom:1px solid var(--line);padding:7px 0;cursor:pointer}
+  .yhead{display:flex;align-items:center;gap:8px}
+  .ynm{flex:0 0 33%;font-size:.78rem;font-weight:650}
+  .ybar{flex:1;height:7px;background:rgba(139,123,240,.1);border-radius:9px;overflow:hidden}
+  .ybar i{display:block;height:100%;border-radius:9px}
+  .ymk{flex:0 0 42px;text-align:right;font-size:.82rem;font-weight:700;color:var(--ink)}
+  .ymk small{font-size:.55rem;color:var(--mut);font-weight:600}
+  .ydet{display:none;padding:6px 2px 2px}
+  .yrow.open .ydet{display:block}
+  .ydet p{font-size:.71rem;line-height:1.45;margin:4px 0;color:var(--mut)}
+  .ytops{display:flex;flex-wrap:wrap;gap:4px;margin:5px 0}
+  .ytops span{font-size:.63rem;padding:2px 7px;border-radius:8px;
+              background:rgba(139,123,240,.08);color:var(--mut)}
+  .ytops span.hot{background:rgba(79,203,176,.18);color:#2b8f78;font-weight:650}
+  .ytargets li{margin-bottom:7px;line-height:1.45}
+  .ybars{margin-top:8px}
+  .yib{display:flex;align-items:center;gap:8px;margin-bottom:5px}
+  .yiy{flex:0 0 40px;font-size:.7rem;color:var(--mut);font-weight:600}
+  .yit{flex:1;height:9px;background:rgba(95,184,245,.12);border-radius:9px;overflow:hidden}
+  .yit i{display:block;height:100%;border-radius:9px;
+         background:linear-gradient(90deg,var(--sky),var(--violet))}
+  .yip{flex:0 0 40px;text-align:right;font-size:.72rem;font-weight:700}
+  .meth summary{font-size:.8rem;font-weight:650;cursor:pointer;color:var(--violet)}
+  .meth p{font-size:.74rem;color:var(--mut);margin:8px 0 0;line-height:1.5}
+
+  /* ---- Plan tab ---- */
+  .pform{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:12px 0}
+  .pform label{font-size:.66rem;color:var(--mut);font-weight:600;display:flex;
+               flex-direction:column;gap:4px}
+  .pform input,.pform select{font:inherit;font-size:.8rem;color:var(--ink);
+    padding:8px 9px;border:1px solid var(--line);border-radius:11px;
+    background:rgba(255,255,255,.75);width:100%}
+  .phase{border-left:3px solid var(--violet);padding:2px 0 2px 10px;margin-bottom:11px}
+  .phase h4{margin:0;font-size:.8rem}
+  .phase h4 span{float:right;color:var(--violet);font-size:.7rem}
+  .phase p{margin:3px 0 0;font-size:.74rem;color:var(--mut);line-height:1.45}
+  .ptab{width:100%;border-collapse:collapse;margin-top:9px;font-size:.72rem}
+  .ptab th{text-align:left;font-size:.62rem;color:var(--mut);text-transform:uppercase;
+           letter-spacing:.04em;padding:0 5px 5px 0;border-bottom:1px solid var(--line)}
+  .ptab td{padding:6px 5px 6px 0;border-bottom:1px solid var(--line);vertical-align:top}
+  .ptab tr.pdone td{opacity:.45}
+  .pfirst{color:var(--mut);font-size:.66rem;line-height:1.3}
+  .frag{margin-bottom:10px}
+  .frag h4{margin:0;font-size:.76rem;color:var(--violet)}
+  .frag p{margin:2px 0 0;font-size:.74rem;color:var(--mut);line-height:1.45}
+  @media(max-width:360px){ .pform{grid-template-columns:1fr} .ystats{flex-wrap:wrap} }
+
   /* Focus mode — a shared link shows ONLY that one case, no nav */
   body.focus{padding-bottom:28px}
   body.focus nav{display:none}
@@ -255,6 +311,93 @@
     <div id="practiceBody"></div>
   </section>
 
+  <!-- YIELD — where the marks are -->
+  <section class="screen" id="scr-yield">
+    <div class="card">
+      <h2>Where The Marks Are</h2>
+      <p style="color:var(--mut);font-size:.82rem">Built from <b>5 real NEET PG papers</b> (2018, 2019, 2020, 2022, 2023) — 1,286 questions, recency-weighted so the newest papers count most. Marks shown out of <b>720</b> (180 Q × 4).</p>
+      <div id="yStats" class="ystats"></div>
+    </div>
+
+    <div class="card">
+      <h2>Attack Order</h2>
+      <p style="color:var(--mut);font-size:.82rem">Ranked by <b>marks per hour of study</b>, not by marks alone. Tap any subject for its topic hit-list.</p>
+      <div id="yList"></div>
+    </div>
+
+    <div class="card">
+      <h2>Three Targets That Pay Immediately</h2>
+      <ol class="ytargets">
+        <li><b>Biochemistry = Vitamins.</b> 10 of 25 Biochem questions in 2022–23 were vitamins. One weekend on deficiencies, coenzyme roles and toxicities is the densest single target in the paper.</li>
+        <li><b>Pharmacology = CVS drugs first.</b> 8 of 27, and Pharmacology has the shortest stems of any subject — pure one-liner recall, perfect for duty fragments.</li>
+        <li><b>ENT = Pharynx + Ear.</b> 11 of 15 questions sit in those two chapters. A subject you can nearly close in two sittings.</li>
+      </ol>
+    </div>
+
+    <div class="card">
+      <h2>Images Are Taking Over</h2>
+      <p style="color:var(--mut);font-size:.82rem">Share of questions that reference an image, X-ray, USG, CT, MRI, ECG or specimen:</p>
+      <div id="yImg" class="ybars"></div>
+      <p class="meta">Image questions roughly <b>tripled</b> between 2018 and 2022. This is why every weekly test is image-heavy. (Measured by scanning question text, so this is a floor — the true share is higher.)</p>
+    </div>
+
+    <details class="card meth">
+      <summary>How these numbers were built</summary>
+      <p><b>Weightage</b> is measured only from real exam papers. Recency-weighted 2018 ×0.6 → 2023 ×1.6, because the exam moved to its current pattern in 2021.</p>
+      <p><b>Load</b> (1 = light, 5 = heavy) blends three things: how big the syllabus is, how many topics you must cover to reach 80% of that subject's marks, and how long its question stems run (short stem = one-liner recall; long stem = multi-step vignette). <b>Yield</b> = marks ÷ load, rescaled so the best subject is 100.</p>
+      <p><b>Honest limits.</b> The syllabus-size part of Load is Dr. Andy's editorial estimate, not a measurement — nothing in a question bank tells you how big a syllabus is. Topic counts come from the 400 questions of 2022–23 that carry official topic tags, so treat the ordering as the signal and small differences as noise. 11% of questions could not be assigned a subject and were dropped rather than guessed. Question banks branded 2012–2016 were excluded: they are one recycled pool, and NEET PG did not exist before 2017.</p>
+    </details>
+  </section>
+
+  <!-- PLAN — duty-proof study planner -->
+  <section class="screen" id="scr-plan">
+    <div class="card">
+      <h2>Your Duty-Proof Plan</h2>
+      <p style="color:var(--mut);font-size:.82rem">Built for a JMO working full shifts. Tell it the truth about your hours — a plan you can't keep is worse than no plan.</p>
+      <div class="pform">
+        <label>Exam date
+          <input type="date" id="pDate">
+        </label>
+        <label>Hours on a normal working day
+          <select id="pWk">
+            <option value="0.5">30 min</option><option value="1" selected>1 hour</option>
+            <option value="1.5">1½ hours</option><option value="2">2 hours</option>
+            <option value="3">3 hours</option>
+          </select>
+        </label>
+        <label>Hours on a day off
+          <select id="pOff">
+            <option value="1">1 hour</option><option value="2">2 hours</option>
+            <option value="3" selected>3 hours</option><option value="4">4 hours</option>
+            <option value="6">6 hours</option><option value="8">8 hours</option>
+          </select>
+        </label>
+        <label>Days off per week
+          <select id="pOffDays">
+            <option value="0">None</option><option value="1" selected>1</option>
+            <option value="2">2</option><option value="3">3</option>
+          </select>
+        </label>
+        <label>Night duties per week
+          <select id="pNights">
+            <option value="0">None</option><option value="1">1</option>
+            <option value="2" selected>2</option><option value="3">3</option><option value="4">4+</option>
+          </select>
+        </label>
+        <label>Where are you now?
+          <select id="pStage">
+            <option value="fresh" selected>Starting from scratch</option>
+            <option value="partial">Some subjects first-passed</option>
+            <option value="revision">Been through most of it once</option>
+          </select>
+        </label>
+      </div>
+      <button class="btn" onclick="buildPlan()">Build my plan</button>
+      <p class="meta">NBEMS has not announced the 2026 date — 15 June is a placeholder from the 2025 pattern. Change it when the notification is out.</p>
+    </div>
+    <div id="planOut"></div>
+  </section>
+
   <!-- TRACKER -->
   <section class="screen" id="scr-track">
     <div class="card">
@@ -267,10 +410,12 @@
     <div class="card">
       <h2>Order of Attack</h2>
       <ol>
-        <li><b>Bank the easy marks first:</b> Microbiology, Anatomy, PSM — ~35 direct marks.</li>
-        <li><b>Then the heavyweights:</b> Medicine, Surgery, OBGYN — vignette + image drills.</li>
+        <li><b>Bank the cheap marks first:</b> OBGYN, Biochemistry (vitamins), Microbiology, PSM, Pharmacology (CVS) — the best marks per hour on the paper.</li>
+        <li><b>Then the heavyweights:</b> Surgery and Medicine — 146 marks between them, but expensive. Vignette + image drills.</li>
         <li><b>Short subjects</b> in duty fragments; <b>images every single week</b>.</li>
+        <li><b>Leave late:</b> Dermatology, Radiology, Anaesthesia, Psychiatry — 46 marks combined.</li>
       </ol>
+      <p style="color:var(--mut);font-size:.78rem">This order comes from 5 real papers — see the <b>Yield</b> tab for the numbers behind it.</p>
     </div>
   </section>
 
@@ -312,11 +457,13 @@
 <div id="toast"></div>
 
 <nav>
-  <button class="on" onclick="go('home',this)"><span class="ico">🏠</span>This Week</button>
-  <button onclick="go('lib',this)"><span class="ico">📚</span>Library</button>
-  <button onclick="go('timer',this)"><span class="ico">🧠</span>Practice</button>
-  <button onclick="go('track',this)"><span class="ico">✅</span>Tracker</button>
-  <button onclick="go('about',this)"><span class="ico">✨</span>Program</button>
+  <button class="on" data-scr="home" onclick="go('home',this)"><span class="ico">🏠</span>Week</button>
+  <button data-scr="lib" onclick="go('lib',this)"><span class="ico">📚</span>Library</button>
+  <button data-scr="timer" onclick="go('timer',this)"><span class="ico">🧠</span>Practice</button>
+  <button data-scr="yield" onclick="go('yield',this)"><span class="ico">📊</span>Yield</button>
+  <button data-scr="plan" onclick="go('plan',this)"><span class="ico">🗓️</span>Plan</button>
+  <button data-scr="track" onclick="go('track',this)"><span class="ico">✅</span>Tracker</button>
+  <button data-scr="about" onclick="go('about',this)"><span class="ico">✨</span>Program</button>
 </nav>
 
 <script>
@@ -422,6 +569,36 @@ const SUBJECTS = [
   ["Dermatology",""],["Psychiatry",""],["Radiology","image-heavy"],["Anaesthesia",""],
 ];
 
+/* ========== PYQ WEIGHTAGE MODEL ==========
+   Generated by tools/analyse_pyq.py from 5 real papers (2018,2019,2020,2022,2023).
+   Do not hand-edit — re-run the script and paste the new payload.
+   w=weight %, q=questions per 180, m=marks per 720, load=1-5, y=yield score,
+   n80=topics needed for 80% of the subject's marks, stem=median stem words.
+   ========================================== */
+const YIELD={"years":[2018,2019,2020,2022,2023],"n":1142,
+"image_share":{"2018":9.5,"2019":17.1,"2020":17.1,"2022":33.5,"2023":29.5,"2024":27.0},
+"subjects":[
+{s:"Surgery",w:10.69,q:19.2,m:76.9,load:4.62,y:66,tier:"Bank first",n80:6,stem:21.5,trend:[14,12,26,25,27],topics:["Gastrointestinal Surgery","Urology","Cardiothoracic Vascular","Endocrine Surgery","Plastic Surgery","Hepatobiliary Pancreatic","Oncology","Head and Neck"]},
+{s:"OBGYN",w:10.21,q:18.4,m:73.5,load:2.93,y:100,tier:"Bank first",n80:2,stem:14.5,trend:[24,24,23,25,18],topics:["Obstetrics","Gynaecology"]},
+{s:"Medicine",w:9.64,q:17.4,m:69.4,load:4.20,y:66,tier:"Bank first",n80:6,stem:13,trend:[21,17,29,23,17],topics:["Cardiology","Neurology","Liver","Endocrinology","Nephrology","Rheumatology","Pulmonology","GIT"]},
+{s:"Pharmacology",w:8.27,q:14.9,m:59.5,load:3.65,y:65,tier:"Bank first",n80:7,stem:9,trend:[28,32,19,15,12],topics:["CVS Pharmacology","Endocrine Pharmacology","Antibacterials","Drugs Affecting Blood","ANS Pharmacology","General Pharmacology","Autacoids"]},
+{s:"PSM",w:7.81,q:14.1,m:56.2,load:3.25,y:69,tier:"Bank first",n80:7,stem:12,trend:[17,20,29,12,15],topics:["Communicable & NCD","Epidemiology","Concept of Health","National Health Programmes","Vaccines & Cold Chain","Nutrition and Health","Allied Health Disciplines"]},
+{s:"Pathology",w:6.88,q:12.4,m:49.5,load:3.70,y:53,tier:"Core grind",n80:7,stem:10,trend:[39,18,13,10,12],topics:["Haematology — RBC","Haematology — WBC","Renal System","Respiratory System","Cell Injury","Neoplasia","Genetics"]},
+{s:"Biochemistry",w:6.52,q:11.7,m:46.9,load:2.60,y:72,tier:"Bank first",n80:4,stem:11,trend:[16,18,16,10,15],topics:["Vitamins","Carbohydrate Metabolism","Lipid Metabolism","Genetics","Oxidative Phosphorylation","Enzymes"]},
+{s:"Microbiology",w:6.29,q:11.3,m:45.3,load:2.55,y:71,tier:"Bank first",n80:4,stem:10,trend:[16,17,16,11,13],topics:["Systemic Bacteriology","Parasitology","Mycology","Virology","Immunology"]},
+{s:"Paediatrics",w:4.70,q:8.5,m:33.8,load:3.58,y:38,tier:"Steady",n80:7,stem:18.5,trend:[9,6,7,14,10],topics:["Infectious Diseases","Respiratory Disorders","Fluid & Electrolytes","Gastroenterology","Growth","Nephrology","Neonatology"]},
+{s:"Physiology",w:4.42,q:8.0,m:31.8,load:2.78,y:46,tier:"Steady",n80:5,stem:10.5,trend:[11,17,11,6,9],topics:["Nerve Muscle Physiology","General Physiology","The Nervous System","Cardiovascular System","Excretory System","Respiratory System"]},
+{s:"Anatomy",w:4.09,q:7.4,m:29.4,load:3.25,y:36,tier:"Steady",n80:5,stem:9,trend:[14,14,11,5,8],topics:["Histology","Head and Neck","Abdomen","Lower Limb","Pelvis and Perineum","Thorax","General Embryology"]},
+{s:"Forensic Medicine",w:3.93,q:7.1,m:28.3,load:1.90,y:59,tier:"Steady",n80:6,stem:11,trend:[12,9,8,8,8],topics:["Forensic Toxicology","Forensic Thanatology","Toxicology — General","Court of Law","Sexual Jurisprudence","Ballistics"]},
+{s:"Ophthalmology",w:3.92,q:7.0,m:28.2,load:2.48,y:45,tier:"Steady",n80:6,stem:11.5,trend:[9,9,14,6,8],topics:["Glaucoma","Cornea","Sclera","Optics","Uveitis","Retina","Neuro Ophthalmology"]},
+{s:"Orthopaedics",w:3.13,q:5.6,m:22.5,load:2.62,y:34,tier:"Steady",n80:6,stem:14.5,trend:[7,9,4,8,6],topics:["Spine/Pelvis/Lower Limb Trauma","Orthopaedic Oncology","Metabolic Disorders","Paediatric Orthopaedics","Peripheral Nerve Injuries","Bone & Joint Infections"]},
+{s:"ENT",w:2.80,q:5.0,m:20.2,load:2.00,y:40,tier:"Steady",n80:3,stem:14,trend:[4,2,5,9,6],topics:["Pharynx","Ear","Nose and Paranasal Sinuses","Larynx"]},
+{s:"Psychiatry",w:2.08,q:3.7,m:15.0,load:2.08,y:29,tier:"Late/triage",n80:5,stem:18.5,trend:[9,5,5,2,5],topics:["Mood Disorders","Eating Disorders","Schizophrenia Spectrum","Neurotic & Somatoform","Substance-Related"]},
+{s:"Dermatology",w:1.86,q:3.3,m:13.4,load:2.95,y:18,tier:"Late/triage",n80:5,stem:25,trend:[2,2,1,7,4],topics:["Sexually Transmitted Infections","Cutaneous Infections","Skin Appendages","Pigmentary Disorders"]},
+{s:"Anaesthesia",w:1.41,q:2.5,m:10.2,load:1.75,y:23,tier:"Late/triage",n80:3,stem:9,trend:[7,5,1,2,3],topics:["CPR / Resuscitation","Oxygen Therapy & Airway","Neuromuscular Blockade","Pre-Anaesthetic Evaluation"]},
+{s:"Radiology",w:1.36,q:2.5,m:9.8,load:1.95,y:20,tier:"Late/triage",n80:4,stem:9,trend:[5,3,1,2,4],topics:["Thoracic Radiology","Basics of Radiology","Head & Neck Imaging","Genitourinary Radiology","Radiotherapy"]}
+]};
+
 /* ================= app logic ================= */
 const $=q=>document.querySelector(q);
 document.title=CONFIG.program;
@@ -436,6 +613,7 @@ function go(name,btn){
   btn.classList.add("on");
   if(name==="lib"&&typeof renderLib==="function")renderLib();          /* refresh read/unread grouping */
   if(name==="timer"&&typeof renderPractice==="function")renderPractice(); /* refresh review/weak counts */
+  if(name==="plan"&&typeof renderTrack==="function"&&$("#planOut").innerHTML)buildPlan(true); /* pull in new Tracker ticks */
   window.scrollTo(0,0);
 }
 
@@ -540,7 +718,7 @@ function showFocus(id){
 function exitFocus(){
   document.body.classList.remove("focus");
   history.replaceState(null,"",location.pathname);   /* drop the #c= hash */
-  go("about",document.querySelectorAll("nav button")[4]);
+  go("about",document.querySelector('nav button[data-scr="about"]'));
 }
 function routeFromHash(){
   const m=location.hash.match(/c=([^&]+)/);
@@ -563,6 +741,181 @@ function renderTrack(){
 }
 function tick(n,v){ticks[n]=v;localStorage.setItem(TKEY,JSON.stringify(ticks));renderTrack();}
 renderTrack();
+
+/* ================= YIELD tab ================= */
+const TIER_CLR={"Bank first":"var(--mint)","Core grind":"var(--violet)",
+                "Steady":"var(--sky)","Late/triage":"var(--soft)"};
+
+function renderYield(){
+  const S=YIELD.subjects;
+  const big3=S.slice(0,3).reduce((a,x)=>a+x.m,0);
+  const top5=S.filter(x=>x.tier==="Bank first").slice(0,5).reduce((a,x)=>a+x.m,0);
+  $("#yStats").innerHTML=`
+    <div class="yst"><b>${Math.round(big3)}</b><span>marks in Surgery + OBGYN + Medicine alone</span></div>
+    <div class="yst"><b>${Math.round(top5)}</b><span>marks in the 5 highest-yield subjects</span></div>
+    <div class="yst"><b>${YIELD.n.toLocaleString("en-IN")}</b><span>real exam questions analysed</span></div>`;
+
+  const tiers=["Bank first","Core grind","Steady","Late/triage"];
+  const blurb={"Bank first":"Best marks per hour — start here.",
+    "Core grind":"Heavy, but too many marks to skip.",
+    "Steady":"Keep chipping in duty fragments.",
+    "Late/triage":"Leave for late revision. Small marks, or long stems."};
+  $("#yList").innerHTML=tiers.map(t=>{
+    /* The card promises "ranked by marks per hour", so order within a tier by
+       yield -- not by raw weightage, which would put Surgery above OBGYN. */
+    const rows=S.filter(x=>x.tier===t).sort((a,b)=>b.y-a.y);
+    if(!rows.length)return "";
+    return `<div class="ytier"><h4 style="border-left:3px solid ${TIER_CLR[t]}">${t}
+      <em>${blurb[t]}</em></h4>`+rows.map(x=>{
+      const mx=Math.max(...S.map(z=>z.m));
+      const kind=x.stem<=11?"one-liner recall":x.stem>=18?"long vignettes":"mixed length";
+      return `<div class="yrow" onclick="this.classList.toggle('open')">
+        <div class="yhead">
+          <span class="ynm">${x.s}</span>
+          <span class="ybar"><i style="width:${x.m/mx*100}%;background:${TIER_CLR[t]}"></i></span>
+          <span class="ymk">${Math.round(x.m)}<small>mk</small></span>
+        </div>
+        <div class="ydet">
+          <p class="meta">≈<b>${x.q}</b> of 180 questions · <b>${Math.round(x.m)}</b> of 720 marks ·
+             yield <b>${x.y}</b>/100 · load <b>${x.load}</b>/5 · mostly <b>${kind}</b></p>
+          <p class="meta">80% of its marks sit in <b>${x.n80}</b> topic${x.n80===1?"":"s"}:</p>
+          <div class="ytops">${x.topics.map((tp,i)=>
+            `<span class="${i<x.n80?"hot":""}">${tp}</span>`).join("")}</div>
+          <p class="meta">Questions per paper: ${YIELD.years.map((yr,i)=>
+            `${yr}<b>·${x.trend[i]}</b>`).join("  ")}</p>
+        </div></div>`;}).join("")+`</div>`;
+  }).join("");
+
+  const im=YIELD.image_share, ys=Object.keys(im);
+  $("#yImg").innerHTML=ys.map(y=>`<div class="yib">
+    <span class="yiy">${y}${y==="2024"?"*":""}</span>
+    <span class="yit"><i style="width:${im[y]/40*100}%"></i></span>
+    <span class="yip">${im[y]}%</span></div>`).join("")+
+    `<p class="meta">*2024 is a memory-based recall paper.</p>`;
+}
+renderYield();
+
+/* ================= PLAN tab ================= */
+const PKEY="pg_plan_v1";
+
+/* NBEMS announces late, and a hard-coded date silently goes stale and produces
+   a nonsense one-week plan. Default to the next mid-June that is far enough
+   out to plan for, computed fresh on every load. */
+function defaultExamDate(){
+  const now=new Date();
+  let y=now.getFullYear(), d=new Date(y,5,15);
+  if((d-now)/864e5<120)d=new Date(y+1,5,15);
+  /* Build the string from local parts — toISOString() shifts to UTC and in IST
+     that turns 15 June into 14 June. */
+  const p=n=>String(n).padStart(2,"0");
+  return `${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())}`;
+}
+$("#pDate").value=defaultExamDate();
+
+function buildPlan(quiet){
+  const exam=new Date($("#pDate").value||defaultExamDate());
+  const wk=+$("#pWk").value, off=+$("#pOff").value;
+  const offDays=+$("#pOffDays").value, nights=+$("#pNights").value;
+  const stage=$("#pStage").value;
+  const days=Math.max(1,Math.round((exam-new Date())/864e5));
+  const weeks=Math.max(1,Math.round(days/7));
+
+  /* A night duty costs the day after it too — that is the realism most plans miss. */
+  const workDays=Math.max(0,7-offDays);
+  const rawWeek=workDays*wk+offDays*off;
+  const lost=nights*wk*0.75;
+  const perWeek=Math.max(1,+(rawWeek-lost).toFixed(1));
+  const total=Math.round(perWeek*weeks);
+
+  /* Hours are allocated by NEED (marks x difficulty), because you cannot skip a
+     heavy subject just because it is expensive. But the ORDER is by yield, so
+     the cheap marks are banked first and a wrecked month costs you the dear
+     ones, not the cheap ones. */
+  const S=YIELD.subjects.map(x=>({...x,need:x.w*x.load}));
+  const needSum=S.reduce((a,x)=>a+x.need,0);
+  S.forEach(x=>{x.hrs=Math.max(1,Math.round(x.need/needSum*total));});
+  const byYield=[...S].sort((a,b)=>b.y-a.y);
+
+  const ph=stage==="fresh"?[.55,.28,.17]:stage==="partial"?[.42,.33,.25]:[.20,.40,.40];
+  /* Phase lengths must add up to the weeks actually left, or a short runway
+     reports three 1-week phases inside a 1-week plan. */
+  let phw=ph.map(p=>Math.floor(weeks*p));
+  for(let i=0;phw.reduce((a,b)=>a+b,0)<weeks;i=(i+1)%3)phw[i]++;
+  const phName=["Build — first pass","Intensity — tests + weak spots","Revision only — no new content"];
+  const phBody=[
+    "New subjects in yield order. One weekly test throughout, without exception.",
+    "Two tests a week. Every wrong answer becomes a Weak-spots entry you revisit within 7 days.",
+    "No new topics. Only your own wrong answers, the image drills, and full-length papers."];
+
+  const fragments=[
+    ["Pre-round, 20 min","10 one-liner MCQs — Pharmacology, Anatomy, Radiology. Shortest stems in the paper."],
+    ["Post-lunch lull, 30 min","One topic from the current subject. Read, then immediately do questions on it."],
+    ["Night-duty quiet spell","Micro / Forensic / PSM one-liners. Do not start a new topic on a night."],
+    ["Day off, longest block","The vignette subjects — Surgery, Paediatrics, Dermatology. These need an unbroken sitting."]];
+
+  const done=Object.keys(ticks).filter(k=>ticks[k]).length;
+  $("#planOut").innerHTML=`
+  <div class="card">
+    <h2>${weeks} weeks · ${total} hours</h2>
+    <p style="color:var(--mut);font-size:.82rem">That is <b>${perWeek} h/week</b> realistically available
+      — ${rawWeek.toFixed(1)} h on paper, minus ${lost.toFixed(1)} h because
+      ${nights?`${nights} night dut${nights===1?"y":"ies"} also cost you the day after`:"no night duties"}.
+      ${total<250?"<b>This is a tight budget.</b> The attack order below matters more than usual — you cannot afford to spend it on cheap-mark subjects late.":""}</p>
+    <div class="prog"><i style="width:${Math.min(100,done/19*100)}%"></i></div>
+    <p class="meta">${done} of 19 subjects ticked as first-passed in your Tracker.</p>
+  </div>
+
+  <div class="card">
+    <h2>Three Phases</h2>
+    ${phw.map((w,i)=>w?`<div class="phase">
+      <h4>${phName[i]} <span>${w} week${w===1?"":"s"}</span></h4>
+      <p>${phBody[i]}</p></div>`:"").join("")}
+  </div>
+
+  <div class="card">
+    <h2>Hours Per Subject</h2>
+    <p style="color:var(--mut);font-size:.82rem">Listed in the order you should start them —
+      highest yield first. Hours are allocated by marks × difficulty, so heavyweights still
+      get their share; only the <b>sequence</b> favours cheap marks.</p>
+    <table class="ptab"><tr><th>#</th><th>Subject</th><th>Hours</th><th>Marks</th><th>Start with</th></tr>
+    ${byYield.map((x,i)=>`<tr${ticks[x.s==="PSM"?"PSM":x.s]?' class="pdone"':''}>
+      <td>${i+1}</td><td><b>${x.s}</b></td><td>${x.hrs} h</td>
+      <td>${Math.round(x.m)}</td><td class="pfirst">${x.topics.slice(0,2).join(", ")}</td></tr>`).join("")}
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>Where The Hours Come From</h2>
+    ${fragments.map(f=>`<div class="frag"><h4>${f[0]}</h4><p>${f[1]}</p></div>`).join("")}
+  </div>
+
+  <div class="card">
+    <h2>When The Week Is Wrecked</h2>
+    <p>A bad week is normal in a mission hospital. The rule is fixed, so you never have to decide when you are exhausted:</p>
+    <ul>
+      <li><b>Drop new content.</b> Not the test.</li>
+      <li><b>Keep the weekly test</b> even if you have read nothing. A bad score on an honest test is data; a skipped test is a hole.</li>
+      <li><b>Keep the 20-minute one-liner drill.</b> It survives any shift.</li>
+      <li><b>Do not try to catch up.</b> Rejoin the plan where it now is. Chasing lost weeks is how people quit.</li>
+    </ul>
+  </div>`;
+  localStorage.setItem(PKEY,JSON.stringify({d:$("#pDate").value,wk,off,offDays,nights,stage}));
+  if(!quiet)toast("Plan built — saved on this phone");
+}
+
+(function restorePlan(){
+  try{
+    const p=JSON.parse(localStorage.getItem(PKEY)||"null");
+    if(!p)return;
+    /* A plan saved last season carries a date that has since passed; fall back
+       to the computed default rather than reporting a one-week runway. */
+    const stale=!p.d||(new Date(p.d)-new Date())/864e5<7;
+    $("#pDate").value=stale?defaultExamDate():p.d;
+    $("#pWk").value=p.wk; $("#pOff").value=p.off;
+    $("#pOffDays").value=p.offDays; $("#pNights").value=p.nights; $("#pStage").value=p.stage;
+    buildPlan(true);
+  }catch(e){}
+})();
 
 /* ================= Practice tab: Bank + Review + Weak spots ================= */
 /* Per-phone practice stats. Key derived from content so it survives QBANK
