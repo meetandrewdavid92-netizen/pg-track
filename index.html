@@ -237,9 +237,8 @@
   /* Focus mode — a shared link shows ONLY that one case, no nav */
   body.focus{padding-bottom:28px}
   body.focus nav{display:none}
-  .focusteaser{text-align:center;color:var(--mut);font-size:.82rem;font-weight:600;
-    padding:10px 14px 2px;line-height:1.55}
-  .focuscta{max-width:280px;margin:12px auto 6px}
+  body.focus header{display:none}
+  body.focus .foot{display:none}
 
   /* Question bank (Practice tab) */
   .topic{border:1px solid var(--line);border-radius:14px;background:var(--paper2);
@@ -530,8 +529,6 @@
   <!-- FOCUS (single shared case) -->
   <section class="screen" id="scr-focus">
     <div id="focusFeed"></div>
-    <p class="focusteaser" id="focusTeaser"></p>
-    <button class="btn ghost focuscta" onclick="exitFocus()">About the PG Track →</button>
   </section>
 
   <div class="foot" id="footBrand"></div>
@@ -930,7 +927,6 @@ function showFocus(id){
   const item=CONTENT.find(x=>x.id===id);
   if(!item){exitFocus();return;}
   $("#focusFeed").innerHTML=focusCardHTML(item);
-  $("#focusTeaser").textContent=`One case from the ${CONFIG.hospital} ${CONFIG.program} — weekly NEET PG coaching for our resident doctors.`;
   document.querySelectorAll(".screen").forEach(s=>s.classList.remove("on"));
   $("#scr-focus").classList.add("on");
   document.body.classList.add("focus");
@@ -1599,19 +1595,71 @@ function startMock(){
   const qis=buildMockSet();
   if(!qis.length){toast("No questions in that selection yet.");return;}
   armAudio();                                    /* must happen inside the tap — see beep() */
-  mock={qis,picks:{},tEnd:Date.now()+qis.length*60*1000,submitted:false,
+  mock={qis,picks:{},marked:{},visited:{},cur:0,review:false,
+        tEnd:Date.now()+qis.length*60*1000,submitted:false,
         total:qis.length,startedAt:Date.now(),subs:mockCfg.subs.slice()};
   saveMock();
   renderMock();
 }
 function mockAnsweredCount(){return mock?Object.keys(mock.picks).length:0;}
-function mockOptionClick(ev,qi,i){
+
+/* ---- One question per screen, NBEMS-style ------------------------------
+   Palette status, mirroring the real exam's colour key:
+     ans      answered
+     ansmark  answered AND marked for review (still scored — the real exam
+              counts these, and students lose marks believing otherwise)
+     mark     marked for review, no answer yet
+     seen     opened and left blank
+     new      not visited
+   Unlike the real client, a selected option is saved the moment you tap it
+   and whenever you leave the question, not only on "Save & Next" — losing a
+   real answer to a missed button press teaches nothing during practice. */
+function mockStatus(qi){
+  const ans=mock.picks.hasOwnProperty(qi),mk=!!(mock.marked||{})[qi];
+  if(ans&&mk)return "ansmark";
+  if(ans)return "ans";
+  if(mk)return "mark";
+  return (mock.visited||{})[qi]?"seen":"new";
+}
+function mockCounts(){
+  const c={ans:0,ansmark:0,mark:0,seen:0,new:0};
+  mock.qis.forEach(qi=>c[mockStatus(qi)]++);
+  return c;
+}
+function mockSelect(btn,qi,i){
   if(!mock||mock.submitted)return;
   mock.picks[qi]=i;saveMock();
-  const card=ev.currentTarget.closest(".mqcard");
-  card.classList.remove("unattempted");
-  card.querySelectorAll(".opt").forEach((o,idx)=>o.classList.toggle("picked",idx===i));
-  updateMockBar();
+  btn.closest(".opts").querySelectorAll(".opt").forEach((o,idx)=>o.classList.toggle("picked",idx===i));
+  paintPalette();updateMockBar();
+}
+function mockClear(){
+  if(!mock)return;
+  const qi=mock.qis[mock.cur];
+  delete mock.picks[qi];saveMock();
+  document.querySelectorAll("#mqBody .opt").forEach(o=>o.classList.remove("picked"));
+  paintPalette();updateMockBar();
+}
+function mockMark(){
+  if(!mock)return;
+  const qi=mock.qis[mock.cur];
+  (mock.marked??={})[qi]=true;saveMock();
+  mockGo(mock.cur+1);
+}
+function mockGo(i){
+  if(!mock)return;
+  mock.cur=Math.max(0,Math.min(mock.qis.length-1,i));
+  (mock.visited??={})[mock.qis[mock.cur]]=true;
+  saveMock();renderMockRun();window.scrollTo(0,0);
+}
+/* Repaint the palette in place — rebuilding the whole run screen on every tap
+   would scroll-jump and re-trigger the fade animation. */
+function paintPalette(){
+  document.querySelectorAll("#mqPal .pcell").forEach(el=>{
+    const i=+el.dataset.i;
+    el.className="pcell "+mockStatus(mock.qis[i])+(i===mock.cur?" cur":"");
+  });
+  const c=mockCounts(),lab=$("#mqCounts");
+  if(lab)lab.textContent=`${c.ans+c.ansmark} answered · ${c.mark+c.ansmark} marked · ${c.seen+c.new} left`;
 }
 /* The bar is a single static element (see markup) shown/hidden rather than
    rebuilt, so it survives #practiceBody re-renders without losing its fixed
@@ -1696,20 +1744,69 @@ function renderMockIntro(){
     `<div class="mhrow"><span>${h.date} · ${h.correct}/${h.total} correct, ${h.skipped} skipped</span><b>${h.marks}/${h.max}</b></div>`).join("")}</div></div>`:""}`;
 }
 function renderMockRun(){
-  const html=mock.qis.map((qi,i)=>{
-    const x=QBANK[qi],pick=mock.picks[qi];
-    const opts=x.opts.map((o,idx)=>
-      `<button class="opt${pick===idx?" picked":""}" onclick="mockOptionClick(event,${qi},${idx})">${String.fromCharCode(65+idx)}. ${o}</button>`).join("");
-    return `<div class="qcard mqcard${pick==null?" unattempted":""}" data-qi="${qi}">
-      <span class="mqnum">${i+1}</span><span class="qsrc">${x.subject}</span>
-      <div class="qstem">${x.q}</div>
-      <div class="opts">${opts}</div>
-    </div>`;
-  }).join("");
+  if(mock.review){renderMockSummary();return;}
+  const i=mock.cur,qi=mock.qis[i],x=QBANK[qi],pick=mock.picks[qi];
+  (mock.visited??={})[qi]=true;
+  const opts=x.opts.map((o,idx)=>
+    `<button class="opt${pick===idx?" picked":""}" onclick="mockSelect(this,${qi},${idx})">${String.fromCharCode(65+idx)}. ${o}</button>`).join("");
+  const pal=mock.qis.map((_,n)=>
+    `<button class="pcell" data-i="${n}" onclick="mockGo(${n})">${n+1}</button>`).join("");
+  const last=i===mock.qis.length-1;
+  $("#practiceBody").innerHTML=`
+  <div class="card palcard">
+    <div class="paltop" onclick="this.closest('.palcard').classList.toggle('open')">
+      <span><b>Question ${i+1}</b> of ${mock.qis.length}</span>
+      <span class="palchev">Palette ▸</span>
+    </div>
+    <div class="palmeta" id="mqCounts"></div>
+    <div class="palbody">
+      <div class="palette" id="mqPal">${pal}</div>
+      <div class="plegend">
+        <span><i class="ans"></i>Answered</span><span><i class="mark"></i>Marked</span>
+        <span><i class="ansmark"></i>Answered + marked</span><span><i class="seen"></i>Left blank</span>
+        <span><i class="new"></i>Not seen</span>
+      </div>
+      <p class="submut" style="margin:8px 0 0">Marked questions are still scored — marking is only a reminder to come back.</p>
+    </div>
+  </div>
+  <div class="card" id="mqBody">
+    <span class="mqnum">${i+1}</span><span class="qsrc">${x.subject}</span>
+    <div class="qstem" style="margin-top:10px">${x.q}</div>
+    <div class="opts">${opts}</div>
+    <div class="mnav">
+      <button class="mprev" onclick="mockGo(${i-1})" ${i?"":"disabled"}>‹ Previous</button>
+      <button class="mclear" onclick="mockClear()">Clear response</button>
+    </div>
+    <button class="btn" onclick="${last?"openMockSummary()":`mockGo(${i+1})`}">${last?"Save &amp; review all":"Save &amp; next ›"}</button>
+    <button class="btn ghost" onclick="mockMark()">Mark for review &amp; next</button>
+  </div>
+  <div style="height:80px"></div>`;
+  paintPalette();
+  syncMockBar();
+  clearInterval(mInt);mInt=setInterval(mockTick,1000);
+}
+/* Submit goes through a summary first — the commonest self-inflicted wound in
+   a real exam is submitting with questions you meant to return to. */
+function openMockSummary(){if(!mock)return;mock.review=true;saveMock();renderMockRun();window.scrollTo(0,0);}
+function closeMockSummary(){if(!mock)return;mock.review=false;saveMock();renderMockRun();window.scrollTo(0,0);}
+function renderMockSummary(){
+  const c=mockCounts();
+  const listOf=st=>mock.qis.map((qi,n)=>mockStatus(qi)===st?n+1:null).filter(Boolean);
+  const marked=[...listOf("mark"),...listOf("ansmark")].sort((a,b)=>a-b);
+  const blank=[...listOf("seen"),...listOf("new")].sort((a,b)=>a-b);
+  const jump=ns=>ns.map(n=>`<button class="pcell ${mockStatus(mock.qis[n-1])}" onclick="closeMockSummary();mockGo(${n-1})">${n}</button>`).join("");
   $("#practiceBody").innerHTML=`<div class="card">
-    <h2>Mock in progress</h2>
-    <p class="submut">${mock.total} question${mock.total===1?"":"s"}${mock.subs&&mock.subs.length?" · "+mock.subs.join(", "):""}. Tap an option to select it — change it any time before submitting. Nothing is marked right or wrong until the clock stops.</p>
-    </div><div style="padding-bottom:88px">${html}</div>`;
+    <h2>Before you submit</h2>
+    <div class="ystats">
+      <div class="yst"><b>${c.ans+c.ansmark}</b><span>answered</span></div>
+      <div class="yst"><b>${blank.length}</b><span>left blank — worth 0, and a wrong guess only costs 1</span></div>
+      <div class="yst"><b>${marked.length}</b><span>marked for review (these are scored normally)</span></div>
+    </div>
+    ${marked.length?`<h3>Marked</h3><div class="palette">${jump(marked)}</div>`:""}
+    ${blank.length?`<h3>Not answered</h3><div class="palette">${jump(blank)}</div>`:""}
+    <button class="btn ghost" onclick="closeMockSummary()">← Go back and finish</button>
+    <button class="btn" onclick="if(confirm('Submit now? You cannot change answers after this.'))submitMock()">Submit and see the report</button>
+  </div><div style="height:80px"></div>`;
   syncMockBar();
   clearInterval(mInt);mInt=setInterval(mockTick,1000);
 }
