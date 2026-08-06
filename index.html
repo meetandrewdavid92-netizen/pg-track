@@ -1406,8 +1406,10 @@ function qCardHTML(x,forceFresh){
     if(answered){cls+=" locked";if(i===x.ans)cls+=" correct";else if(i===s.lastPick)cls+=" wrong";}
     return `<button class="${cls}" onclick="answerQ(this,${qi},${i})">${String.fromCharCode(65+i)}. ${o}</button>`;
   }).join("");
+  /* No provenance badge here on purpose — a JMO practising does not need to
+     know whether a question came from a case or the daily batch. `src` stays
+     in the data for our own tracking; the Mock view still shows the subject. */
   return `<div class="qcard${answered?' done':''}" data-qi="${qi}">
-    <span class="qsrc">${x.src||"Case"}</span>
     <div class="qstem">${x.q}</div>
     <div class="opts">${opts}</div>
     <div class="qexp${answered?' show':''}"><b>Answer: ${String.fromCharCode(65+x.ans)}.</b> ${x.exp}</div>
