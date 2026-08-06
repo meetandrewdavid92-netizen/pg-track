@@ -128,11 +128,11 @@
     border:1px solid var(--line);background:var(--glass);color:var(--mut);cursor:pointer;
     text-transform:capitalize;transition:.15s}
   .filters button.on{background:var(--violet);color:#fff;border-color:transparent}
+  .chipwrap{display:flex;flex-wrap:wrap;gap:7px;margin:2px 0 6px}
+  .chipwrap button{font-size:.73rem;font-weight:650;padding:8px 13px;border-radius:999px;
+    border:1px solid var(--line);background:var(--paper2);color:var(--mut);cursor:pointer;transition:.15s}
+  .chipwrap button.on{background:var(--violet);color:#fff;border-color:transparent}
 
-  #timerBox{text-align:center}
-  #timerBox .big{font-family:var(--serif);font-size:3.4rem;font-weight:600;letter-spacing:2px;
-    margin:10px 0 4px;font-variant-numeric:tabular-nums;color:var(--violet)}
-  #timerBox.warn .big{color:#c2405a}
   .foot{color:var(--soft);font-size:.7rem;text-align:center;padding:16px 6px 8px;line-height:1.6;font-weight:500}
 
   /* ---- Yield tab ---- */
@@ -242,13 +242,6 @@
   .focuscta{max-width:280px;margin:12px auto 6px}
 
   /* Question bank (Practice tab) */
-  .tooltoggle{display:flex;justify-content:space-between;align-items:center;cursor:pointer;
-    font-family:var(--serif);font-size:1.2rem;font-weight:600;text-align:left}
-  .tooltoggle .chev{color:var(--violet);transition:transform .2s;font-size:.9rem}
-  #timerBox:not(.collapsed) .tooltoggle .chev{transform:rotate(90deg)}
-  #timerBox.collapsed .body{display:none}
-  #timerBox .body{margin-top:12px}
-  .big{text-align:center}
   .topic{border:1px solid var(--line);border-radius:14px;background:var(--paper2);
     margin-bottom:10px;overflow:hidden}
   .topichead{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px;cursor:pointer}
@@ -381,21 +374,9 @@
     <div id="libFeed"></div>
   </section>
 
-  <!-- PRACTICE (question bank + timer tool) -->
+  <!-- PRACTICE (question bank + mock tests) -->
   <section class="screen" id="scr-timer">
-    <h2 class="scrtitle">Practice<em>The verified question bank, your due revisions, and a scored mock section.</em></h2>
-    <div class="card collapsed" id="timerBox">
-      <div class="tooltoggle" onclick="this.closest('.card').classList.toggle('collapsed')">
-        <span>⏱️ Paper-test timer</span><span class="chev">▸</span>
-      </div>
-      <div class="body">
-        <p style="color:var(--mut);font-size:.82rem">For a printed test (e.g. this week's test sheet) — 42 minutes, no going back. Attempt on paper, then start. For a scored digital section from the question bank, use <b>Mock</b> below instead.</p>
-        <div class="big" id="timerDisp">42:00</div>
-        <button class="btn" id="timerBtn" onclick="timerToggle()">Start 42-minute section</button>
-        <button class="btn ghost" onclick="timerReset()">Reset</button>
-        <p style="color:var(--mut);font-size:.78rem;margin-top:10px">Marking: +4 correct · −1 wrong · unattempted 0. Guess only when you can eliminate two options.</p>
-      </div>
-    </div>
+    <h2 class="scrtitle">Practice<em>The verified question bank, your due revisions, and mock tests you set up yourself.</em></h2>
     <div class="seg" id="practiceSeg"></div>
     <div id="practiceBody"></div>
   </section>
@@ -1563,17 +1544,45 @@ function saveMock(){mock?localStorage.setItem(MKEY,JSON.stringify(mock)):localSt
 function mockHistory(){return JSON.parse(localStorage.getItem(MHKEY)||"[]");}
 function pushMockHistory(e){const h=mockHistory();h.unshift(e);localStorage.setItem(MHKEY,JSON.stringify(h.slice(0,20)));}
 
-/* Weighted draw: same subject shares as Yield, capped by what's actually in
-   the bank per subject -- a thin subject just contributes fewer questions
-   rather than blocking the section from filling. */
+/* ---- Mock setup: you choose the subjects and the length -----------------
+   Config survives reloads so the next mock is one tap away. subs=[] means
+   "every subject in the bank". */
+const MCFGKEY="pg_mock_cfg",MOCK_SIZES=[10,20,36,50];
+let mockCfg=Object.assign({n:20,subs:[]},JSON.parse(localStorage.getItem(MCFGKEY)||"{}"));
+function saveMockCfg(){localStorage.setItem(MCFGKEY,JSON.stringify(mockCfg));}
+function mockSubjects(){return [...new Set(QBANK.map(x=>x.subject))].sort();}
+function mockPool(){return QBANK.filter(x=>!mockCfg.subs.length||mockCfg.subs.includes(x.subject));}
+function mockCount(subject){return QBANK.filter(x=>x.subject===subject).length;}
+/* The length actually drawn: what you asked for, capped by what exists. */
+function mockLength(){return Math.min(mockCfg.n,mockPool().length);}
+function toggleMockSubj(s){
+  if(s===null)mockCfg.subs=[];
+  else{
+    const i=mockCfg.subs.indexOf(s);
+    if(i<0)mockCfg.subs.push(s);else mockCfg.subs.splice(i,1);
+  }
+  saveMockCfg();renderMockIntro();
+}
+function setMockN(n){mockCfg.n=n;saveMockCfg();renderMockIntro();}
+
+/* Weighted draw within the chosen subjects: same measured subject shares as
+   the Yield tab, so a mock mirrors the real paper's mix rather than whatever
+   happens to be thickest in the bank. Within a subject, questions you have
+   never answered are drawn first -- re-sitting the same easy ones teaches
+   nothing -- and only once those run out does it reach for seen questions. */
 function buildMockSet(){
-  const pools={};
-  QBANK.forEach((x,qi)=>{(pools[x.subject]??=[]).push(qi);});
+  const subs=mockCfg.subs,pools={};
+  QBANK.forEach((x,qi)=>{
+    if(subs.length&&!subs.includes(x.subject))return;
+    (pools[x.subject]??=[]).push(qi);
+  });
+  const timesSeen=qi=>{const s=stats[qKey(QBANK[qi])];return s&&s.seen?s.seen:0;};
   Object.values(pools).forEach(arr=>{
     for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}
+    arr.sort((a,b)=>timesSeen(b)-timesSeen(a));   /* most-seen first; pop() takes the freshest */
   });
   const wmap={};YIELD.subjects.forEach(s=>wmap[s.s]=s.w);
-  const total=Math.min(36,QBANK.length);
+  const total=mockLength();
   const selected=[];
   while(selected.length<total){
     const avail=Object.keys(pools).filter(s=>pools[s].length);
@@ -1588,8 +1597,10 @@ function buildMockSet(){
 }
 function startMock(){
   const qis=buildMockSet();
-  if(!qis.length){toast("Bank is empty — add questions first.");return;}
-  mock={qis,picks:{},tEnd:Date.now()+42*60*1000,submitted:false,total:qis.length,startedAt:Date.now()};
+  if(!qis.length){toast("No questions in that selection yet.");return;}
+  armAudio();                                    /* must happen inside the tap — see beep() */
+  mock={qis,picks:{},tEnd:Date.now()+qis.length*60*1000,submitted:false,
+        total:qis.length,startedAt:Date.now(),subs:mockCfg.subs.slice()};
   saveMock();
   renderMock();
 }
@@ -1622,7 +1633,7 @@ function updateMockBar(){
   bar.classList.toggle("warn",left<=300);
   bar.querySelector(".mbanswered").textContent=`${mockAnsweredCount()} / ${mock.total} answered`;
   updateSegBadges();
-  if(left<=0)submitMock();
+  if(left<=0){if(navigator.vibrate)navigator.vibrate([300,150,300]);beep();submitMock();}
 }
 function mockTick(){if(mock&&!mock.submitted)updateMockBar();}
 document.addEventListener("visibilitychange",()=>{if(!document.hidden&&mock&&!mock.submitted)updateMockBar();});
@@ -1659,14 +1670,27 @@ function renderMock(){
 function renderMockIntro(){
   clearInterval(mInt);mInt=null;
   syncMockBar();
-  const n=Math.min(36,QBANK.length);
+  const subs=mockCfg.subs,pool=mockPool().length,n=mockLength();
   const hist=mockHistory();
+  const subChips=`<button class="${subs.length?'':'on'}" onclick="toggleMockSubj(null)">All subjects · ${QBANK.length}</button>`+
+    mockSubjects().map(s=>`<button class="${subs.includes(s)?'on':''}" onclick="toggleMockSubj('${s.replace(/'/g,"\\'")}')">${s} · ${mockCount(s)}</button>`).join("");
+  /* Offer only lengths the selection can actually fill, plus "all of them"
+     when the pool is smaller than the smallest preset. */
+  const sizes=MOCK_SIZES.filter(s=>s<=pool);
+  if(!sizes.includes(pool)&&pool)sizes.push(pool);
+  const sizeChips=sizes.map(s=>`<button class="${n===s?'on':''}" onclick="setMockN(${s})">${s}${s===36?" · exam section":""}</button>`).join("");
   $("#practiceBody").innerHTML=`<div class="card">
-    <h2>Mock Section</h2>
-    <div class="mockhero"><div class="big3">${n}</div><div class="lbl3">questions · 42 minutes · scored +4/−1</div></div>
-    <p style="color:var(--mut);font-size:.85rem;margin-top:14px">Draws a full section from the bank, weighted by the same subject shares as the <b>Yield</b> tab — so a mock mirrors the real exam's mix rather than just what you've studied lately. No answers are revealed until you submit, and it submits itself if the clock runs out first. Every wrong answer lands in <b>Due</b> immediately — exactly like a Bank mistake would.</p>
-    ${n<36?`<div class="mockwarn">Bank has only <b>${n}</b> question${n===1?"":"s"} right now, so this mock uses all of them instead of a full 36. It reaches a real section size as the bank grows — nothing about the mock has to change when it does.</div>`:""}
-    <button class="btn" onclick="startMock()">Start mock section</button>
+    <h2>Set up a mock</h2>
+    <p class="submut">Pick the subjects and the length. One minute per question, scored +4 / −1, nothing marked right or wrong until you submit — and it submits itself when the clock runs out.</p>
+    <h3>Subjects</h3>
+    <div class="chipwrap">${subChips}</div>
+    <h3>Length</h3>
+    <div class="chipwrap">${sizeChips||'<span class="submut">No questions in this selection.</span>'}</div>
+    <div class="mockhero"><div class="big3">${n}</div>
+      <div class="lbl3">question${n===1?"":"s"} · ${n} minute${n===1?"":"s"} · scored +4/−1</div></div>
+    ${n&&n<mockCfg.n?`<div class="mockwarn">Only <b>${pool}</b> question${pool===1?"":"s"} in that selection, so this mock uses all of them.</div>`:""}
+    <p style="color:var(--mut);font-size:.8rem;margin-top:14px">Questions you've never answered are drawn first. Within your chosen subjects the mix follows the measured exam weightage from the <b>Yield</b> tab. Every wrong answer lands in <b>Due</b> immediately — exactly like a Bank mistake would.</p>
+    ${n?`<button class="btn" onclick="startMock()">Start ${n}-question mock</button>`:""}
   </div>
   ${hist.length?`<div class="card"><h2>Past Mocks</h2><div class="mhist">${hist.map(h=>
     `<div class="mhrow"><span>${h.date} · ${h.correct}/${h.total} correct, ${h.skipped} skipped</span><b>${h.marks}/${h.max}</b></div>`).join("")}</div></div>`:""}`;
@@ -1683,8 +1707,8 @@ function renderMockRun(){
     </div>`;
   }).join("");
   $("#practiceBody").innerHTML=`<div class="card">
-    <h2>Mock Section — in progress</h2>
-    <p class="submut">Tap an option to select it — change it any time before submitting. Nothing is marked right or wrong until the section ends.</p>
+    <h2>Mock in progress</h2>
+    <p class="submut">${mock.total} question${mock.total===1?"":"s"}${mock.subs&&mock.subs.length?" · "+mock.subs.join(", "):""}. Tap an option to select it — change it any time before submitting. Nothing is marked right or wrong until the clock stops.</p>
     </div><div style="padding-bottom:88px">${html}</div>`;
   syncMockBar();
   clearInterval(mInt);mInt=setInterval(mockTick,1000);
@@ -1712,7 +1736,7 @@ function renderMockReport(){
   const subjRows=Object.entries(r.bySubj).sort((a,b)=>b[1].total-a[1].total)
     .map(([s,t])=>`<tr><td>${s}</td><td>${t.correct}/${t.total}</td><td>${t.correct*4-t.wrong}</td></tr>`).join("");
   $("#practiceBody").innerHTML=`<div class="card">
-    <h2>Mock Section — Report</h2>
+    <h2>Mock Report</h2>
     <div class="ystats">
       <div class="yst"><b>${r.marks}</b><span>of ${r.max} marks</span></div>
       <div class="yst"><b>${r.correct}</b><span>correct</span></div>
@@ -1735,44 +1759,12 @@ if(mock&&!mock.submitted){
 renderPractice();
 renderTrack();
 
-/* ================= 42-min section timer =================
-   Anchored to a wall-clock deadline, NOT a count of ticks. The instruction is
-   "attempt on paper, then start" — so the phone sits face-down with the screen
-   off, and mobile browsers throttle or freeze setInterval in a backgrounded
-   tab. Counting ticks would silently hand the JMO extra minutes on a test
-   whose whole point is the time pressure. */
-let tLeft=42*60,tEnd=null,tInt=null;
+/* ================= shared clock helpers =================
+   The mock clock is anchored to a wall-clock deadline, NOT a count of
+   ticks: mobile browsers throttle or freeze setInterval in a backgrounded
+   tab, and counting ticks would silently hand extra minutes to anyone who
+   switched apps mid-section. */
 function fmt(s){return String(Math.floor(s/60)).padStart(2,"0")+":"+String(s%60).padStart(2,"0");}
-function timerTick(){
-  tLeft=Math.max(0,Math.round((tEnd-Date.now())/1000));
-  $("#timerDisp").textContent=tLeft?fmt(tLeft):"TIME";
-  $("#timerBox").classList.toggle("warn",tLeft<=300);
-  if(!tLeft)timerDone();
-}
-function timerDone(){
-  clearInterval(tInt);tInt=null;tEnd=null;
-  $("#timerBtn").textContent="Start 42-minute section";
-  if(navigator.vibrate)navigator.vibrate([300,150,300]);
-  beep();
-}
-function timerToggle(){
-  if(tInt){                                    /* pause: freeze what's left */
-    clearInterval(tInt);tInt=null;
-    tLeft=Math.max(0,Math.round((tEnd-Date.now())/1000));tEnd=null;
-    $("#timerBtn").textContent="Resume";return;
-  }
-  if(tLeft<=0)tLeft=42*60;
-  armAudio();                                  /* must happen inside the tap — see beep() */
-  tEnd=Date.now()+tLeft*1000;
-  $("#timerBtn").textContent="Pause";
-  tInt=setInterval(timerTick,250);             /* 250ms so a throttled tab re-syncs instantly */
-  timerTick();
-}
-function timerReset(){
-  clearInterval(tInt);tInt=null;tEnd=null;tLeft=42*60;
-  $("#timerBox").classList.remove("warn");$("#timerDisp").textContent="42:00";
-  $("#timerBtn").textContent="Start 42-minute section";
-}
 /* iPhone has no navigator.vibrate, so without a sound the end of the section
    passes unnoticed. iOS also refuses to start audio unless the context was
    created during a user gesture — hence arming it on the Start tap. */
