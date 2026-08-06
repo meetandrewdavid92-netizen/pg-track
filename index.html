@@ -291,6 +291,38 @@
   .mqcard.unattempted{border-color:rgba(221,160,94,.55)}
   .opt.picked{border-color:var(--violet);background:rgba(194,96,60,.10)}
   .opt.skipped-mark{border-style:dashed}
+  /* one-question-at-a-time runner */
+  .palcard{padding:14px 16px}
+  .paltop{display:flex;justify-content:space-between;align-items:center;cursor:pointer;
+    font-size:.9rem;gap:10px}
+  .paltop b{font-family:var(--serif);font-size:1.15rem;font-weight:600}
+  .palchev{color:var(--violet);font-size:.76rem;font-weight:700}
+  .palcard.open .palchev::after{content:" open"}
+  .palmeta{font-size:.7rem;color:var(--mut);font-weight:600;margin-top:4px}
+  .palcard .palbody{display:none;margin-top:12px}
+  .palcard.open .palbody{display:block}
+  .palette{display:flex;flex-wrap:wrap;gap:6px;margin:2px 0 4px}
+  .pcell{width:34px;height:34px;border-radius:9px;border:1px solid var(--line);
+    background:var(--paper2);color:var(--mut);font:inherit;font-size:.76rem;font-weight:750;
+    cursor:pointer;padding:0;position:relative}
+  .pcell.seen{background:rgba(194,64,90,.12);border-color:rgba(194,64,90,.35);color:#b03b58}
+  .pcell.ans{background:rgba(77,143,114,.18);border-color:rgba(77,143,114,.45);color:#356f55}
+  .pcell.mark,.pcell.ansmark{background:var(--violet);border-color:transparent;color:#fff}
+  .pcell.ansmark::after{content:"";position:absolute;right:2px;bottom:2px;width:8px;height:8px;
+    border-radius:50%;background:#4d8f72;border:1.5px solid #fff}
+  .pcell.cur{outline:2px solid var(--ink);outline-offset:1px}
+  .plegend{display:flex;flex-wrap:wrap;gap:5px 12px;margin-top:9px;font-size:.64rem;
+    color:var(--mut);font-weight:600}
+  .plegend span{display:inline-flex;align-items:center;gap:5px}
+  .plegend i{width:11px;height:11px;border-radius:4px;display:inline-block;border:1px solid var(--line)}
+  .plegend i.ans{background:rgba(77,143,114,.5)} .plegend i.mark{background:var(--violet)}
+  .plegend i.ansmark{background:var(--violet);box-shadow:inset -3px -3px 0 -1px #4d8f72}
+  .plegend i.seen{background:rgba(194,64,90,.3)} .plegend i.new{background:var(--paper2)}
+  .mnav{display:flex;gap:8px;margin-top:12px}
+  .mnav button{flex:1;padding:11px 8px;border-radius:999px;border:1px solid var(--line);
+    background:var(--paper2);color:var(--mut);font:inherit;font-size:.78rem;font-weight:700;cursor:pointer}
+  .mnav button:disabled{opacity:.4}
+  #mqBody .btn{margin-top:9px}
   .mockbar{position:fixed;left:0;right:0;z-index:8;display:flex;align-items:center;gap:12px;
     padding:10px 16px;background:rgba(253,250,244,.97);border-top:1px solid var(--line);
     backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
@@ -542,7 +574,7 @@
 <div class="mockbar" id="mockBar" style="display:none">
   <span class="mbtime">42:00</span>
   <span class="mbanswered">0 / 0 answered</span>
-  <button onclick="if(confirm('Submit now? You cannot change answers after this.'))submitMock()">Submit</button>
+  <button onclick="openMockSummary()">Submit</button>
 </div>
 
 <nav>
@@ -902,9 +934,8 @@ async function shareCase(ev,id){
   ev.stopPropagation();
   const item=CONTENT.find(x=>x.id===id);if(!item)return;
   const url=location.origin+location.pathname+"#c="+encodeURIComponent(id);
-  const text=`${item.title} — ${CONFIG.hospital} ${CONFIG.program}`;
   if(navigator.share){
-    try{await navigator.share({title:item.title,text,url});}catch(e){}
+    try{await navigator.share({title:item.title,url});}catch(e){}
   }else{
     try{await navigator.clipboard.writeText(url);toast("Link copied — paste it into WhatsApp");}
     catch(e){prompt("Copy this link to share:",url);}
@@ -1699,7 +1730,7 @@ function submitMock(){
     else if(pick===x.ans){correct++;s.correct++;recordAnswer(x,true,pick);}
     else{wrong++;s.wrong++;recordAnswer(x,false,pick);}
   });
-  mock.submitted=true;
+  mock.submitted=true;mock.review=false;
   mock.result={correct,wrong,skipped,marks:correct*4-wrong,max:mock.total*4,bySubj};
   saveMock();
   pushMockHistory({date:new Date().toISOString().slice(0,10),marks:mock.result.marks,
@@ -1849,6 +1880,11 @@ function renderMockReport(){
    closed, finalize it now rather than leaving a zombie in-progress state;
    otherwise land the JMO straight back where they left off. */
 if(mock&&!mock.submitted){
+  /* A mock started by the older all-questions-on-one-screen build has no
+     cursor or palette state — give it the defaults rather than dropping the
+     JMO's in-flight attempt. */
+  mock.marked??={};mock.visited??={};mock.review??=false;
+  if(typeof mock.cur!=="number")mock.cur=0;
   if(Date.now()>=mock.tEnd)submitMock();
   else practiceView="mock";
 }
