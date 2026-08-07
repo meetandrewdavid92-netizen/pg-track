@@ -349,7 +349,8 @@
   .mrchev{flex:0 0 auto;font-size:.72rem;font-weight:700;color:var(--violet);white-space:nowrap;padding-top:5px}
   .mockrep .mrbody{display:none}
   .mockrep.open .mrbody{display:block;margin-top:14px}
-  .mockrep:not(.open)+.mrrows{display:none}
+  .mrrows.hide{display:none}   /* not a sibling selector: the setup and history
+                                  cards now sit between report and rows */
   .mhist{margin-top:12px}
   .mhrow{display:flex;justify-content:space-between;font-size:.78rem;padding:7px 0;
     border-bottom:1px solid var(--line);color:#4a4038}
@@ -1755,6 +1756,12 @@ let mock=JSON.parse(localStorage.getItem(MKEY)||"null");
 let mInt=null;
 function saveMock(){mock?localStorage.setItem(MKEY,JSON.stringify(mock)):localStorage.removeItem(MKEY);}
 function mockHistory(){return JSON.parse(localStorage.getItem(MHKEY)||"[]");}
+/* Mocks finished before the date stamp landed have no `date` -- callers show
+   the rest of the summary line rather than an empty separator. */
+function mockDate(iso){
+  if(!iso)return "";
+  return new Date(iso+"T00:00").toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"});
+}
 function pushMockHistory(e){const h=mockHistory();h.unshift(e);localStorage.setItem(MHKEY,JSON.stringify(h.slice(0,20)));}
 
 /* ---- Mock setup: you choose the subjects and the length -----------------
@@ -1774,9 +1781,11 @@ function toggleMockSubj(s){
     const i=mockCfg.subs.indexOf(s);
     if(i<0)mockCfg.subs.push(s);else mockCfg.subs.splice(i,1);
   }
-  saveMockCfg();renderMockIntro();
+  saveMockCfg();renderMock();          /* renderMock, not renderMockIntro: the
+                                          setup chips also render under a
+                                          finished report, which must survive */
 }
-function setMockN(n){mockCfg.n=n;saveMockCfg();renderMockIntro();}
+function setMockN(n){mockCfg.n=n;saveMockCfg();renderMock();}
 
 /* Weighted draw within the chosen subjects: same measured subject shares as
    the Yield tab, so a mock mirrors the real paper's mix rather than whatever
@@ -1927,18 +1936,24 @@ function submitMock(){
   syncMockBar();
 }
 function discardMock(){mock=null;saveMock();updateSegBadges();renderMock();syncMockBar();}
-function toggleMockReport(){if(!mock)return;mock.reportOpen=!mock.reportOpen;saveMock();renderMockReport();}
+function toggleMockReport(){
+  if(!mock)return;
+  mock.reportOpen=!mock.reportOpen;saveMock();renderMockReport();
+  if(!mock.reportOpen)window.scrollTo(0,0);  /* collapsing shrinks the page a lot;
+                                                without this you can be left
+                                                scrolled past the new end */
+}
 
 function renderMock(){
   if(!mock)renderMockIntro();
   else if(!mock.submitted)renderMockRun();
   else renderMockReport();
 }
-function renderMockIntro(){
-  clearInterval(mInt);mInt=null;
-  syncMockBar();
+/* The setup form and the past-mock list are built as strings, not written
+   straight to the DOM: once a report is on screen they have to render
+   *alongside* it, not instead of it. */
+function mockSetupHTML(){
   const subs=mockCfg.subs,pool=mockPool().length,n=mockLength();
-  const hist=mockHistory();
   const subChips=`<button class="${subs.length?'':'on'}" onclick="toggleMockSubj(null)">All subjects · ${QBANK.length}</button>`+
     mockSubjects().map(s=>`<button class="${subs.includes(s)?'on':''}" onclick="toggleMockSubj('${s.replace(/'/g,"\\'")}')">${s} · ${mockCount(s)}</button>`).join("");
   /* Offer only lengths the selection can actually fill, plus "all of them"
@@ -1946,7 +1961,7 @@ function renderMockIntro(){
   const sizes=MOCK_SIZES.filter(s=>s<=pool);
   if(!sizes.includes(pool)&&pool)sizes.push(pool);
   const sizeChips=sizes.map(s=>`<button class="${n===s?'on':''}" onclick="setMockN(${s})">${s}${s===36?" · exam section":""}</button>`).join("");
-  $("#practiceBody").innerHTML=`<div class="card">
+  return `<div class="card">
     <h2>Set up a mock</h2>
     <p class="submut">Pick the subjects and the length. One minute per question, scored +4 / −1, nothing marked right or wrong until you submit — and it submits itself when the clock runs out.</p>
     <h3>Subjects</h3>
@@ -1958,9 +1973,27 @@ function renderMockIntro(){
     ${n&&n<mockCfg.n?`<div class="mockwarn">Only <b>${pool}</b> question${pool===1?"":"s"} in that selection, so this mock uses all of them.</div>`:""}
     <p style="color:var(--mut);font-size:.8rem;margin-top:14px">Questions you've never answered are drawn first. Within your chosen subjects the mix follows the measured exam weightage from the <b>Yield</b> tab. Every wrong answer lands in <b>Due</b> immediately — exactly like a Bank mistake would.</p>
     ${n?`<button class="btn" onclick="startMock()">Start ${n}-question mock</button>`:""}
-  </div>
-  ${hist.length?`<div class="card"><h2>Past Mocks</h2><div class="mhist">${hist.map(h=>
-    `<div class="mhrow"><span>${h.date} · ${h.correct}/${h.total} correct, ${h.skipped} skipped</span><b>${h.marks}/${h.max}</b></div>`).join("")}</div></div>`:""}`;
+  </div>`;
+}
+/* skipCurrent drops the mock whose report is already on screen above this
+   list. pushMockHistory() unshifts at submit, so that is always hist[0] --
+   but match the score fields before dropping, so a cleared or out-of-sync
+   history can never silently swallow a genuinely older entry. */
+function mockHistoryHTML(skipCurrent){
+  let hist=mockHistory();
+  if(skipCurrent&&mock&&mock.submitted&&hist.length){
+    const h=hist[0],r=mock.result;
+    if(h.marks===r.marks&&h.total===mock.total&&h.correct===r.correct&&h.skipped===r.skipped)
+      hist=hist.slice(1);
+  }
+  if(!hist.length)return "";
+  return `<div class="card"><h2>Past Mocks</h2><div class="mhist">${hist.map(h=>
+    `<div class="mhrow"><span>${mockDate(h.date)} · ${h.correct}/${h.total} correct, ${h.skipped} skipped</span><b>${h.marks}/${h.max}</b></div>`).join("")}</div></div>`;
+}
+function renderMockIntro(){
+  clearInterval(mInt);mInt=null;
+  syncMockBar();
+  $("#practiceBody").innerHTML=mockSetupHTML()+mockHistoryHTML(false);
 }
 function renderMockRun(){
   if(mock.review){renderMockSummary();return;}
@@ -2052,12 +2085,13 @@ function renderMockReport(){
   const subjRows=Object.entries(r.bySubj).sort((a,b)=>b[1].total-a[1].total)
     .map(([s,t])=>`<tr><td>${s}</td><td>${t.correct}/${t.total}</td><td>${t.correct*4-t.wrong}</td></tr>`).join("");
   const open=mock.reportOpen!==false;
-  const dateStr=mock.date?new Date(mock.date+"T00:00").toLocaleDateString("en-GB",
-    {day:"numeric",month:"short",year:"numeric"}):"";
+  const dateStr=mockDate(mock.date);
+  /* Setup and history go between the report card and the question rows, so
+     starting the next mock never sits below a 36-question review list. */
   $("#practiceBody").innerHTML=`<div class="card mockrep${open?" open":""}">
     <div class="mrtop" onclick="toggleMockReport()">
       <div><h2>Mock Report</h2>
-        <div class="mrmeta">${dateStr} · ${mock.total} question${mock.total===1?"":"s"} · <b>${r.marks}</b>/${r.max} marks</div>
+        <div class="mrmeta">${dateStr?dateStr+" · ":""}${mock.total} question${mock.total===1?"":"s"} · <b>${r.marks}</b>/${r.max} marks</div>
       </div>
       <span class="mrchev">${open?"▲ Collapse":"▼ Expand"}</span>
     </div>
@@ -2069,10 +2103,10 @@ function renderMockReport(){
         <div class="yst"><b>${r.skipped}</b><span>skipped</span></div>
       </div>
       <table><tr><th>Subject</th><th>Correct</th><th>Marks</th></tr>${subjRows}</table>
-      <button class="btn" onclick="discardMock()">Start a fresh mock</button>
     </div>
   </div>
-  <div class="mrrows">${rows}</div>`;
+  ${mockSetupHTML()}${mockHistoryHTML(true)}
+  <div class="mrrows${open?"":" hide"}">${rows}</div>`;
 }
 /* Resume across reloads: if a mock's clock already ran out while the app was
    closed, finalize it now rather than leaving a zombie in-progress state;
