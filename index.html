@@ -344,6 +344,12 @@
   .mrtag.ok{background:rgba(77,143,114,.18);color:#3b7a5e}
   .mrtag.no{background:rgba(194,64,90,.13);color:#b03b58}
   .mrtag.skip{background:rgba(80,52,32,.08);color:var(--mut)}
+  .mrtop{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;cursor:pointer}
+  .mrmeta{font-size:.78rem;color:var(--mut);font-weight:600;margin-top:4px}
+  .mrchev{flex:0 0 auto;font-size:.72rem;font-weight:700;color:var(--violet);white-space:nowrap;padding-top:5px}
+  .mockrep .mrbody{display:none}
+  .mockrep.open .mrbody{display:block;margin-top:14px}
+  .mockrep:not(.open)+.mrrows{display:none}
   .mhist{margin-top:12px}
   .mhrow{display:flex;justify-content:space-between;font-size:.78rem;padding:7px 0;
     border-bottom:1px solid var(--line);color:#4a4038}
@@ -1910,7 +1916,8 @@ function submitMock(){
     else if(pick===x.ans){correct++;s.correct++;recordAnswer(x,true,pick);}
     else{wrong++;s.wrong++;recordAnswer(x,false,pick);}
   });
-  mock.submitted=true;mock.review=false;
+  mock.submitted=true;mock.review=false;mock.reportOpen=true;
+  mock.date=new Date().toISOString().slice(0,10);
   mock.result={correct,wrong,skipped,marks:correct*4-wrong,max:mock.total*4,bySubj};
   saveMock();
   pushMockHistory({date:new Date().toISOString().slice(0,10),marks:mock.result.marks,
@@ -1920,6 +1927,7 @@ function submitMock(){
   syncMockBar();
 }
 function discardMock(){mock=null;saveMock();updateSegBadges();renderMock();syncMockBar();}
+function toggleMockReport(){if(!mock)return;mock.reportOpen=!mock.reportOpen;saveMock();renderMockReport();}
 
 function renderMock(){
   if(!mock)renderMockIntro();
@@ -2043,18 +2051,28 @@ function renderMockReport(){
   }).join("");
   const subjRows=Object.entries(r.bySubj).sort((a,b)=>b[1].total-a[1].total)
     .map(([s,t])=>`<tr><td>${s}</td><td>${t.correct}/${t.total}</td><td>${t.correct*4-t.wrong}</td></tr>`).join("");
-  $("#practiceBody").innerHTML=`<div class="card">
-    <h2>Mock Report</h2>
-    <div class="ystats">
-      <div class="yst"><b>${r.marks}</b><span>of ${r.max} marks</span></div>
-      <div class="yst"><b>${r.correct}</b><span>correct</span></div>
-      <div class="yst"><b>${r.wrong}</b><span>wrong</span></div>
-      <div class="yst"><b>${r.skipped}</b><span>skipped</span></div>
+  const open=mock.reportOpen!==false;
+  const dateStr=mock.date?new Date(mock.date+"T00:00").toLocaleDateString("en-GB",
+    {day:"numeric",month:"short",year:"numeric"}):"";
+  $("#practiceBody").innerHTML=`<div class="card mockrep${open?" open":""}">
+    <div class="mrtop" onclick="toggleMockReport()">
+      <div><h2>Mock Report</h2>
+        <div class="mrmeta">${dateStr} · ${mock.total} question${mock.total===1?"":"s"} · <b>${r.marks}</b>/${r.max} marks</div>
+      </div>
+      <span class="mrchev">${open?"▲ Collapse":"▼ Expand"}</span>
     </div>
-    <table><tr><th>Subject</th><th>Correct</th><th>Marks</th></tr>${subjRows}</table>
-    <button class="btn" onclick="discardMock()">Start a fresh mock</button>
+    <div class="mrbody">
+      <div class="ystats">
+        <div class="yst"><b>${r.marks}</b><span>of ${r.max} marks</span></div>
+        <div class="yst"><b>${r.correct}</b><span>correct</span></div>
+        <div class="yst"><b>${r.wrong}</b><span>wrong</span></div>
+        <div class="yst"><b>${r.skipped}</b><span>skipped</span></div>
+      </div>
+      <table><tr><th>Subject</th><th>Correct</th><th>Marks</th></tr>${subjRows}</table>
+      <button class="btn" onclick="discardMock()">Start a fresh mock</button>
+    </div>
   </div>
-  <div>${rows}</div>`;
+  <div class="mrrows">${rows}</div>`;
 }
 /* Resume across reloads: if a mock's clock already ran out while the app was
    closed, finalize it now rather than leaving a zombie in-progress state;
