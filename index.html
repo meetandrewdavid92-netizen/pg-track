@@ -104,12 +104,13 @@
     padding:7px 4px calc(6px + env(safe-area-inset-bottom));
     background:rgba(253,250,244,.96);border-top:1px solid var(--line);
     backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
-  nav button{flex:1;background:none;border:none;color:var(--soft);font-size:.6rem;font-weight:650;
-    padding:6px 0 4px;cursor:pointer;border-radius:12px;transition:color .15s;letter-spacing:.1px}
+  nav button{flex:1;background:none;border:1px solid transparent;color:var(--soft);font-size:.6rem;font-weight:650;
+    padding:6px 0 4px;cursor:pointer;border-radius:12px;transition:color .15s,background .15s,border-color .15s;letter-spacing:.1px}
   nav button .ico{display:block;margin:0 auto 3px;width:22px;height:22px}
   nav button .ico svg{width:100%;height:100%;display:block;
     fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
-  nav button.on{color:var(--violet)}
+  nav button.on{color:var(--violet);background:rgba(194,96,60,.09);border-color:rgba(194,96,60,.20)}
+  nav button.on .ico svg{stroke-width:1.9}
 
   .screen{display:none;animation:fade .3s ease}.screen.on{display:block}
   @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
