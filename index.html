@@ -766,6 +766,19 @@ const CONTENT = [
    ans is the 0-indexed correct option.
    =================================================== */
 const QBANK = [
+  {subject:"Paediatrics", topic:"Pediatric Gastroenterology", date:"2026-08-07", q:"A 6-year-old presents with 1 day of colicky abdominal pain and vomiting, stable vitals, mild periumbilical/epigastric tenderness, normal counts, and CRP 16. Ultrasound confirms intussusception. Beyond confirming the diagnosis, what does the child's age most specifically raise concern for?", opts:["A higher likelihood that this is simple idiopathic intussusception from lymphoid hyperplasia","A higher likelihood of an underlying pathologic lead point (PLP) that must be actively looked for","A lower likelihood of successful surgical treatment","No particular significance - age does not affect intussusception workup"], ans:1, exp:"Idiopathic intussusception from Peyer's-patch lymphoid hyperplasia clusters under age 2; a 6-year-old is an atypical age and should trigger an active search for a pathologic lead point (Meckel diverticulum, lymphoma, polyp, duplication cyst, HSP) rather than a default 'idiopathic' label. Age is diagnostic information here, not demographic detail.", src:"Case"},
+  {subject:"Paediatrics", topic:"Pediatric Gastroenterology", date:"2026-08-07", q:"Classic idiopathic ileocolic intussusception, driven by Peyer's-patch lymphoid hyperplasia (often post-viral), shows its peak incidence in which age group?", opts:["Neonatal period (0-1 month)","5-9 months","5-9 years","Adolescence"], ans:1, exp:"Idiopathic ileocolic intussusception peaks at 5-9 months, with roughly 80-90% of all cases occurring before age 2. Presentation outside this window, as in a 6-year-old, should raise rather than lower suspicion for an underlying pathologic lead point.", src:"Case"},
+  {subject:"Paediatrics", topic:"Pediatric Gastroenterology", date:"2026-08-07", q:"Which statement about pathologic lead points (PLP) in childhood intussusception is most accurate?", opts:["Meckel diverticulum is the classic overall commonest PLP; in children specifically beyond 6 years, lymphoma (Burkitt/non-Hodgkin, ileocecal) is an important and often-cited cause","PLPs are exclusively seen in infants under 1 year","Appendiceal disease is the single most common PLP at every age","A PLP, once present, can never be reduced non-operatively regardless of type"], ans:0, exp:"Meckel diverticulum is the classic overall commonest pathologic lead point in childhood intussusception. In children specifically beyond about 6 years, lymphoma (usually Burkitt or non-Hodgkin, ileocecal in location) becomes an important and frequently-tested cause - this age/lead-point pairing is a favourite exam distractor-buster, since most students default to 'idiopathic' regardless of age.", src:"Case"},
+  {subject:"Paediatrics", topic:"Pediatric Gastroenterology", date:"2026-08-07", q:"A 6-year-old with confirmed intussusception has no history of red, jelly-like stools and no palpable abdominal mass on the referral note. How should the absence of the classic 'currant-jelly stool plus sausage mass' triad be interpreted?", opts:["It effectively rules out intussusception","All three triad features together are seen only in a minority even of infants; their absence does not argue against the diagnosis, especially early or in an older child","It means the diagnosis must be revised to simple gastroenteritis","It confirms an ileo-ileal rather than ileocolic type"], ans:1, exp:"The full triad - colicky pain, currant-jelly stool, and a palpable sausage-shaped mass - is seen together in only a minority even of infants, and less often in older children or early presentations. Its absence does not argue against the diagnosis once imaging is positive; don't wait for the complete textbook triad before considering intussusception.", src:"Case"},
+  {subject:"Paediatrics", topic:"Pediatric Gastroenterology", date:"2026-08-07", q:"Which ultrasound finding, seen on transverse section, is considered essentially diagnostic of intussusception?", opts:["Double bubble sign","Target/doughnut sign","String of pearls sign","Whirlpool sign"], ans:1, exp:"The target or doughnut sign on transverse ultrasound (alternating hyper- and hypoechoic rings from the telescoped bowel wall), with the pseudokidney/sandwich sign on longitudinal section, is essentially diagnostic of intussusception. Ultrasound is first-line, and further cross-sectional imaging is not routinely required once it is positive.", src:"Case"},
+  {subject:"Paediatrics", topic:"Pediatric Gastroenterology", date:"2026-08-07", q:"A child is found to have an ileo-ileal (small-bowel-only) intussusception on ultrasound, rather than the usual ileocolic type. Which of the following is most true of this variant?", opts:["It is more amenable to air enema reduction than ileocolic disease","It should raise suspicion for HSP (Henoch-Schonlein purpura)-related submucosal haematoma as the lead point, and is less often reducible by enema","It is the classic presentation of idiopathic post-viral intussusception","It requires no further workup once identified"], ans:1, exp:"Ileo-ileal intussusception should raise suspicion for a pathologic lead point such as an HSP-related submucosal haematoma (from IgA vasculitis causing bowel-wall bleeding), and is less often reducible by air/hydrostatic enema than the far more common ileocolic type, which is designed to push the mass back around the ileocecal valve.", src:"Case"},
+  {subject:"Paediatrics", topic:"Pediatric Gastroenterology", date:"2026-08-07", q:"In a haemodynamically stable child with intussusception and no peritonism, perforation, or shock, what is the preferred first-line treatment?", opts:["Immediate laparotomy in all cases regardless of stability","Non-operative reduction, with pneumatic (air) enema generally preferred over hydrostatic for higher success and lower perforation risk","Observation alone with no active intervention","Oral rehydration and outpatient follow-up"], ans:1, exp:"Non-operative reduction is first-line in a stable child without peritonism, perforation, or shock, with pneumatic (air) enema generally preferred over hydrostatic (saline/contrast) enema for a higher reduction success rate and a lower risk of perforation. Surgery is reserved for failure or specific red flags such as peritonitis or a suspected lead point.", src:"Case"},
+  {subject:"Paediatrics", topic:"Pediatric Gastroenterology", date:"2026-08-07", q:"Which of the following would push management toward surgery rather than a further attempt at enema reduction?", opts:["A first episode of ileocolic intussusception in an 8-month-old with a normal abdominal exam","Peritonitis, perforation, shock, failed enema reduction, ileo-ileal type, or a suspected/visualised pathologic lead point","A CRP that is completely normal","Age less than 1 year"], ans:1, exp:"Peritonitis, perforation, shock, a failed enema reduction attempt, ileo-ileal type, recurrent intussusception, or a suspected/visualised pathologic lead point all favour surgical management. A young infant with a first episode and a reassuring exam is the opposite scenario - it favours a non-operative attempt first.", src:"Case"},
+  {subject:"Paediatrics", topic:"Pediatric Gastroenterology", date:"2026-08-07", q:"In a 6-year-old with confirmed intussusception, counts are normal but CRP is mildly elevated at 16. What is the best interpretation of this finding?", opts:["It rules out the diagnosis, since infection markers should be markedly elevated","It is diagnostic of established bowel perforation","A normal count does not exclude evolving bowel-wall compromise; a rising inflammatory marker should be read as a caution sign supporting urgent rather than elective referral, even with stable vitals","It has no clinical relevance and can be disregarded"], ans:2, exp:"A normal white cell count does not exclude early bowel-wall compromise or ischemia. A mildly rising inflammatory marker like CRP, in the setting of confirmed intussusception, should be read as a caution sign for evolving bowel-wall injury and supports urgent rather than elective referral, even when vitals remain stable.", src:"Case"},
+  {subject:"Paediatrics", topic:"Pediatric Gastroenterology", date:"2026-08-07", q:"Even after a school-age child's intussusception is successfully reduced non-operatively, what is the recommended next step given this age group?", opts:["Discharge immediately with no further workup, since successful reduction confirms an idiopathic cause","Actively search for a pathologic lead point (re-imaging, lower threshold for laparoscopy/colonoscopy) before closing the workup, since occult lymphoma or Meckel's can otherwise be missed","Start empirical chemotherapy pending biopsy","No follow-up is needed since recurrence risk is zero after reduction"], ans:1, exp:"Because pathologic lead point prevalence rises steeply with age, a school-age child who reduces successfully still needs active surveillance for a lead point - re-imaging and a lower threshold for laparoscopy/colonoscopy - before the workup is closed. Skipping this step risks discharging an occult lymphoma or Meckel diverticulum as 'resolved idiopathic intussusception.'", src:"Case"},
+  {subject:"Pathology", topic:"Hematology: White Blood Cells", date:"2026-08-07", q:"A pathologic lead point found at laparotomy in an 8-year-old with ileocecal intussusception shows sheets of monomorphic lymphoid cells with a 'starry sky' pattern on histology. Which underlying diagnosis and genetic hallmark best fit this picture?", opts:["Hodgkin lymphoma; Reed-Sternberg cells","Burkitt lymphoma; t(8;14) translocation involving c-myc","Neuroblastoma; N-myc amplification","Wilms tumour; WT1 gene mutation"], ans:1, exp:"Burkitt lymphoma shows a 'starry sky' pattern - sheets of high-grade lymphoblasts studded with tingible-body macrophages clearing apoptotic debris - and characteristically carries the t(8;14) translocation, which places the c-myc oncogene under the immunoglobulin heavy-chain enhancer, driving relentless proliferation. It is the lymphoma most associated with ileocecal intussusception as a pathologic lead point in older children.", src:"Case"},
+  {subject:"Anatomy", topic:"Abdomen", date:"2026-08-07", q:"A Meckel diverticulum, the classic overall commonest pathologic lead point for childhood intussusception, arises from incomplete obliteration of which embryonic structure?", opts:["Urachus","Omphalomesenteric (vitelline) duct","Processus vaginalis","Allantois"], ans:1, exp:"Meckel diverticulum is a true diverticulum (contains all bowel wall layers) arising from a persistent omphalomesenteric/vitelline duct, which normally obliterates by the 7th week of gestation. Remember the rule of 2s: ~2% of the population, within 2 feet of the ileocecal valve, ~2 inches long, presents by age 2 when symptomatic, and may contain 2 types of ectopic tissue (gastric or pancreatic) - ectopic gastric mucosa is the one that causes painless lower GI bleeding via peptic ulceration.", src:"Case"},
+  {subject:"Radiology", topic:"Gastrointestinal Radiology", date:"2026-08-07", q:"On ultrasound, which longitudinal-section sign of intussusception is the counterpart of the transverse 'target/doughnut' sign, formed by alternating hyper- and hypoechoic layers of bowel wall?", opts:["Pseudokidney/sandwich sign","Rat tail sign","String sign","Comet tail sign"], ans:0, exp:"The pseudokidney or sandwich sign is the longitudinal-section counterpart of the transverse target/doughnut sign - both are produced by the same telescoped, layered bowel wall, just viewed from different planes. Recognising both views matters because a probe angle that only catches one plane can otherwise miss the diagnosis.", src:"Case"},
   {subject:"ENT", topic:"Pharynx", date:"2026-08-07", q:"A 6-year-old boy has mouth breathing, hyponasal (stuffy) voice, and snoring for 6 months, with adenoid facies (long face, open mouth, prominent incisors) on examination and a normal nasal endoscopy. Image described: lateral soft-tissue neck X-ray showing a soft-tissue shadow bulging from the posterior nasopharyngeal wall, narrowing the nasopharyngeal airway. Which investigation best confirms the diagnosis before planning adenoidectomy?", opts:["CT paranasal sinuses","Lateral neck radiograph (soft tissue) showing the adenoid-nasopharyngeal (AN) ratio","Polysomnography alone","Flexible nasopharyngoscopy under general anaesthesia only"], ans:1, exp:"Adenoid hypertrophy in children classically presents with mouth breathing, hyponasal voice, snoring, and adenoid facies. A lateral soft-tissue neck X-ray measuring the adenoid-nasopharyngeal (AN) ratio (Fujioka's method) is the standard bedside screening investigation before adenoidectomy; CT is reserved for atypical or complicated cases, and polysomnography is added only when obstructive sleep apnoea is suspected, not as the primary diagnostic test.", src:"Daily"},
   {subject:"Surgery", topic:"Urology", date:"2026-08-07", q:"A 68-year-old man presents with a 6-month history of hesitancy, weak stream, and nocturia three times nightly. Digital rectal examination reveals a smoothly enlarged, firm, non-tender prostate with a preserved median sulcus, and serum PSA is 2.1 ng/mL. What is the most likely diagnosis?", opts:["Carcinoma prostate","Chronic bacterial prostatitis","Urethral stricture","Benign prostatic hyperplasia"], ans:3, exp:"BPH classically gives a smooth, firm, symmetrically enlarged prostate with a preserved median sulcus and normal/mildly raised age-adjusted PSA, whereas carcinoma prostate typically feels hard, nodular, and asymmetric with an obliterated median sulcus and a disproportionately raised PSA -- DRE texture plus PSA is the key discriminator tested repeatedly in NEET PG urology vignettes.", src:"Daily"},
   {subject:"Anatomy", topic:"Lower Limb", date:"2026-08-07", q:"Injury to the common peroneal (fibular) nerve at the neck of the fibula most characteristically produces which clinical sign?", opts:["Foot drop with loss of dorsiflexion and eversion","Loss of plantarflexion with clawing of toes","Loss of knee extension","Loss of hip abduction (Trendelenburg sign)"], ans:0, exp:"The common peroneal nerve winds superficially around the neck of the fibula, making it the most commonly injured lower-limb nerve (plaster casts, fibular fractures, prolonged squatting/leg-crossing); injury causes foot drop from loss of dorsiflexors (deep peroneal) and evertors (superficial peroneal), with a characteristic high-stepping gait.", src:"Daily"},
@@ -1577,7 +1590,7 @@ function answerQ(btn,qi,i){
   const sch=card.querySelector(".qsched");
   if(sch){sch.textContent=schedText(r);sch.classList.add("show");}
   updateSegBadges();
-  updateTopicHead(card);
+  updateBankProgress(card);
 }
 function retryQ(el){
   const card=el.closest(".qcard");
@@ -1621,40 +1634,69 @@ function updateSegBadges(){
     else if(badge)badge.remove();
   });
 }
+/* Bank is a 3-level drill-down (subjects → topics → questions) so a JMO
+   never faces one long scroll: subjects list → that subject's topics → that topic's questions. */
 function renderBank(){
-  $("#practiceBody").innerHTML=`<div class="card">
-    <h2>Question Bank</h2>
-    <p class="submut">${QBANK.length} verified question${QBANK.length===1?"":"s"} from cases we've discussed — the bank grows every week. Tap an option to check yourself.</p>
-    <div class="filters" id="qSubjects"></div>
-    <div class="filters" id="qStatus"></div>
-    <div id="qbankFeed"></div></div>`;
+  if(bankLevel==="topics")renderBankTopics();
+  else if(bankLevel==="questions")renderBankQuestions();
+  else renderBankSubjects();
+}
+function openBankSubject(s){bankSubj=s;bankLevel="topics";qStatusFilter="all";renderBank();window.scrollTo(0,0);}
+function openBankTopic(t){bankTopic=t;bankLevel="questions";renderBank();window.scrollTo(0,0);}
+function renderBankSubjects(){
   const subjects=[...new Set(QBANK.map(x=>x.subject))].sort();
-  $("#qSubjects").innerHTML=["All",...subjects].map(s=>
-    `<button class="${s===qSubj?'on':''}" onclick="qSubj='${s}';renderBank()">${s}</button>`).join("");
+  let html=`<div class="card">
+    <h2>Question Bank</h2>
+    <p class="submut">${QBANK.length} verified question${QBANK.length===1?"":"s"} from cases we've discussed, across ${subjects.length} subjects. Tap a subject to start.</p>
+    <div id="bankSubjList">`;
+  subjects.forEach(sub=>{
+    const qs=QBANK.filter(x=>x.subject===sub);
+    const att=attemptedCount(qs),info=tprogInfo(att,qs.length);
+    html+=`<div class="topic navcard ${att>=qs.length?'topicdone':''}" onclick="openBankSubject('${sub.replace(/'/g,"\\'")}')">
+      <div class="topichead">
+        <span class="topicname">${sub}</span>
+        <span class="topicmeta"><span class="${info.cls}">${info.txt}</span><span class="chev">›</span></span>
+      </div>
+    </div>`;
+  });
+  $("#practiceBody").innerHTML=html+`</div></div>`;
+}
+function renderBankTopics(){
+  const subQs=QBANK.filter(x=>x.subject===bankSubj);
+  const topics=[...new Set(subQs.map(x=>x.topic))].sort();
   const STATUS=[["all","All"],["none","Not attempted"],["part","In progress"],["done","Done"]];
+  $("#practiceBody").innerHTML=`<div class="card">
+    <div class="bankback" onclick="bankLevel='subjects';renderBank();window.scrollTo(0,0)">‹ All subjects</div>
+    <h2>${bankSubj}</h2>
+    <p class="submut">${subQs.length} question${subQs.length===1?"":"s"} · ${attemptedCount(subQs)} attempted</p>
+    <div class="filters" id="qStatus"></div>
+    <div id="bankTopicList"></div></div>`;
   $("#qStatus").innerHTML=STATUS.map(([k,l])=>
     `<button class="${k===qStatusFilter?'on':''}" onclick="qStatusFilter='${k}';renderBank()">${l}</button>`).join("");
-  const items=QBANK.filter(x=>qSubj==="All"||x.subject===qSubj);
-  const grouped={};
-  items.forEach(x=>{(grouped[x.subject]??={});(grouped[x.subject][x.topic]??=[]).push(x);});
   let html="",shown=0;
-  Object.keys(grouped).sort().forEach(sub=>{
-    Object.keys(grouped[sub]).sort().forEach(top=>{
-      const qs=grouped[sub][top];
-      const att=attemptedCount(qs),st=topicState(att,qs.length);
-      if(qStatusFilter!=="all"&&qStatusFilter!==st)return;   /* attempted / not-attempted filter */
-      shown++;
-      const info=tprogInfo(att,qs.length);
-      html+=`<div class="topic collapsed ${st==="done"?"topicdone":""}">
-        <div class="topichead" onclick="this.closest('.topic').classList.toggle('collapsed')">
-          <span class="topicname">${qSubj==="All"?'<span class="topicsub">'+sub+'</span>':''}${top}</span>
-          <span class="topicmeta"><span class="${info.cls}">${info.txt}</span><span class="chev">▸</span></span>
-        </div>
-        <div class="qwrap">${qs.map(q=>qCardHTML(q)).join("")}</div>
-      </div>`;
-    });
+  topics.forEach(top=>{
+    const qs=subQs.filter(x=>x.topic===top);
+    const att=attemptedCount(qs),st=topicState(att,qs.length);
+    if(qStatusFilter!=="all"&&qStatusFilter!==st)return;   /* attempted / not-attempted filter */
+    shown++;
+    const info=tprogInfo(att,qs.length);
+    html+=`<div class="topic navcard ${st==="done"?"topicdone":""}" onclick="openBankTopic('${top.replace(/'/g,"\\'")}')">
+      <div class="topichead">
+        <span class="topicname">${top}</span>
+        <span class="topicmeta"><span class="${info.cls}">${info.txt}</span><span class="chev">›</span></span>
+      </div>
+    </div>`;
   });
-  $("#qbankFeed").innerHTML=shown?html:`<p class="submut">No topics ${qStatusFilter==="none"?"left to start":qStatusFilter==="done"?"completed yet":"in progress"} here.</p>`;
+  $("#bankTopicList").innerHTML=shown?html:`<p class="submut">No topics ${qStatusFilter==="none"?"left to start":qStatusFilter==="done"?"completed yet":"in progress"} here.</p>`;
+}
+function renderBankQuestions(){
+  const qs=QBANK.filter(x=>x.subject===bankSubj&&x.topic===bankTopic);
+  const att=attemptedCount(qs);
+  $("#practiceBody").innerHTML=`<div class="card">
+    <div class="bankback" onclick="bankLevel='topics';renderBank();window.scrollTo(0,0)">‹ ${bankSubj}</div>
+    <h2>${bankTopic}</h2>
+    <p class="submut" id="bankQProg">${qs.length} question${qs.length===1?"":"s"} · ${att} attempted</p>
+    <div id="bankQList">${qs.map(q=>qCardHTML(q)).join("")}</div></div>`;
 }
 function renderReview(){
   const due=dueQuestions();
