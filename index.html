@@ -15,11 +15,44 @@
   :root{
     --paper:#faf5ec; --paper2:#f6efe3;
     --glass:#fffdf8; --glass-brd:rgba(80,52,32,.10);
-    --ink:#2a221d; --mut:#7d7168; --soft:#a2958a;
+    --ink:#2a221d; --ink2:#4a4038; --mut:#7d7168; --soft:#a2958a;
     --violet:#c2603c; --sky:#dc8f61; --mint:#4d8f72; --peach:#dda05e; --rose:#c2607f;
+    --ok:#356f55; --okbg:rgba(77,143,114,.16); --okbrd:rgba(77,143,114,.5);
+    --bad:#b03b58; --badbg:rgba(194,64,90,.12); --badbrd:rgba(194,64,90,.45);
+    --warn:#a8712a; --warnbg:rgba(221,160,94,.16);
     --line:rgba(80,52,32,.11); --track:#e8ded0;
+    --headbg:rgba(250,245,236,.94); --navbg:rgba(253,250,244,.96);
     --shadow:0 8px 24px -16px rgba(90,58,32,.45);
     --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+  }
+  /* ---- Dark mode: night duty is when this app actually gets opened. ----
+     System preference by default; the header toggle stamps data-theme on
+     <html> and that must win in BOTH directions, so each rule is repeated. */
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#17140f; --paper2:#211c16;
+      --glass:#1e1a14; --glass-brd:rgba(240,225,200,.10);
+      --ink:#f0e7da; --ink2:#d6cabb; --mut:#a2958a; --soft:#82766c;
+      --violet:#e0885f; --sky:#e5a075; --mint:#6bb492; --peach:#e0ab6f;
+      --ok:#7cc4a1; --okbg:rgba(108,180,146,.16); --okbrd:rgba(108,180,146,.45);
+      --bad:#f0899f; --badbg:rgba(240,137,159,.13); --badbrd:rgba(240,137,159,.4);
+      --warn:#e3b075; --warnbg:rgba(224,171,111,.14);
+      --line:rgba(240,225,200,.13); --track:#332b22;
+      --headbg:rgba(23,20,15,.94); --navbg:rgba(26,22,17,.96);
+      --shadow:0 8px 24px -16px rgba(0,0,0,.8);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#17140f; --paper2:#211c16;
+    --glass:#1e1a14; --glass-brd:rgba(240,225,200,.10);
+    --ink:#f0e7da; --ink2:#d6cabb; --mut:#a2958a; --soft:#82766c;
+    --violet:#e0885f; --sky:#e5a075; --mint:#6bb492; --peach:#e0ab6f;
+    --ok:#7cc4a1; --okbg:rgba(108,180,146,.16); --okbrd:rgba(108,180,146,.45);
+    --bad:#f0899f; --badbg:rgba(240,137,159,.13); --badbrd:rgba(240,137,159,.4);
+    --warn:#e3b075; --warnbg:rgba(224,171,111,.14);
+    --line:rgba(240,225,200,.13); --track:#332b22;
+    --headbg:rgba(23,20,15,.94); --navbg:rgba(26,22,17,.96);
+    --shadow:0 8px 24px -16px rgba(0,0,0,.8);
   }
   *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
   body{
@@ -30,7 +63,7 @@
   }
   .wrap{padding:0 16px;max-width:660px;margin:0 auto}
   header{padding:16px 16px 12px;position:sticky;top:0;z-index:5;text-align:center;
-    background:rgba(250,245,236,.94);border-bottom:1px solid var(--line);
+    background:var(--headbg);border-bottom:1px solid var(--line);
     backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
   header h1{font-size:1.12rem;font-weight:750;letter-spacing:-.2px}
   header h1 span{font-weight:400;color:var(--mut)}
@@ -51,8 +84,8 @@
     line-height:1.15;color:var(--ink);margin-bottom:10px;text-transform:none}
   .card h3{font-family:var(--serif);font-size:1.14rem;font-weight:600;margin:16px 0 8px;
     color:var(--ink);letter-spacing:-.2px}
-  .card p{font-size:.92rem;line-height:1.62;color:#4a4038;margin-bottom:10px}
-  .card ul,.card ol{margin:2px 0 10px 18px;font-size:.92rem;line-height:1.62;color:#4a4038}
+  .card p{font-size:.92rem;line-height:1.62;color:var(--ink2);margin-bottom:10px}
+  .card ul,.card ol{margin:2px 0 10px 18px;font-size:.92rem;line-height:1.62;color:var(--ink2)}
   .card li{margin-bottom:3px}
   .card b{color:var(--ink);font-weight:700}
   .card table{width:100%;border-collapse:separate;border-spacing:0;font-size:.83rem;margin:10px 0;
@@ -65,8 +98,8 @@
   .tag{flex:0 0 auto;display:inline-flex;align-items:center;font-size:.63rem;font-weight:750;letter-spacing:.6px;
     padding:4px 10px;border-radius:6px;text-transform:uppercase;white-space:nowrap}
   .tag.case{background:rgba(194,96,60,.12);color:var(--violet)}
-  .tag.test{background:rgba(77,143,114,.14);color:#3b7a5e}
-  .tag.notice{background:rgba(221,160,94,.18);color:#a8712a}
+  .tag.test{background:rgba(77,143,114,.14);color:var(--ok)}
+  .tag.notice{background:rgba(221,160,94,.18);color:var(--warn)}
   .tag.onepager{background:rgba(120,100,88,.12);color:#6d5f54}
   .tag.mcq{background:rgba(194,96,127,.14);color:#9c3f5c}
   .tag.subj{background:var(--paper2);color:var(--mut)}
@@ -102,7 +135,7 @@
 
   nav{position:fixed;bottom:0;left:0;right:0;display:flex;z-index:10;
     padding:7px 4px calc(6px + env(safe-area-inset-bottom));
-    background:rgba(253,250,244,.96);border-top:1px solid var(--line);
+    background:var(--navbg);border-top:1px solid var(--line);
     backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
   nav button{flex:1;background:none;border:1px solid transparent;color:var(--soft);font-size:.6rem;font-weight:650;
     padding:6px 0 4px;cursor:pointer;border-radius:12px;transition:color .15s,background .15s,border-color .15s;letter-spacing:.1px}
@@ -142,7 +175,7 @@
   .yst{display:flex;align-items:baseline;gap:10px;padding:4px 0}
   .yst b{font-family:var(--serif);font-size:2.5rem;font-weight:600;color:var(--violet);
     line-height:1.05;letter-spacing:-1px;flex:0 0 auto}
-  .yst span{font-size:.8rem;color:#4a4038;line-height:1.35;font-weight:500}
+  .yst span{font-size:.8rem;color:var(--ink2);line-height:1.35;font-weight:500}
   .ycard{background:var(--paper2);border-color:rgba(80,52,32,.13)}
   .ytier{margin-top:16px}
   .ytier h4{font-family:var(--serif);font-size:1.05rem;font-weight:600;margin:0 0 9px;
@@ -213,7 +246,7 @@
   .ringrow{display:flex;align-items:center;gap:16px;margin-top:6px}
   .ring{flex:0 0 auto;position:relative;width:104px;height:104px}
   .ring svg{width:100%;height:100%;transform:rotate(-90deg)}
-  .ring .rtrack{fill:none;stroke:#2a221d;stroke-opacity:.12;stroke-width:11}
+  .ring .rtrack{fill:none;stroke:var(--ink);stroke-opacity:.12;stroke-width:11}
   .ring .rfill{fill:none;stroke:var(--violet);stroke-width:11;stroke-linecap:round;
     transition:stroke-dasharray .6s cubic-bezier(.4,0,.2,1)}
   .ring b{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
@@ -254,8 +287,8 @@
     padding:3px 10px;border-radius:20px}
   .tprog{background:rgba(80,52,32,.09);color:var(--mut);font-weight:800;font-size:.72rem;
     padding:3px 10px;border-radius:20px;white-space:nowrap}
-  .tprog.part{background:rgba(221,160,94,.22);color:#a8712a}
-  .tprog.done{background:rgba(77,143,114,.18);color:#3b7a5e}
+  .tprog.part{background:rgba(221,160,94,.22);color:var(--warn)}
+  .tprog.done{background:rgba(77,143,114,.18);color:var(--ok)}
   .topic.topicdone{border-color:rgba(77,143,114,.35);background:rgba(77,143,114,.06)}
   .topichead .chev{transition:transform .2s;color:var(--violet)}
   .topic:not(.collapsed) .topichead .chev{transform:rotate(90deg)}
@@ -272,10 +305,10 @@
     line-height:1.45;cursor:pointer;transition:.12s}
   .opt:active{transform:scale(.99)}
   .opt.locked{cursor:default}
-  .opt.correct{background:rgba(77,143,114,.16);border-color:rgba(77,143,114,.5);color:#356f55;font-weight:700}
-  .opt.wrong{background:rgba(194,64,90,.12);border-color:rgba(194,64,90,.45);color:#b03b58;font-weight:700}
+  .opt.correct{background:var(--okbg);border-color:var(--okbrd);color:var(--ok);font-weight:700}
+  .opt.wrong{background:var(--badbg);border-color:var(--badbrd);color:var(--bad);font-weight:700}
   .qexp{display:none;margin-top:9px;padding:11px 13px;border-radius:12px;
-    background:rgba(194,96,60,.08);font-size:.83rem;line-height:1.55;color:#4a4038}
+    background:rgba(194,96,60,.08);font-size:.83rem;line-height:1.55;color:var(--ink2)}
   .qexp.show{display:block}
   .qretry{display:none;margin-top:10px;font-size:.76rem;font-weight:700;color:var(--violet);cursor:pointer;user-select:none}
   .qcard.done .qretry{display:inline-block}
@@ -290,7 +323,7 @@
     color:var(--violet);letter-spacing:-1px}
   .mockhero .lbl3{color:var(--mut);font-size:.78rem;font-weight:600;margin-top:6px}
   .mockwarn{margin-top:10px;padding:10px 12px;border-radius:12px;font-size:.78rem;line-height:1.5;
-    background:rgba(221,160,94,.16);color:#8f5f1f}
+    background:rgba(221,160,94,.16);color:var(--warn)}
   .mqnum{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;
     border-radius:50%;background:rgba(194,96,60,.12);color:var(--violet);font-size:.72rem;
     font-weight:800;margin-right:8px;flex:0 0 auto;vertical-align:middle}
@@ -311,8 +344,8 @@
   .pcell{width:34px;height:34px;border-radius:9px;border:1px solid var(--line);
     background:var(--paper2);color:var(--mut);font:inherit;font-size:.76rem;font-weight:750;
     cursor:pointer;padding:0;position:relative}
-  .pcell.seen{background:rgba(194,64,90,.12);border-color:rgba(194,64,90,.35);color:#b03b58}
-  .pcell.ans{background:rgba(77,143,114,.18);border-color:rgba(77,143,114,.45);color:#356f55}
+  .pcell.seen{background:rgba(194,64,90,.12);border-color:rgba(194,64,90,.35);color:var(--bad)}
+  .pcell.ans{background:rgba(77,143,114,.18);border-color:rgba(77,143,114,.45);color:var(--ok)}
   .pcell.mark,.pcell.ansmark{background:var(--violet);border-color:transparent;color:#fff}
   .pcell.ansmark::after{content:"";position:absolute;right:2px;bottom:2px;width:8px;height:8px;
     border-radius:50%;background:#4d8f72;border:1.5px solid #fff}
@@ -330,19 +363,19 @@
   .mnav button:disabled{opacity:.4}
   #mqBody .btn{margin-top:9px}
   .mockbar{position:fixed;left:0;right:0;z-index:8;display:flex;align-items:center;gap:12px;
-    padding:10px 16px;background:rgba(253,250,244,.97);border-top:1px solid var(--line);
+    padding:10px 16px;background:var(--navbg);border-top:1px solid var(--line);
     backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
     box-shadow:0 -10px 26px -16px rgba(90,58,32,.5)}
   .mockbar .mbtime{font-family:var(--serif);font-weight:600;font-variant-numeric:tabular-nums;
     font-size:1.25rem;letter-spacing:.5px}
-  .mockbar.warn .mbtime{color:#b03b58}
+  .mockbar.warn .mbtime{color:var(--bad)}
   .mockbar .mbanswered{flex:1;font-size:.72rem;color:var(--mut);font-weight:600}
   .mockbar button{flex:0 0 auto;padding:10px 20px;border:none;border-radius:999px;font-size:.82rem;
     font-weight:700;cursor:pointer;color:#fff;background:var(--violet)}
   .mrtag{display:inline-block;font-size:.62rem;font-weight:800;letter-spacing:.5px;text-transform:uppercase;
     padding:2px 9px;border-radius:20px;margin-left:6px;vertical-align:middle}
-  .mrtag.ok{background:rgba(77,143,114,.18);color:#3b7a5e}
-  .mrtag.no{background:rgba(194,64,90,.13);color:#b03b58}
+  .mrtag.ok{background:rgba(77,143,114,.18);color:var(--ok)}
+  .mrtag.no{background:rgba(194,64,90,.13);color:var(--bad)}
   .mrtag.skip{background:rgba(80,52,32,.08);color:var(--mut)}
   .mrtop{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;cursor:pointer}
   .mrmeta{font-size:.78rem;color:var(--mut);font-weight:600;margin-top:4px}
@@ -353,7 +386,7 @@
                                   cards now sit between report and rows */
   .mhist{margin-top:12px}
   .mhrow{display:flex;justify-content:space-between;font-size:.78rem;padding:7px 0;
-    border-bottom:1px solid var(--line);color:#4a4038}
+    border-bottom:1px solid var(--line);color:var(--ink2)}
   .mhrow:last-child{border-bottom:none}
   .mhrow b{color:var(--violet)}
 
@@ -361,7 +394,7 @@
   .libgroup{font-size:.68rem;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;
     color:var(--violet);margin:4px 2px 12px;display:flex;align-items:center;gap:8px}
   .libgroup.muted{color:var(--soft);margin-top:22px}
-  .libgroup.allread{color:#3b7a5e}
+  .libgroup.allread{color:var(--ok)}
   .card.unread{border-color:rgba(194,96,60,.40)}
   .card.read{opacity:.62}
   .tag.unreadtag{background:var(--violet);color:#fff}
@@ -389,11 +422,128 @@
   .accbar{height:8px;background:var(--track);border-radius:20px;overflow:hidden;margin:6px 0 0}
   .accbar i{display:block;height:100%;border-radius:20px}
   .revise{display:inline-block;font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;
-    color:#b03b58;background:rgba(194,64,90,.12);padding:2px 9px;border-radius:20px;margin-left:8px;vertical-align:middle}
+    color:var(--bad);background:rgba(194,64,90,.12);padding:2px 9px;border-radius:20px;margin-left:8px;vertical-align:middle}
   .points{margin-top:10px;padding:11px 13px;background:rgba(221,160,94,.12);border-radius:12px}
-  .points .plab{font-size:.66rem;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:#a8712a;margin-bottom:6px}
-  .points ul{margin:0 0 0 16px;font-size:.83rem;line-height:1.55;color:#4a4038}
+  .points .plab{font-size:.66rem;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:var(--warn);margin-bottom:6px}
+  .points ul{margin:0 0 0 16px;font-size:.83rem;line-height:1.55;color:var(--ink2)}
   .points li{margin-bottom:4px}
+
+  /* ================= Added: readability floor =================
+     Nothing below .70rem survives a dim ward at arm's length. These override
+     the smaller sizes set above rather than editing each rule in place. */
+  nav button{font-size:.68rem}
+  .tag{font-size:.70rem;letter-spacing:.4px}
+  .meta,.card .meta{font-size:.77rem}
+  .foot{font-size:.76rem}
+  .subj .w{font-size:.74rem}
+  .segbadge{font-size:.70rem}
+  .topicsub,.wtopsub{font-size:.70rem}
+  .qsrc{font-size:.70rem}
+  .qsched{font-size:.77rem}
+  .mrtag,.revise{font-size:.70rem}
+  .points .plab{font-size:.72rem}
+  .plegend{font-size:.72rem}
+  .pform label{font-size:.74rem}
+  .ptab{font-size:.78rem} .ptab th{font-size:.70rem}
+  .ydet p{font-size:.77rem}
+  .ytops span{font-size:.70rem}
+  .prev{font-size:.70rem}
+  .mixkey{font-size:.72rem}
+  .scell .sub{font-size:.72rem}
+  .ymk small{font-size:.68rem}
+  .ytier h4 em{font-size:.76rem}
+  .yiy,.yip{font-size:.76rem}
+
+  /* ---- Header actions: theme toggle + Program (the 7th tab, relocated) ---- */
+  header{position:sticky;display:flex;align-items:center;gap:10px;text-align:left}
+  header h1{flex:1;min-width:0}
+  .hact{flex:0 0 auto;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);
+    background:var(--paper2);color:var(--mut);font-size:1rem;line-height:1;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;padding:0}
+  .hact:active{transform:scale(.94)}
+  .hact.on{background:rgba(194,96,60,.12);color:var(--violet);border-color:rgba(194,96,60,.25)}
+
+  /* ---- Home: resume / streak card ---- */
+  .resume{background:var(--paper2);border-color:var(--glass-brd)}
+  .streakrow{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+  .flame{font-family:var(--serif);font-size:2.4rem;font-weight:600;color:var(--violet);
+    line-height:1;letter-spacing:-1px;flex:0 0 auto}
+  .streaklab{font-size:.82rem;color:var(--mut);font-weight:600;line-height:1.4}
+  .goalbar{height:10px;background:var(--track);border-radius:20px;overflow:hidden;margin:4px 0 6px}
+  .goalbar i{display:block;height:100%;border-radius:20px;background:var(--violet);transition:width .4s}
+  .dots{display:flex;gap:5px;margin-top:8px}
+  .dots span{flex:1;height:6px;border-radius:20px;background:var(--track)}
+  .dots span.hit{background:var(--violet)}
+  .dots span.today{outline:2px solid var(--violet);outline-offset:1px}
+  .qact{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+  .qact button{flex:1 1 46%;padding:13px 10px;border-radius:999px;border:1px solid rgba(194,96,60,.30);
+    background:rgba(194,96,60,.09);color:var(--violet);font:inherit;font-size:.84rem;font-weight:700;cursor:pointer}
+  .qact button.solid{background:var(--violet);color:#fff;border-color:transparent}
+  .qact button:disabled{opacity:.4}
+
+  /* ---- Session runner: one question at a time ---- */
+  .sesshead{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}
+  .sesstitle{font-weight:750;font-size:.88rem;line-height:1.35}
+  .sesstitle em{display:block;font-style:normal;font-size:.74rem;color:var(--mut);font-weight:600;margin-top:2px}
+  .sessquit{font-size:.78rem;font-weight:700;color:var(--mut);cursor:pointer;flex:0 0 auto;
+    border:1px solid var(--line);background:var(--paper2);border-radius:999px;padding:7px 13px}
+  .sessscore{display:flex;gap:14px;font-size:.76rem;font-weight:700;margin-top:8px}
+  .sessscore .sok{color:var(--ok)} .sessscore .sno{color:var(--bad)}
+  .sessbig{font-family:var(--serif);font-size:2.6rem;font-weight:600;color:var(--violet);line-height:1}
+
+  /* ---- Feedback panel (PrepLadder/SPEED-style) ---- */
+  .fbhead{display:flex;align-items:center;gap:8px;font-size:.82rem;font-weight:800;
+    letter-spacing:.3px;margin-bottom:7px}
+  .fbhead.ok{color:var(--ok)} .fbhead.no{color:var(--bad)}
+  .fbtime{margin-left:auto;font-size:.74rem;font-weight:700;color:var(--mut)}
+  .whywrap{margin-top:9px;border-top:1px dashed var(--line);padding-top:9px}
+  .whywrap .plab{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;
+    color:var(--mut);margin-bottom:6px}
+  .whywrap ul{margin:0 0 0 16px;font-size:.80rem;line-height:1.55;color:var(--ink2)}
+  .whywrap li{margin-bottom:4px}
+  .whywrap li.isans{color:var(--ok);font-weight:650}
+  .errtag{margin-top:10px;padding:11px 12px;border-radius:12px;background:var(--warnbg)}
+  .errtag .plab{font-size:.74rem;font-weight:800;color:var(--warn);margin-bottom:8px}
+  .errchips{display:flex;flex-wrap:wrap;gap:6px}
+  .errchips button{font:inherit;font-size:.76rem;font-weight:650;padding:8px 12px;border-radius:999px;
+    border:1px solid var(--line);background:var(--glass);color:var(--ink2);cursor:pointer}
+  .errchips button.on{background:var(--violet);color:#fff;border-color:transparent}
+  .qtools{display:flex;align-items:center;gap:14px;margin-top:10px}
+  .star{font-size:1.05rem;line-height:1;cursor:pointer;color:var(--soft);user-select:none;
+    background:none;border:none;padding:2px 0;font-family:inherit}
+  .star.on{color:var(--violet)}
+  .qcard{position:relative}
+  .qcard .qtoprow{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+  .qcard .qtoprow .star{margin-left:auto}
+
+  /* ---- Flashcards ---- */
+  .fcard{min-height:220px;display:flex;flex-direction:column;justify-content:center;
+    text-align:center;cursor:pointer;background:var(--paper2)}
+  .fcard .fside{font-size:1rem;line-height:1.6;font-weight:600}
+  .fcard .fback{font-size:.92rem;line-height:1.62;color:var(--ink2);font-weight:500}
+  .fclab{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.7px;
+    color:var(--violet);margin-bottom:10px}
+  .fchint{font-size:.74rem;color:var(--soft);font-weight:600;margin-top:14px}
+
+  /* ---- Mock report extras ---- */
+  .quad{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+  .qcell{padding:11px 12px;border-radius:12px;background:var(--paper2);border:1px solid var(--line)}
+  .qcell b{display:block;font-family:var(--serif);font-size:1.5rem;font-weight:600;line-height:1.1}
+  .qcell span{font-size:.74rem;color:var(--mut);font-weight:600;line-height:1.35;display:block;margin-top:3px}
+  .qcell.bad b{color:var(--bad)} .qcell.ok b{color:var(--ok)} .qcell.warn b{color:var(--warn)}
+  .lossbox{margin-top:12px;padding:12px 13px;border-radius:12px;background:var(--badbg);
+    font-size:.82rem;line-height:1.55;color:var(--ink2)}
+  .lossbox b{color:var(--bad)}
+  .slowlist{font-size:.78rem;color:var(--mut);font-weight:600;margin-top:8px;line-height:1.5}
+
+  /* ---- Search ---- */
+  .searchbox{display:flex;align-items:center;gap:8px;background:var(--paper2);border:1px solid var(--line);
+    border-radius:14px;padding:11px 14px;margin-bottom:12px}
+  .searchbox input{flex:1;font:inherit;font-size:.88rem;color:var(--ink);background:none;border:none;outline:none}
+  .searchbox input::placeholder{color:var(--soft)}
+  .searchbox .sclear{color:var(--soft);font-size:.9rem;cursor:pointer;padding:0 2px}
+  .hitsub{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.6px;
+    color:var(--violet);margin-bottom:4px}
 </style>
 </head>
 <body>
@@ -401,6 +551,8 @@
 <header class="wrap">
   <h1 id="appTitle"></h1>
   <p id="appSub"></p>
+  <button class="hact" id="themeBtn" onclick="cycleTheme()" title="Light / dark">◐</button>
+  <button class="hact" id="aboutBtn" onclick="go('about')" title="About the program">i</button>
 </header>
 
 <div class="wrap">
@@ -408,12 +560,18 @@
   <!-- HOME -->
   <section class="screen on" id="scr-home">
     <h2 class="scrtitle">This Week<em id="homeSub"></em></h2>
+    <div id="homeResume"></div>
     <div id="homeFeed"></div>
   </section>
 
   <!-- LIBRARY -->
   <section class="screen" id="scr-lib">
     <h2 class="scrtitle">Library<em>Everything generated for you so far — cases, one-pagers, tests.</em></h2>
+    <div class="searchbox">
+      <span>🔍</span>
+      <input id="libSearch" type="search" placeholder="Search cases, tests, notes…" oninput="renderLib()">
+      <span class="sclear" onclick="document.getElementById('libSearch').value='';renderLib()">✕</span>
+    </div>
     <div class="filters" id="libFilters"></div>
     <div id="libFeed"></div>
   </section>
@@ -425,8 +583,14 @@
     <div id="practiceBody"></div>
   </section>
 
-  <!-- YIELD — where the marks are -->
-  <section class="screen" id="scr-yield">
+  <!-- STRATEGY — Yield (where the marks are) + Planner, one tab, two segments -->
+  <section class="screen" id="scr-strategy">
+    <h2 class="scrtitle">Strategy<em>Where the marks are — and the plan that gets you to them.</em></h2>
+    <div class="seg" id="stratSeg">
+      <button class="on" onclick="setStrat('yield',this)">Yield</button>
+      <button onclick="setStrat('plan',this)">Planner</button>
+    </div>
+    <div id="sub-yield">
     <div class="card ycard">
       <h2>Where the marks are</h2>
       <p style="color:var(--mut);font-size:.82rem">Built from <b>5 real NEET PG papers</b> (2018, 2019, 2020, 2022, 2023) — 1,286 questions, recency-weighted so the newest papers count most. Marks shown out of <b>720</b> (180 Q × 4).</p>
@@ -461,11 +625,9 @@
       <p><b>Load</b> (1 = light, 5 = heavy) blends three things: how big the syllabus is, how many topics you must cover to reach 80% of that subject's marks, and how long its question stems run (short stem = one-liner recall; long stem = multi-step vignette). <b>Yield</b> = marks ÷ load, rescaled so the best subject is 100.</p>
       <p><b>Honest limits.</b> The syllabus-size part of Load is Dr. Andy's editorial estimate, not a measurement — nothing in a question bank tells you how big a syllabus is. Topic counts come from the 400 questions of 2022–23 that carry official topic tags, so treat the ordering as the signal and small differences as noise. 11% of questions could not be assigned a subject and were dropped rather than guessed. Question banks branded 2012–2016 were excluded: they are one recycled pool, and NEET PG did not exist before 2017.</p>
     </details>
-  </section>
+    </div><!-- /sub-yield -->
 
-  <!-- PLAN — duty-proof study planner -->
-  <section class="screen" id="scr-plan">
-    <h2 class="scrtitle">Study Planner</h2>
+    <div id="sub-plan" style="display:none">
     <div class="card">
       <h2>Duty-Proof Plan</h2>
       <p style="color:var(--mut);font-size:.82rem">Built for a JMO working full shifts. Tell it the truth about your hours — a plan you can't keep is worse than no plan. Revision hours are <b>budgeted in from week one</b>, not left to the end.</p>
@@ -511,10 +673,12 @@
       <p class="meta">NBEMS has not announced the 2026 date — 15 June is a placeholder from the 2025 pattern. Change it when the notification is out.</p>
     </div>
     <div id="planOut"></div>
+    </div><!-- /sub-plan -->
   </section>
 
-  <!-- TRACKER -->
+  <!-- PROGRESS (was Tracker) -->
   <section class="screen" id="scr-track">
+    <h2 class="scrtitle">Progress<em>Readiness, subject accuracy, and your first-pass map.</em></h2>
     <div class="card" id="readyCard">
       <h2>Overall Readiness</h2>
       <div class="ringrow" id="readyRow"></div>
@@ -594,10 +758,8 @@
   <button class="on" data-scr="home" onclick="go('home',this)"><span class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M3 10h18M8 3v4M16 3v4M8 14h3M8 17.5h8"/></svg></span>Week</button>
   <button data-scr="lib" onclick="go('lib',this)"><span class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="5" height="16" rx="1.2"/><rect x="10" y="4" width="5" height="16" rx="1.2"/><path d="M17.2 5.6l3.3 1 -3.4 13 -3.3-1"/></svg></span>Library</button>
   <button data-scr="timer" onclick="go('timer',this)"><span class="ico"><svg viewBox="0 0 24 24"><path d="M3 6.5l1.8 1.8L8 5M3 13l1.8 1.8L8 11.5M3 19.5l1.8 1.8L8 18M11 7h10M11 13.5h10M11 20h7"/></svg></span>Practice</button>
-  <button data-scr="yield" onclick="go('yield',this)"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 20V12M10 20V4M16 20V9M22 20H2"/></svg></span>Yield</button>
-  <button data-scr="plan" onclick="go('plan',this)"><span class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M3 10h18M8 3v4M16 3v4"/><circle cx="8.5" cy="14.5" r=".9" fill="currentColor" stroke="none"/><circle cx="12" cy="14.5" r=".9" fill="currentColor" stroke="none"/><circle cx="15.5" cy="14.5" r=".9" fill="currentColor" stroke="none"/></svg></span>Plan</button>
-  <button data-scr="track" onclick="go('track',this)"><span class="ico"><svg viewBox="0 0 24 24"><path d="M2 12.5h4l2.5-7 4 13 3-9 2 3h4.5"/></svg></span>Tracker</button>
-  <button data-scr="about" onclick="go('about',this)"><span class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="10" r="3.2"/><path d="M6 19.2a6.6 6.6 0 0 1 12 0"/></svg></span>Program</button>
+  <button data-scr="strategy" onclick="go('strategy',this)"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 20V12M10 20V4M16 20V9M22 20H2"/></svg></span>Strategy</button>
+  <button data-scr="track" onclick="go('track',this)"><span class="ico"><svg viewBox="0 0 24 24"><path d="M2 12.5h4l2.5-7 4 13 3-9 2 3h4.5"/></svg></span>Progress</button>
 </nav>
 
 <script>
@@ -1048,18 +1210,56 @@ $("#appSub").textContent=`Coached by ${CONFIG.doctor} · NEET PG, from the ward 
 $("#homeSub").textContent=`Coached by ${CONFIG.doctor} · NEET PG, from the ward up`;
 $("#footBrand").innerHTML=`${CONFIG.hospital} ${CONFIG.program} · ${CONFIG.doctor}${CONFIG.contact?" · "+CONFIG.contact:""}<br>Content generated from real de-identified ward cases, reviewed by your consultant.`;
 
+/* btn is optional: the Program screen is reached from the header icon, which
+   is not a nav button, so nothing should end up highlighted down there. */
 function go(name,btn){
   document.querySelectorAll(".screen").forEach(s=>s.classList.remove("on"));
   $("#scr-"+name).classList.add("on");
   document.querySelectorAll("nav button").forEach(b=>b.classList.remove("on"));
-  btn.classList.add("on");
+  if(!btn)btn=document.querySelector(`nav button[data-scr="${name}"]`);
+  if(btn)btn.classList.add("on");
+  $("#aboutBtn").classList.toggle("on",name==="about");
+  if(name==="home"&&typeof renderHome==="function")renderHome();
   if(name==="track"&&typeof renderTrack==="function")renderTrack();
   if(name==="lib"&&typeof renderLib==="function")renderLib();          /* refresh read/unread grouping */
   if(name==="timer"&&typeof renderPractice==="function")renderPractice(); /* refresh review/weak counts */
-  if(name==="plan"&&typeof renderTrack==="function"&&$("#planOut").innerHTML)buildPlan(true); /* pull in new Tracker ticks */
+  if(name==="strategy"&&stratView==="plan"&&$("#planOut").innerHTML)buildPlan(true); /* pull in new Tracker ticks */
   if(typeof syncMockBar==="function")syncMockBar();  /* hide the floating mock bar on every other screen */
   window.scrollTo(0,0);
 }
+/* Yield and Planner now share one nav slot; the segmented control swaps them. */
+let stratView="yield";
+function setStrat(v,btn){
+  stratView=v;
+  document.querySelectorAll("#stratSeg button").forEach(b=>b.classList.remove("on"));
+  btn.classList.add("on");
+  $("#sub-yield").style.display=v==="yield"?"":"none";
+  $("#sub-plan").style.display=v==="plan"?"":"none";
+  if(v==="plan"&&$("#planOut").innerHTML)buildPlan(true);
+  window.scrollTo(0,0);
+}
+
+/* ---- Theme: system by default, header button forces light or dark ---- */
+const THKEY="pgtrack-theme";
+function applyTheme(){
+  const t=localStorage.getItem(THKEY);
+  const root=document.documentElement;
+  if(t)root.setAttribute("data-theme",t);else root.removeAttribute("data-theme");
+  const dark=t==="dark"||(!t&&matchMedia("(prefers-color-scheme: dark)").matches);
+  const btn=document.getElementById("themeBtn");
+  if(btn)btn.textContent=t==="dark"?"☾":t==="light"?"☀":"◐";
+  const meta=document.querySelector('meta[name="theme-color"]');
+  if(meta)meta.setAttribute("content",dark?"#17140f":"#faf5ec");
+}
+function cycleTheme(){
+  const t=localStorage.getItem(THKEY);
+  const next=t==="dark"?"light":t==="light"?"":"dark";   /* dark → light → follow system */
+  next?localStorage.setItem(THKEY,next):localStorage.removeItem(THKEY);
+  applyTheme();
+  toast(next==="dark"?"Dark mode":next==="light"?"Light mode":"Following your phone's setting");
+}
+applyTheme();
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change",applyTheme);
 
 /* Card toggles ITSELF — expanding it in the Library marks it read.
    showBadge=true only in the Library, so Home stays a clean latest-feed. */
@@ -1096,7 +1296,38 @@ function toggleCard(el,id){
   if(willExpand){markRead(id);card.classList.remove("unread");}  /* don't re-sort mid-read */
 }
 
-/* Home: latest 3 expanded (no read badges — it's the latest feed) */
+/* Home: a resume card first, then the latest 3 expanded (no read badges —
+   it's the latest feed). The resume card is what the app should open on:
+   the streak, today's goal, and one tap into practice. Defined here, called
+   after the Practice section below has declared stats/streak state. */
+function renderHome(){
+  const done=todayCount(),goal=DAILY_GOAL,pct=Math.min(100,Math.round(done/goal*100));
+  const st=streakLen(),due=dueQuestions().length,weak=weakCount();
+  const daily=dailySet(),dailyNew=daily.filter(x=>!stats[qKey(x)]).length;
+  const dots=last7().map((d,i)=>`<span class="${d.n?"hit":""}${i===6?" today":""}"></span>`).join("");
+  const line=done>=goal?"Today's ten is done. Anything more is profit."
+    :st>=3?`${st}-day streak — ${goal-done} more today keeps it.`
+    :st===0?"Ten questions today starts a streak."
+    :`${goal-done} more questions today.`;
+  $("#homeResume").innerHTML=`<div class="card resume">
+    <div class="streakrow">
+      <div class="flame">${st}</div>
+      <div class="streaklab"><b>day streak</b><br>${line}</div>
+    </div>
+    <div class="goalbar"><i style="width:${pct}%"></i></div>
+    <p class="meta" style="margin:0">${done} of ${goal} questions today</p>
+    <div class="dots">${dots}</div>
+    <div class="qact">
+      ${session&&!session.done
+        ? `<button class="solid" onclick="go('timer')">Resume — ${session.cur+1}/${session.qis.length}</button>`
+        : `<button class="solid" onclick="startSession(smartSet(10),'Today\\'s ten','Due revisions first, then questions you have never seen')">
+             ${done?"Keep going":"Practise 10 now"}</button>`}
+      ${due?`<button onclick="startSession(${JSON.stringify(idx(dueQuestions()))},'Due revisions','Scheduled by the ladder — do these first')">Review ${due} due</button>`:""}
+      ${dailyNew?`<button onclick="startSession(${JSON.stringify(idx(daily.filter(x=>!stats[qKey(x)])))},'Today\\'s new set','The newest questions in the bank')">${dailyNew} new</button>`:""}
+      ${weak?`<button onclick="go('timer');practiceView='weak';renderPractice()">Weak spots · ${weak}</button>`:""}
+    </div>
+  </div>`;
+}
 $("#homeFeed").innerHTML =
   CONTENT.slice(0,3).map(i=>cardHTML(i,false,false)).join("") ||
   `<div class="card"><p>No content yet — first week's material lands soon.</p></div>`;
@@ -1107,8 +1338,17 @@ let libType="all";
 function renderLib(){
   $("#libFilters").innerHTML=TYPES.map(t=>
     `<button class="${t===libType?'on':''}" onclick="libType='${t}';renderLib()">${t}</button>`).join("");
-  const items=CONTENT.filter(i=>libType==="all"||i.type===libType);
-  if(!items.length){$("#libFeed").innerHTML=`<div class="card"><p>Nothing here yet.</p></div>`;return;}
+  const qStr=($("#libSearch")?.value||"").trim().toLowerCase();
+  let items=CONTENT.filter(i=>libType==="all"||i.type===libType);
+  /* Search covers the body text too — the thing a JMO remembers is a phrase
+     from the one-pager, not its title. */
+  if(qStr)items=items.filter(i=>(i.title+" "+i.subject+" "+i.html).toLowerCase().includes(qStr));
+  if(!items.length){$("#libFeed").innerHTML=`<div class="card"><p>${qStr?"Nothing matches that.":"Nothing here yet."}</p></div>`;return;}
+  if(qStr){
+    $("#libFeed").innerHTML=`<div class="libgroup">${items.length} match${items.length===1?"":"es"}</div>`+
+      items.map(i=>cardHTML(i,true,true)).join("");
+    return;
+  }
   const unread=items.filter(i=>!readMap[i.id]);
   const read=items.filter(i=>readMap[i.id]);
   let html="";
@@ -1160,7 +1400,7 @@ function showFocus(id){
 function exitFocus(){
   document.body.classList.remove("focus");
   history.replaceState(null,"",location.pathname);   /* drop the #c= hash */
-  go("about",document.querySelector('nav button[data-scr="about"]'));
+  go("about");   /* Program is now reached from the header icon, not the nav */
 }
 function routeFromHash(){
   const m=location.hash.match(/c=([^&]+)/);
@@ -1563,15 +1803,61 @@ function schedText(r){
   if(dirty)localStorage.setItem(SKEY,JSON.stringify(stats));
 })();
 
+/* ---- Daily activity: streak + today's goal ----
+   The daily batch drops 10 questions a day, so the app should say so. One
+   counter per day-number; a day with at least one answer keeps the streak. */
+const DKEY="pgtrack-days",DAILY_GOAL=10;
+let dayLog=JSON.parse(localStorage.getItem(DKEY)||"{}");
+function bumpDay(){const d=todayNum();dayLog[d]=(dayLog[d]||0)+1;localStorage.setItem(DKEY,JSON.stringify(dayLog));}
+function todayCount(){return dayLog[todayNum()]||0;}
+/* Today not being done yet must not read as a broken streak — start counting
+   from yesterday when nothing has been answered today. */
+function streakLen(){let d=todayNum(),n=0;if(!dayLog[d])d--;while(dayLog[d]){n++;d--;}return n;}
+function last7(){const t=todayNum();return Array.from({length:7},(_,i)=>({d:t-6+i,n:dayLog[t-6+i]||0}));}
+
+/* ---- Saved questions (star) ---- */
+const FKEY="pgtrack-flags";
+let flags=JSON.parse(localStorage.getItem(FKEY)||"{}");
+function isFlagged(x){return !!flags[qKey(x)];}
+function flaggedQuestions(){return QBANK.filter(isFlagged);}
+function toggleFlag(qi,el){
+  const k=qKey(QBANK[qi]);
+  if(flags[k])delete flags[k];else flags[k]=1;
+  localStorage.setItem(FKEY,JSON.stringify(flags));
+  el.classList.toggle("on",!!flags[k]);
+  el.textContent=flags[k]?"★":"☆";
+  toast(flags[k]?"Saved":"Removed from saved");
+  updateSegBadges();
+}
+
+/* ---- Error tagging (the PrepLadder idea, and the useful half of it) ----
+   A wrong answer is not one thing. "Didn't know it" is a content hole;
+   "silly mistake" three times in a week is a reading-speed problem. Tagging
+   at the moment of the mistake is the only time the JMO actually knows. */
+const ETAGS=[["gap","Didn't know it"],["silly","Silly mistake"],
+             ["confused","Confused two options"],["guess","Guessed"]];
+function setErrTag(qi,tag,el){
+  const k=qKey(QBANK[qi]);
+  if(!stats[k])return;
+  stats[k].err=tag;localStorage.setItem(SKEY,JSON.stringify(stats));
+  el.parentNode.querySelectorAll("button").forEach(b=>b.classList.remove("on"));
+  el.classList.add("on");
+}
+function errTally(){
+  const t={};Object.values(stats).forEach(r=>{if(r.err&&r.lastCorrect===false)t[r.err]=(t[r.err]||0)+1;});
+  return t;
+}
+
 function recordAnswer(x,correct,pick){
   const k=qKey(x);
   const r=stats[k]||{seen:0,correct:0,wrong:0,box:0};
   r.seen++;
-  if(correct){r.correct++;r.box=Math.min(r.box+1,BOXES.length-1);}
+  if(correct){r.correct++;r.box=Math.min(r.box+1,BOXES.length-1);delete r.err;}
   else{r.wrong++;r.box=0;}
   schedule(r);
   r.lastCorrect=correct;r.lastPick=pick;
   stats[k]=r;localStorage.setItem(SKEY,JSON.stringify(stats));
+  bumpDay();
   snapReadiness();
   return r;
 }
@@ -1599,6 +1885,32 @@ function weakCount(){return topicStats().filter(t=>t.correct/t.seen<0.7).length;
    Rebuilds the answered state from saved stats so a worked question stays
    worked across tab switches and reloads. forceFresh=true (Review) ignores
    history so the JMO re-attempts. */
+/* ---- Feedback panel -------------------------------------------------------
+   What a JMO gets the moment they answer, in the order they need it:
+   verdict → the keyed answer and why it is right → why the other three are
+   wrong (when the question carries an optional `why` array) → and, on a wrong
+   answer, the one question only they can answer: what kind of mistake was it.
+   Questions written before `why` existed simply render without that block. */
+function feedbackHTML(x,qi,pick,secs){
+  const correct=pick===x.ans, s=stats[qKey(x)];
+  const L=i=>String.fromCharCode(65+i);
+  const why=Array.isArray(x.why)&&x.why.length===x.opts.length
+    ? `<div class="whywrap"><div class="plab">Why the others are wrong</div><ul>${
+        x.why.map((w,i)=>`<li class="${i===x.ans?'isans':''}"><b>${L(i)}.</b> ${w}</li>`).join("")}</ul></div>`
+    : "";
+  const tags=!correct&&pick!=null
+    ? `<div class="errtag"><div class="plab">What went wrong? (tap one — it feeds your Progress tab)</div>
+       <div class="errchips">${ETAGS.map(([k,l])=>
+         `<button class="${s&&s.err===k?'on':''}" onclick="setErrTag(${qi},'${k}',this)">${l}</button>`).join("")}</div></div>`
+    : "";
+  const verdict=pick==null?`<div class="fbhead">Answer</div>`
+    :correct?`<div class="fbhead ok">✓ Correct${secs?`<span class="fbtime">${secs}s</span>`:""}</div>`
+    :`<div class="fbhead no">✕ You chose ${L(pick)}${secs?`<span class="fbtime">${secs}s</span>`:""}</div>`;
+  return `<div class="qexp show">${verdict}
+      <b>Answer: ${L(x.ans)}.</b> ${x.exp}${why}</div>
+    ${tags}
+    <div class="qsched show">${s?schedText(s):""}</div>`;
+}
 function qCardHTML(x,forceFresh){
   const qi=QBANK.indexOf(x);
   const s=stats[qKey(x)];
@@ -1610,12 +1922,14 @@ function qCardHTML(x,forceFresh){
   }).join("");
   /* No provenance badge here on purpose — a JMO practising does not need to
      know whether a question came from a case or the daily batch. `src` stays
-     in the data for our own tracking; the Mock view still shows the subject. */
+     in the data for our own tracking; the subject chip is exam-relevant. */
+  const fl=isFlagged(x);
   return `<div class="qcard${answered?' done':''}" data-qi="${qi}">
+    <div class="qtoprow"><span class="qsrc">${x.topic}</span>
+      <button class="star${fl?' on':''}" onclick="toggleFlag(${qi},this)" title="Save this question">${fl?"★":"☆"}</button></div>
     <div class="qstem">${x.q}</div>
     <div class="opts">${opts}</div>
-    <div class="qexp${answered?' show':''}"><b>Answer: ${String.fromCharCode(65+x.ans)}.</b> ${x.exp}</div>
-    <div class="qsched${answered?' show':''}">${answered?schedText(s):""}</div>
+    <div class="qfb">${answered?feedbackHTML(x,qi,s.lastPick,0):""}</div>
     <div class="qretry" onclick="retryQ(this)">↺ Try again</div>
   </div>`;
 }
@@ -1626,10 +1940,8 @@ function answerQ(btn,qi,i){
   const x=QBANK[qi];const correct=(i===x.ans);
   card.querySelectorAll(".opt").forEach((o,idx)=>{o.classList.add("locked");if(idx===x.ans)o.classList.add("correct");});
   if(!correct)btn.classList.add("wrong");
-  card.querySelector(".qexp").classList.add("show");
-  const r=recordAnswer(x,correct,i);
-  const sch=card.querySelector(".qsched");
-  if(sch){sch.textContent=schedText(r);sch.classList.add("show");}
+  recordAnswer(x,correct,i);
+  card.querySelector(".qfb").innerHTML=feedbackHTML(x,qi,i,0);
   updateSegBadges();
   updateBankProgress(card);
 }
@@ -1637,7 +1949,7 @@ function retryQ(el){
   const card=el.closest(".qcard");
   card.classList.remove("done");
   card.querySelectorAll(".opt").forEach(o=>o.classList.remove("locked","correct","wrong"));
-  card.querySelector(".qexp").classList.remove("show");
+  card.querySelector(".qfb").innerHTML="";
 }
 
 let practiceView="bank",bankLevel="subjects",bankSubj=null,bankTopic=null,qStatusFilter="all";
@@ -1657,23 +1969,222 @@ function updateBankProgress(card){              /* live-update the level-3 heade
   if(el)el.textContent=`${qcards.length} question${qcards.length===1?"":"s"} · ${att} attempted`;
 }
 function mockBadgeText(){return(mock&&!mock.submitted)?`${mockAnsweredCount()}/${mock.total}`:"";}
+function segCounts(){return{mock:mockBadgeText(),bank:QBANK.length,
+  review:dueQuestions().length,weak:weakCount(),saved:flaggedQuestions().length};}
 function renderPractice(){
-  const counts={mock:mockBadgeText(),bank:QBANK.length,review:dueQuestions().length,weak:weakCount()};
-  const segs=[["mock","Mock"],["bank","Bank"],["review","Due"],["weak","Weak spots"]];
+  /* A running session or a flashcard deck takes over the whole tab — the
+     segmented control would only offer ways to lose your place. */
+  if(session){$("#practiceSeg").innerHTML="";renderSession();return;}
+  if(deck){$("#practiceSeg").innerHTML="";renderDeck();return;}
+  const counts=segCounts();
+  const segs=[["mock","Mock"],["bank","Bank"],["review","Due"],["weak","Weak"],["saved","Saved"]];
   $("#practiceSeg").innerHTML=segs.map(([k,label])=>
     `<button data-k="${k}" class="${k===practiceView?'on':''}" onclick="practiceView='${k}';renderPractice()">${label}${counts[k]?`<span class="segbadge">${counts[k]}</span>`:''}</button>`).join("");
   if(practiceView==="mock")renderMock();
   else if(practiceView==="bank")renderBank();
   else if(practiceView==="review")renderReview();
+  else if(practiceView==="saved")renderSaved();
   else renderWeak();
 }
 function updateSegBadges(){
-  const counts={mock:mockBadgeText(),bank:QBANK.length,review:dueQuestions().length,weak:weakCount()};
+  const counts=segCounts();
   document.querySelectorAll("#practiceSeg button").forEach(b=>{
     const n=counts[b.dataset.k];const badge=b.querySelector(".segbadge");
     if(n){badge?badge.textContent=n:b.insertAdjacentHTML("beforeend",`<span class="segbadge">${n}</span>`);}
     else if(badge)badge.remove();
   });
+}
+
+/* ================= Session runner: one question at a time =================
+   The long scroll of a whole topic never feels like anything. A session has
+   a length, a score, and an end — which is what makes a JMO come back to it
+   on a night shift. It survives a reload, because they will be interrupted. */
+const SESKEY="pg_session_v1";
+let session=JSON.parse(localStorage.getItem(SESKEY)||"null");
+function saveSession(){session?localStorage.setItem(SESKEY,JSON.stringify(session)):localStorage.removeItem(SESKEY);}
+function startSession(qis,title,sub){
+  if(!qis||!qis.length){toast("Nothing to practise there yet.");return;}
+  session={qis,cur:0,picks:{},secs:{},title,sub:sub||"",right:0,wrong:0,
+           tq:Date.now(),t0:Date.now(),done:false};
+  saveSession();
+  go("timer");renderPractice();window.scrollTo(0,0);
+}
+function quitSession(){
+  if(session&&!session.done&&Object.keys(session.picks).length
+     &&!confirm("Leave this session? Your answers so far are already saved."))return;
+  session=null;saveSession();renderPractice();window.scrollTo(0,0);
+}
+/* Question pickers ------------------------------------------------------- */
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function idx(qs){return qs.map(x=>QBANK.indexOf(x));}
+/* Today's drip: the newest date in the bank, which is what the daily batch adds. */
+function dailySet(){
+  if(!QBANK.length)return[];
+  const latest=QBANK.map(x=>x.date).sort().pop();
+  return QBANK.filter(x=>x.date===latest);
+}
+/* The default "practise now" mix: overdue revisions first, then questions
+   never seen, then the weakest topics. Same order a tutor would pick. */
+function smartSet(n){
+  const out=[],taken=new Set();
+  const add=arr=>arr.forEach(x=>{const i=QBANK.indexOf(x);if(out.length<n&&!taken.has(i)){taken.add(i);out.push(i);}});
+  add(dueQuestions());
+  add(shuffle(QBANK.filter(x=>!stats[qKey(x)])));
+  const weakTopics=topicStats().filter(t=>t.correct/t.seen<0.7).map(t=>t.subject+"||"+t.topic);
+  add(shuffle(QBANK.filter(x=>weakTopics.includes(x.subject+"||"+x.topic))));
+  add(shuffle(QBANK.slice()));
+  return out;
+}
+function sessAnswer(btn,i){
+  if(!session)return;
+  const qi=session.qis[session.cur],x=QBANK[qi];
+  if(session.picks[qi]!=null)return;
+  const secs=Math.max(1,Math.round((Date.now()-session.tq)/1000));
+  const correct=(i===x.ans);
+  session.picks[qi]=i;session.secs[qi]=secs;
+  correct?session.right++:session.wrong++;
+  recordAnswer(x,correct,i);
+  saveSession();
+  const card=btn.closest(".qcard");
+  card.classList.add("done");
+  card.querySelectorAll(".opt").forEach((o,idx2)=>{o.classList.add("locked");if(idx2===x.ans)o.classList.add("correct");});
+  if(!correct)btn.classList.add("wrong");
+  card.querySelector(".qfb").innerHTML=feedbackHTML(x,qi,i,secs);
+  const nx=document.getElementById("sessNext");
+  if(nx)nx.style.display="block";
+  const sc=document.getElementById("sessScore");
+  if(sc)sc.innerHTML=sessScoreHTML();
+}
+function sessScoreHTML(){
+  return `<span class="sok">✓ ${session.right}</span><span class="sno">✕ ${session.wrong}</span>`+
+         `<span style="color:var(--mut)">${session.cur+1} of ${session.qis.length}</span>`;
+}
+function sessNext(){
+  if(!session)return;
+  if(session.cur>=session.qis.length-1){session.done=true;saveSession();renderPractice();window.scrollTo(0,0);return;}
+  session.cur++;session.tq=Date.now();saveSession();renderPractice();window.scrollTo(0,0);
+}
+function renderSession(){
+  if(session.done){renderSessionSummary();return;}
+  const qi=session.qis[session.cur],x=QBANK[qi];
+  const answered=session.picks[qi]!=null;
+  if(!answered)session.tq=session.tq||Date.now();
+  const pct=Math.round(session.cur/session.qis.length*100);
+  const opts=x.opts.map((o,i)=>{
+    let cls="opt";
+    if(answered){cls+=" locked";if(i===x.ans)cls+=" correct";else if(i===session.picks[qi])cls+=" wrong";}
+    return `<button class="${cls}" onclick="sessAnswer(this,${i})">${String.fromCharCode(65+i)}. ${o}</button>`;
+  }).join("");
+  const fl=isFlagged(x);
+  $("#practiceBody").innerHTML=`<div class="card">
+    <div class="sesshead">
+      <div class="sesstitle">${session.title}<em>${session.sub||"Answer, read the feedback, move on."}</em></div>
+      <button class="sessquit" onclick="quitSession()">Exit</button>
+    </div>
+    <div class="goalbar"><i style="width:${pct}%"></i></div>
+    <div class="sessscore" id="sessScore">${sessScoreHTML()}</div>
+  </div>
+  <div class="card qcard${answered?" done":""}" data-qi="${qi}" style="margin-bottom:14px">
+    <div class="qtoprow"><span class="qsrc">${x.subject} · ${x.topic}</span>
+      <button class="star${fl?' on':''}" onclick="toggleFlag(${qi},this)" title="Save this question">${fl?"★":"☆"}</button></div>
+    <div class="qstem">${x.q}</div>
+    <div class="opts">${opts}</div>
+    <div class="qfb">${answered?feedbackHTML(x,qi,session.picks[qi],session.secs[qi]):""}</div>
+    <button class="btn" id="sessNext" onclick="sessNext()" style="display:${answered?"block":"none"}">
+      ${session.cur>=session.qis.length-1?"Finish session":"Next question ›"}</button>
+  </div>`;
+}
+function renderSessionSummary(){
+  const n=session.qis.length,right=session.right;
+  const pct=Math.round(right/n*100);
+  const secs=Object.values(session.secs);
+  const avg=secs.length?Math.round(secs.reduce((a,b)=>a+b,0)/secs.length):0;
+  const wrongIdx=session.qis.filter(qi=>session.picks[qi]!=null&&session.picks[qi]!==QBANK[qi].ans);
+  const msg=pct>=80?"Strong. Those move down the revision ladder."
+    :pct>=50?"Middle ground — the misses are now queued in Due."
+    :"Rough set. Every miss is back tomorrow, which is exactly what should happen.";
+  $("#practiceBody").innerHTML=`<div class="card">
+    <h2>Session done</h2>
+    <div class="mockhero"><div class="sessbig">${right}/${n}</div>
+      <div class="lbl3">${pct}% · ${avg}s average per question${avg>70?" — the exam gives you 70s":""}</div></div>
+    <p class="submut" style="margin-top:12px">${msg}</p>
+    ${wrongIdx.length?`<button class="btn" onclick="const w=${JSON.stringify(wrongIdx)};session=null;saveSession();startSession(w,'Redo the misses','${wrongIdx.length} question${wrongIdx.length===1?"":"s"} you got wrong just now')">Redo the ${wrongIdx.length} I missed</button>`:""}
+    <button class="btn ghost" onclick="quitSession()">Back to Practice</button>
+  </div>
+  ${wrongIdx.length?`<div class="card"><h2>What to nail</h2>${
+    wrongIdx.map(qi=>`<div class="wtopic"><div class="wtopname"><span class="wtopsub">${QBANK[qi].subject} · ${QBANK[qi].topic}</span></div>
+      <p class="submut" style="margin:6px 0 0">${QBANK[qi].exp}</p></div>`).join("")}</div>`:""}`;
+}
+
+/* ================= Flashcards =================
+   Every `exp` in the bank is already the back of a card — the one high-yield
+   point that question exists to teach. This just turns them over. "Needs
+   work" drops that question to box 0, so it reappears in Due tomorrow. */
+let deck=null;
+function startDeck(qis,title){
+  if(!qis||!qis.length){toast("No cards there yet.");return;}
+  deck={qis,cur:0,flipped:false,title,kept:0,again:0};
+  go("timer");renderPractice();window.scrollTo(0,0);
+}
+function flipCard(){if(deck){deck.flipped=!deck.flipped;renderDeck();}}
+function deckMark(ok){
+  if(!deck)return;
+  const x=QBANK[deck.qis[deck.cur]],k=qKey(x);
+  if(!ok){
+    const r=stats[k]||{seen:0,correct:0,wrong:0,box:0};
+    r.box=0;schedule(r);stats[k]=r;localStorage.setItem(SKEY,JSON.stringify(stats));
+    deck.again++;
+  }else deck.kept++;
+  if(deck.cur>=deck.qis.length-1){deck.done=true;}
+  else{deck.cur++;deck.flipped=false;}
+  updateSegBadges();renderDeck();window.scrollTo(0,0);
+}
+function renderDeck(){
+  if(deck.done){
+    $("#practiceBody").innerHTML=`<div class="card"><h2>Deck finished</h2>
+      <div class="mockhero"><div class="sessbig">${deck.kept}/${deck.qis.length}</div>
+        <div class="lbl3">known · ${deck.again} sent back to Due for tomorrow</div></div>
+      <button class="btn" onclick="deck=null;renderPractice()">Back to Practice</button></div>`;
+    return;
+  }
+  const x=QBANK[deck.qis[deck.cur]];
+  $("#practiceBody").innerHTML=`<div class="card">
+    <div class="sesshead">
+      <div class="sesstitle">${deck.title}<em>Card ${deck.cur+1} of ${deck.qis.length} — tap the card to flip</em></div>
+      <button class="sessquit" onclick="deck=null;renderPractice()">Exit</button>
+    </div>
+    <div class="goalbar"><i style="width:${Math.round(deck.cur/deck.qis.length*100)}%"></i></div>
+  </div>
+  <div class="card fcard" onclick="flipCard()">
+    <div class="fclab">${deck.flipped?"The point":x.subject+" · "+x.topic}</div>
+    ${deck.flipped
+      ? `<div class="fback"><b>${String.fromCharCode(65+x.ans)}. ${x.opts[x.ans]}</b><br><br>${x.exp}</div>`
+      : `<div class="fside">${x.q}</div>`}
+    <div class="fchint">${deck.flipped?"":"Tap to reveal"}</div>
+  </div>
+  ${deck.flipped?`<div class="qact">
+    <button onclick="deckMark(false)">Needs work</button>
+    <button class="solid" onclick="deckMark(true)">Got it</button>
+  </div>`:""}`;
+}
+
+/* ---- Saved (starred) questions ---- */
+function renderSaved(){
+  const qs=flaggedQuestions();
+  if(!qs.length){
+    $("#practiceBody").innerHTML=`<div class="card"><div class="emptybox"><span class="big2">☆</span>
+      Tap the star on any question to keep it here — the ones you want to come back to before the exam.</div></div>`;
+    return;
+  }
+  $("#practiceBody").innerHTML=`<div class="card">
+    <h2>Saved questions</h2>
+    <p class="submut">${qs.length} question${qs.length===1?"":"s"} you starred.</p>
+    <div class="qact">
+      <button class="solid" onclick="startSession(${JSON.stringify(idx(qs))},'Saved questions','The ones you starred')">Practise these</button>
+      <button onclick="startDeck(${JSON.stringify(idx(qs))},'Saved — flashcards')">Flashcards</button>
+    </div>
+  </div>
+  <div class="card">${qs.map(q=>qCardHTML(q)).join("")}</div>`;
 }
 /* Bank is a 3-level drill-down (subjects → topics → questions) so a JMO
    never faces one long scroll: subjects list → that subject's topics → that topic's questions. */
@@ -1684,12 +2195,42 @@ function renderBank(){
 }
 function openBankSubject(s){bankSubj=s;bankLevel="topics";qStatusFilter="all";renderBank();window.scrollTo(0,0);}
 function openBankTopic(t){bankTopic=t;bankLevel="questions";renderBank();window.scrollTo(0,0);}
+/* Bank search. The box is re-rendered with the list, so focus and caret are
+   restored by hand — otherwise typing a second character loses the keyboard. */
+let bankQuery="";
+function setBankQuery(v){bankQuery=v;renderBank();
+  const el=document.getElementById("bankSearch");
+  if(el){el.focus();el.setSelectionRange(el.value.length,el.value.length);}}
+function bankSearchHTML(){
+  return `<div class="searchbox">
+    <span>🔍</span>
+    <input id="bankSearch" type="text" placeholder="Search the question bank…" value="${bankQuery.replace(/"/g,"&quot;")}"
+      oninput="setBankQuery(this.value)">
+    ${bankQuery?`<span class="sclear" onclick="setBankQuery('')">✕</span>`:""}
+  </div>`;
+}
+function renderBankSearch(){
+  const q=bankQuery.trim().toLowerCase();
+  const hits=QBANK.filter(x=>(x.q+" "+x.opts.join(" ")+" "+x.exp+" "+x.topic+" "+x.subject).toLowerCase().includes(q));
+  $("#practiceBody").innerHTML=`<div class="card">
+    ${bankSearchHTML()}
+    <p class="submut">${hits.length} match${hits.length===1?"":"es"} for “${bankQuery}”.</p>
+    ${hits.length?`<div class="qact"><button class="solid" onclick="startSession(${JSON.stringify(idx(hits)).slice(0,100000)},'Search: ${bankQuery.replace(/'/g,"\\'").replace(/"/g,"&quot;")}','${hits.length} matching question${hits.length===1?"":"s"}')">Practise these</button></div>`:""}
+    <div id="bankQList" style="margin-top:12px">${hits.map(x=>qCardHTML(x)).join("")}</div>
+  </div>`;
+}
 function renderBankSubjects(){
+  if(bankQuery.trim()){renderBankSearch();return;}
   const subjects=[...new Set(QBANK.map(x=>x.subject))].sort();
   let html=`<div class="card">
     <h2>Question Bank</h2>
-    <p class="submut">${QBANK.length} verified question${QBANK.length===1?"":"s"} from cases we've discussed, across ${subjects.length} subjects. Tap a subject to start.</p>
-    <div id="bankSubjList">`;
+    ${bankSearchHTML()}
+    <p class="submut">${QBANK.length} verified question${QBANK.length===1?"":"s"} from cases we've discussed, across ${subjects.length} subjects. Start a 10-question session, or pick a subject.</p>
+    <div class="qact">
+      <button class="solid" onclick="startSession(smartSet(10),'Quick session','Due revisions first, then questions you have never seen')">Practise 10 now</button>
+      <button onclick="startSession(smartSet(20),'Longer session','20 questions, same mix')">20 questions</button>
+    </div>
+    <div id="bankSubjList" style="margin-top:14px">`;
   subjects.forEach(sub=>{
     const qs=QBANK.filter(x=>x.subject===sub);
     const att=attemptedCount(qs),info=tprogInfo(att,qs.length);
@@ -1710,7 +2251,11 @@ function renderBankTopics(){
     <div class="bankback" onclick="bankLevel='subjects';renderBank();window.scrollTo(0,0)">‹ All subjects</div>
     <h2>${bankSubj}</h2>
     <p class="submut">${subQs.length} question${subQs.length===1?"":"s"} · ${attemptedCount(subQs)} attempted</p>
-    <div class="filters" id="qStatus"></div>
+    <div class="qact">
+      <button class="solid" onclick="startSession(${JSON.stringify(idx(shuffle(subQs.slice())).slice(0,10))},'${bankSubj.replace(/'/g,"\\'")}','A 10-question session from this subject')">Practise 10</button>
+      <button onclick="startDeck(${JSON.stringify(idx(subQs))},'${bankSubj.replace(/'/g,"\\'")} — flashcards')">Flashcards</button>
+    </div>
+    <div class="filters" id="qStatus" style="margin-top:12px"></div>
     <div id="bankTopicList"></div></div>`;
   $("#qStatus").innerHTML=STATUS.map(([k,l])=>
     `<button class="${k===qStatusFilter?'on':''}" onclick="qStatusFilter='${k}';renderBank()">${l}</button>`).join("");
@@ -1737,6 +2282,11 @@ function renderBankQuestions(){
     <div class="bankback" onclick="bankLevel='topics';renderBank();window.scrollTo(0,0)">‹ ${bankSubj}</div>
     <h2>${bankTopic}</h2>
     <p class="submut" id="bankQProg">${qs.length} question${qs.length===1?"":"s"} · ${att} attempted</p>
+    <div class="qact">
+      <button class="solid" onclick="startSession(${JSON.stringify(idx(qs))},'${bankTopic.replace(/'/g,"\\'")}','${bankSubj.replace(/'/g,"\\'")} · one at a time, with feedback')">Start session</button>
+      <button onclick="startDeck(${JSON.stringify(idx(qs))},'${bankTopic.replace(/'/g,"\\'")} — flashcards')">Flashcards</button>
+    </div>
+    <p class="submut" style="margin-top:14px">Or browse them all:</p>
     <div id="bankQList">${qs.map(q=>qCardHTML(q)).join("")}</div></div>`;
 }
 function renderReview(){
@@ -1751,6 +2301,11 @@ function renderReview(){
   $("#practiceBody").innerHTML=`<div class="card">
     <h2>Due today</h2>
     <p class="submut">${due.length} question${due.length===1?"":"s"} scheduled for revision. Right answer → it moves down the ladder (1 → 3 → 7 → 30 → 90 days). Wrong → it's back tomorrow. This is the five-touch schedule from your Plan, run automatically.</p>
+    <div class="qact">
+      <button class="solid" onclick="startSession(${JSON.stringify(idx(due))},'Due revisions','${due.length} question${due.length===1?"":"s"} the ladder says you are about to forget')">Run them as a session</button>
+      <button onclick="startDeck(${JSON.stringify(idx(due))},'Due — flashcards')">Flashcards</button>
+    </div>
+    <p class="submut" style="margin-top:14px">Or work through them here:</p>
     <div>${due.map(q=>qCardHTML(q,true)).join("")}</div></div>`;
 }
 function renderWeak(){
@@ -1760,12 +2315,31 @@ function renderWeak(){
     return;
   }
   ts.sort((a,b)=>a.correct/a.seen-b.correct/b.seen);
+  /* Everything sitting in box 0 across every weak topic — the single most
+     useful set of questions in the app, so it gets a button at the top. */
+  const weakTs=ts.filter(t=>t.correct/t.seen<0.7);
+  const weakQis=idx(QBANK.filter(x=>{
+    const s=stats[qKey(x)];
+    return s&&s.seen&&s.box===0&&weakTs.some(t=>t.subject===x.subject&&t.topic===x.topic);
+  }));
+  const tally=errTally(),tallyN=Object.values(tally).reduce((a,b)=>a+b,0);
+  const ELAB=Object.fromEntries(ETAGS);
   let html=`<div class="card"><h2>Weak spots — from your practice</h2>
-    <p class="submut">Topics sorted weakest first. The points below are pulled from the questions you missed — revise these.</p>`;
+    <p class="submut">Topics sorted weakest first. The points below are pulled from the questions you missed — revise these.</p>
+    ${weakQis.length?`<div class="qact">
+      <button class="solid" onclick="startSession(${JSON.stringify(weakQis)},'Weak spots','${weakQis.length} question${weakQis.length===1?"":"s"} you have not proved yet')">Practise these ${weakQis.length}</button>
+      <button onclick="startDeck(${JSON.stringify(weakQis)},'Weak spots — flashcards')">Flashcards</button>
+    </div>`:""}
+    ${tallyN?`<div class="errtag" style="margin-top:14px"><div class="plab">How you are losing them</div>
+      <p class="submut" style="margin:0">${ETAGS.filter(([k])=>tally[k]).map(([k])=>`<b>${tally[k]}</b> ${ELAB[k].toLowerCase()}`).join(" · ")}${
+        (tally.silly||0)+(tally.confused||0)>(tally.gap||0)
+          ? "<br>More care than content: you are reading too fast, not studying too little."
+          : "<br>Mostly genuine gaps — that is a reading problem, and the sessions above fix it."}</p></div>`:""}`;
   ts.forEach(t=>{
     const pct=Math.round(t.correct/t.seen*100);
-    const col=pct<50?"#ef7896":pct<70?"#f6a97e":"#4fcbb0";
+    const col=pct<50?"var(--bad)":pct<70?"var(--warn)":"var(--ok)";
     const weak=pct<70;
+    const tq=idx(QBANK.filter(x=>x.subject===t.subject&&x.topic===t.topic));
     html+=`<div class="wtopic">
       <div class="wtophead">
         <span class="wtopname"><span class="wtopsub">${t.subject}</span>${t.topic}${weak?'<span class="revise">revise</span>':''}</span>
@@ -1773,6 +2347,7 @@ function renderWeak(){
       </div>
       <div class="accbar"><i style="width:${pct}%;background:${col}"></i></div>
       ${t.points.length?`<div class="points"><div class="plab">Points to nail</div><ul>${t.points.map(p=>`<li>${p}</li>`).join("")}</ul></div>`:""}
+      ${weak&&tq.length?`<div class="qact"><button onclick="startSession(${JSON.stringify(tq)},'${t.topic.replace(/'/g,"\\'")}','${t.subject.replace(/'/g,"\\'")} · redo this topic')">Practise these ${tq.length}</button></div>`:""}
     </div>`;
   });
   $("#practiceBody").innerHTML=html+`</div>`;
@@ -1855,7 +2430,7 @@ function startMock(){
   const qis=buildMockSet();
   if(!qis.length){toast("No questions in that selection yet.");return;}
   armAudio();                                    /* must happen inside the tap — see beep() */
-  mock={qis,picks:{},marked:{},visited:{},cur:0,review:false,
+  mock={qis,picks:{},marked:{},visited:{},cur:0,review:false,tq:{},tMark:Date.now(),
         tEnd:Date.now()+qis.length*60*1000,submitted:false,
         total:qis.length,startedAt:Date.now(),subs:mockCfg.subs.slice()};
   saveMock();
@@ -1905,8 +2480,19 @@ function mockMark(){
   (mock.marked??={})[qi]=true;saveMock();
   mockGo(mock.cur+1);
 }
+/* Per-question time. Banked whenever the JMO leaves a question, so the report
+   can separate "wrong in 12 seconds" (careless) from "wrong after two
+   minutes" (does not know it) — two different problems with two different
+   fixes, and the commonest thing a paper report cannot tell you. */
+function mockStampTime(){
+  if(!mock||mock.submitted)return;
+  const qi=mock.qis[mock.cur];
+  if(mock.tMark)(mock.tq??={})[qi]=((mock.tq||{})[qi]||0)+Math.round((Date.now()-mock.tMark)/1000);
+  mock.tMark=Date.now();
+}
 function mockGo(i){
   if(!mock)return;
+  mockStampTime();
   mock.cur=Math.max(0,Math.min(mock.qis.length-1,i));
   (mock.visited??={})[mock.qis[mock.cur]]=true;
   saveMock();renderMockRun();window.scrollTo(0,0);
@@ -1948,6 +2534,7 @@ document.addEventListener("visibilitychange",()=>{if(!document.hidden&&mock&&!mo
 
 function submitMock(){
   if(!mock||mock.submitted)return;
+  mockStampTime();
   clearInterval(mInt);mInt=null;
   let correct=0,wrong=0,skipped=0;
   const bySubj={};
@@ -1959,9 +2546,23 @@ function submitMock(){
     else if(pick===x.ans){correct++;s.correct++;recordAnswer(x,true,pick);}
     else{wrong++;s.wrong++;recordAnswer(x,false,pick);}
   });
+  /* Timing split: 70 s is the pace the real paper demands (42 min / 36 Q). */
+  const tq=mock.tq||{};
+  const times=mock.qis.map(qi=>tq[qi]||0);
+  const totT=times.reduce((a,b)=>a+b,0);
+  const avgT=mock.total?Math.round(totT/mock.total):0;
+  let fastWrong=0,slowWrong=0,slowRight=0,tWrong=0,over=[];
+  mock.qis.forEach((qi,n)=>{
+    const t=tq[qi]||0,pick=mock.picks.hasOwnProperty(qi)?mock.picks[qi]:null;
+    if(pick==null)return;
+    if(pick===QBANK[qi].ans){if(t>=90)slowRight++;}
+    else{tWrong+=t;if(t<35)fastWrong++;else if(t>=90)slowWrong++;}
+    if(t>=120)over.push(n+1);
+  });
   mock.submitted=true;mock.review=false;mock.reportOpen=true;
   mock.date=new Date().toISOString().slice(0,10);
-  mock.result={correct,wrong,skipped,marks:correct*4-wrong,max:mock.total*4,bySubj};
+  mock.result={correct,wrong,skipped,marks:correct*4-wrong,max:mock.total*4,bySubj,
+    avgT,totT,fastWrong,slowWrong,slowRight,tWrong,over};
   saveMock();
   pushMockHistory({date:new Date().toISOString().slice(0,10),marks:mock.result.marks,
     max:mock.result.max,correct,wrong,skipped,total:mock.total});
@@ -2033,6 +2634,7 @@ function renderMockRun(){
   if(mock.review){renderMockSummary();return;}
   const i=mock.cur,qi=mock.qis[i],x=QBANK[qi],pick=mock.picks[qi];
   (mock.visited??={})[qi]=true;
+  mock.tMark=Date.now();saveMock();
   const opts=x.opts.map((o,idx)=>
     `<button class="opt${pick===idx?" picked":""}" onclick="mockSelect(this,${qi},${idx})">${String.fromCharCode(65+idx)}. ${o}</button>`).join("");
   const pal=mock.qis.map((_,n)=>
@@ -2073,7 +2675,7 @@ function renderMockRun(){
 }
 /* Submit goes through a summary first — the commonest self-inflicted wound in
    a real exam is submitting with questions you meant to return to. */
-function openMockSummary(){if(!mock)return;mock.review=true;saveMock();renderMockRun();window.scrollTo(0,0);}
+function openMockSummary(){if(!mock)return;mockStampTime();mock.review=true;saveMock();renderMockRun();window.scrollTo(0,0);}
 function closeMockSummary(){if(!mock)return;mock.review=false;saveMock();renderMockRun();window.scrollTo(0,0);}
 function renderMockSummary(){
   const c=mockCounts();
@@ -2100,6 +2702,7 @@ function renderMockReport(){
   clearInterval(mInt);mInt=null;
   syncMockBar();
   const r=mock.result;
+  const tq=mock.tq||{};
   const rows=mock.qis.map((qi,i)=>{
     const x=QBANK[qi],pick=mock.picks.hasOwnProperty(qi)?mock.picks[qi]:null;
     const tag=pick==null?'<span class="mrtag skip">Not attempted</span>'
@@ -2109,13 +2712,36 @@ function renderMockReport(){
       if(idx===x.ans)cls+=" correct";else if(idx===pick)cls+=" wrong";
       return `<button class="${cls}" disabled>${String.fromCharCode(65+idx)}. ${o}</button>`;
     }).join("");
-    return `<div class="qcard mqcard" data-qi="${qi}">
-      <span class="mqnum">${i+1}</span><span class="qsrc">${x.subject}</span>${tag}
+    const fl=isFlagged(x);
+    return `<div class="qcard mqcard${pick==null?" unattempted":""}" data-qi="${qi}">
+      <div class="qtoprow"><span class="mqnum">${i+1}</span><span class="qsrc">${x.subject}</span>${tag}
+        <button class="star${fl?' on':''}" onclick="toggleFlag(${qi},this)" title="Save this question">${fl?"★":"☆"}</button></div>
       <div class="qstem">${x.q}</div>
       <div class="opts">${opts}</div>
-      <div class="qexp show"><b>Answer: ${String.fromCharCode(65+x.ans)}.</b> ${x.exp}</div>
+      <div class="qfb">${feedbackHTML(x,qi,pick,tq[qi]||0)}</div>
     </div>`;
   }).join("");
+  /* The two panels a paper key cannot give you: what the negative marking
+     actually cost, and whether the wrong answers were rushed or unknown. */
+  const attempted=r.correct+r.wrong;
+  const acc=attempted?Math.round(r.correct/attempted*100):0;
+  const lossHTML=`<div class="lossbox">
+    Negative marking cost you <b>${r.wrong} mark${r.wrong===1?"":"s"}</b> across ${r.wrong} wrong answer${r.wrong===1?"":"s"}.
+    Accuracy on what you attempted: <b>${acc}%</b> — above 50% and guessing pays, below it and blanks score better.
+    ${r.skipped?`You left <b>${r.skipped}</b> blank; answering them all at ${acc}% would have been worth about <b>${Math.round(r.skipped*(acc/100*4-(1-acc/100)))} mark${Math.abs(Math.round(r.skipped*(acc/100*4-(1-acc/100))))===1?"":"s"}</b>.`:""}
+  </div>`;
+  const paceHTML=`<h3>Pace and error type</h3>
+    <div class="quad">
+      <div class="qcell ${r.avgT>70?"warn":"ok"}"><b>${r.avgT}s</b><span>average per question — the exam allows 70s</span></div>
+      <div class="qcell ${r.fastWrong?"bad":""}"><b>${r.fastWrong}</b><span>wrong in under 35s — careless, not unknown</span></div>
+      <div class="qcell ${r.slowWrong?"warn":""}"><b>${r.slowWrong}</b><span>wrong after 90s+ — genuine gaps, revise these</span></div>
+      <div class="qcell"><b>${r.slowRight}</b><span>right but slow — correct, and costing you time</span></div>
+    </div>
+    ${r.over&&r.over.length?`<div class="slowlist">Over two minutes each: Q${r.over.join(", Q")}. In the real section those are what run the clock out.</div>`:""}
+    <p class="submut" style="margin-top:10px">${
+      r.fastWrong>r.slowWrong?"More careless than unknown — slow down before you change how you study."
+      :r.slowWrong>r.fastWrong?"Mostly genuine gaps — content, not pace."
+      :"Pace and content are balanced; keep both under review."}</p>`;
   const subjRows=Object.entries(r.bySubj).sort((a,b)=>b[1].total-a[1].total)
     .map(([s,t])=>`<tr><td>${s}</td><td>${t.correct}/${t.total}</td><td>${t.correct*4-t.wrong}</td></tr>`).join("");
   const open=mock.reportOpen!==false;
@@ -2136,7 +2762,11 @@ function renderMockReport(){
         <div class="yst"><b>${r.wrong}</b><span>wrong</span></div>
         <div class="yst"><b>${r.skipped}</b><span>skipped</span></div>
       </div>
+      ${lossHTML}
+      ${paceHTML}
+      <h3>By subject</h3>
       <table><tr><th>Subject</th><th>Correct</th><th>Marks</th></tr>${subjRows}</table>
+      ${r.wrong?`<div class="qact"><button class="solid" onclick="startSession(${JSON.stringify(mock.qis.filter(qi=>mock.picks.hasOwnProperty(qi)&&mock.picks[qi]!==QBANK[qi].ans))},'Mock misses','Redo the ${r.wrong} you got wrong')">Redo the ${r.wrong} I got wrong</button></div>`:""}
     </div>
   </div>
   ${mockSetupHTML()}${mockHistoryHTML(true)}
@@ -2157,6 +2787,7 @@ if(mock&&!mock.submitted){
 
 renderPractice();
 renderTrack();
+renderHome();
 
 /* ================= shared clock helpers =================
    The mock clock is anchored to a wall-clock deadline, NOT a count of
