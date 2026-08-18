@@ -1661,7 +1661,7 @@ function renderHome(){
   </div>`;
 }
 $("#homeFeed").innerHTML =
-  CONTENT.slice(0,3).map(i=>cardHTML(i,false,false)).join("") ||
+  CONTENT.slice(0,3).map(i=>cardHTML(i,true,false)).join("") ||
   `<div class="card"><p>No content yet — first week's material lands soon.</p></div>`;
 
 /* Library: unread grouped on top, read dimmed below */
