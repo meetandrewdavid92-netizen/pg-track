@@ -203,7 +203,13 @@
   .ycard{background:var(--paper2);border-color:rgba(80,52,32,.13)}
   .ytier{margin-top:16px}
   .ytier h4{font-family:var(--serif);font-size:1.05rem;font-weight:600;margin:0 0 9px;
-    padding-left:10px;line-height:1.3}
+    padding-left:10px;line-height:1.3;cursor:pointer;padding-top:10px;padding-bottom:10px}
+  .ytier:not(.open) .yrow{display:none}
+  .ytier:not(.open) h4{margin-bottom:0}
+  .ytcount{float:right;font-family:system-ui,sans-serif;font-size:.75rem;font-weight:700;
+    color:var(--mut);display:inline-flex;align-items:center;gap:6px}
+  .ytcount i{font-style:normal;color:var(--soft);display:inline-block;transition:transform .2s}
+  .ytier.open .ytcount i{transform:rotate(90deg)}
   .ytier h4 em{display:block;font-style:normal;font-family:system-ui,sans-serif;
     font-weight:500;color:var(--mut);font-size:.75rem;margin-top:2px}
   .yrow{padding:7px 0;cursor:pointer;min-height:44px}
@@ -236,7 +242,7 @@
                flex-direction:column;gap:5px;background:var(--paper2);
                border:1px solid var(--line);border-radius:14px;padding:11px 12px}
   .pform input,.pform select{font:inherit;font-size:.8rem;font-weight:600;color:var(--ink);
-    padding:0;border:none;border-radius:0;background:transparent;width:100%}
+    padding:0;border:none;border-radius:0;background:transparent;width:100%;min-height:44px}
   .phase{border-left:3px solid var(--line);padding:2px 0 2px 10px;margin-bottom:11px}
   .phase h4{margin:0;font-size:.8rem}
   .phase h4 span{float:right;color:var(--mut);font-size:.75rem}
@@ -596,14 +602,13 @@
 
   <!-- HOME -->
   <section class="screen on" id="scr-home">
-    <h2 class="scrtitle">This Week<em id="homeSub"></em></h2>
+    <h2 class="scrtitle">This Week</h2>
     <div id="homeResume"></div>
-    <div id="homeFeed"></div>
   </section>
 
   <!-- LIBRARY -->
   <section class="screen" id="scr-lib">
-    <h2 class="scrtitle">Library<em>Everything generated for you so far — cases, one-pagers, tests.</em></h2>
+    <h2 class="scrtitle">Library</h2>
     <div class="searchbox">
       <span>🔍</span>
       <input id="libSearch" type="search" placeholder="Search cases, tests, notes…" oninput="renderLib()">
@@ -615,14 +620,14 @@
 
   <!-- PRACTICE (question bank + mock tests) -->
   <section class="screen" id="scr-timer">
-    <h2 class="scrtitle">Practice<em>The verified question bank, your due revisions, and mock tests you set up yourself.</em></h2>
+    <h2 class="scrtitle">Practice</h2>
     <div class="seg" id="practiceSeg"></div>
     <div id="practiceBody"></div>
   </section>
 
   <!-- STRATEGY — Yield (where the marks are) + Planner, one tab, two segments -->
   <section class="screen" id="scr-strategy">
-    <h2 class="scrtitle">Strategy<em>Where the marks are — and the plan that gets you to them.</em></h2>
+    <h2 class="scrtitle">Strategy</h2>
     <div class="seg" id="stratSeg">
       <button class="on" onclick="setStrat('yield',this)">Yield</button>
       <button onclick="setStrat('plan',this)">Planner</button>
@@ -715,7 +720,8 @@
 
   <!-- PROGRESS (was Tracker) -->
   <section class="screen" id="scr-track">
-    <h2 class="scrtitle">Progress<em>Readiness, subject accuracy, and your first-pass map.</em></h2>
+    <h2 class="scrtitle">Progress</h2>
+    <div id="trackIndex">
     <div class="card" id="readyCard">
       <h2>Overall Readiness</h2>
       <div class="ringrow" id="readyRow"></div>
@@ -725,7 +731,33 @@
       <h2>Subject Progress</h2>
       <p class="submut">Accuracy on every practice question you've answered in that subject, weakest first. Subjects you haven't practised yet don't appear.</p>
       <div class="sgrid2" id="subjRings"></div>
+      <div id="subjMoreRow"></div>
     </div>
+    <div class="topic navcard" onclick="setTrack('tracker')">
+      <div class="topichead">
+        <span class="topicname">Subject Tracker</span>
+        <span class="topicmeta"><span class="tprog" id="trackNavCount">0 / 19</span><span class="chev">›</span></span>
+      </div>
+    </div>
+    <div class="topic navcard" onclick="setTrack('attack')">
+      <div class="topichead">
+        <span class="topicname">Order of Attack</span>
+        <span class="topicmeta"><span class="chev">›</span></span>
+      </div>
+    </div>
+    </div><!-- /trackIndex -->
+
+    <div id="trackSubjects" style="display:none">
+    <div class="bankback" onclick="setTrack('index')">&lsaquo; Progress</div>
+    <div class="card">
+      <h2>Subject Progress</h2>
+      <p class="submut">Accuracy on every practice question you've answered in that subject, weakest first.</p>
+      <div class="sgrid2" id="subjRingsAll"></div>
+    </div>
+    </div><!-- /trackSubjects -->
+
+    <div id="trackTracker" style="display:none">
+    <div class="bankback" onclick="setTrack('index')">&lsaquo; Progress</div>
     <div class="card">
       <h2>Subject Tracker</h2>
       <p style="color:var(--mut);font-size:.82rem">First-pass completion. Ticks are saved on this phone only — this is <b>your</b> map.</p>
@@ -733,6 +765,10 @@
       <p class="meta" id="trackPct"></p>
       <div id="subjList"></div>
     </div>
+    </div><!-- /trackTracker -->
+
+    <div id="trackAttack" style="display:none">
+    <div class="bankback" onclick="setTrack('index')">&lsaquo; Progress</div>
     <div class="card">
       <h2>Order of Attack</h2>
       <ol>
@@ -743,11 +779,22 @@
       </ol>
       <p style="color:var(--mut);font-size:.78rem">This order comes from 5 real papers — see the <b>Yield</b> tab for the numbers behind it.</p>
     </div>
+    </div><!-- /trackAttack -->
   </section>
 
   <!-- ABOUT -->
   <section class="screen" id="scr-about">
     <h2 class="scrtitle">The PG Track</h2>
+    <div class="card">
+      <h2>What Each Tab Is For</h2>
+      <table>
+        <tr><th>Week</th><td>Your streak, today's questions, and what is due. Start here.</td></tr>
+        <tr><th>Library</th><td>Everything generated for you so far — cases, one-pagers, tests.</td></tr>
+        <tr><th>Practice</th><td>The verified question bank, your due revisions, and mock tests you set up yourself.</td></tr>
+        <tr><th>Strategy</th><td>Where the marks are — and the plan that gets you to them.</td></tr>
+        <tr><th>Progress</th><td>Readiness, subject accuracy, and your first-pass map.</td></tr>
+      </table>
+    </div>
     <div class="card">
       <h2>What This Is</h2>
       <p>Work here, get coached to NEET PG — using your own patients as the syllabus.</p>
@@ -1950,7 +1997,6 @@ addEventListener("scroll",()=>{
   document.body.classList.toggle("scrolled",scrollY>64);
 },{passive:true});
 $("#appSub").textContent=`Coached by ${CONFIG.doctor} · NEET PG, from the ward up`;
-$("#homeSub").textContent=`Coached by ${CONFIG.doctor} · NEET PG, from the ward up`;
 $("#footBrand").innerHTML=`${CONFIG.hospital} ${CONFIG.program} · ${CONFIG.doctor}${CONFIG.contact?" · "+CONFIG.contact:""}<br>Content generated from real de-identified ward cases, reviewed by your consultant.`;
 
 /* btn is optional: the Program screen is reached from the header icon, which
@@ -1966,7 +2012,7 @@ function go(name,btn){
   if(name!=="timer")document.body.classList.remove("runner");
   document.body.classList.toggle("nothome",name!=="home");
   if(name==="home"&&typeof renderHome==="function")renderHome();
-  if(name==="track"&&typeof renderTrack==="function")renderTrack();
+  if(name==="track"&&typeof renderTrack==="function"){setTrack("index");renderTrack();}
   if(name==="lib"&&typeof renderLib==="function")renderLib();          /* refresh read/unread grouping */
   if(name==="timer"&&typeof renderPractice==="function")renderPractice(); /* refresh review/weak counts */
   if(name==="strategy"&&stratView==="plan"&&$("#planOut").innerHTML)buildPlan(true); /* pull in new Tracker ticks */
@@ -2050,6 +2096,7 @@ function toggleCard(el,id){
 function renderHome(){
   const done=todayCount(),goal=DAILY_GOAL,pct=Math.min(100,Math.round(done/goal*100));
   const st=streakLen(),due=dueQuestions().length,weak=weakCount();
+  const unread=CONTENT.filter(i=>!readMap[i.id]).length;
   const daily=dailySet(),dailyNew=daily.filter(x=>!stats[qKey(x)]).length;
   const dots=last7().map((d,i)=>`<span class="${d.n?"hit":""}${i===6?" today":""}"></span>`).join("");
   const line=done>=goal?"Today's ten is done. Anything more is profit."
@@ -2073,11 +2120,14 @@ function renderHome(){
       ${dailyNew?`<button onclick="startSession(${JSON.stringify(idx(daily.filter(x=>!stats[qKey(x)])))},'Today\\'s new set','The newest questions in the bank')">${dailyNew} new</button>`:""}
       ${weak?`<button onclick="go('timer');practiceView='weak';renderPractice()">Weak spots · ${weak}</button>`:""}
     </div>
+  </div>
+  <div class="topic navcard" onclick="go('lib')">
+    <div class="topichead">
+      <span class="topicname">This week's material</span>
+      <span class="topicmeta">${unread?`<span class="tprog part">${unread} unread</span>`:`<span class="tprog">${CONTENT.length}</span>`}<span class="chev">›</span></span>
+    </div>
   </div>`;
 }
-$("#homeFeed").innerHTML =
-  CONTENT.slice(0,3).map(i=>cardHTML(i,true,false)).join("") ||
-  `<div class="card"><p>No content yet — first week's material lands soon.</p></div>`;
 
 /* Library: unread grouped on top, read dimmed below */
 const TYPES=["all","case","onepager","test","mcq","notice"];
@@ -2162,6 +2212,17 @@ window.addEventListener("hashchange",routeFromHash); /* runs when app already op
 var statsReady=false;
 const TKEY="pgtrack-subjects";
 let ticks=JSON.parse(localStorage.getItem(TKEY)||"{}");
+/* Progress is an index plus two detail pages, so the tab opens on one screen
+   instead of four stacked cards. */
+let trackView="index";
+function setTrack(v){
+  trackView=v;
+  $("#trackIndex").style.display=v==="index"?"":"none";
+  $("#trackSubjects").style.display=v==="subjects"?"":"none";
+  $("#trackTracker").style.display=v==="tracker"?"":"none";
+  $("#trackAttack").style.display=v==="attack"?"":"none";
+  window.scrollTo(0,0);
+}
 function renderTrack(){
   $("#subjList").innerHTML=SUBJECTS.map(([n,w])=>`
     <label class="subj"><input type="checkbox" ${ticks[n]?"checked":""} onchange="tick('${n}',this.checked)">
@@ -2170,6 +2231,9 @@ function renderTrack(){
   const pct=Math.round(done/SUBJECTS.length*100);
   $("#trackBar").style.width=pct+"%";
   $("#trackPct").textContent=`${done} / ${SUBJECTS.length} subjects first-passed (${pct}%)`;
+  const nav=$("#trackNavCount");
+  if(nav){nav.textContent=`${done} / ${SUBJECTS.length}`;
+    nav.className="tprog"+(done===0?"":done>=SUBJECTS.length?" done":" part");}
   renderReadiness();
 }
 function tick(n,v){ticks[n]=v;localStorage.setItem(TKEY,JSON.stringify(ticks));snapReadiness();renderTrack();}
@@ -2247,12 +2311,18 @@ function renderReadiness(){
     Object.keys(agg).forEach(s=>rows.push({s,pct:Math.round(agg[s].correct/agg[s].seen*100),seen:agg[s].seen}));
   }
   rows.sort((a,b)=>a.pct-b.pct);
-  $("#subjRings").innerHTML=rows.length?rows.map(r=>`<div class="scell">
+  const cell=r=>`<div class="scell">
       <h4>${r.s}</h4>
       <div class="srow">${ringHTML(r.pct,"sm")}
         <div class="sub">${r.seen} answer${r.seen===1?"":"s"}<br>${r.pct<70?"needs work":"holding"}</div></div>
-    </div>`).join("")
-    :`<div class="emptybox" style="grid-column:1/-1">Answer questions in <b>Practice</b> and each subject's ring appears here.</div>`;
+    </div>`;
+  const empty=`<div class="emptybox" style="grid-column:1/-1">Answer questions in <b>Practice</b> and each subject's ring appears here.</div>`;
+  $("#subjRings").innerHTML=rows.length?rows.slice(0,4).map(cell).join(""):empty;
+  if($("#subjRingsAll"))$("#subjRingsAll").innerHTML=rows.length?rows.map(cell).join(""):empty;
+  if($("#subjMoreRow"))$("#subjMoreRow").innerHTML=rows.length>4
+    ? `<div class="topic navcard" style="margin-top:12px" onclick="setTrack('subjects')">
+         <div class="topichead"><span class="topicname">All ${rows.length} subjects</span>
+         <span class="topicmeta"><span class="chev">&rsaquo;</span></span></div></div>` : "";
 }
 renderTrack();
 
@@ -2279,7 +2349,9 @@ function renderYield(){
        yield -- not by raw weightage, which would put Surgery above OBGYN. */
     const rows=S.filter(x=>x.tier===t).sort((a,b)=>b.y-a.y);
     if(!rows.length)return "";
-    return `<div class="ytier"><h4 style="border-left:3px solid ${TIER_CLR[t]}">${t}
+    return `<div class="ytier">
+      <h4 style="border-left:3px solid ${TIER_CLR[t]}" onclick="this.parentElement.classList.toggle('open')">
+      <span class="ytcount">${rows.length}<i>&rsaquo;</i></span>${t}
       <em>${blurb[t]}</em></h4>`+rows.map(x=>{
       const mx=Math.max(...S.map(z=>z.m));
       const kind=x.stem<=11?"one-liner recall":x.stem>=18?"long vignettes":"mixed length";
