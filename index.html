@@ -60,7 +60,11 @@
     --headbg:rgba(19,17,16,.90); --navbg:rgba(26,23,19,.96);
     --shadow:0 1px 2px rgba(0,0,0,.35), 0 10px 28px -18px rgba(0,0,0,.75);
   }
-  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  /* touch-action:manipulation kills the double-tap-to-zoom gesture, which fires
+     on any stray second tap and leaves the page stuck zoomed in. Pinch-to-zoom
+     is untouched, so a JMO can still magnify a table on purpose. */
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;
+    touch-action:manipulation}
   body{
     font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
     color:var(--ink);min-height:100vh;padding-bottom:96px;
