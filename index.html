@@ -137,6 +137,21 @@
     box-shadow:none}
 
   .collapsed .body{display:none}
+  /* An open case runs long. This bar stays pinned to the top of the card while
+     you read it, so closing it never means scrolling to the bottom first. */
+  /* -6px: a sticky child of a padded card renders 6px lower than its `top`.
+     Erring under the header is safe either way - the header paints over it. */
+  .cardsticky{display:none;position:sticky;top:calc(var(--headh,68px) - 6px);z-index:3;
+    margin:-20px -20px 12px;padding:10px 16px 10px 20px;background:var(--glass);
+    border-bottom:1px solid var(--line);border-radius:20px 20px 0 0;
+    align-items:center;gap:10px}
+  .card:not(.collapsed) .cardsticky{display:flex}
+  .cardsticky b{flex:1;min-width:0;font-size:.8rem;font-weight:700;color:var(--mut);
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .cardsticky .shut{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;gap:6px;
+    min-height:44px;padding:0 14px;border-radius:999px;background:var(--paper2);
+    color:var(--ink2);font-size:.78rem;font-weight:700;cursor:pointer;user-select:none}
+  .cardsticky .shut:active{transform:scale(.97)}
   .cardfoot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:6px}
   .toggle{display:inline-flex;align-items:center;gap:6px;color:var(--mut);font-size:.8rem;
     font-weight:700;cursor:pointer;user-select:none;padding:8px 0 2px;min-height:44px}
@@ -241,7 +256,7 @@
   .pform label{font-size:.75rem;color:var(--mut);font-weight:650;display:flex;
                flex-direction:column;gap:5px;background:var(--paper2);
                border:1px solid var(--line);border-radius:14px;padding:11px 12px}
-  .pform input,.pform select{font:inherit;font-size:.8rem;font-weight:600;color:var(--ink);
+  .pform input,.pform select{font:inherit;font-size:1rem;font-weight:600;color:var(--ink);
     padding:0;border:none;border-radius:0;background:transparent;width:100%;min-height:44px}
   .phase{border-left:3px solid var(--line);padding:2px 0 2px 10px;margin-bottom:11px}
   .phase h4{margin:0;font-size:.8rem}
@@ -579,7 +594,7 @@
   /* ---- Search ---- */
   .searchbox{display:flex;align-items:center;gap:8px;background:var(--paper2);border:1px solid var(--line);
     border-radius:14px;padding:0 14px;margin-bottom:12px}
-  .searchbox input{flex:1;font:inherit;font-size:.88rem;color:var(--ink);background:none;border:none;outline:none;
+  .searchbox input{flex:1;font:inherit;font-size:1rem;color:var(--ink);background:none;border:none;outline:none;
     min-height:44px}
   .searchbox input::placeholder{color:var(--soft)}
   .searchbox .sclear{color:var(--soft);font-size:.9rem;cursor:pointer;padding:0;
@@ -594,7 +609,7 @@
   <h1 id="appTitle" aria-hidden="true"></h1>
   <p id="appSub"></p>
   <button class="hact" id="themeBtn" onclick="cycleTheme()" title="Light / dark">◐</button>
-  <button class="hact" id="aboutBtn" onclick="go('about')" title="About the program">i</button>
+  <button class="hact" id="aboutBtn" onclick="toggleAbout()" title="About the program">i</button>
 </header>
 
 <div class="wrap">
@@ -2007,13 +2022,32 @@ $("#footBrand").innerHTML=`${CONFIG.hospital} ${CONFIG.program} · ${CONFIG.doct
 
 /* btn is optional: the Program screen is reached from the header icon, which
    is not a nav button, so nothing should end up highlighted down there. */
+/* The i is a toggle, not a one-way door: a second tap returns you to the tab
+   you were reading. */
+let lastScreen="home";
+function toggleAbout(){
+  go($("#scr-about").classList.contains("on")?lastScreen:"about");
+}
+/* The card's sticky close bar parks directly under the sticky header, so the
+   header's real height (it grows by the phone's safe-area inset) is measured,
+   never guessed. */
+function syncHeadH(){
+  const h=document.querySelector("header.wrap");
+  if(h)document.documentElement.style.setProperty("--headh",h.offsetHeight+"px");
+}
+syncHeadH();addEventListener("resize",syncHeadH);addEventListener("orientationchange",syncHeadH);
 function go(name,btn){
+  const cur=document.querySelector(".screen.on");
+  if(cur&&cur.id!=="scr-about")lastScreen=cur.id.replace("scr-","");
   document.querySelectorAll(".screen").forEach(s=>s.classList.remove("on"));
   $("#scr-"+name).classList.add("on");
   document.querySelectorAll("nav button").forEach(b=>b.classList.remove("on"));
   if(!btn)btn=document.querySelector(`nav button[data-scr="${name}"]`);
   if(btn)btn.classList.add("on");
-  $("#aboutBtn").classList.toggle("on",name==="about");
+  const ab=$("#aboutBtn");
+  ab.classList.toggle("on",name==="about");
+  ab.textContent=name==="about"?"✕":"i";
+  ab.title=name==="about"?"Close":"About the program";
   /* The runner only owns the Practice tab; leaving it must give the brand back. */
   if(name!=="timer")document.body.classList.remove("runner");
   document.body.classList.toggle("nothome",name!=="home");
@@ -2066,6 +2100,7 @@ function cardHTML(item,collapsed,showBadge){
   const isRead=showBadge&&readMap[item.id];
   const unread=showBadge&&!isRead;
   return `<div class="card ${collapsed?'collapsed':''} ${unread?'unread':''} ${isRead?'read':''}" data-id="${item.id}">
+    <div class="cardsticky"><b>${item.title}</b><span class="shut" onclick="shutCard(this)">✕ Hide</span></div>
     <div class="tags"><span class="tag ${item.type}">${item.type}</span><span class="tag subj">${item.subject}</span>${unread?'<span class="tag unreadtag">new</span>':''}</div>
     <div class="meta">${item.date}</div>
     <h3 style="margin-top:2px">${item.title}</h3>
@@ -2088,6 +2123,14 @@ let readMap=JSON.parse(localStorage.getItem(RKEY)||"{}");
 function saveRead(){localStorage.setItem(RKEY,JSON.stringify(readMap));}
 function markRead(id){if(!readMap[id]){readMap[id]=true;saveRead();}}
 function setUnread(ev,id){ev.stopPropagation();delete readMap[id];saveRead();renderLib();}
+/* Close from the top of an open case: collapse it, then put the card's own top
+   back under the header so you land on the card, not in the empty page below. */
+function shutCard(el){
+  const card=el.closest(".card");
+  card.classList.add("collapsed");
+  const y=card.getBoundingClientRect().top+window.scrollY-(document.querySelector("header.wrap")?.offsetHeight||68)-8;
+  window.scrollTo(0,Math.max(0,y));
+}
 function toggleCard(el,id){
   const card=el.closest(".card");
   const willExpand=card.classList.contains("collapsed");
