@@ -507,6 +507,7 @@
   .dots{display:flex;gap:5px;margin-top:8px}
   .dots span{flex:1;height:6px;border-radius:20px;background:var(--track)}
   .dots span.hit{background:var(--brand)}
+  .dots span.froze{background:var(--track);box-shadow:inset 0 0 0 2px var(--brandline)}
   .dots span.today{outline:2px solid var(--brand);outline-offset:1px}
   /* The bank opens straight on the subject list: search and the two session
      buttons ride in a slim bar, not a card with a heading and a paragraph. */
@@ -785,6 +786,11 @@
   <!-- ABOUT -->
   <section class="screen" id="scr-about">
     <h2 class="scrtitle">The PG Track</h2>
+    <div class="card">
+      <h2>Daily Goal</h2>
+      <p class="submut">How many questions you are aiming for each day. Change it whenever your rota does — a goal you keep hitting beats a bigger one you miss.</p>
+      <div class="qact" id="goalPick"></div>
+    </div>
     <div class="card">
       <h2>What Each Tab Is For</h2>
       <table>
@@ -2093,16 +2099,43 @@ function toggleCard(el,id){
    it's the latest feed). The resume card is what the app should open on:
    the streak, today's goal, and one tap into practice. Defined here, called
    after the Practice section below has declared stats/streak state. */
-function renderHome(){
-  const done=todayCount(),goal=DAILY_GOAL,pct=Math.min(100,Math.round(done/goal*100));
-  const st=streakLen(),due=dueQuestions().length,weak=weakCount();
+const MATERIAL_ROW=()=>{
   const unread=CONTENT.filter(i=>!readMap[i.id]).length;
+  return `<div class="topic navcard" onclick="go('lib')">
+    <div class="topichead">
+      <span class="topicname">This week's material</span>
+      <span class="topicmeta">${unread?`<span class="tprog part">${unread} unread</span>`:`<span class="tprog">${CONTENT.length}</span>`}<span class="chev">›</span></span>
+    </div>
+  </div>`;};
+function renderHome(){
+  /* Ask once, up front: a goal a JMO picks is one they hit. */
+  if(!dailyGoal){
+    $("#homeResume").innerHTML=`<div class="card resume">
+      <h2 style="margin-bottom:6px">How many questions a day?</h2>
+      <p class="submut">Pick a number you can still hit on a bad night. You can change it later under the <b>i</b> button.</p>
+      <div class="qact">
+        <button class="solid" style="flex:1 1 28%" onclick="setGoal(10)">10</button>
+        <button style="flex:1 1 28%" onclick="setGoal(20)">20</button>
+        <button style="flex:1 1 28%" onclick="setGoal(30)">30</button>
+      </div>
+    </div>`+MATERIAL_ROW();
+    return;
+  }
+  reconcileFreeze();refillFreeze();
+  const done=todayCount(),goal=goalNow(),pct=Math.min(100,Math.round(done/goal*100));
+  const st=streakLen(),due=dueQuestions().length,weak=weakCount();
   const daily=dailySet(),dailyNew=daily.filter(x=>!stats[qKey(x)]).length;
-  const dots=last7().map((d,i)=>`<span class="${d.n?"hit":""}${i===6?" today":""}"></span>`).join("");
-  const line=done>=goal?"Today's ten is done. Anything more is profit."
-    :st>=3?`${st}-day streak — ${goal-done} more today keeps it.`
-    :st===0?"Ten questions today starts a streak."
-    :`${goal-done} more questions today.`;
+  const dots=last7().map((d,i)=>`<span class="${d.n?"hit":d.frozen?"froze":""}${i===6?" today":""}"></span>`).join("");
+  const left=goal-done;
+  /* Loss only bites once there is something to lose, so name what breaks. */
+  const line=done>=goal?`Today's ${goal} is done. Anything more is profit.`
+    :st===0?`${goal} questions today starts a streak.`
+    :`${st}-day streak breaks tonight — ${left} more question${left===1?"":"s"}.`;
+  const fz=freezeState.left;
+  const fzLine=(st>0&&done<goal&&fz>0)
+    ? `<p class="meta" style="margin:6px 0 0">${fz} freeze${fz===1?"":"s"} in reserve — miss a night and the streak survives.</p>`
+    : (st>0&&fz===0)
+    ? `<p class="meta" style="margin:6px 0 0">No freezes left. Miss a night and the streak goes to zero.</p>` : "";
   $("#homeResume").innerHTML=`<div class="card resume">
     <div class="streakrow">
       <div class="flame">${st}</div>
@@ -2111,6 +2144,7 @@ function renderHome(){
     <div class="goalbar"><i style="width:${pct}%"></i></div>
     <p class="meta" style="margin:0">${done} of ${goal} questions today</p>
     <div class="dots">${dots}</div>
+    ${fzLine}
     <div class="qact">
       ${session&&!session.done
         ? `<button class="solid" onclick="go('timer')">Resume — ${session.cur+1}/${session.qis.length}</button>`
@@ -2120,13 +2154,7 @@ function renderHome(){
       ${dailyNew?`<button onclick="startSession(${JSON.stringify(idx(daily.filter(x=>!stats[qKey(x)])))},'Today\\'s new set','The newest questions in the bank')">${dailyNew} new</button>`:""}
       ${weak?`<button onclick="go('timer');practiceView='weak';renderPractice()">Weak spots · ${weak}</button>`:""}
     </div>
-  </div>
-  <div class="topic navcard" onclick="go('lib')">
-    <div class="topichead">
-      <span class="topicname">This week's material</span>
-      <span class="topicmeta">${unread?`<span class="tprog part">${unread} unread</span>`:`<span class="tprog">${CONTENT.length}</span>`}<span class="chev">›</span></span>
-    </div>
-  </div>`;
+  </div>`+MATERIAL_ROW();
 }
 
 /* Library: unread grouped on top, read dimmed below */
@@ -2629,10 +2657,52 @@ const DKEY="pgtrack-days",DAILY_GOAL=10;
 let dayLog=JSON.parse(localStorage.getItem(DKEY)||"{}");
 function bumpDay(){const d=todayNum();dayLog[d]=(dayLog[d]||0)+1;localStorage.setItem(DKEY,JSON.stringify(dayLog));}
 function todayCount(){return dayLog[todayNum()]||0;}
+
+/* The goal is chosen, not imposed: a JMO who picks their own number hits it
+   more often than one handed a harder one. 0 means "not asked yet". */
+const GKEY="pgtrack-goal";
+let dailyGoal=+(localStorage.getItem(GKEY)||0);
+function goalNow(){return dailyGoal||DAILY_GOAL;}
+function setGoal(n){dailyGoal=n;localStorage.setItem(GKEY,String(n));
+  renderHome();if(typeof renderGoalPick==="function")renderGoalPick();
+  toast(`Daily goal set to ${n} questions.`);}
+
+/* Two freezes, not one and not three: one is too brittle for a JMO on nights,
+   and past two the streak stops meaning anything. A freeze is spent only if
+   it covers the whole gap, so none are wasted on an already-broken streak.
+   One is earned back at every 7-day milestone, capped at two. */
+const FZKEY="pgtrack-freeze";
+let freezeState=JSON.parse(localStorage.getItem(FZKEY)||'{"left":2,"used":{},"mile":0}');
+freezeState.used??={};freezeState.left??=2;freezeState.mile??=0;
+function saveFreeze(){localStorage.setItem(FZKEY,JSON.stringify(freezeState));}
+function dayActive(d){return !!dayLog[d]||!!freezeState.used[d];}
+function reconcileFreeze(){
+  const t=todayNum();
+  let last=null;
+  for(let d=t-1;d>=t-40;d--){if(dayActive(d)){last=d;break;}}
+  if(last===null)return;
+  const gap=t-1-last;
+  if(gap>0&&gap<=freezeState.left){
+    for(let d=last+1;d<t;d++)freezeState.used[d]=1;
+    freezeState.left-=gap;saveFreeze();
+  }
+}
+function refillFreeze(){
+  const mile=Math.floor(streakLen()/7);
+  if(mile>freezeState.mile){freezeState.left=Math.min(2,freezeState.left+1);freezeState.mile=mile;saveFreeze();}
+  else if(mile<freezeState.mile){freezeState.mile=mile;saveFreeze();}
+}
 /* Today not being done yet must not read as a broken streak — start counting
    from yesterday when nothing has been answered today. */
-function streakLen(){let d=todayNum(),n=0;if(!dayLog[d])d--;while(dayLog[d]){n++;d--;}return n;}
-function last7(){const t=todayNum();return Array.from({length:7},(_,i)=>({d:t-6+i,n:dayLog[t-6+i]||0}));}
+function streakLen(){let d=todayNum(),n=0;if(!dayActive(d))d--;while(dayActive(d)){n++;d--;}return n;}
+function last7(){const t=todayNum();return Array.from({length:7},(_,i)=>
+  ({d:t-6+i,n:dayLog[t-6+i]||0,frozen:!dayLog[t-6+i]&&!!freezeState.used[t-6+i]}));}
+
+function renderGoalPick(){
+  const el=document.getElementById("goalPick");if(!el)return;
+  el.innerHTML=[10,20,30].map(v=>
+    `<button class="${v===goalNow()?"solid":""}" style="flex:1 1 28%" onclick="setGoal(${v})">${v}</button>`).join("");
+}
 
 /* ---- Saved questions (star) ---- */
 const FKEY="pgtrack-flags";
@@ -2797,7 +2867,8 @@ function renderPractice(){
   if(session){$("#practiceSeg").innerHTML="";renderSession();return;}
   if(deck){$("#practiceSeg").innerHTML="";renderDeck();return;}
   const counts=segCounts();
-  const segs=[["mock","Mock"],["bank","Bank"],["review","Due"],["weak","Weak"],["saved","Saved"]];
+  /* Due comes first: spaced review outscores fresh questions, and it was third. */
+  const segs=[["review","Due"],["bank","Bank"],["mock","Mock"],["weak","Weak"],["saved","Saved"]];
   $("#practiceSeg").innerHTML=segs.map(([k,label])=>
     `<button data-k="${k}" class="${k===practiceView?'on':''}" onclick="practiceView='${k}';renderPractice()">${label}${counts[k]?`<span class="segbadge">${counts[k]}</span>`:''}</button>`).join("");
   if(practiceView==="mock")renderMock();
@@ -3604,9 +3675,14 @@ if(mock&&!mock.submitted){
   else practiceView="mock";
 }
 
+/* Open Practice on whatever is due, when anything is — an in-flight mock
+   still wins, since that is set after this. */
+if(!(mock&&!mock.submitted)&&dueQuestions().length)practiceView="review";
+
 renderPractice();
 renderTrack();
 renderHome();
+renderGoalPick();
 
 /* ================= shared clock helpers =================
    The mock clock is anchored to a wall-clock deadline, NOT a count of
