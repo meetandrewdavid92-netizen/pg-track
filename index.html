@@ -89,6 +89,10 @@
   /* nowrap so a narrow phone breaks after the hospital name, not inside "PG Track" */
   .brandhero span{color:var(--brand);white-space:nowrap}
   body.focus .brandhero,body.runner .brandhero{display:none}
+  /* The full-size brand opens the Week screen only. Every other tab starts at
+     content; the bar's compact wordmark takes over so the header isn't empty. */
+  body.nothome .brandhero{display:none}
+  body.nothome header h1{opacity:1;transform:none}
 
   /* Screen name, demoted to an eyebrow under the hero */
   .scrtitle{font-size:.8rem;font-weight:600;letter-spacing:0;
@@ -495,6 +499,11 @@
   .dots span{flex:1;height:6px;border-radius:20px;background:var(--track)}
   .dots span.hit{background:var(--brand)}
   .dots span.today{outline:2px solid var(--brand);outline-offset:1px}
+  /* The bank opens straight on the subject list: search and the two session
+     buttons ride in a slim bar, not a card with a heading and a paragraph. */
+  .bankbar{margin-bottom:12px}
+  .bankbar .searchbox{margin-bottom:8px;padding:9px 14px}
+  .bankbar .qact{margin-top:0}
   .qact{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
   .qact button{flex:1 1 46%;padding:13px 10px;border-radius:999px;border:1px solid var(--line);
     background:var(--paper2);color:var(--ink);font:inherit;font-size:.84rem;font-weight:700;cursor:pointer}
@@ -1949,6 +1958,7 @@ function go(name,btn){
   $("#aboutBtn").classList.toggle("on",name==="about");
   /* The runner only owns the Practice tab; leaving it must give the brand back. */
   if(name!=="timer")document.body.classList.remove("runner");
+  document.body.classList.toggle("nothome",name!=="home");
   if(name==="home"&&typeof renderHome==="function")renderHome();
   if(name==="track"&&typeof renderTrack==="function")renderTrack();
   if(name==="lib"&&typeof renderLib==="function")renderLib();          /* refresh read/unread grouping */
@@ -2954,15 +2964,14 @@ function renderBankSearch(){
 function renderBankSubjects(){
   if(bankQuery.trim()){renderBankSearch();return;}
   const subjects=[...new Set(QBANK.map(x=>x.subject))].sort();
-  let html=`<div class="card">
-    <h2>Question Bank</h2>
+  let html=`<div class="bankbar">
     ${bankSearchHTML()}
-    <p class="submut">${QBANK.length} verified question${QBANK.length===1?"":"s"} from cases we've discussed, across ${subjects.length} subjects. Start a 10-question session, or pick a subject.</p>
     <div class="qact">
       <button class="solid" onclick="startSession(smartSet(10),'Quick session','Due revisions first, then questions you have never seen')">Practise 10 now</button>
       <button onclick="startSession(smartSet(20),'Longer session','20 questions, same mix')">20 questions</button>
     </div>
-    <div id="bankSubjList" style="margin-top:14px">`;
+  </div>
+  <div id="bankSubjList">`;
   subjects.forEach(sub=>{
     const qs=QBANK.filter(x=>x.subject===sub);
     const att=attemptedCount(qs),info=tprogInfo(att,qs.length);
@@ -2973,7 +2982,7 @@ function renderBankSubjects(){
       </div>
     </div>`;
   });
-  $("#practiceBody").innerHTML=html+`</div></div>`;
+  $("#practiceBody").innerHTML=html+`</div>`;
 }
 function renderBankTopics(){
   const subQs=QBANK.filter(x=>x.subject===bankSubj);
