@@ -18,6 +18,10 @@
     --solid:#221d18; --solidink:#ffffff; --solidsoft:rgba(34,29,24,.07);
     --ink:#2a221d; --ink2:#4a4038; --mut:#7d7168; --soft:#a2958a;
     --brand:#c2603c; --brandline:rgba(194,96,60,.30);
+    /* "Start a session" buttons only -- see .qact button.solid. A deeper
+       terracotta than --brand: #c2603c on white text is 4.2:1, under the 4.5:1
+       readable threshold, and this app gets used on night duty. #b0522f is 5.1:1. */
+    --go:#b0522f; --goink:#ffffff;
     --sky:#dc8f61; --mint:#4d8f72; --peach:#dda05e;
     --ok:#356f55; --okbg:rgba(77,143,114,.16); --okbrd:rgba(77,143,114,.5);
     --bad:#b03b58; --badbg:rgba(194,64,90,.12); --badbrd:rgba(194,64,90,.45);
@@ -37,6 +41,7 @@
     --solid:#f0e7da; --solidink:#181410; --solidsoft:rgba(240,231,218,.10);
       --ink:#f0e7da; --ink2:#d6cabb; --mut:#a2958a; --soft:#9a8d81;
       --brand:#e0885f; --brandline:rgba(224,136,95,.38);
+    --go:#e0885f; --goink:#181410;   /* 7.0:1 -- light fill takes dark ink */
       --sky:#e5a075; --mint:#6bb492; --peach:#e0ab6f;
       --ok:#7cc4a1; --okbg:rgba(108,180,146,.16); --okbrd:rgba(108,180,146,.45);
       --bad:#f0899f; --badbg:rgba(240,137,159,.13); --badbrd:rgba(240,137,159,.4);
@@ -52,6 +57,7 @@
     --solid:#f0e7da; --solidink:#181410; --solidsoft:rgba(240,231,218,.10);
     --ink:#f0e7da; --ink2:#d6cabb; --mut:#a2958a; --soft:#9a8d81;
     --brand:#e0885f; --brandline:rgba(224,136,95,.38);
+    --go:#e0885f; --goink:#181410;   /* 7.0:1 -- light fill takes dark ink */
     --sky:#e5a075; --mint:#6bb492; --peach:#e0ab6f;
     --ok:#7cc4a1; --okbg:rgba(108,180,146,.16); --okbrd:rgba(108,180,146,.45);
     --bad:#f0899f; --badbg:rgba(240,137,159,.13); --badbrd:rgba(240,137,159,.4);
@@ -539,6 +545,12 @@
   .qact button{flex:1 1 46%;padding:13px 10px;border-radius:999px;border:1px solid var(--line);
     background:var(--paper2);color:var(--ink);font:inherit;font-size:.84rem;font-weight:700;cursor:pointer}
   .qact button.solid{background:var(--solid);color:var(--solidink);border-color:transparent}
+  /* .go is the one place the accent is a filled surface rather than a border.
+     It marks exactly one thing app-wide -- "this starts a practice session" --
+     so the accent still carries a single meaning. Selection states (the daily
+     goal picker) and grading states (the flashcard "Got it") deliberately keep
+     the ink fill: house rule is ink for state, accent for the one thing to do. */
+  .qact button.solid.go{background:var(--go);color:var(--goink);border-color:transparent}
   .qact button:disabled{opacity:.4}
 
   /* ---- Session runner: one question at a time ---- */
@@ -2246,8 +2258,8 @@ function renderHome(){
     ${fzLine}
     <div class="qact">
       ${session&&!session.done
-        ? `<button class="solid" onclick="go('timer')">Resume — ${session.cur+1}/${session.qis.length}</button>`
-        : `<button class="solid" onclick="startSession(smartSet(10),'Today\\'s ten','Due revisions first, then questions you have never seen')">
+        ? `<button class="solid go" onclick="go('timer')">Resume — ${session.cur+1}/${session.qis.length}</button>`
+        : `<button class="solid go" onclick="startSession(smartSet(10),'Today\\'s ten','Due revisions first, then questions you have never seen')">
              ${done?"Keep going":"Practise 10 now"}</button>`}
       ${due?`<button onclick="startSession(${JSON.stringify(idx(dueQuestions()))},'Due revisions','Scheduled by the ladder — do these first')">Review ${due} due</button>`:""}
       ${dailyNew?`<button onclick="startSession(${JSON.stringify(idx(daily.filter(x=>!stats[qKey(x)])))},'Today\\'s new set','The newest questions in the bank')">${dailyNew} new</button>`:""}
@@ -3170,7 +3182,7 @@ function renderSaved(){
     <h2>Saved questions</h2>
     <p class="submut">${qs.length} question${qs.length===1?"":"s"} you starred.</p>
     <div class="qact">
-      <button class="solid" onclick="startSession(${JSON.stringify(idx(qs))},'Saved questions','The ones you starred')">Practise these</button>
+      <button class="solid go" onclick="startSession(${JSON.stringify(idx(qs))},'Saved questions','The ones you starred')">Practise these</button>
       <button onclick="startDeck(${JSON.stringify(idx(qs))},'Saved — flashcards')">Flashcards</button>
     </div>
   </div>
@@ -3205,7 +3217,7 @@ function renderBankSearch(){
   $("#practiceBody").innerHTML=`<div class="card">
     ${bankSearchHTML()}
     <p class="submut">${hits.length} match${hits.length===1?"":"es"} for “${bankQuery}”.</p>
-    ${hits.length?`<div class="qact"><button class="solid" onclick="startSession(${JSON.stringify(idx(hits)).slice(0,100000)},'Search: ${bankQuery.replace(/'/g,"\\'").replace(/"/g,"&quot;")}','${hits.length} matching question${hits.length===1?"":"s"}')">Practise these</button></div>`:""}
+    ${hits.length?`<div class="qact"><button class="solid go" onclick="startSession(${JSON.stringify(idx(hits)).slice(0,100000)},'Search: ${bankQuery.replace(/'/g,"\\'").replace(/"/g,"&quot;")}','${hits.length} matching question${hits.length===1?"":"s"}')">Practise these</button></div>`:""}
     <div id="bankQList" style="margin-top:12px">${hits.map(x=>qCardHTML(x)).join("")}</div>
   </div>`;
 }
@@ -3215,7 +3227,7 @@ function renderBankSubjects(){
   let html=`<div class="bankbar">
     ${bankSearchHTML()}
     <div class="qact">
-      <button class="solid" onclick="startSession(smartSet(10),'Quick session','Due revisions first, then questions you have never seen')">Practise 10 now</button>
+      <button class="solid go" onclick="startSession(smartSet(10),'Quick session','Due revisions first, then questions you have never seen')">Practise 10 now</button>
       <button onclick="startSession(smartSet(20),'Longer session','20 questions, same mix')">20 questions</button>
     </div>
   </div>
@@ -3241,7 +3253,7 @@ function renderBankTopics(){
     <h2>${bankSubj}</h2>
     <p class="submut">${subQs.length} question${subQs.length===1?"":"s"} · ${attemptedCount(subQs)} attempted</p>
     <div class="qact">
-      <button class="solid" onclick="startSession(${JSON.stringify(idx(shuffle(subQs.slice())).slice(0,10))},'${bankSubj.replace(/'/g,"\\'")}','A 10-question session from this subject')">Practise 10</button>
+      <button class="solid go" onclick="startSession(${JSON.stringify(idx(shuffle(subQs.slice())).slice(0,10))},'${bankSubj.replace(/'/g,"\\'")}','A 10-question session from this subject')">Practise 10</button>
       <button onclick="startDeck(${JSON.stringify(idx(subQs))},'${bankSubj.replace(/'/g,"\\'")} — flashcards')">Flashcards</button>
     </div>
     <div class="filters" id="qStatus" style="margin-top:12px"></div>
@@ -3272,7 +3284,7 @@ function renderBankQuestions(){
     <h2>${bankTopic}</h2>
     <p class="submut" id="bankQProg">${qs.length} question${qs.length===1?"":"s"} · ${att} attempted</p>
     <div class="qact">
-      <button class="solid" onclick="startSession(${JSON.stringify(idx(qs))},'${bankTopic.replace(/'/g,"\\'")}','${bankSubj.replace(/'/g,"\\'")} · one at a time, with feedback')">Start session</button>
+      <button class="solid go" onclick="startSession(${JSON.stringify(idx(qs))},'${bankTopic.replace(/'/g,"\\'")}','${bankSubj.replace(/'/g,"\\'")} · one at a time, with feedback')">Start session</button>
       <button onclick="startDeck(${JSON.stringify(idx(qs))},'${bankTopic.replace(/'/g,"\\'")} — flashcards')">Flashcards</button>
     </div>
     <p class="submut" style="margin-top:14px">Or browse them all:</p>
@@ -3291,7 +3303,7 @@ function renderReview(){
     <h2>Due today</h2>
     <p class="submut">${due.length} question${due.length===1?"":"s"} scheduled for revision. Right answer → it moves down the ladder (1 → 3 → 7 → 30 → 90 days). Wrong → it's back tomorrow. This is the five-touch schedule from your Plan, run automatically.</p>
     <div class="qact">
-      <button class="solid" onclick="startSession(${JSON.stringify(idx(due))},'Due revisions','${due.length} question${due.length===1?"":"s"} the ladder says you are about to forget')">Run them as a session</button>
+      <button class="solid go" onclick="startSession(${JSON.stringify(idx(due))},'Due revisions','${due.length} question${due.length===1?"":"s"} the ladder says you are about to forget')">Run them as a session</button>
       <button onclick="startDeck(${JSON.stringify(idx(due))},'Due — flashcards')">Flashcards</button>
     </div>
     <p class="submut" style="margin-top:14px">Or work through them here:</p>
@@ -3316,7 +3328,7 @@ function renderWeak(){
   let html=`<div class="card"><h2>Weak spots — from your practice</h2>
     <p class="submut">Topics sorted weakest first. The points below are pulled from the questions you missed — revise these.</p>
     ${weakQis.length?`<div class="qact">
-      <button class="solid" onclick="startSession(${JSON.stringify(weakQis)},'Weak spots','${weakQis.length} question${weakQis.length===1?"":"s"} you have not proved yet')">Practise these ${weakQis.length}</button>
+      <button class="solid go" onclick="startSession(${JSON.stringify(weakQis)},'Weak spots','${weakQis.length} question${weakQis.length===1?"":"s"} you have not proved yet')">Practise these ${weakQis.length}</button>
       <button onclick="startDeck(${JSON.stringify(weakQis)},'Weak spots — flashcards')">Flashcards</button>
     </div>`:""}
     ${tallyN?`<div class="errtag" style="margin-top:14px"><div class="plab">How you are losing them</div>
@@ -3782,7 +3794,7 @@ function renderMockReport(){
       ${paceHTML}
       <h3>By subject</h3>
       <table><tr><th>Subject</th><th>Correct</th><th>Marks</th></tr>${subjRows}</table>
-      ${r.wrong?`<div class="qact"><button class="solid" onclick="startSession(${JSON.stringify(mock.qis.filter(qi=>mock.picks.hasOwnProperty(qi)&&mock.picks[qi]!==QBANK[qi].ans))},'Mock misses','Redo the ${r.wrong} you got wrong')">Redo the ${r.wrong} I got wrong</button></div>`:""}
+      ${r.wrong?`<div class="qact"><button class="solid go" onclick="startSession(${JSON.stringify(mock.qis.filter(qi=>mock.picks.hasOwnProperty(qi)&&mock.picks[qi]!==QBANK[qi].ans))},'Mock misses','Redo the ${r.wrong} you got wrong')">Redo the ${r.wrong} I got wrong</button></div>`:""}
     </div>
   </div>
   ${mockSetupHTML()}${mockHistoryHTML(true)}
