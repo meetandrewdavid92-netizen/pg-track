@@ -3840,6 +3840,37 @@ function beep(){
 /* a hidden tab stops painting; re-sync the moment they look at it */
 document.addEventListener("visibilitychange",()=>{if(!document.hidden&&tInt)timerTick();});
 
+/* ---- Double-tap zoom: the belt to the CSS braces --------------------------
+   Every element already carries touch-action:manipulation, which is supposed
+   to kill double-tap-to-zoom on its own. It does on Android Chrome; iOS Safari
+   still zooms in some versions, and inside an installed home-screen app it is
+   less reliable again. So we also swallow the second tap ourselves.
+
+   Only a real double-tap is blocked: two taps under 350ms apart AND within
+   40px of each other, which is exactly the gesture that zooms. Two quick taps
+   on different buttons are further apart than that, so they pass through
+   untouched. When we do block one, preventDefault() also eats the click the
+   browser would have synthesised, so we fire that click by hand -- the tap
+   still does what the JMO meant, it just does not zoom.
+
+   Text fields are left alone: double-tap there is how you select a word. */
+(function(){
+  let lastT=0,lastX=0,lastY=0;
+  document.addEventListener("touchend",e=>{
+    if(e.touches.length||e.changedTouches.length!==1)return;   /* multi-touch = pinch, leave it */
+    const t=e.changedTouches[0],now=e.timeStamp;
+    const near=Math.abs(t.clientX-lastX)<40&&Math.abs(t.clientY-lastY)<40;
+    const quick=now-lastT<350;
+    lastT=now;lastX=t.clientX;lastY=t.clientY;
+    if(!quick||!near)return;
+    const el=e.target;
+    if(el&&el.closest&&el.closest("input,textarea,select,[contenteditable]"))return;
+    e.preventDefault();
+    lastT=0;                       /* so a third tap starts a fresh pair */
+    if(el&&el.click)el.click();
+  },{passive:false});
+})();
+
 /* ---- Offline: register the service worker (see sw.js) ---- */
 if("serviceWorker" in navigator){
   window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));
