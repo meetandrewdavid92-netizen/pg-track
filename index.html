@@ -194,7 +194,10 @@
   nav button.on .ico svg{stroke-width:1.9}
 
   .screen{display:none;animation:fade .3s ease}.screen.on{display:block}
-  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  /* Opacity only, no translate. A transformed element becomes the containing
+     block for every sticky/fixed descendant, so the 6px rise silently broke
+     the pinned session bar inside .screen -- and would break any future one. */
+  @keyframes fade{from{opacity:0}to{opacity:1}}
 
   .prog{height:10px;background:var(--track);border-radius:20px;overflow:hidden;margin:8px 0 4px}
   .prog i{display:block;height:100%;border-radius:20px;transition:width .4s cubic-bezier(.4,0,.2,1);
@@ -330,6 +333,10 @@
   body.focus nav{display:none}
   body.focus header{display:none}
   body.focus .foot{display:none}
+  /* Same reasoning as focus mode, plus a mechanical one: a sticky child is
+     bounded by its parent, so 316px of footer below #practiceBody was a dead
+     zone where the pinned session bar slid away again. */
+  body.runner .foot{display:none}
 
   /* Question bank (Practice tab) */
   .topic{border:1px solid var(--line);border-radius:14px;background:var(--paper2);
@@ -558,8 +565,28 @@
   .sesshead{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}
   .sesstitle{font-weight:750;font-size:.88rem;line-height:1.35}
   .sesstitle em{display:block;font-style:normal;font-size:.75rem;color:var(--mut);font-weight:600;margin-top:2px}
-  .sessquit{font-size:.78rem;font-weight:700;color:var(--mut);cursor:pointer;flex:0 0 auto;
-    border:1px solid var(--line);background:var(--paper2);border-radius:999px;padding:7px 13px}
+  /* The header card pins under the app bar, so Exit and the progress bar are
+     reachable at any scroll depth. It used to sit in the top 180px of a page
+     that runs to ~2800px on a long question -- findable for about a fifteenth
+     of the scroll. --headh is measured in JS because the bar's height moves
+     with the phone's safe-area inset. */
+  .card.sessbar{position:sticky;top:var(--headh,56px);z-index:4;
+    padding:12px 16px 13px}   /* tighter than a content card: it is pinned, so
+                                 every pixel here is charged to the question */
+  /* Once you are scrolling you know which session you are in; drop the
+     subtitle so the pinned bar takes back a line of screen. */
+  body.scrolled .card.sessbar .sesstitle em{display:none}
+
+  /* Exit is meant to be easy to find and easy to ignore. Ink label on a visible
+     outline does the first; staying unfilled does the second -- a filled pill
+     reads as "primary action" everywhere else in this app, and quitting is not
+     the thing to nudge a tired JMO towards. */
+  .sessquit{display:inline-flex;align-items:center;justify-content:center;gap:6px;
+    font-size:.8rem;font-weight:700;color:var(--ink);cursor:pointer;flex:0 0 auto;
+    border:1px solid var(--mut);background:transparent;border-radius:999px;
+    padding:0 16px;min-height:44px}
+  .sessquit .xg{font-size:.95rem;line-height:1;font-weight:600}
+  .sessquit:active{background:var(--solidsoft)}
   .sessscore{display:flex;gap:14px;font-size:.76rem;font-weight:700;margin-top:8px}
   .sessscore .sok{color:var(--ok)} .sessscore .sno{color:var(--bad)}
   .sessbig{font-family:var(--serif);font-size:2.6rem;font-weight:600;color:var(--brand);line-height:1}
@@ -3079,10 +3106,10 @@ function renderSession(){
     return `<button class="${cls}" onclick="sessAnswer(this,${i})">${String.fromCharCode(65+i)}. ${o}</button>`;
   }).join("");
   const fl=isFlagged(x);
-  $("#practiceBody").innerHTML=`<div class="card">
+  $("#practiceBody").innerHTML=`<div class="card sessbar">
     <div class="sesshead">
       <div class="sesstitle">${session.title}<em>${session.sub||"Answer, read the feedback, move on."}</em></div>
-      <button class="sessquit" onclick="quitSession()">Exit</button>
+      <button class="sessquit" onclick="quitSession()"><span class="xg" aria-hidden="true">&#10005;</span>Exit</button>
     </div>
     <div class="goalbar"><i style="width:${pct}%"></i></div>
     <div class="sessscore" id="sessScore">${sessScoreHTML()}</div>
@@ -3151,10 +3178,10 @@ function renderDeck(){
     return;
   }
   const x=QBANK[deck.qis[deck.cur]];
-  $("#practiceBody").innerHTML=`<div class="card">
+  $("#practiceBody").innerHTML=`<div class="card sessbar">
     <div class="sesshead">
       <div class="sesstitle">${deck.title}<em>Card ${deck.cur+1} of ${deck.qis.length} — tap the card to flip</em></div>
-      <button class="sessquit" onclick="deck=null;renderPractice()">Exit</button>
+      <button class="sessquit" onclick="deck=null;renderPractice()"><span class="xg" aria-hidden="true">&#10005;</span>Exit</button>
     </div>
     <div class="goalbar"><i style="width:${Math.round(deck.cur/deck.qis.length*100)}%"></i></div>
   </div>
@@ -3852,6 +3879,19 @@ function beep(){
 }
 /* a hidden tab stops painting; re-sync the moment they look at it */
 document.addEventListener("visibilitychange",()=>{if(!document.hidden&&tInt)timerTick();});
+
+/* ---- Pin height: the sticky app bar grows by the phone's safe-area inset, so
+   the session bar cannot hardcode where to stop. Re-measured on load, on
+   resize and on orientation change. ---- */
+(function(){
+  const bar=document.querySelector("header.wrap");
+  if(!bar)return;
+  const set=()=>document.documentElement.style.setProperty("--headh",bar.offsetHeight+"px");
+  set();
+  addEventListener("resize",set);
+  addEventListener("orientationchange",()=>setTimeout(set,150));
+  if(window.ResizeObserver)new ResizeObserver(set).observe(bar);
+})();
 
 /* ---- Double-tap zoom: the belt to the CSS braces --------------------------
    Every element already carries touch-action:manipulation, which is supposed
