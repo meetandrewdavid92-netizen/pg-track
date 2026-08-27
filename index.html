@@ -570,9 +570,15 @@
      that runs to ~2800px on a long question -- findable for about a fifteenth
      of the scroll. --headh is measured in JS because the bar's height moves
      with the phone's safe-area inset. */
+  /* Pinned, so every pixel here is charged to the question. It collapses to a
+     single 44px row (title + score beside Exit) with the progress bar as a
+     flush 4px rail on the card's bottom edge -- the wordy subtitle only shows
+     before you start scrolling. 181px of header+bar became 137px. */
   .card.sessbar{position:sticky;top:var(--headh,56px);z-index:4;
-    padding:12px 16px 13px}   /* tighter than a content card: it is pinned, so
-                                 every pixel here is charged to the question */
+    padding:11px 16px 0;overflow:hidden}
+  .card.sessbar .sesshead{margin-bottom:0}
+  .card.sessbar .goalbar{height:4px;border-radius:0;margin:10px -16px 0}
+  .sesstitle .sessscore{margin-top:3px;gap:12px}
   /* Once you are scrolling you know which session you are in; drop the
      subtitle so the pinned bar takes back a line of screen. */
   body.scrolled .card.sessbar .sesstitle em{display:none}
@@ -3108,11 +3114,11 @@ function renderSession(){
   const fl=isFlagged(x);
   $("#practiceBody").innerHTML=`<div class="card sessbar">
     <div class="sesshead">
-      <div class="sesstitle">${session.title}<em>${session.sub||"Answer, read the feedback, move on."}</em></div>
+      <div class="sesstitle">${session.title}<em>${session.sub||"Answer, read the feedback, move on."}</em>
+        <div class="sessscore" id="sessScore">${sessScoreHTML()}</div></div>
       <button class="sessquit" onclick="quitSession()"><span class="xg" aria-hidden="true">&#10005;</span>Exit</button>
     </div>
     <div class="goalbar"><i style="width:${pct}%"></i></div>
-    <div class="sessscore" id="sessScore">${sessScoreHTML()}</div>
   </div>
   <div class="card qcard${answered?" done":""}" data-qi="${qi}" style="margin-bottom:14px">
     <div class="qtoprow"><span class="qsrc">${x.subject} · ${x.topic}</span>
