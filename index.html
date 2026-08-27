@@ -429,6 +429,8 @@
   .mrtop{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;cursor:pointer}
   .mrmeta{font-size:.78rem;color:var(--mut);font-weight:600;margin-top:4px}
   .mrchev{flex:0 0 auto;font-size:.75rem;font-weight:700;color:var(--mut);white-space:nowrap;padding-top:5px}
+  .msetup .mrtop h2{margin-bottom:2px}
+  .msetup .msbody{margin-top:14px}
   .mockrep .mrbody{display:none}
   .mockrep.open .mrbody{display:block;margin-top:14px}
   .mrrows.hide{display:none}   /* not a sibling selector: the setup and history
@@ -3366,6 +3368,15 @@ function pushMockHistory(e){const h=mockHistory();h.unshift(e);localStorage.setI
 const MCFGKEY="pg_mock_cfg",MOCK_SIZES=[10,20,36,50];
 let mockCfg=Object.assign({n:20,subs:[]},JSON.parse(localStorage.getItem(MCFGKEY)||"{}"));
 function saveMockCfg(){localStorage.setItem(MCFGKEY,JSON.stringify(mockCfg));}
+/* Not persisted on purpose: every fresh visit to Mock opens collapsed. */
+let mockSetupOpen=false;
+function toggleMockSetup(){mockSetupOpen=!mockSetupOpen;renderMock();}
+function mockSubjLabel(){
+  const s=mockCfg.subs;
+  if(!s.length)return "All subjects";
+  if(s.length<=2)return s.join(" + ");
+  return `${s.length} subjects`;
+}
 function mockSubjects(){return [...new Set(QBANK.map(x=>x.subject))].sort();}
 function mockPool(){return QBANK.filter(x=>!mockCfg.subs.length||mockCfg.subs.includes(x.subject));}
 function mockCount(subject){return QBANK.filter(x=>x.subject===subject).length;}
@@ -3414,6 +3425,7 @@ function buildMockSet(){
   return selected;
 }
 function startMock(){
+  mockSetupOpen=false;
   const qis=buildMockSet();
   if(!qis.length){toast("No questions in that selection yet.");return;}
   armAudio();                                    /* must happen inside the tap — see beep() */
@@ -3575,26 +3587,43 @@ function renderMock(){
    straight to the DOM: once a report is on screen they have to render
    *alongside* it, not instead of it. */
 function mockSetupHTML(){
-  const subs=mockCfg.subs,pool=mockPool().length,n=mockLength();
-  const subChips=`<button class="${subs.length?'':'on'}" onclick="toggleMockSubj(null)">All subjects · ${QBANK.length}</button>`+
-    mockSubjects().map(s=>`<button class="${subs.includes(s)?'on':''}" onclick="toggleMockSubj('${s.replace(/'/g,"\\'")}')">${s} · ${mockCount(s)}</button>`).join("");
+  const pool=mockPool().length,n=mockLength();
   /* Offer only lengths the selection can actually fill, plus "all of them"
      when the pool is smaller than the smallest preset. */
   const sizes=MOCK_SIZES.filter(s=>s<=pool);
   if(!sizes.includes(pool)&&pool)sizes.push(pool);
-  const sizeChips=sizes.map(s=>`<button class="${n===s?'on':''}" onclick="setMockN(${s})">${s}${s===36?" · exam section":""}</button>`).join("");
-  return `<div class="card">
-    <h2>Set up a mock</h2>
-    <p class="submut">Pick the subjects and the length. One minute per question, scored +4 / −1, nothing marked right or wrong until you submit — and it submits itself when the clock runs out.</p>
-    <h3>Subjects</h3>
-    <div class="chipwrap">${subChips}</div>
-    <h3>Length</h3>
-    <div class="chipwrap">${sizeChips||'<span class="submut">No questions in this selection.</span>'}</div>
-    <div class="mockhero"><div class="big3">${n}</div>
-      <div class="lbl3">question${n===1?"":"s"} · ${n} minute${n===1?"":"s"} · scored +4/−1</div></div>
+  /* Collapsed by default. mockCfg survives reloads, so the common visit is
+     "start the same mock again", not "set one up" -- and the 21 subject chips
+     pushed Past Mocks two screens down. They now render only on request. */
+  let body="";
+  if(mockSetupOpen){
+    const subs=mockCfg.subs;
+    const subChips=`<button class="${subs.length?'':'on'}" onclick="toggleMockSubj(null)">All subjects &middot; ${QBANK.length}</button>`+
+      mockSubjects().map(s=>`<button class="${subs.includes(s)?'on':''}" onclick="toggleMockSubj('${s.replace(/'/g,"\'")}')">${s} &middot; ${mockCount(s)}</button>`).join("");
+    const sizeChips=sizes.map(s=>`<button class="${n===s?'on':''}" onclick="setMockN(${s})">${s}${s===36?" &middot; exam section":""}</button>`).join("");
+    body=`<div class="msbody">
+      <p class="submut">One minute per question, scored +4 / &minus;1, nothing marked right or wrong until you submit &mdash; and it submits itself when the clock runs out.</p>
+      <h3>Subjects</h3>
+      <div class="chipwrap">${subChips}</div>
+      <h3>Length</h3>
+      <div class="chipwrap">${sizeChips||'<span class="submut">No questions in this selection.</span>'}</div>
+      <div class="mockhero"><div class="big3">${n}</div>
+        <div class="lbl3">question${n===1?"":"s"} &middot; ${n} minute${n===1?"":"s"} &middot; scored +4/&minus;1</div></div>
+      <p style="color:var(--mut);font-size:.8rem;margin-top:14px">Questions you've never answered are drawn first. Within your chosen subjects the mix follows the measured exam weightage from the <b>Yield</b> tab. Every wrong answer lands in <b>Due</b> immediately &mdash; exactly like a Bank mistake would.</p>
+    </div>`;
+  }
+  return `<div class="card msetup">
+    <div class="mrtop" onclick="toggleMockSetup()">
+      <div>
+        <h2>Mock test</h2>
+        <div class="mrmeta">${n?`${n} question${n===1?"":"s"} &middot; ${mockSubjLabel()} &middot; ${n} min &middot; +4/&minus;1`:"Nothing in this selection"}</div>
+      </div>
+      <div class="mrchev">${mockSetupOpen?"Done &#9652;":"Change &#9662;"}</div>
+    </div>
+    ${body}
     ${n&&n<mockCfg.n?`<div class="mockwarn">Only <b>${pool}</b> question${pool===1?"":"s"} in that selection, so this mock uses all of them.</div>`:""}
-    <p style="color:var(--mut);font-size:.8rem;margin-top:14px">Questions you've never answered are drawn first. Within your chosen subjects the mix follows the measured exam weightage from the <b>Yield</b> tab. Every wrong answer lands in <b>Due</b> immediately — exactly like a Bank mistake would.</p>
-    ${n?`<button class="btn" onclick="startMock()">Start ${n}-question mock</button>`:""}
+    ${n?`<button class="btn" onclick="startMock()">Start ${n}-question mock</button>`
+       :`<p class="submut" style="margin:12px 0 0">No questions in the subjects you picked. Tap <b>Change</b> to widen the selection.</p>`}
   </div>`;
 }
 /* skipCurrent drops the mock whose report is already on screen above this
