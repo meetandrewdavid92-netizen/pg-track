@@ -699,6 +699,92 @@
     min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center}
   .hitsub{font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:.6px;
     color:var(--mut);margin-bottom:4px}
+  /* ===== Advanced UI set ===== */
+  /* 1. 70-second pacing ring. Grey while the exam's 70 s run, terracotta once
+     they are gone. Freezes when the question is answered. */
+  .pace{flex:0 0 auto;width:22px;height:22px;margin-left:2px}
+  .pace svg{width:100%;height:100%;transform:rotate(-90deg);display:block}
+  .pace .pt{fill:none;stroke:var(--track);stroke-width:3}
+  .pace .pf{fill:none;stroke:var(--mut);stroke-width:3;stroke-linecap:round;
+    stroke-dasharray:56.5 56.5;stroke-dashoffset:56.5;
+    animation:pace 70s linear forwards,paceover .01s linear 70s forwards}
+  .qcard.done .pace .pf{animation-play-state:paused}
+  .qcard.done .pace.over .pf{animation:none;stroke:var(--brand);stroke-dashoffset:0}
+  @keyframes pace{to{stroke-dashoffset:0}}
+  @keyframes paceover{to{stroke:var(--brand)}}
+  @media (prefers-reduced-motion:reduce){.pace .pf{animation-duration:70s,.01s!important}}
+
+  /* 2 + 3. Swipe left for the next question; a floating Next pill that stays
+     in reach while a long explanation scrolls. */
+  .screen.on .card.qcard.slideout{animation:slideout .16s ease-in forwards}
+  .screen.on .card.qcard.slidein{animation:slidein .26s cubic-bezier(.2,.7,.2,1) both}
+  @keyframes slideout{to{opacity:0;transform:translateX(-36px)}}
+  @keyframes slidein{from{opacity:0;transform:translateX(36px)}}
+  .fabnext{display:none;position:fixed;right:16px;bottom:calc(78px + env(safe-area-inset-bottom));z-index:9;
+    align-items:center;gap:6px;min-height:48px;padding:0 20px 0 22px;border:none;border-radius:999px;
+    background:var(--solid);color:var(--solidink);font:inherit;font-size:.9rem;font-weight:700;cursor:pointer;
+    box-shadow:0 12px 30px -10px rgba(40,25,15,.55);animation:fabin .3s cubic-bezier(.2,.7,.2,1) both}
+  body.runner .fabnext.show{display:flex}
+  @keyframes fabin{from{opacity:0;transform:translateY(14px)}}
+
+  /* 4. Flashcard: a real two-sided card. Both faces are rendered and stacked
+     on one grid cell; the inner turns and backface-visibility hides the side
+     facing away. Grid stacking makes the card as tall as its taller face. */
+  .fcard{display:block;padding:0;background:transparent;box-shadow:none;border:none;min-height:0;perspective:1200px}
+  .fcin{display:grid;transform-style:preserve-3d;transition:transform .55s cubic-bezier(.4,.1,.2,1)}
+  .fcard.flipped .fcin{transform:rotateY(180deg)}
+  .fface{grid-area:1/1;backface-visibility:hidden;-webkit-backface-visibility:hidden;
+    background:var(--paper2);border-radius:20px;padding:20px;min-height:220px;
+    display:flex;flex-direction:column;justify-content:center;text-align:center;box-shadow:var(--shadow)}
+  .fface.back{transform:rotateY(180deg)}
+  .deckact{display:none}.deckact.show{display:flex}
+
+  /* 5. Theme switch: the new theme wipes out in a circle from the button. */
+  ::view-transition-old(root),::view-transition-new(root){animation:none;mix-blend-mode:normal}
+  ::view-transition-old(root){z-index:1}::view-transition-new(root){z-index:2}
+
+  /* 6. The big name shrinks and slides up into the bar as you scroll, driven
+     by scroll position. Phones without scroll timelines keep the .scrolled fade. */
+  @supports (animation-timeline: scroll()){
+    body:not(.nothome):not(.runner):not(.focus) .brandhero{transform-origin:left top;
+      animation:heroaway linear both;animation-timeline:scroll(root);animation-range:0 96px}
+    body:not(.nothome) header h1{animation:barin linear both;animation-timeline:scroll(root);
+      animation-range:28px 96px;transition:none}
+    @keyframes heroaway{to{opacity:0;transform:translateY(-10px) scale(.86)}}
+    @keyframes barin{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  }
+  @media (prefers-reduced-motion:reduce){.brandhero,header h1{animation:none!important}}
+
+  /* 7. Practice heatmap: 12 weeks, one square a day, Monday at the top. */
+  .heat{display:grid;grid-template-rows:repeat(7,1fr);grid-auto-flow:column;grid-auto-columns:1fr;gap:3px;margin-top:10px}
+  .heat i{display:block;aspect-ratio:1;border-radius:3px;background:var(--track)}
+  .heat i.h1,.heatkey i.h1{background:color-mix(in srgb,var(--brand) 28%,transparent)}
+  .heat i.h2,.heatkey i.h2{background:color-mix(in srgb,var(--brand) 50%,transparent)}
+  .heat i.h3,.heatkey i.h3{background:color-mix(in srgb,var(--brand) 74%,transparent)}
+  .heat i.h4,.heatkey i.h4{background:var(--brand)}
+  .heat i.froze{box-shadow:inset 0 0 0 2px var(--brandline)}
+  .heat i.today{outline:2px solid var(--ink);outline-offset:1px}
+  .heat i.future{visibility:hidden}
+  .heatkey{display:flex;align-items:center;gap:4px;font-size:.72rem;color:var(--soft);font-weight:600;margin-top:10px;flex-wrap:wrap}
+  .heatkey i{width:10px;height:10px;border-radius:2px;display:inline-block;background:var(--track)}
+  .heatkey span{margin-left:6px}
+
+  /* 8. Bottom sheet: subject -> topics -> start, without leaving the list. */
+  .sheetwrap{position:fixed;inset:0;z-index:20}
+  .sheetbg{position:absolute;inset:0;background:rgba(20,14,10,.45);opacity:0;transition:opacity .25s}
+  .sheet{position:absolute;left:0;right:0;bottom:0;max-height:84vh;display:flex;flex-direction:column;
+    background:var(--glass);border-radius:22px 22px 0 0;box-shadow:0 -12px 40px -16px rgba(0,0,0,.5);
+    padding-bottom:env(safe-area-inset-bottom);transform:translateY(100%);
+    transition:transform .32s cubic-bezier(.2,.7,.2,1)}
+  .sheet.drag{transition:none}
+  .sheetwrap.open .sheetbg{opacity:1}.sheetwrap.open .sheet{transform:none}
+  .grab{flex:0 0 auto;width:40px;height:5px;border-radius:3px;background:var(--track);margin:10px auto 4px;touch-action:none}
+  .sheethead{flex:0 0 auto;padding:6px 18px 10px;touch-action:none}
+  .sheethead h2{font-size:1.3rem;font-weight:750;letter-spacing:-.2px;line-height:1.2;margin:0}
+  .sheethead .submut{margin-top:3px}
+  .sheetback{display:inline-flex;align-items:center;min-height:36px;font-size:.8rem;font-weight:700;color:var(--mut);cursor:pointer;margin-bottom:2px}
+  .sheetbody{flex:1 1 auto;overflow-y:auto;padding:0 18px 18px;-webkit-overflow-scrolling:touch}
+  .sheetbody .qact{margin:4px 0 12px}
 </style>
 </head>
 <body>
@@ -737,6 +823,7 @@
     <h2 class="scrtitle">Practice</h2>
     <div class="seg" id="practiceSeg"></div>
     <div id="practiceBody"></div>
+    <button class="fabnext" id="sessNext" onclick="sessAdvance()">Next question ›</button>
   </section>
 
   <!-- STRATEGY — Yield (where the marks are) + Planner, one tab, two segments -->
@@ -840,6 +927,12 @@
       <h2>Overall Readiness</h2>
       <div class="ringrow" id="readyRow"></div>
       <p class="meta" id="readyNote"></p>
+    </div>
+    <div class="card" id="heatCard">
+      <h2>Practice Days</h2>
+      <div class="heat" id="heat"></div>
+      <div class="heatkey">Less <i></i><i class="h1"></i><i class="h2"></i><i class="h3"></i><i class="h4"></i> More
+        <span>· last 12 weeks · today outlined</span></div>
     </div>
     <div class="card" id="subjProgCard">
       <h2>Subject Progress</h2>
@@ -964,6 +1057,15 @@
   <button data-scr="strategy" onclick="go('strategy',this)"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 20V12M10 20V4M16 20V9M22 20H2"/></svg></span>Strategy</button>
   <button data-scr="track" onclick="go('track',this)"><span class="ico"><svg viewBox="0 0 24 24"><path d="M2 12.5h4l2.5-7 4 13 3-9 2 3h4.5"/></svg></span>Progress</button>
 </nav>
+
+<div class="sheetwrap" id="sheet" hidden>
+  <div class="sheetbg" onclick="closeSheet()"></div>
+  <div class="sheet" id="sheetPanel">
+    <div class="grab"></div>
+    <div class="sheethead" id="sheetHead"></div>
+    <div class="sheetbody" id="sheetBody"></div>
+  </div>
+</div>
 
 <script>
 /* ================= CONFIG — edit these once ================= */
@@ -2785,6 +2887,8 @@ function syncHeadH(){
 }
 syncHeadH();addEventListener("resize",syncHeadH);addEventListener("orientationchange",syncHeadH);
 function go(name,btn){
+  const sw=document.getElementById("sheet");
+  if(sw&&!sw.hidden)closeSheet();
   const cur=document.querySelector(".screen.on");
   if(cur&&cur.id!=="scr-about")lastScreen=cur.id.replace("scr-","");
   document.querySelectorAll(".screen").forEach(s=>s.classList.remove("on"));
@@ -2839,8 +2943,18 @@ function cycleTheme(){
   const t=localStorage.getItem(THKEY);
   const next=t==="dark"?"light":t==="light"?"":"dark";   /* dark → light → follow system */
   next?localStorage.setItem(THKEY,next):localStorage.removeItem(THKEY);
-  applyTheme();
-  toast(next==="dark"?"Dark mode":next==="light"?"Light mode":"Following your phone's setting");
+  const msg=next==="dark"?"Dark mode":next==="light"?"Light mode":"Following your phone's setting";
+  /* The new theme wipes out in a circle from the button. Needs the View
+     Transitions API; anything older just switches. */
+  if(!document.startViewTransition||matchMedia("(prefers-reduced-motion:reduce)").matches){applyTheme();toast(msg);return;}
+  const b=document.getElementById("themeBtn").getBoundingClientRect();
+  const x=b.left+b.width/2,y=b.top+b.height/2;
+  const r=Math.hypot(Math.max(x,innerWidth-x),Math.max(y,innerHeight-y));
+  const vt=document.startViewTransition(()=>applyTheme());
+  vt.ready.then(()=>document.documentElement.animate(
+    {clipPath:[`circle(0px at ${x}px ${y}px)`,`circle(${r}px at ${x}px ${y}px)`]},
+    {duration:450,easing:"ease-in-out",pseudoElement:"::view-transition-new(root)"})).catch(()=>{});
+  vt.finished.then(()=>toast(msg)).catch(()=>toast(msg));
 }
 applyTheme();
 matchMedia("(prefers-color-scheme: dark)").addEventListener("change",applyTheme);
@@ -3155,6 +3269,29 @@ function renderReadiness(){
   $("#subjRings").innerHTML=rows.length?rows.slice(0,4).map(cell).join(""):empty;
   if($("#subjRingsAll"))$("#subjRingsAll").innerHTML=rows.length?rows.map(cell).join(""):empty;
   countUp();
+  /* renderTrack() also runs once early in the script, before the day-log
+     consts exist; that first call skips the heatmap and the startup call at
+     the end of the script draws it. */
+  try{renderHeat();}catch(e){}
+}
+/* 12 weeks of squares ending on this week's Sunday, Monday at the top of each
+   column. Shade steps off the daily goal, so the grid means the same thing
+   whether the goal is 10 or 30. dayNum 0 is 1970-01-01, a Thursday. */
+function renderHeat(){
+  const el=$("#heat");if(!el)return;
+  const t=todayNum(),g=goalNow();
+  const dow=d=>((d+3)%7+7)%7;          /* 0 = Monday */
+  const end=t+(6-dow(t)),start=end-83;
+  let h="";
+  for(let d=start;d<=end;d++){
+    const n=dayLog[d]||0;
+    let c=n===0?"":n>=2*g?"h4":n>=g?"h3":n>=Math.ceil(g/2)?"h2":"h1";
+    if(!n&&freezeState.used[d])c="froze";
+    if(d===t)c+=" today";
+    if(d>t)c="future";
+    h+=`<i class="${c.trim()}" title="${n} question${n===1?"":"s"}"></i>`;
+  }
+  el.innerHTML=h;
   if($("#subjMoreRow"))$("#subjMoreRow").innerHTML=rows.length>4
     ? `<div class="topic navcard" style="margin-top:12px" onclick="setTrack('subjects')">
          <div class="topichead"><span class="topicname">All ${rows.length} subjects</span>
@@ -3682,6 +3819,7 @@ function renderPractice(){
   /* A running session or a flashcard deck takes over the whole tab — the
      segmented control would only offer ways to lose your place. */
   document.body.classList.toggle("runner",!!(session||deck));
+  const fab=$("#sessNext");if(fab)fab.classList.remove("show");
   if(session){$("#practiceSeg").innerHTML="";renderSession();return;}
   if(deck){$("#practiceSeg").innerHTML="";renderDeck();return;}
   const counts=segCounts();
@@ -3761,7 +3899,8 @@ function sessAnswer(btn,i){
   card.querySelector(".qfb").innerHTML=feedbackHTML(x,qi,i,secs);
   slideOpen(card.querySelector(".qfb"));
   const nx=document.getElementById("sessNext");
-  if(nx)nx.style.display="block";
+  if(nx)nx.classList.add("show");
+  if(secs>=70){const pc=card.querySelector(".pace");if(pc)pc.classList.add("over");}
   const sc=document.getElementById("sessScore");
   if(sc)sc.innerHTML=sessScoreHTML();
 }
@@ -3786,24 +3925,56 @@ function renderSession(){
     return `<button class="${cls}" onclick="sessAnswer(this,${i})">${String.fromCharCode(65+i)}. ${o}</button>`;
   }).join("");
   const fl=isFlagged(x);
+  /* Pacing ring: the exam gives ~70 s a question. A resumed or answered
+     question starts the ring where its clock actually is. */
+  const el=answered?Math.min(70,session.secs[qi]||0):Math.min(70,(Date.now()-session.tq)/1000);
+  const pace=`<span class="pace${answered&&(session.secs[qi]||0)>=70?" over":""}" title="70-second exam pace"><svg viewBox="0 0 24 24">
+      <circle class="pt" cx="12" cy="12" r="9"/>
+      <circle class="pf" cx="12" cy="12" r="9" style="animation-delay:-${el.toFixed(1)}s,${(70-el).toFixed(1)}s"/></svg></span>`;
+  const last=session.cur>=session.qis.length-1;
   $("#practiceBody").innerHTML=`<div class="card sessbar">
     <div class="sesshead">
-      <div class="sesstitle">${session.title}<em>${session.sub||"Answer, read the feedback, move on."}</em>
+      <div class="sesstitle">${session.title}<em>${session.sub||"Answer, read the feedback, then swipe left."}</em>
         <div class="sessscore" id="sessScore">${sessScoreHTML()}</div></div>
       <button class="sessquit" onclick="quitSession()"><span class="xg" aria-hidden="true">&#10005;</span>Exit</button>
     </div>
     <div class="goalbar"><i style="width:${pct}%"></i></div>
   </div>
   <div class="card qcard${answered?" done":""}" data-qi="${qi}" style="margin-bottom:14px">
-    <div class="qtoprow"><span class="qsrc">${x.subject} · ${x.topic}</span>
+    <div class="qtoprow"><span class="qsrc">${x.subject} · ${x.topic}</span>${pace}
       <button class="star${fl?' on':''}" onclick="toggleFlag(${qi},this)" title="Save this question">${fl?"★":"☆"}</button></div>
     <div class="qstem">${x.q}</div>
     <div class="opts">${opts}</div>
     <div class="qfb">${answered?feedbackHTML(x,qi,session.picks[qi],session.secs[qi]):""}</div>
-    <button class="btn" id="sessNext" onclick="sessNext()" style="display:${answered?"block":"none"}">
-      ${session.cur>=session.qis.length-1?"Finish session":"Next question ›"}</button>
   </div>`;
+  const fab=$("#sessNext");
+  if(fab){fab.textContent=last?"Finish session ›":"Next question ›";fab.classList.toggle("show",answered);}
 }
+/* Next with a slide: the answered card leaves left, the new one arrives from
+   the right. Reduced motion, or no card on screen, just moves on. */
+function sessAdvance(){
+  const c=document.querySelector(".qcard");
+  if(!c||matchMedia("(prefers-reduced-motion:reduce)").matches){sessNext();return;}
+  c.classList.add("slideout");
+  setTimeout(()=>{sessNext();const n=document.querySelector(".qcard");if(n)n.classList.add("slidein");},150);
+}
+/* Swipe left on an answered question = Next. Passive listeners, so page
+   scrolling is never delayed; a mostly-vertical drag is ignored. */
+(()=>{
+  let sx=0,sy=0,live=false;
+  const body=document.getElementById("practiceBody");
+  body.addEventListener("touchstart",e=>{
+    live=false;
+    if(!session||session.done)return;
+    if(session.picks[session.qis[session.cur]]==null)return;
+    const t=e.touches[0];sx=t.clientX;sy=t.clientY;live=true;
+  },{passive:true});
+  body.addEventListener("touchend",e=>{
+    if(!live)return;live=false;
+    const t=e.changedTouches[0],dx=t.clientX-sx,dy=t.clientY-sy;
+    if(dx<-70&&Math.abs(dy)<50)sessAdvance();
+  },{passive:true});
+})();
 function renderSessionSummary(){
   const n=session.qis.length,right=session.right;
   const pct=Math.round(right/n*100);
@@ -3837,7 +4008,15 @@ function startDeck(qis,title){
   deck={qis,cur:0,flipped:false,title,kept:0,again:0};
   go("timer");renderPractice();window.scrollTo(0,0);
 }
-function flipCard(){if(deck){deck.flipped=!deck.flipped;renderDeck();}}
+function flipCard(){
+  if(!deck)return;
+  deck.flipped=!deck.flipped;
+  const c=document.querySelector(".fcard");
+  if(!c){renderDeck();return;}
+  c.classList.toggle("flipped",deck.flipped);
+  const a=document.getElementById("deckAct");
+  if(a)a.classList.toggle("show",deck.flipped);
+}
 function deckMark(ok){
   if(!deck)return;
   const x=QBANK[deck.qis[deck.cur]],k=qKey(x);
@@ -3866,17 +4045,23 @@ function renderDeck(){
     </div>
     <div class="goalbar"><i style="width:${Math.round(deck.cur/deck.qis.length*100)}%"></i></div>
   </div>
-  <div class="card fcard" onclick="flipCard()">
-    <div class="fclab">${deck.flipped?"The point":x.subject+" · "+x.topic}</div>
-    ${deck.flipped
-      ? `<div class="fback"><b>${String.fromCharCode(65+x.ans)}. ${x.opts[x.ans]}</b><br><br>${x.exp}</div>`
-      : `<div class="fside">${x.q}</div>`}
-    <div class="fchint">${deck.flipped?"":"Tap to reveal"}</div>
+  <div class="card fcard${deck.flipped?" flipped":""}" onclick="flipCard()">
+    <div class="fcin">
+      <div class="fface front">
+        <div class="fclab">${x.subject} · ${x.topic}</div>
+        <div class="fside">${x.q}</div>
+        <div class="fchint">Tap to reveal</div>
+      </div>
+      <div class="fface back">
+        <div class="fclab">The point</div>
+        <div class="fback"><b>${String.fromCharCode(65+x.ans)}. ${x.opts[x.ans]}</b><br><br>${x.exp}</div>
+      </div>
+    </div>
   </div>
-  ${deck.flipped?`<div class="qact">
+  <div class="qact deckact${deck.flipped?" show":""}" id="deckAct">
     <button onclick="deckMark(false)">Needs work</button>
     <button class="solid" onclick="deckMark(true)">Got it</button>
-  </div>`:""}`;
+  </div>`;
 }
 
 /* ---- Saved (starred) questions ---- */
@@ -3904,8 +4089,61 @@ function renderBank(){
   else if(bankLevel==="questions")renderBankQuestions();
   else renderBankSubjects();
 }
-function openBankSubject(s){bankSubj=s;bankLevel="topics";qStatusFilter="all";renderBank();window.scrollTo(0,0);}
-function openBankTopic(t){bankTopic=t;bankLevel="questions";renderBank();window.scrollTo(0,0);}
+/* Subject and topic now open in a bottom sheet over the subject list, so
+   starting a session is two taps without ever leaving the list. The old
+   page-by-page renderers below are kept as the no-sheet fallback. */
+let sheetTopic=null;
+function qesc(t){return t.replace(/'/g,"\\'");}
+function openSheet(){const w=$("#sheet");if(!w.hidden)return;w.hidden=false;void w.offsetHeight;w.classList.add("open");}
+function closeSheet(){const w=$("#sheet");if(w.hidden)return;w.classList.remove("open");setTimeout(()=>{w.hidden=true;},340);}
+function openBankSubject(s){bankSubj=s;sheetTopic=null;qStatusFilter="all";renderSheet();openSheet();}
+function openBankTopic(t){sheetTopic=t;renderSheet();openSheet();}
+function renderSheet(){
+  const subQs=QBANK.filter(x=>x.subject===bankSubj);
+  const body=$("#sheetBody"),head=$("#sheetHead");
+  if(sheetTopic){
+    const qs=subQs.filter(x=>x.topic===sheetTopic),att=attemptedCount(qs);
+    head.innerHTML=`<div class="sheetback" onclick="sheetTopic=null;renderSheet()">‹ ${bankSubj}</div>
+      <h2>${sheetTopic}</h2><p class="submut">${qs.length} question${qs.length===1?"":"s"} · ${att} attempted</p>`;
+    body.innerHTML=`<div class="qact">
+      <button class="solid go" onclick="closeSheet();startSession(${JSON.stringify(idx(qs))},'${qesc(sheetTopic)}','${qesc(bankSubj)} · one at a time, with feedback')">Start session</button>
+      <button onclick="closeSheet();startDeck(${JSON.stringify(idx(qs))},'${qesc(sheetTopic)} — flashcards')">Flashcards</button></div>`;
+    body.scrollTop=0;return;
+  }
+  const topics=[...new Set(subQs.map(x=>x.topic))].sort();
+  const STATUS=[["all","All"],["none","Not attempted"],["part","In progress"],["done","Done"]];
+  head.innerHTML=`<h2>${bankSubj}</h2><p class="submut">${subQs.length} question${subQs.length===1?"":"s"} · ${attemptedCount(subQs)} attempted</p>`;
+  let rows="",shown=0;
+  topics.forEach(top=>{
+    const qs=subQs.filter(x=>x.topic===top);
+    const att=attemptedCount(qs),st=topicState(att,qs.length);
+    if(qStatusFilter!=="all"&&qStatusFilter!==st)return;
+    shown++;
+    const info=tprogInfo(att,qs.length);
+    rows+=`<div class="topic navcard ${st==="done"?"topicdone":""}" onclick="openBankTopic('${qesc(top)}')">
+      <div class="topichead">
+        <span class="topicname">${top}</span>
+        <span class="topicmeta"><span class="${info.cls}">${info.txt}</span><span class="chev">›</span></span>
+      </div>
+    </div>`;
+  });
+  body.innerHTML=`<div class="qact">
+      <button class="solid go" onclick="closeSheet();startSession(${JSON.stringify(idx(shuffle(subQs.slice())).slice(0,10))},'${qesc(bankSubj)}','A 10-question session from this subject')">Practise 10</button>
+      <button onclick="closeSheet();startDeck(${JSON.stringify(idx(subQs))},'${qesc(bankSubj)} — flashcards')">Flashcards</button></div>
+    <div class="filters">${STATUS.map(([k,l])=>`<button class="${k===qStatusFilter?'on':''}" onclick="qStatusFilter='${k}';renderSheet()">${l}</button>`).join("")}</div>
+    <div>${shown?rows:`<p class="submut">No topics ${qStatusFilter==="none"?"left to start":qStatusFilter==="done"?"completed yet":"in progress"} here.</p>`}</div>`;
+  body.scrollTop=0;
+}
+/* Drag the handle or the title down to dismiss. Touch only on those two, so
+   the scrolling list below them never fights the gesture. */
+(()=>{
+  const p=document.getElementById("sheetPanel"),h=document.getElementById("sheetHead"),g=p.querySelector(".grab");
+  let y0=0,dy=0,on=false;
+  const st=e=>{y0=e.touches[0].clientY;dy=0;on=true;p.classList.add("drag");};
+  const mv=e=>{if(!on)return;dy=Math.max(0,e.touches[0].clientY-y0);p.style.transform=`translateY(${dy}px)`;};
+  const en=()=>{if(!on)return;on=false;p.classList.remove("drag");p.style.transform="";if(dy>90)closeSheet();};
+  [g,h].forEach(el=>{el.addEventListener("touchstart",st,{passive:true});el.addEventListener("touchmove",mv,{passive:true});el.addEventListener("touchend",en);el.addEventListener("touchcancel",en);});
+})();
 /* Bank search. The box is re-rendered with the list, so focus and caret are
    restored by hand — otherwise typing a second character loses the keyboard. */
 let bankQuery="";
@@ -4558,7 +4796,7 @@ function beep(){
   }catch(e){}
 }
 /* a hidden tab stops painting; re-sync the moment they look at it */
-document.addEventListener("visibilitychange",()=>{if(!document.hidden&&tInt)timerTick();});
+document.addEventListener("visibilitychange",()=>{if(!document.hidden&&mInt)mockTick();});
 
 /* ---- Pin height: the sticky app bar grows by the phone's safe-area inset, so
    the session bar cannot hardcode where to stop. Re-measured on load, on
