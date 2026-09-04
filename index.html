@@ -3877,8 +3877,7 @@ function renderBankQuestions(){
       <button class="solid go" onclick="startSession(${JSON.stringify(idx(qs))},'${bankTopic.replace(/'/g,"\\'")}','${bankSubj.replace(/'/g,"\\'")} · one at a time, with feedback')">Start session</button>
       <button onclick="startDeck(${JSON.stringify(idx(qs))},'${bankTopic.replace(/'/g,"\\'")} — flashcards')">Flashcards</button>
     </div>
-    <p class="submut" style="margin-top:14px">Or browse them all:</p>
-    <div id="bankQList">${qs.map(q=>qCardHTML(q)).join("")}</div></div>`;
+  </div>`;
 }
 function renderReview(){
   const due=dueQuestions();
