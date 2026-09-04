@@ -473,6 +473,12 @@
     background:none;color:var(--mut);font-size:.8rem;font-weight:700;padding:10px 4px;border-radius:10px;cursor:pointer;transition:.15s;
     min-height:44px}
   .seg button.on{background:var(--glass);color:var(--ink);box-shadow:0 1px 3px rgba(60,45,30,.10)}
+  /* Dark mode: --glass is darker than the seg track (--paper2) there, so the white-pill
+     look above vanishes at night. Use the ink-fill chip pattern instead (max contrast). */
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]) .seg button.on{background:var(--solid);color:var(--solidink);box-shadow:none}
+  }
+  :root[data-theme="dark"] .seg button.on{background:var(--solid);color:var(--solidink);box-shadow:none}
   .segbadge{background:var(--solid);color:var(--solidink);font-size:.75rem;
     font-weight:800;padding:1px 7px;border-radius:20px;min-width:18px;text-align:center}
   .submut{color:var(--mut);font-size:.82rem;margin-bottom:10px;line-height:1.5}
