@@ -408,11 +408,8 @@
     animation:shake .3s ease}
   @keyframes optok{from{background-color:transparent;border-color:var(--line)}}
   @keyframes shake{20%{transform:translateX(-2px)}45%{transform:translateX(2px)}70%{transform:translateX(-1px)}}
-  /* The feedback slides open instead of popping. 0fr -> 1fr is the only way to
-     animate to an unknown height without JS; the inner wrapper does the clipping. */
-  .qfb{display:grid;grid-template-rows:0fr;transition:grid-template-rows .32s cubic-bezier(.2,.7,.2,1)}
-  .qcard.done .qfb{grid-template-rows:1fr}
-  .fbin{min-height:0;overflow:hidden}
+  /* The feedback slides open instead of popping -- slideOpen() drives the height. */
+  .qfb{overflow:hidden;transition:height .32s cubic-bezier(.2,.7,.2,1)}
   .qexp{display:none;margin-top:12px;padding:12px 2px 0;border-top:1px solid var(--line);
     background:transparent;font-size:.83rem;line-height:1.55;color:var(--ink2)}
   .qexp.show{display:block}
@@ -3103,7 +3100,7 @@ function ringHTML(pct,size){
     ${pct>0?`<circle class="rfill" cx="${cx}" cy="${cx}" r="${r}"
       stroke-dasharray="${c.toFixed(1)} ${c.toFixed(1)}"
       style="stroke-dashoffset:${(c-c*pct/100).toFixed(1)}px;--c0:${c.toFixed(1)}px"/>`:""}
-  </svg><b><span class="cnt" data-to="${pct}">${pct}</span>%</b></div>`;
+  </svg><b><span class="cnt" data-to="${pct}" data-suf="%">${pct}%</span></b></div>`;
 }
 /* Numbers count up to match the rings drawing in. Skipped when the phone asks
    for reduced motion; the final value is already in the markup either way. */
@@ -3113,7 +3110,7 @@ function countUp(root){
     const to=+el.dataset.to,t0=performance.now(),dur=700;
     delete el.dataset.to;
     const step=t=>{const k=Math.min(1,(t-t0)/dur),e=1-Math.pow(1-k,3);
-      el.textContent=Math.round(to*e);if(k<1)requestAnimationFrame(step);};
+      el.textContent=Math.round(to*e)+(el.dataset.suf||"");if(k<1)requestAnimationFrame(step);};
     requestAnimationFrame(step);
   });
 }
@@ -3606,10 +3603,19 @@ function feedbackHTML(x,qi,pick,secs){
   const verdict=pick==null?`<div class="fbhead">Answer</div>`
     :correct?`<div class="fbhead ok">✓ Correct${secs?`<span class="fbtime">${secs}s</span>`:""}</div>`
     :`<div class="fbhead no">✕ You chose ${L(pick)}${secs?`<span class="fbtime">${secs}s</span>`:""}</div>`;
-  return `<div class="fbin"><div class="qexp show">${verdict}
+  return `<div class="qexp show">${verdict}
       <b>Answer: ${L(x.ans)}.</b> ${x.exp}${why}</div>
     ${tags}
-    <div class="qsched show">${s?schedText(s):""}</div></div>`;
+    <div class="qsched show">${s?schedText(s):""}</div>`;
+}
+/* Slides the freshly filled feedback panel open to its natural height. Done in
+   JS because Chrome 148 sizes an animated 0fr->1fr grid row to 0 inside .qcard. */
+function slideOpen(el){
+  if(!el||matchMedia("(prefers-reduced-motion:reduce)").matches)return;
+  const h=el.scrollHeight;if(!h)return;
+  el.style.height="0px";
+  void el.offsetHeight;   /* flush the 0px so the transition has a start value */
+  el.style.height=h+"px";setTimeout(()=>{el.style.height="";},340);
 }
 function qCardHTML(x,forceFresh){
   const qi=QBANK.indexOf(x);
@@ -3642,6 +3648,7 @@ function answerQ(btn,qi,i){
   if(!correct)btn.classList.add("wrong");
   recordAnswer(x,correct,i);
   card.querySelector(".qfb").innerHTML=feedbackHTML(x,qi,i,0);
+  slideOpen(card.querySelector(".qfb"));
   updateSegBadges();
   updateBankProgress(card);
 }
@@ -3752,6 +3759,7 @@ function sessAnswer(btn,i){
   card.querySelectorAll(".opt").forEach((o,idx2)=>{o.classList.add("locked");if(idx2===x.ans)o.classList.add("correct");});
   if(!correct)btn.classList.add("wrong");
   card.querySelector(".qfb").innerHTML=feedbackHTML(x,qi,i,secs);
+  slideOpen(card.querySelector(".qfb"));
   const nx=document.getElementById("sessNext");
   if(nx)nx.style.display="block";
   const sc=document.getElementById("sessScore");
