@@ -27,6 +27,7 @@
     --bad:#b03b58; --badbg:rgba(194,64,90,.12); --badbrd:rgba(194,64,90,.45);
     --warn:#a8712a; --warnbg:rgba(221,160,94,.16);
     --line:rgba(60,45,30,.10); --track:#e5e1d9;
+    --ease-land:cubic-bezier(.2,.7,.2,1); --sink:rgba(0,0,0,.10);
     --headbg:rgba(246,244,240,.90); --navbg:rgba(252,251,249,.96);
     --shadow:0 1px 2px rgba(60,45,30,.05), 0 10px 28px -18px rgba(60,45,30,.32);
     --blob1:rgba(194,96,60,.07); --blob2:rgba(42,34,29,.055);
@@ -47,7 +48,7 @@
       --ok:#7cc4a1; --okbg:rgba(108,180,146,.16); --okbrd:rgba(108,180,146,.45);
       --bad:#f0899f; --badbg:rgba(240,137,159,.13); --badbrd:rgba(240,137,159,.4);
       --warn:#e3b075; --warnbg:rgba(224,171,111,.14);
-      --line:rgba(240,225,200,.10); --track:#332e26;
+      --line:rgba(240,225,200,.10); --track:#332e26; --sink:rgba(0,0,0,.35);
       --headbg:rgba(19,17,16,.90); --navbg:rgba(26,23,19,.96);
       --shadow:0 1px 2px rgba(0,0,0,.35), 0 10px 28px -18px rgba(0,0,0,.75);
       --blob1:rgba(224,136,95,.09); --blob2:rgba(240,231,218,.05);
@@ -64,7 +65,7 @@
     --ok:#7cc4a1; --okbg:rgba(108,180,146,.16); --okbrd:rgba(108,180,146,.45);
     --bad:#f0899f; --badbg:rgba(240,137,159,.13); --badbrd:rgba(240,137,159,.4);
     --warn:#e3b075; --warnbg:rgba(224,171,111,.14);
-    --line:rgba(240,225,200,.10); --track:#332e26;
+    --line:rgba(240,225,200,.10); --track:#332e26; --sink:rgba(0,0,0,.35);
     --headbg:rgba(19,17,16,.90); --navbg:rgba(26,23,19,.96);
     --shadow:0 1px 2px rgba(0,0,0,.35), 0 10px 28px -18px rgba(0,0,0,.75);
     --blob1:rgba(224,136,95,.09); --blob2:rgba(240,231,218,.05);
@@ -229,6 +230,8 @@
   @media (prefers-reduced-motion:reduce){
     *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;
       transition-duration:.01ms!important;scroll-behavior:auto!important}
+    /* the global rule zeroes durations but not delays -- these two carry them */
+    .opt,.yrow{transition-delay:0s!important}
   }
 
   .prog{height:10px;background:var(--track);border-radius:20px;overflow:hidden;margin:8px 0 4px}
@@ -399,7 +402,8 @@
   .qstem{font-size:.9rem;font-weight:600;line-height:1.55;margin-bottom:10px}
   .opt{display:block;width:100%;text-align:left;padding:11px 14px;margin:7px 0;border-radius:12px;
     border:1px solid var(--line);background:var(--paper2);color:var(--ink);font-size:.86rem;
-    line-height:1.45;cursor:pointer;transition:.12s;min-height:44px}
+    line-height:1.45;cursor:pointer;min-height:44px;
+    transition:.12s,translate .25s var(--ease-land) .28s,box-shadow .25s ease .28s,opacity .25s ease .28s}
   .opt:active{transform:scale(.99)}
   .opt.locked{cursor:default}
   .opt.correct{background:var(--okbg);border-color:var(--okbrd);color:var(--ok);font-weight:700;
@@ -408,6 +412,14 @@
     animation:shake .3s ease}
   @keyframes optok{from{background-color:transparent;border-color:var(--line)}}
   @keyframes shake{20%{transform:translateX(-2px)}45%{transform:translateX(2px)}70%{transform:translateX(-1px)}}
+  /* The verdict reads from layout before the words: the right answer lifts onto a
+     nearer plane, the one you chose sinks, the two you never touched step back.
+     `translate` is the individual property, so it composes with shake's transform
+     instead of cancelling it; the .28s delay lets the shake finish first. */
+  .opt.correct{translate:0 -1px;box-shadow:0 1px 0 var(--okbrd),0 6px 14px -10px rgba(0,0,0,.35)}
+  .opt.wrong{translate:0 1px;box-shadow:inset 0 2px 4px var(--sink)}
+  .opt.locked:not(.correct):not(.wrong){opacity:.7}
+  .card.qcard.done{box-shadow:0 1px 2px rgba(60,45,30,.06)}
   /* The feedback slides open instead of popping -- slideOpen() drives the height. */
   .qfb{overflow:hidden;transition:height .32s cubic-bezier(.2,.7,.2,1)}
   .qexp{display:none;margin-top:12px;padding:12px 2px 0;border-top:1px solid var(--line);
@@ -419,6 +431,19 @@
     color:var(--soft);background:var(--paper2);padding:2px 9px;border-radius:20px;margin-bottom:9px}
   .qsched{display:none;margin-top:8px;font-size:.75rem;font-weight:700;letter-spacing:.2px;color:var(--mut)}
   .qsched.show{display:block}
+  /* The spaced-repetition ladder, drawn. Six rungs (0/1/3/7/30/90 days) and an ink
+     marker that steps up on a right answer and drops to rung 0 on a wrong one. The
+     marker is exactly one rung wide, so translating it by its own width plus the gap
+     is precisely one step. The caption waits until the marker lands. */
+  .ladder{position:relative;display:flex;align-items:flex-end;gap:4px;height:24px;margin-top:10px;padding-top:6px}
+  .ladder i{flex:1;height:var(--h);background:var(--track);border-radius:2px 2px 0 0}
+  .ladder .rmark{position:absolute;left:0;bottom:4px;width:calc((100% - 20px)/6);height:6px;border-radius:3px;
+    background:var(--ink);translate:calc(var(--pos,0)*(100% + 4px)) calc(var(--pos,0)*-2px);
+    transition:translate .42s var(--ease-land)}
+  .rmark.fall{animation:rungdip .42s var(--ease-land)}
+  @keyframes rungdip{55%{scale:.8}}
+  .qsched{transition:opacity .25s}
+  .ladder.live+.qsched{opacity:0}
 
   /* ---- Mock (36-Q scored section, drawn from the bank) ---- */
   .mockhero{text-align:center;padding:6px 4px 4px}
@@ -475,6 +500,16 @@
   .mockbar .mbanswered{flex:1;font-size:.75rem;color:var(--mut);font-weight:600}
   .mockbar button{flex:0 0 auto;padding:10px 20px;border:none;border-radius:999px;font-size:.82rem;
     font-weight:700;cursor:pointer;color:var(--solidink);background:var(--solid)}
+  /* Time as a shrinking length in peripheral vision for the whole 42 minutes. The rail
+     is a pseudo-element of the fixed bar -- the bar itself is never transformed, which
+     would break its fixed positioning and flicker the iOS blur. */
+  .mockbar::before{content:"";position:absolute;left:0;right:0;top:-1px;height:3px;background:var(--ink);
+    transform-origin:left;transform:scaleX(var(--tleft,1));transition:transform 1s linear}
+  .mockbar.warn::before{background:var(--bad)}
+  .mockbar.nt::before{transition:none}
+  .mockbar.out{background:var(--solid);transition:background-color .25s}
+  .mockbar.out::before{transform:scaleX(0)}
+  .mockbar.out .mbtime,.mockbar.out .mbanswered{color:var(--solidink)}
   .mrtag{display:inline-block;font-size:.75rem;font-weight:800;letter-spacing:.5px;text-transform:uppercase;
     padding:2px 9px;border-radius:20px;margin-left:6px;vertical-align:middle}
   .mrtag.ok{background:rgba(77,143,114,.18);color:var(--ok)}
@@ -494,6 +529,19 @@
     border-bottom:1px solid var(--line);color:var(--ink2)}
   .mhrow:last-child{border-bottom:none}
   .mhrow b{color:var(--ink)}
+  /* Accordion contents unfold from beneath their own heading instead of popping, and
+     fold back before they vanish, so the page never lurches under the thumb. Pure CSS:
+     a browser without allow-discrete skips the block entirely and behaves as before. */
+  @supports (transition-behavior: allow-discrete){
+    .yrow,.ydet,.palcard .palbody,.mockrep .mrbody{
+      transition:opacity .22s ease,translate .22s var(--ease-land),display .22s allow-discrete;
+      transition-delay:calc(var(--i,0)*20ms)}
+    .ytier:not(.open) .yrow,.yrow:not(.open) .ydet,
+    .palcard:not(.open) .palbody,.mockrep:not(.open) .mrbody{opacity:0;translate:0 -6px;transition-delay:0ms}
+    @starting-style{
+      .ytier.open .yrow,.yrow.open .ydet,
+      .palcard.open .palbody,.mockrep.open .mrbody{opacity:0;translate:0 -6px}}
+  }
 
   /* Library read / unread */
   .libgroup{font-size:.75rem;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;
@@ -590,6 +638,9 @@
   .dots span.hit{background:var(--brand)}
   .dots span.froze{background:var(--track);box-shadow:inset 0 0 0 2px var(--brandline)}
   .dots span.today{outline:2px solid var(--brand);outline-offset:1px}
+  /* Facts sit still; only what changed since you last looked moves. */
+  .dots span.lit{animation:dotin .35s var(--ease-land) .45s both;transform-origin:left}
+  @keyframes dotin{from{opacity:.25;transform:scaleX(.2)}}
   /* The bank opens straight on the subject list: search and the two session
      buttons ride in a slim bar, not a card with a heading and a paragraph. */
   .bankbar{margin-bottom:12px}
@@ -628,6 +679,16 @@
   /* Once you are scrolling you know which session you are in; drop the
      subtitle so the pinned bar takes back a line of screen. */
   body.scrolled .card.sessbar .sesstitle em{display:none}
+  /* The 4px rail becomes one notch per question, so what is left is countable at a
+     glance instead of estimated off a bar. The transform lives on the leaf notch --
+     never on .card.sessbar itself, which is the sticky element. */
+  .card.sessbar .goalbar i{transform-origin:left}
+  .card.sessbar .goalbar.notched{display:flex;gap:2px;background:transparent}
+  .goalbar.notched i{flex:1;width:auto;background:var(--track);position:relative;overflow:hidden;
+    border-radius:0;transition:none}
+  .goalbar.notched i::after{content:"";position:absolute;inset:0;background:var(--brand);
+    transform-origin:left;scale:0 1;transition:scale .35s var(--ease-land)}
+  .goalbar.notched i.f::after{scale:1 1}
 
   /* Exit is meant to be easy to find and easy to ignore. Ink label on a visible
      outline does the first; staying unfilled does the second -- a filled pill
@@ -687,6 +748,15 @@
   .lossbox{margin-top:12px;padding:12px 13px;border-radius:12px;background:var(--badbg);
     font-size:.82rem;line-height:1.55;color:var(--ink2)}
   .lossbox b{color:var(--bad)}
+  /* Marks earned, then marks taken -- the bar grows to the gross score, then is eaten
+     back from its right end by the negative marking, leaving a stub the width of what
+     the wrong answers cost. */
+  .mkbar{position:relative;height:10px;background:var(--track);border-radius:20px;overflow:hidden;margin:6px 0 4px}
+  .mkbar i{position:absolute;left:0;top:0;height:100%;border-radius:20px}
+  .mkbar .gross{background:var(--badbrd)}
+  .mkbar .net{background:var(--ink)}
+  .mkcap{font-size:.75rem;color:var(--mut);font-weight:600;margin-bottom:4px}
+  .mkcap b{color:var(--ink)} .mkcap b.lost{color:var(--bad)}
   .slowlist{font-size:.78rem;color:var(--mut);font-weight:600;margin-top:8px;line-height:1.5}
 
   /* ---- Search ---- */
@@ -738,6 +808,20 @@
     display:flex;flex-direction:column;justify-content:center;text-align:center;box-shadow:var(--shadow)}
   .fface.back{transform:rotateY(180deg)}
   .deckact{display:none}.deckact.show{display:flex}
+  /* The pile is real: two slivers behind the card, thinning as the deck empties, and
+     the card leaves in the direction of its verdict -- up and off for "Got it", down
+     and back under the pile for "Needs work". */
+  .fcard{position:relative;isolation:isolate}
+  .fcard::before,.fcard::after{content:"";position:absolute;left:8px;right:8px;top:6px;bottom:-6px;
+    z-index:-1;border-radius:20px;background:var(--paper2);border:1px solid var(--line);box-shadow:var(--shadow)}
+  .fcard::after{left:16px;right:16px;bottom:-12px;opacity:.6}
+  .fcard[data-left="1"]::after,.fcard[data-left="0"]::before,.fcard[data-left="0"]::after{display:none}
+  .fcard[data-left="1"],.fcard[data-left="2"]{margin-bottom:28px}
+  /* must out-specify .screen.on .card{animation:rise}, same pattern as .slideout */
+  .screen.on .card.fcard.away{animation:fcaway .22s ease-in forwards}
+  .screen.on .card.fcard.back{animation:fcback .28s var(--ease-land) forwards}
+  @keyframes fcaway{to{opacity:0;translate:0 -28px;scale:.96}}
+  @keyframes fcback{to{opacity:0;translate:0 22px;scale:.94}}
 
   /* 5. Theme switch: the new theme wipes out in a circle from the button. */
   ::view-transition-old(root),::view-transition-new(root){animation:none;mix-blend-mode:normal}
@@ -771,13 +855,13 @@
 
   /* 8. Bottom sheet: subject -> topics -> start, without leaving the list. */
   .sheetwrap{position:fixed;inset:0;z-index:20}
-  .sheetbg{position:absolute;inset:0;background:rgba(20,14,10,.45);opacity:0;transition:opacity .25s}
+  .sheetbg{position:absolute;inset:0;background:rgba(20,14,10,.35);opacity:var(--sheetp,0);transition:opacity .25s}
   .sheet{position:absolute;left:0;right:0;bottom:0;max-height:84vh;display:flex;flex-direction:column;
     background:var(--glass);border-radius:22px 22px 0 0;box-shadow:0 -12px 40px -16px rgba(0,0,0,.5);
     padding-bottom:env(safe-area-inset-bottom);transform:translateY(100%);
     transition:transform .32s cubic-bezier(.2,.7,.2,1)}
   .sheet.drag{transition:none}
-  .sheetwrap.open .sheetbg{opacity:1}.sheetwrap.open .sheet{transform:none}
+  .sheetwrap.open .sheet{transform:none}
   .grab{flex:0 0 auto;width:40px;height:5px;border-radius:3px;background:var(--track);margin:10px auto 4px;touch-action:none}
   .sheethead{flex:0 0 auto;padding:6px 18px 10px;touch-action:none}
   .sheethead h2{font-size:1.3rem;font-weight:750;letter-spacing:-.2px;line-height:1.2;margin:0}
@@ -785,6 +869,13 @@
   .sheetback{display:inline-flex;align-items:center;min-height:36px;font-size:.8rem;font-weight:700;color:var(--mut);cursor:pointer;margin-bottom:2px}
   .sheetbody{flex:1 1 auto;overflow-y:auto;padding:0 18px 18px;-webkit-overflow-scrolling:touch}
   .sheetbody .qact{margin:4px 0 12px}
+  /* The list behind the sheet steps back as a plane, and comes forward again in step
+     with the finger on a drag-to-dismiss. Scoped by id, because #bankSubjList holds
+     only .topic rows -- never widen this to #practiceBody or .wrap, which are both
+     ancestors of sticky or fixed elements in other states. */
+  #bankSubjList{transform-origin:50% 0;transition:transform .32s var(--ease-land),opacity .32s}
+  body.sheeton #bankSubjList{transform:scale(calc(1 - .03*var(--sheetp,1)));opacity:calc(1 - .35*var(--sheetp,1))}
+  body.sheetdrag #bankSubjList,body.sheetdrag .sheetbg{transition:none}
 </style>
 </head>
 <body>
@@ -2926,7 +3017,8 @@ $("#footBrand").innerHTML=`${CONFIG.hospital} ${CONFIG.program} · ${CONFIG.doct
    you were reading. */
 let lastScreen="home";
 function toggleAbout(){
-  go($("#scr-about").classList.contains("on")?lastScreen:"about");
+  if($("#scr-about").classList.contains("on")){popLayer("about");go(lastScreen);}
+  else{go("about");pushLayer("about");}
 }
 /* The card's sticky close bar parks directly under the sticky header, so the
    header's real height (it grows by the phone's safe-area inset) is measured,
@@ -2936,6 +3028,37 @@ function syncHeadH(){
   if(h)document.documentElement.style.setProperty("--headh",h.offsetHeight+"px");
 }
 syncHeadH();addEventListener("resize",syncHeadH);addEventListener("orientationchange",syncHeadH);
+
+/* ---- Overlay layers and the phone's back gesture ----
+   Android's back button used to quit the installed app from inside an open sheet
+   or a Progress detail page. Each overlay now pushes one history entry, so back
+   closes that layer instead. The runner deliberately pushes nothing -- back must
+   never abandon a session in progress. popstate acts only on a layer that is
+   really open, so a stale entry is a harmless no-op rather than a wrong close. */
+const layers=[];let popping=false;
+function pushLayer(k){layers.push(k);history.pushState({pg:k},"");}
+function popLayer(k){
+  const i=layers.lastIndexOf(k);if(i<0)return;
+  const n=layers.length-i;layers.length=i;
+  popping=true;setTimeout(()=>{popping=false;},300);   /* some browsers fire no popstate if nothing traversed */
+  history.go(-n);
+}
+function layerOpen(k){
+  const sw=$("#sheet");
+  return k==="sheet"?!sw.hidden&&!sheetTopic
+    :k==="topic"?!sw.hidden&&!!sheetTopic
+    :k==="track"?trackView!=="index"&&$("#scr-track").classList.contains("on")
+    :k==="about"?$("#scr-about").classList.contains("on"):false;
+}
+addEventListener("popstate",()=>{
+  if(popping){popping=false;return;}
+  const k=layers.pop();if(!k||!layerOpen(k))return;
+  if(k==="topic"){sheetTopic=null;renderSheet();}
+  else if(k==="sheet")closeSheet(true);
+  else if(k==="track")setTrack("index",true);
+  else go(lastScreen);
+});
+if(history.state&&history.state.pg)history.replaceState(null,"");   /* a reload inherits no layers */
 function go(name,btn){
   const sw=document.getElementById("sheet");
   if(sw&&!sw.hidden)closeSheet();
@@ -3057,6 +3180,7 @@ function toggleCard(el,id){
    it's the latest feed). The resume card is what the app should open on:
    the streak, today's goal, and one tap into practice. Defined here, called
    after the Practice section below has declared stats/streak state. */
+let homePrev=null;   /* what the resume card last showed; only real differences move */
 const MATERIAL_ROW=()=>{
   const unread=CONTENT.filter(i=>!readMap[i.id]).length;
   return `<div class="topic navcard" onclick="go('lib')">
@@ -3083,7 +3207,14 @@ function renderHome(){
   const done=todayCount(),goal=goalNow(),pct=Math.min(100,Math.round(done/goal*100));
   const st=streakLen(),due=dueQuestions().length,weak=weakCount();
   const daily=dailySet(),dailyNew=daily.filter(x=>!stats[qKey(x)]).length;
-  const dots=last7().map((d,i)=>`<span class="${d.n?"hit":d.frozen?"froze":""}${i===6?" today":""}"></span>`).join("");
+  const hits=last7().map(d=>d.n>0);
+  /* Only animate a change we can actually attribute to this visit: same day, and the
+     question count really moved. A fresh open, a tab hop with nothing done, or a goal
+     change all render static -- facts sit still, changes move. */
+  const anim=!!homePrev&&homePrev.day===todayNum()&&done!==homePrev.done
+    &&!matchMedia("(prefers-reduced-motion:reduce)").matches&&"animate" in Element.prototype;
+  const dots=last7().map((d,i)=>`<span class="${d.n?"hit":d.frozen?"froze":""}${i===6?" today":""}${
+    anim&&hits[i]&&!homePrev.hits[i]?" lit":""}"></span>`).join("");
   const left=goal-done;
   /* Loss only bites once there is something to lose, so name what breaks. */
   const line=done>=goal?`Today's ${goal} is done. Anything more is profit.`
@@ -3096,11 +3227,11 @@ function renderHome(){
     ? `<p class="meta" style="margin:6px 0 0">No freezes left. Miss a night and the streak goes to zero.</p>` : "";
   $("#homeResume").innerHTML=`<div class="card resume">
     <div class="streakrow">
-      <div class="flame">${st}</div>
+      <div class="flame">${anim&&st>homePrev.st?`<span class="num" data-to="${st}" data-from="${homePrev.st}">${st}</span>`:st}</div>
       <div class="streaklab"><b>day streak</b><br>${line}</div>
     </div>
-    <div class="goalbar"><i style="width:${pct}%"></i></div>
-    <p class="meta" style="margin:0">${done} of ${goal} questions today</p>
+    <div class="goalbar"><i style="width:${anim?homePrev.pct:pct}%"></i></div>
+    <p class="meta" style="margin:0">${anim?`<span class="num" data-to="${done}" data-from="${homePrev.done}">${done}</span>`:done} of ${goal} questions today</p>
     <div class="dots">${dots}</div>
     ${fzLine}
     <div class="qact">
@@ -3113,6 +3244,13 @@ function renderHome(){
       ${weak?`<button onclick="go('timer');practiceView='weak';renderPractice()">Weak spots · ${weak}</button>`:""}
     </div>
   </div>`+MATERIAL_ROW();
+  if(anim){
+    const bar=$("#homeResume .goalbar i");
+    if(bar)bar.animate([{width:homePrev.pct+"%"},{width:pct+"%"}],
+      {duration:520,easing:"cubic-bezier(.2,.7,.2,1)",fill:"both"});
+    countUp($("#homeResume"));   /* scoped: renderReadiness()'s document-wide countUp must not eat these */
+  }
+  homePrev={day:todayNum(),pct,done,st,hits};
 }
 
 /* Library: unread grouped on top, read dimmed below */
@@ -3201,7 +3339,8 @@ let ticks=JSON.parse(localStorage.getItem(TKEY)||"{}");
 /* Progress is an index plus two detail pages, so the tab opens on one screen
    instead of four stacked cards. */
 let trackView="index";
-function setTrack(v){
+function setTrack(v,fromPop){
+  if(v==="index"){if(!fromPop)popLayer("track");}else if(trackView==="index")pushLayer("track");
   trackView=v;
   $("#trackIndex").style.display=v==="index"?"":"none";
   $("#trackSubjects").style.display=v==="subjects"?"":"none";
@@ -3270,13 +3409,33 @@ function ringHTML(pct,size){
    for reduced motion; the final value is already in the markup either way. */
 function countUp(root){
   if(matchMedia("(prefers-reduced-motion:reduce)").matches)return;
-  (root||document).querySelectorAll(".cnt[data-to]").forEach(el=>{
-    const to=+el.dataset.to,t0=performance.now(),dur=700;
-    delete el.dataset.to;
+  (root||document).querySelectorAll(".cnt[data-to],.num[data-to]").forEach(el=>{
+    const to=+el.dataset.to,from=+(el.dataset.from||0),t0=performance.now(),dur=700;
+    const suf=el.dataset.suf||"";
+    delete el.dataset.to;delete el.dataset.from;
     const step=t=>{const k=Math.min(1,(t-t0)/dur),e=1-Math.pow(1-k,3);
-      el.textContent=Math.round(to*e)+(el.dataset.suf||"");if(k<1)requestAnimationFrame(step);};
+      el.textContent=Math.round(from+(to-from)*e)+suf;if(k<1)requestAnimationFrame(step);};
     requestAnimationFrame(step);
+    /* rAF stops in a backgrounded tab. Without this the count would freeze part-way
+       and leave a number on screen that is simply wrong. */
+    setTimeout(()=>{el.textContent=to+suf;},dur+400);
   });
+}
+/* Two-stage counter: run up to the first figure, hold, then run to the second.
+   Used by the mock report to show marks earned and then marks taken back. */
+function countStages(el,stages){
+  if(!el)return;let i=0;
+  const run=()=>{const st=stages[i];if(!st)return;
+    const from=+el.textContent||0,t0=performance.now()+(st.delay||0);
+    const step=t=>{const k=Math.max(0,Math.min(1,(t-t0)/st.dur)),e=1-Math.pow(1-k,3);
+      el.textContent=Math.round(from+(st.to-from)*e);
+      if(k<1)requestAnimationFrame(step);else{i++;run();}};
+    requestAnimationFrame(step);};
+  run();
+  /* Same rAF-stops-when-hidden guard as countUp: a frozen half-counted score is a
+     wrong score, so land on the true figure whatever happened. */
+  const tot=stages.reduce((a,st)=>a+st.dur+(st.delay||0),0);
+  setTimeout(()=>{el.textContent=stages[stages.length-1].to;},tot+400);
 }
 function sparkHTML(pts,h){
   if(pts.length<2)return "";
@@ -3375,10 +3534,10 @@ function renderYield(){
     return `<div class="ytier">
       <h4 style="border-left:3px solid ${TIER_CLR[t]}" onclick="this.parentElement.classList.toggle('open')">
       <span class="ytcount">${rows.length}<i>&rsaquo;</i></span>${t}
-      <em>${blurb[t]}</em></h4>`+rows.map(x=>{
+      <em>${blurb[t]}</em></h4>`+rows.map((x,i)=>{
       const mx=Math.max(...S.map(z=>z.m));
       const kind=x.stem<=11?"one-liner recall":x.stem>=18?"long vignettes":"mixed length";
-      return `<div class="yrow" onclick="this.classList.toggle('open')">
+      return `<div class="yrow" style="--i:${Math.min(i,8)}" onclick="this.classList.toggle('open')">
         <div class="yhead">
           <span class="ynm">${x.s}</span>
           <span class="ybar"><i style="width:${x.m/mx*100}%;background:${TIER_CLR[t]}"></i></span>
@@ -3628,6 +3787,7 @@ function qKey(x){return x.subject+"§"+x.q;}
    wrong, it drops to box 0 and is due again the same day.
    BOXES[box] = days until the next sighting. */
 const BOXES=[0,1,3,7,30,90];
+let ladderFrom=null;   /* the rung a question sat on before this answer; never persisted */
 const DAYMS=86400000;
 function todayNum(){const d=new Date();return Math.floor((d-d.getTimezoneOffset()*60000)/DAYMS);}
 function schedule(r){r.next=todayNum()+BOXES[r.box];}
@@ -3734,6 +3894,10 @@ function errTally(){
 
 function recordAnswer(x,correct,pick){
   const k=qKey(x);
+  /* A question never seen before genuinely sits at the bottom of the ladder, so a
+     first attempt starts from rung 0 rather than materialising at its new rung --
+     otherwise the commonest answer in the app is the one that never animates. */
+  ladderFrom=stats[k]&&stats[k].box!=null?stats[k].box:0;
   const r=stats[k]||{seen:0,correct:0,wrong:0,box:0};
   r.seen++;
   if(correct){r.correct++;r.box=Math.min(r.box+1,BOXES.length-1);delete r.err;}
@@ -3775,7 +3939,7 @@ function weakCount(){return topicStats().filter(t=>t.correct/t.seen<0.7).length;
    wrong (when the question carries an optional `why` array) → and, on a wrong
    answer, the one question only they can answer: what kind of mistake was it.
    Questions written before `why` existed simply render without that block. */
-function feedbackHTML(x,qi,pick,secs){
+function feedbackHTML(x,qi,pick,secs,from){
   const correct=pick===x.ans, s=stats[qKey(x)];
   const L=i=>String.fromCharCode(65+i);
   const why=Array.isArray(x.why)&&x.why.length===x.opts.length
@@ -3790,9 +3954,12 @@ function feedbackHTML(x,qi,pick,secs){
   const verdict=pick==null?`<div class="fbhead">Answer</div>`
     :correct?`<div class="fbhead ok">✓ Correct${secs?`<span class="fbtime">${secs}s</span>`:""}</div>`
     :`<div class="fbhead no">✕ You chose ${L(pick)}${secs?`<span class="fbtime">${secs}s</span>`:""}</div>`;
+  const lad=s&&pick!=null?`<div class="ladder" style="--pos:${from!=null&&from!==s.box?from:s.box}" data-to="${s.box}">${
+      BOXES.map((d,i)=>`<i style="--h:${4+i*2}px"></i>`).join("")}<b class="rmark${
+      from!=null&&s.box<from?" fall":""}"></b></div>`:"";
   return `<div class="qexp show">${verdict}
       <b>Answer: ${L(x.ans)}.</b> ${x.exp}${why}</div>
-    ${tags}
+    ${tags}${lad}
     <div class="qsched show">${s?schedText(s):""}</div>`;
 }
 /* Slides the freshly filled feedback panel open to its natural height. Done in
@@ -3803,6 +3970,21 @@ function slideOpen(el){
   el.style.height="0px";
   void el.offsetHeight;   /* flush the 0px so the transition has a start value */
   el.style.height=h+"px";setTimeout(()=>{el.style.height="";},340);
+}
+/* Steps the ladder marker from the rung the question was on to the rung it just
+   earned, and holds the "next review" caption back until it lands.
+   Must run BEFORE slideOpen(): slideOpen reads scrollHeight, which flushes style,
+   and the caption has to be hidden by .live at its very first computed style --
+   otherwise it fades out and back in instead of simply waiting. */
+function runLadder(card){
+  const l=card.querySelector(".ladder");if(!l)return;
+  const to=l.dataset.to;if(+l.style.getPropertyValue("--pos")===+to)return;
+  if(matchMedia("(prefers-reduced-motion:reduce)").matches){l.style.setProperty("--pos",to);return;}
+  l.classList.add("live");
+  void l.offsetWidth;   /* commit the start rung before moving */
+  l.style.setProperty("--pos",to);
+  const done=()=>l.classList.remove("live");
+  l.querySelector(".rmark").addEventListener("transitionend",done,{once:true});setTimeout(done,600);
 }
 function qCardHTML(x,forceFresh){
   const qi=QBANK.indexOf(x);
@@ -3834,8 +4016,8 @@ function answerQ(btn,qi,i){
   card.querySelectorAll(".opt").forEach((o,idx)=>{o.classList.add("locked");if(idx===x.ans)o.classList.add("correct");});
   if(!correct)btn.classList.add("wrong");
   recordAnswer(x,correct,i);
-  card.querySelector(".qfb").innerHTML=feedbackHTML(x,qi,i,0);
-  slideOpen(card.querySelector(".qfb"));
+  card.querySelector(".qfb").innerHTML=feedbackHTML(x,qi,i,0,ladderFrom);
+  runLadder(card);slideOpen(card.querySelector(".qfb"));
   updateSegBadges();
   updateBankProgress(card);
 }
@@ -3898,6 +4080,7 @@ function updateSegBadges(){
    on a night shift. It survives a reload, because they will be interrupted. */
 const SESKEY="pg_session_v1";
 let session=JSON.parse(localStorage.getItem(SESKEY)||"null");
+let railFrom=null;   /* rail width before the last advance, so it glides instead of jumping */
 function saveSession(){session?localStorage.setItem(SESKEY,JSON.stringify(session)):localStorage.removeItem(SESKEY);}
 function startSession(qis,title,sub){
   if(!qis||!qis.length){toast("Nothing to practise there yet.");return;}
@@ -3946,13 +4129,14 @@ function sessAnswer(btn,i){
   card.classList.add("done");
   card.querySelectorAll(".opt").forEach((o,idx2)=>{o.classList.add("locked");if(idx2===x.ans)o.classList.add("correct");});
   if(!correct)btn.classList.add("wrong");
-  card.querySelector(".qfb").innerHTML=feedbackHTML(x,qi,i,secs);
-  slideOpen(card.querySelector(".qfb"));
+  card.querySelector(".qfb").innerHTML=feedbackHTML(x,qi,i,secs,ladderFrom);
+  runLadder(card);slideOpen(card.querySelector(".qfb"));
   const nx=document.getElementById("sessNext");
   if(nx)nx.classList.add("show");
   if(secs>=70){const pc=card.querySelector(".pace");if(pc)pc.classList.add("over");}
   const sc=document.getElementById("sessScore");
   if(sc)sc.innerHTML=sessScoreHTML();
+  const cn=document.querySelector(".goalbar.notched i.cur");if(cn)cn.classList.add("f");
 }
 function sessScoreHTML(){
   return `<span class="sok">✓ ${session.right}</span><span class="sno">✕ ${session.wrong}</span>`+
@@ -3961,6 +4145,7 @@ function sessScoreHTML(){
 function sessNext(){
   if(!session)return;
   if(session.cur>=session.qis.length-1){session.done=true;saveSession();renderPractice();window.scrollTo(0,0);return;}
+  railFrom=Math.round(session.cur/session.qis.length*100);
   session.cur++;session.tq=Date.now();saveSession();renderPractice();window.scrollTo(0,0);
 }
 function renderSession(){
@@ -3982,13 +4167,20 @@ function renderSession(){
       <circle class="pt" cx="12" cy="12" r="9"/>
       <circle class="pf" cx="12" cy="12" r="9" style="animation-delay:-${el.toFixed(1)}s,${(70-el).toFixed(1)}s"/></svg></span>`;
   const last=session.cur>=session.qis.length-1;
+  /* One notch per question while they still read at a glance; past ~30 a notch is
+     under 9px on a 360px phone, so fall back to the continuous rail. */
+  const notched=session.qis.length<=30;
+  const rail=notched
+    ?`<div class="goalbar notched">${session.qis.map((q,i)=>
+        `<i class="${session.picks[q]!=null?"f":""}${i===session.cur?" cur":""}"></i>`).join("")}</div>`
+    :`<div class="goalbar"><i style="width:${pct}%"></i></div>`;
   $("#practiceBody").innerHTML=`<div class="card sessbar">
     <div class="sesshead">
       <div class="sesstitle">${session.title}<em>${session.sub||"Answer, read the feedback, then swipe left."}</em>
         <div class="sessscore" id="sessScore">${sessScoreHTML()}</div></div>
       <button class="sessquit" onclick="quitSession()"><span class="xg" aria-hidden="true">&#10005;</span>Exit</button>
     </div>
-    <div class="goalbar"><i style="width:${pct}%"></i></div>
+    ${rail}
   </div>
   <div class="card qcard${answered?" done":""}" data-qi="${qi}" style="margin-bottom:14px">
     <div class="qtoprow"><span class="qsrc">${x.subject} · ${x.topic}</span>${pace}
@@ -3999,6 +4191,13 @@ function renderSession(){
   </div>`;
   const fab=$("#sessNext");
   if(fab){fab.textContent=last?"Finish session ›":"Next question ›";fab.classList.toggle("show",answered);}
+  /* Long sessions keep the continuous rail; glide it to its new width rather than
+     jumping. The transform is on the leaf <i>, never on the sticky .card.sessbar. */
+  const ri=$("#practiceBody .sessbar .goalbar:not(.notched) i");
+  if(ri&&railFrom!=null&&railFrom!==pct&&ri.animate&&!matchMedia("(prefers-reduced-motion:reduce)").matches)
+    ri.animate([{transform:`scaleX(${railFrom/Math.max(pct,1)})`},{transform:"scaleX(1)"}],
+      {duration:420,delay:120,easing:"cubic-bezier(.2,.7,.2,1)",fill:"both"});
+  railFrom=null;
 }
 /* Next with a slide: the answered card leaves left, the new one arrives from
    the right. Reduced motion, or no card on screen, just moves on. */
@@ -4052,14 +4251,14 @@ function renderSessionSummary(){
    Every `exp` in the bank is already the back of a card — the one high-yield
    point that question exists to teach. This just turns them over. "Needs
    work" drops that question to box 0, so it reappears in Due tomorrow. */
-let deck=null;
+let deck=null,deckLeaving=false;
 function startDeck(qis,title){
   if(!qis||!qis.length){toast("No cards there yet.");return;}
   deck={qis,cur:0,flipped:false,title,kept:0,again:0};
   go("timer");renderPractice();window.scrollTo(0,0);
 }
 function flipCard(){
-  if(!deck)return;
+  if(!deck||deckLeaving)return;
   deck.flipped=!deck.flipped;
   const c=document.querySelector(".fcard");
   if(!c){renderDeck();return;}
@@ -4068,16 +4267,25 @@ function flipCard(){
   if(a)a.classList.toggle("show",deck.flipped);
 }
 function deckMark(ok){
-  if(!deck)return;
-  const x=QBANK[deck.qis[deck.cur]],k=qKey(x);
-  if(!ok){
-    const r=stats[k]||{seen:0,correct:0,wrong:0,box:0};
-    r.box=0;schedule(r);stats[k]=r;localStorage.setItem(SKEY,JSON.stringify(stats));
-    deck.again++;
-  }else deck.kept++;
-  if(deck.cur>=deck.qis.length-1){deck.done=true;}
-  else{deck.cur++;deck.flipped=false;}
-  updateSegBadges();renderDeck();window.scrollTo(0,0);
+  if(!deck||deckLeaving)return;
+  const c=document.querySelector(".fcard");
+  const run=()=>{
+    if(!deckLeaving)return;deckLeaving=false;   /* animationend and the timeout both land here */
+    const x=QBANK[deck.qis[deck.cur]],k=qKey(x);
+    if(!ok){
+      const r=stats[k]||{seen:0,correct:0,wrong:0,box:0};
+      r.box=0;schedule(r);stats[k]=r;localStorage.setItem(SKEY,JSON.stringify(stats));
+      deck.again++;
+    }else deck.kept++;
+    if(deck.cur>=deck.qis.length-1){deck.done=true;}
+    else{deck.cur++;deck.flipped=false;}
+    updateSegBadges();renderDeck();window.scrollTo(0,0);
+  };
+  deckLeaving=true;
+  if(!c||matchMedia("(prefers-reduced-motion:reduce)").matches){run();return;}
+  c.classList.add(ok?"away":"back");
+  c.addEventListener("animationend",e=>{if(e.target===c)run();});
+  setTimeout(run,400);
 }
 function renderDeck(){
   if(deck.done){
@@ -4095,7 +4303,8 @@ function renderDeck(){
     </div>
     <div class="goalbar"><i style="width:${Math.round(deck.cur/deck.qis.length*100)}%"></i></div>
   </div>
-  <div class="card fcard${deck.flipped?" flipped":""}" onclick="flipCard()">
+  <div class="card fcard${deck.flipped?" flipped":""}" data-left="${
+      Math.min(2,deck.qis.length-deck.cur-1)}" onclick="flipCard()">
     <div class="fcin">
       <div class="fface front">
         <div class="fclab">${x.subject} · ${x.topic}</div>
@@ -4144,16 +4353,20 @@ function renderBank(){
    page-by-page renderers below are kept as the no-sheet fallback. */
 let sheetTopic=null;
 function qesc(t){return t.replace(/'/g,"\\'");}
-function openSheet(){const w=$("#sheet");if(!w.hidden)return;w.hidden=false;void w.offsetHeight;w.classList.add("open");}
-function closeSheet(){const w=$("#sheet");if(w.hidden)return;w.classList.remove("open");setTimeout(()=>{w.hidden=true;},340);}
+function openSheet(){const w=$("#sheet");if(!w.hidden)return;w.hidden=false;void w.offsetHeight;w.classList.add("open");
+  document.body.classList.add("sheeton");document.body.style.setProperty("--sheetp","1");pushLayer("sheet");}
+function closeSheet(fromPop){const w=$("#sheet");if(w.hidden)return;if(!fromPop)popLayer("sheet");
+  w.classList.remove("open");document.body.style.setProperty("--sheetp","0");
+  setTimeout(()=>{w.hidden=true;document.body.classList.remove("sheeton");},340);}
 function openBankSubject(s){bankSubj=s;sheetTopic=null;qStatusFilter="all";renderSheet();openSheet();}
-function openBankTopic(t){sheetTopic=t;renderSheet();openSheet();}
+function openBankTopic(t){sheetTopic=t;renderSheet();openSheet();pushLayer("topic");}
+function sheetBack(){popLayer("topic");sheetTopic=null;renderSheet();}
 function renderSheet(){
   const subQs=QBANK.filter(x=>x.subject===bankSubj);
   const body=$("#sheetBody"),head=$("#sheetHead");
   if(sheetTopic){
     const qs=subQs.filter(x=>x.topic===sheetTopic),att=attemptedCount(qs);
-    head.innerHTML=`<div class="sheetback" onclick="sheetTopic=null;renderSheet()">‹ ${bankSubj}</div>
+    head.innerHTML=`<div class="sheetback" onclick="sheetBack()">‹ ${bankSubj}</div>
       <h2>${sheetTopic}</h2><p class="submut">${qs.length} question${qs.length===1?"":"s"} · ${att} attempted</p>`;
     body.innerHTML=`<div class="qact">
       <button class="solid go" onclick="closeSheet();startSession(${JSON.stringify(idx(qs))},'${qesc(sheetTopic)}','${qesc(bankSubj)} · one at a time, with feedback')">Start session</button>
@@ -4189,9 +4402,13 @@ function renderSheet(){
 (()=>{
   const p=document.getElementById("sheetPanel"),h=document.getElementById("sheetHead"),g=p.querySelector(".grab");
   let y0=0,dy=0,on=false;
-  const st=e=>{y0=e.touches[0].clientY;dy=0;on=true;p.classList.add("drag");};
-  const mv=e=>{if(!on)return;dy=Math.max(0,e.touches[0].clientY-y0);p.style.transform=`translateY(${dy}px)`;};
-  const en=()=>{if(!on)return;on=false;p.classList.remove("drag");p.style.transform="";if(dy>90)closeSheet();};
+  const st=e=>{y0=e.touches[0].clientY;dy=0;on=true;p.classList.add("drag");
+    document.body.classList.add("sheetdrag");};
+  const mv=e=>{if(!on)return;dy=Math.max(0,e.touches[0].clientY-y0);p.style.transform=`translateY(${dy}px)`;
+    document.body.style.setProperty("--sheetp",String(1-Math.min(1,dy/p.offsetHeight)));};
+  const en=()=>{if(!on)return;on=false;p.classList.remove("drag");document.body.classList.remove("sheetdrag");
+    p.style.transform="";
+    if(dy>90)closeSheet();else document.body.style.setProperty("--sheetp","1");};
   [g,h].forEach(el=>{el.addEventListener("touchstart",st,{passive:true});el.addEventListener("touchmove",mv,{passive:true});el.addEventListener("touchend",en);el.addEventListener("touchcancel",en);});
 })();
 /* Bank search. The box is re-rendered with the list, so focus and caret are
@@ -4520,24 +4737,43 @@ function paintPalette(){
 function syncMockBar(){
   const bar=$("#mockBar");
   const show=mock&&!mock.submitted&&practiceView==="mock"&&document.querySelector("#scr-timer.on");
+  const was=bar.style.display!=="none";
   bar.style.display=show?"flex":"none";
   if(show){
     const nav=document.querySelector("nav");
     bar.style.bottom=(nav?nav.offsetHeight:64)+"px";
-    updateMockBar();
+    was?updateMockBar():barSnap();
   }
 }
+/* The drain rail must jump straight to the true remaining time when the bar first
+   appears or when a backgrounded tab comes back -- otherwise it would animate a
+   whole minute of catch-up in one second. */
+function barSnap(){const b=$("#mockBar");b.classList.add("nt");updateMockBar();
+  requestAnimationFrame(()=>requestAnimationFrame(()=>b.classList.remove("nt")));}
 function updateMockBar(){
-  const bar=$("#mockBar");if(!bar||!mock||mock.submitted)return;
+  const bar=$("#mockBar");if(!bar||!mock||mock.submitted||bar.classList.contains("out"))return;
   const left=Math.max(0,Math.round((mock.tEnd-Date.now())/1000));
+  const total=(mock.tEnd-(mock.startedAt||mock.tEnd-mock.total*60000))/1000;
   bar.querySelector(".mbtime").textContent=fmt(left);
   bar.classList.toggle("warn",left<=300);
+  bar.style.setProperty("--tleft",(left/total).toFixed(4));
   bar.querySelector(".mbanswered").textContent=`${mockAnsweredCount()} / ${mock.total} answered`;
   updateSegBadges();
-  if(left<=0){if(navigator.vibrate)navigator.vibrate([300,150,300]);beep();submitMock();}
+  const red=matchMedia("(prefers-reduced-motion:reduce)").matches,vis=bar.style.display!=="none";
+  if(left<=0){
+    clearInterval(mInt);mInt=null;
+    if(navigator.vibrate)navigator.vibrate([300,150,300]);beep();
+    if(vis&&!red){bar.classList.add("out");setTimeout(()=>{bar.classList.remove("out");submitMock();},500);}
+    else submitMock();
+    return;
+  }
+  /* One pulse every ten seconds in the last minute -- a reminder, not a loop. */
+  if(left<=60&&left%10===0&&vis&&!red){const t=bar.querySelector(".mbtime");
+    if(t.animate)t.animate([{scale:1},{scale:1.05,offset:.3},{scale:1}],
+      {duration:280,easing:"cubic-bezier(.2,.7,.2,1)"});}
 }
 function mockTick(){if(mock&&!mock.submitted)updateMockBar();}
-document.addEventListener("visibilitychange",()=>{if(!document.hidden&&mock&&!mock.submitted)updateMockBar();});
+document.addEventListener("visibilitychange",()=>{if(!document.hidden&&mock&&!mock.submitted)barSnap();});
 
 function submitMock(){
   if(!mock||mock.submitted)return;
@@ -4570,6 +4806,8 @@ function submitMock(){
   mock.date=new Date().toISOString().slice(0,10);
   mock.result={correct,wrong,skipped,marks:correct*4-wrong,max:mock.total*4,bySubj,
     avgT,totT,fastWrong,slowWrong,slowRight,tWrong,over};
+  mock.fresh=true;   /* consumed by the first *visible* report render, so an auto-submit
+                        behind a hidden tab does not waste the sequence */
   saveMock();
   pushMockHistory({date:new Date().toISOString().slice(0,10),marks:mock.result.marks,
     max:mock.result.max,correct,wrong,skipped,total:mock.total});
@@ -4769,6 +5007,11 @@ function renderMockReport(){
   const subjRows=Object.entries(r.bySubj).sort((a,b)=>b[1].total-a[1].total)
     .map(([s,t])=>`<tr><td>${s}</td><td>${t.correct}/${t.total}</td><td>${t.correct*4-t.wrong}</td></tr>`).join("");
   const open=mock.reportOpen!==false;
+  const anim=!!mock.fresh&&open&&practiceView==="mock"&&!document.hidden
+    &&!!document.querySelector("#scr-timer.on")
+    &&!matchMedia("(prefers-reduced-motion:reduce)").matches&&"animate" in Element.prototype;
+  if(anim){delete mock.fresh;saveMock();}
+  const g=Math.round(r.correct*4/r.max*100),n=Math.round(Math.max(0,r.marks)/r.max*100);
   const dateStr=mockDate(mock.date);
   /* Setup and history go between the report card and the question rows, so
      starting the next mock never sits below a 36-question review list. */
@@ -4781,11 +5024,13 @@ function renderMockReport(){
     </div>
     <div class="mrbody">
       <div class="ystats">
-        <div class="yst"><b>${r.marks}</b><span>of ${r.max} marks</span></div>
+        <div class="yst"><b class="mk">${anim?0:r.marks}</b><span>of ${r.max} marks</span></div>
         <div class="yst"><b>${r.correct}</b><span>correct</span></div>
         <div class="yst"><b>${r.wrong}</b><span>wrong</span></div>
         <div class="yst"><b>${r.skipped}</b><span>skipped</span></div>
       </div>
+      <div class="mkbar"><i class="gross" style="width:${g}%"></i><i class="net" style="width:${anim?0:n}%"></i></div>
+      <div class="mkcap"><b>+${r.correct*4}</b> · <b class="lost">−${r.wrong}</b></div>
       ${lossHTML}
       ${paceHTML}
       <h3>By subject</h3>
@@ -4795,6 +5040,20 @@ function renderMockReport(){
   </div>
   ${mockSetupHTML()}${mockHistoryHTML(true)}
   <div class="mrrows${open?"":" hide"}">${rows}</div>`;
+  if(anim){
+    countStages($(".mockrep .mk"),[{to:r.correct*4,dur:700},{to:r.marks,dur:420,delay:250}]);
+    const net=$(".mockrep .net");
+    if(net){
+      net.animate([{width:"0%"},
+        {width:g+"%",offset:.55,easing:"cubic-bezier(.2,.7,.2,1)"},
+        {width:g+"%",offset:.72,easing:"cubic-bezier(.2,.7,.2,1)"},
+        {width:n+"%"}],{duration:1370,easing:"cubic-bezier(.2,.7,.2,1)",fill:"forwards"});
+      /* The bar rides the document timeline and the counter rides a timer; a phone
+         backgrounded mid-sequence advances them differently. Pin the resting state
+         so the bar and the figure can never end up contradicting each other. */
+      setTimeout(()=>{net.style.width=n+"%";},1770);
+    }
+  }
 }
 /* Resume across reloads: if a mock's clock already ran out while the app was
    closed, finalize it now rather than leaving a zombie in-progress state;
