@@ -1749,3 +1749,55 @@ Format: one line per question — `- Subject · Topic · one-line gist`. When yo
 - Pathology · Neoplasia · grading (differentiation) vs staging (TNM) - independent prognostic information
 - Pathology · Blood Banking and Transfusion Medicine · Kleihauer-Betke test quantifies fetomaternal haemorrhage
 - Pathology · Hematology: Red Blood Cells · polycythaemia vera - JAK2 V617F mutation, low serum EPO
+
+<!-- 2026-09-07-daily-2.md -->
+- OBGYN · Early Pregnancy and Abortion · missed abortion definition (dead fetus, closed os, no expulsion)
+- OBGYN · Genital Infections, Prolapse and Urogynaecology · Baden-Walker halfway staging, 2nd degree = cervix at hymen
+- OBGYN · Obstetric Haemorrhage · atonic PPH refractory to medical therapy — balloon tamponade before surgical steps
+- OBGYN · Infertility and ART · severe oligozoospermia (3 million/mL) — ICSI indication over IUI/conventional IVF
+- OBGYN · Reproductive Anatomy and Physiology · obstetric conjugate is the narrowest pelvic inlet AP diameter
+- OBGYN · Antenatal Care and Fetal Assessment · absent end-diastolic flow on umbilical artery Doppler in FGR
+- OBGYN · Menstrual and Endocrine Disorders · Turner syndrome (45,X) phenotype — short stature, webbed neck, primary amenorrhea
+- OBGYN · Puerperium, Newborn and Lactation · lactational mastitis — continue breastfeeding + anti-staphylococcal antibiotics
+- OBGYN · Early Pregnancy and Abortion · methotrexate ectopic contraindicated by hemoperitoneum, not by favourable hCG/mass/cardiac-activity criteria
+- OBGYN · Genital Infections, Prolapse and Urogynaecology · stress urinary incontinence mechanism — urethral hypermobility/ISD
+- ENT · Pharynx · gag reflex afferent = glossopharyngeal (IX), efferent = vagus (X)
+- ENT · Ear · Gradenigo syndrome — otorrhoea + retro-orbital pain + CN VI palsy from petrous apicitis
+- ENT · Nose and Paranasal Sinuses · ethmoid (and maxillary) sinuses present at birth; frontal/sphenoid pneumatize later
+- ENT · Larynx · posterior cricoarytenoid sole vocal cord abductor; bilateral palsy causes airway obstruction
+- ENT · Ear · flat Type B tympanogram with normal canal volume = otitis media with effusion
+- Surgery · Cardiothoracic Vascular Surgery · pulsus paradoxus mechanism — septal shift limiting LV filling in tamponade
+- Surgery · Endocrine Surgery · hungry bone syndrome after correcting long-standing severe hyperparathyroidism
+- Surgery · Plastic Surgery · Rule of Nines TBSA calculation — whole limb 9% + anterior trunk 18%
+- Surgery · Neurosurgery · chronic subdural hematoma — crescentic hypodense collection, elderly/anticoagulated, weeks after minor trauma
+- Surgery · Gastrointestinal Surgery · Charcot's triad (fever+RUQ pain+jaundice) = acute cholangitis, vs Reynolds pentad = suppurative
+- Surgery · Urology · hypospadias — avoid circumcision, foreskin needed for repair
+- Surgery · Cardiothoracic Vascular Surgery · elective AAA repair threshold ≥5.5cm (men)
+- Surgery · Oncology · CA 19-9 for pancreatic cancer surveillance, false elevation in biliary obstruction
+- Surgery · Plastic Surgery · digit replantation — direct ice contact causes frostbite injury, use sealed-bag indirect cooling
+- Surgery · Hepatobiliary Pancreatic Surgery · Couinaud segments V-VIII = right lobe, II/III/IVa/IVb = left lobe (Cantlie's line)
+- Surgery · Gastrointestinal Surgery · low rectal cancer with sphincter invasion mandates APR over LAR
+- Psychiatry · Neurotic, Stress-Related and Somatoform Disorders · dissociative fugue — travel + new identity + amnesia post-stress
+- Psychiatry · Sexual Disorders · voyeuristic disorder diagnostic criteria (≥6 months, unsuspecting person, acted on/distress)
+- Psychiatry · Mood Disorders · persistent depressive disorder (dysthymia) — 2-year duration, no symptom-free period >2 months
+- Psychiatry · Substance-Related and Addictive Disorders · opioid overdose triad (coma+resp depression+miosis) — naloxone
+- Psychiatry · Schizophrenia Spectrum and Other Psychotic Disorders · schizophreniform disorder — 1 to <6 months duration
+- Medicine · Cardiology · CHA2DS2-VASc score for AF stroke risk/anticoagulation decision
+- Medicine · Neurology · Todd's paralysis — transient postictal focal weakness, diagnosis of exclusion
+- Medicine · Liver · SBP diagnostic ascitic fluid ANC cutoff ≥250 cells/mm3
+- Medicine · Oncology · tumor lysis syndrome (hyperK/hyperphos/hyperuricemia/hypoCa) — rasburicase for hyperuricemia
+- Medicine · Nephrology / Kidney Disease · KDIGO CKD staging by eGFR — G3b = 30-44
+- Medicine · Rheumatology / Connective Tissue Disorder · low C3/C4 + rising anti-dsDNA marks active lupus nephritis flare
+- Medicine · Cardiology · Killip Class II — S3/basal crackles without frank pulmonary edema or shock
+- Medicine · Oncology · Lambert-Eaton myasthenic syndrome — anti-VGCC, SCLC association, strength improves with use
+- Medicine · Liver · lactulose mechanism — colonic acidification traps NH4+, osmotic purge of ammoniagenic flora
+- Medicine · Endocrinology · subclinical hypothyroidism — elevated TSH with normal free T4
+- Pharmacology · ANS Pharmacology · dopamine dose-dependent receptor selectivity — low dose D1 renal/mesenteric vasodilation
+- Pharmacology · General Pharmacology · absolute oral bioavailability calculation from AUC ratio
+- Pharmacology · Autacoids · prostacyclin (PGI2) vs thromboxane A2 balance in platelet/vascular regulation
+- Pharmacology · Anticancer Drugs · bleomycin — dose-limiting pulmonary fibrosis, minimal myelosuppression
+- Pharmacology · Endocrine Pharmacology · dexamethasone highest glucocorticoid potency, negligible mineralocorticoid activity
+- Pharmacology · Antimicrobials : Anti Bacterial Drugs · fosfomycin inhibits MurA, an early cytoplasmic step of peptidoglycan synthesis
+- Pharmacology · Drugs Affecting Blood and Blood formation · vitamin K cofactor for gamma-glutamyl carboxylation of factors II/VII/IX/X
+- Pharmacology · Respiratory Pharmacology · theophylline levels raised by macrolide/fluoroquinolone CYP1A2 inhibition
+- Pharmacology · General Pharmacology · Phase I trials — first-in-human, healthy volunteers, safety/PK focus
