@@ -9,6 +9,10 @@
 !index.html
 !.gitignore
 
+# COVERAGE.md is not part of the deployed app, but we back it up in git
+# so it survives a machine change or folder wipe.
+!COVERAGE.md
+
 # PWA shell — needed for install-to-home-screen and offline use.
 !manifest.webmanifest
 !sw.js

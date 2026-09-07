@@ -1,0 +1,1751 @@
+# Coverage Ledger — what's already in the Practice bank
+
+**Read this FIRST before generating any new questions, in any session. Update it right after adding questions.** Its only job is to prevent duplicate questions across fresh sessions. The `QBANK` in [index.html](index.html) is the source of truth; this is the fast, cheap index of it (so a new session never has to read the whole growing app file just to check for repeats).
+
+Format: one line per question — `- Subject · Topic · one-line gist`. When you add questions, append their gists here. When you start a topic that already appears below, generate only *new* angles not already listed.
+
+**Every line starts `- Subject · `.** This is what makes it grep-able by subject (pattern `^- Subject ·`) instead of needing a full read — see [tools/DAILY_GENERATOR.md](tools/DAILY_GENERATOR.md) step 2 for the daily job's lookup method.
+
+---
+
+- Paediatrics · Iron deficiency anemia (cow's milk) · pre-op deferral of elective surgery for significant anemia
+- Paediatrics · Iron deficiency anemia (cow's milk) · which mechanism does NOT cause cow's-milk IDA (lactose distractor)
+- Paediatrics · Iron deficiency anemia (cow's milk) · cow's-milk introduction age + max daily volume guidance
+- Paediatrics · Iron deficiency anemia (cow's milk) · elemental iron dose (3–6 mg/kg/day) & duration past Hb normalization
+- Paediatrics · Iron deficiency anemia (cow's milk) · classic IDA peripheral smear (pencil cells, anisopoikilocytosis)
+- Paediatrics · Iron deficiency anemia (cow's milk) · ferritin as an acute-phase reactant (falsely normal in infection)
+- Paediatrics · Iron deficiency anemia (cow's milk) · earliest response marker after iron (reticulocytosis day 5–7)
+- Paediatrics · Iron deficiency anemia (cow's milk) · long-term complication of untreated toddler IDA (developmental delay, pica)
+- Paediatrics · Microcytic anemia — differentials · Mentzer index calculation → IDA vs thalassemia trait
+- Paediatrics · Microcytic anemia — differentials · TIBC as discriminator: IDA (high) vs anemia of chronic disease (low/normal)
+
+---
+
+*(New subjects/topics get added here as cases and PYQ batches are ingested — e.g. Microbiology, PSM, Anatomy.)*
+
+<!-- case 2026-08-07 childhood-intussusception-older-child -->
+- Paediatrics · Pediatric Gastroenterology · older-child (age >2, especially >6) intussusception should trigger active pathologic-lead-point search, not default "idiopathic"
+- Paediatrics · Pediatric Gastroenterology · peak age of idiopathic ileocolic intussusception is 5-9 months, ~80-90% before age 2
+- Paediatrics · Pediatric Gastroenterology · Meckel diverticulum is commonest PLP overall; lymphoma (Burkitt/NHL, ileocecal) important cause beyond age 6
+- Paediatrics · Pediatric Gastroenterology · absence of currant-jelly stool/sausage mass does not exclude intussusception — full triad seen in only a minority
+- Paediatrics · Pediatric Gastroenterology · target/doughnut sign on transverse USG is essentially diagnostic, further imaging not routinely needed
+- Paediatrics · Pediatric Gastroenterology · ileo-ileal intussusception raises suspicion for HSP-related submucosal haematoma, less reducible by enema than ileocolic
+- Paediatrics · Pediatric Gastroenterology · pneumatic (air) enema preferred over hydrostatic for non-operative reduction in a stable child
+- Paediatrics · Pediatric Gastroenterology · peritonitis/perforation/shock/failed enema/ileo-ileal type/suspected PLP push management toward surgery
+- Paediatrics · Pediatric Gastroenterology · mildly elevated CRP with normal counts in confirmed intussusception is a caution sign for bowel-wall compromise, supports urgent referral
+- Paediatrics · Pediatric Gastroenterology · successful non-operative reduction in a school-age child still needs active PLP surveillance before closing workup
+- Pathology · Hematology: White Blood Cells · Burkitt lymphoma — starry sky pattern, t(8;14) c-myc translocation, ileocecal intussusception lead point in older children
+- Anatomy · Abdomen · Meckel diverticulum from persistent omphalomesenteric (vitelline) duct, rule of 2s
+- Radiology · Gastrointestinal Radiology · pseudokidney/sandwich sign is the longitudinal counterpart of the target/doughnut sign in intussusception
+
+<!-- daily 2026-07-25 -->
+- Biochemistry · Vitamins · methylmalonic acid accumulation localises the block to B12, not folate
+- Biochemistry · Vitamins · vitamin C as cofactor for prolyl/lysyl hydroxylase in collagen
+- Microbiology · Parasitology · modified Ziehl-Neelsen for Cryptosporidium oocysts
+- Microbiology · Systemic Bacteriology · tumbling motility at 25 C identifies Listeria
+- Anatomy · Upper Limb · long thoracic nerve injury and winged scapula
+- Anatomy · Head and Neck · middle meningeal artery through foramen spinosum
+- Pharmacology · CVS Pharmacology · ACE inhibitor contraindicated in bilateral renal artery stenosis
+- Pharmacology · CVS Pharmacology · hypokalaemia precipitating digoxin toxicity
+- Pharmacology · Antibacterials · ethambutol and optic neuritis
+- PSM · Epidemiology · odds ratio as the measure available from a case-control study
+- PSM · Concept of Health and Disease · disability limitation as tertiary prevention
+- PSM · National Health Programmes · age of first measles-rubella dose under UIP
+- OBGYN · Obstetrics · magnesium sulphate for seizure prophylaxis in severe pre-eclampsia
+- OBGYN · Obstetrics · carboprost contraindicated in asthma during atonic PPH
+- OBGYN · Gynaecology · ampulla as commonest ectopic site
+- Surgery · Trauma · positive FAST with haemodynamic instability goes straight to laparotomy
+- Surgery · Urology · painless gross haematuria in an elderly smoker needs cystoscopy
+- Surgery · Gastrointestinal Surgery · free gas under the diaphragm and perforated peptic ulcer
+- Medicine · Cardiology · thrombolysis when primary PCI is not reachable within 120 minutes
+- Medicine · Cardiology · opening snap with mid-diastolic murmur in mitral stenosis
+- Medicine · Endocrinology · fluid resuscitation precedes insulin in DKA
+- Pathology · Haematology · Reed-Sternberg cell in Hodgkin lymphoma
+- Physiology · Respiratory · residual volume not measurable by spirometry
+- ENT · Ear · attic perforation with foul discharge indicates cholesteatoma
+
+<!-- daily 2026-07-26 -->
+- Microbiology · Systemic Bacteriology · Cary-Blair as the transport medium for Vibrio cholerae stool
+- Anatomy · Abdomen · Inferior epigastric artery as the landmark separating direct from indirect hernia
+
+<!-- daily 2026-08-01 -->
+- Biochemistry · Lipid Metabolism · ApoC-II deficiency causing impaired chylomicron clearance and severe hypertriglyceridemia
+- Forensic Medicine · Forensic Thanatology · Nysten's law — cranio-caudal onset sequence of rigor mortis
+- ENT · Nose and Paranasal Sinuses · juvenile nasopharyngeal angiofibroma in adolescent male with epistaxis, Holman-Miller sign
+- Physiology · Cardiovascular System · 'a' wave of JVP corresponds to right atrial contraction
+- Orthopaedics · Peripheral Nerve Injuries · radial nerve palsy (wrist drop) with mid-shaft humeral fracture
+- OBGYN · Gynecology · Rotterdam criteria for diagnosing PCOS
+- Pharmacology · Autacoids · bradykinin degraded by ACE (kininase II) — mechanism of ACEI-induced dry cough
+- Surgery · Urology · testicular torsion — absent cremasteric reflex, high-riding testis, emergency detorsion within 6 hours
+- PSM · Epidemiology · attack rate calculation using exposed population as denominator
+- Pharmacology · Antimicrobials : Anti Bacterial Drugs · vancomycin red man syndrome — rate-related histamine release, not true allergy
+
+<!-- daily 2026-08-03 -->
+- Forensic Medicine · Toxicology - General · cherry-red livor mortis/postmortem lividity indicates carbon monoxide poisoning
+- Paediatrics · Pediatric Gastroenterology · hypertrophic pyloric stenosis vignette leading to hypochloremic hypokalemic metabolic alkalosis
+- Anaesthesia · Oxygen Therapy and Airway · Venturi mask delivers fixed, predictable FiO2 via the Venturi/jet-mixing principle
+- Medicine · Rheumatology / Connective Tissue Disorder · adult dermatomyositis (heliotrope rash + Gottron papules) warrants age-appropriate malignancy screening
+- Orthopaedics · Spine + Pelvis + Lower Limb Traumatology · pelvic fracture with blood at meatus/high-riding prostate needs retrograde urethrogram before catheterization
+- Ophthalmology · Cornea · fungal keratitis (Fusarium) after vegetative trauma shows feathery margins and satellite lesions
+- PSM · Epidemiology · point source epidemic recognized by a single sharp peak within one incubation period, no propagation
+- Pharmacology · Antimicrobials: Anti Bacterial Drugs · grey baby syndrome in neonates from chloramphenicol due to immature glucuronyl transferase
+- Microbiology · Systemic Bacteriology · metachromatic (Babes-Ernst) granules on Albert stain identify Corynebacterium diphtheriae
+- Biochemistry · Carbohydrate Metabolism · phosphofructokinase-1 catalyzes the rate-limiting step of glycolysis
+
+<!-- daily 2026-07-28 -->
+- Psychiatry · Eating Disorders · refeeding syndrome hypophosphatemia during nutritional rehab in anorexia nervosa
+- Radiology · Genitourinary Radiology · staghorn calculus on KUB X-ray = struvite stone composition
+- Biochemistry · Vitamins · vitamin K deficiency in neonate leads to factors II, VII, IX, X deficiency and prolonged PT
+- Microbiology · Parasitology · banana-shaped gametocytes on smear pathognomonic for P. falciparum
+- Physiology · Nerve Muscle Physiology · saltatory conduction via Na+ channel clustering at nodes of Ranvier
+- PSM · Epidemiology · relative risk calculation from a cohort study of smoking and lung cancer
+- Pathology · Renal System · wire-loop lesions on light microscopy = diffuse proliferative lupus nephritis
+- OBGYN · Gynecology · whirlpool sign on Doppler USG diagnostic of ovarian torsion
+- Orthopaedics · Peripheral Nerve Injuries · radial nerve injury in mid-shaft humeral fracture causes wrist drop
+- Microbiology · Virology · owl's eye intranuclear inclusion bodies indicate cytomegalovirus
+
+<!-- daily 2026-07-27 -->
+- Biochemistry · Carbohydrate Metabolism · Von Gierke disease (GSD Ia, glucose-6-phosphatase deficiency) — fasting hypoglycemia, lactic acidosis, hyperuricemia, hepatomegaly
+- Medicine · Liver · Spontaneous bacterial peritonitis diagnosis (ascitic fluid ANC ≥250/mm3) and treatment with cefotaxime plus IV albumin
+- Anatomy · Abdomen · Contents of the free edge of the lesser omentum (portal triad) forming the anterior boundary of the epiploic foramen of Winslow
+- Pharmacology · General Pharmacology · Phenytoin follows zero-order (saturation) kinetics at therapeutic doses due to saturable CYP2C9/2C19 hydroxylation
+- Orthopaedics · Miscellaneous · Fat embolism syndrome triad (respiratory distress, confusion, petechial rash) 24-72h after long-bone (femoral) fracture
+- Pharmacology · CVS Pharmacology · Verapamil (AV-nodal blockers) contraindicated in WPW with atrial fibrillation — risk of accelerated accessory-pathway conduction and VF
+- Surgery · Urology · Testicular torsion clinical diagnosis (high-riding testis, absent cremasteric reflex, negative Prehn's sign) mandates emergency exploration without waiting for imaging
+- Pathology · Renal System · Linear IgG deposition along the GBM on immunofluorescence is diagnostic of anti-GBM (Goodpasture) disease
+- PSM · National Health Programmes · National Iron+ Initiative age-wise IFA prophylaxis dosing — 6-59 months get IFA syrup 1 mL twice weekly
+- Anatomy · Pelvis and Perineum · Pudendal nerve hooks around the ischial spine — key landmark for pudendal nerve block in labour/episiotomy
+
+<!-- daily 2026-08-03 -->
+- Anatomy · Abdomen · transpyloric plane of Addison — L1 level and structures it marks
+- Paediatrics · Pediatric Gastroenterology · intussusception — currant jelly stools, sausage mass, air enema reduction
+- Dermatology · Integrated Essentials · Nikolsky sign in pemphigus vulgaris — intraepidermal/suprabasal cleavage
+- Medicine · Rheumatology / Connective Tissue Disorder · CREST/limited systemic sclerosis — anti-centromere antibody
+- ENT · Pharynx · peritonsillar abscess (quinsy) — trismus, hot potato voice, uvular deviation, drainage
+- Ophthalmology · Cornea · HSV dendritic corneal ulcer with terminal bulbs on fluorescein stain
+- Pharmacology · Endocrine Pharmacology · propylthiouracil preferred over methimazole in first-trimester pregnancy
+- Medicine · Endocrinology · carbamazepine-induced SIADH — fluid restriction as initial management
+- Pathology · Respiratory System · eggshell calcification of hilar nodes — silicosis
+- Biochemistry · Carbohydrate Metabolism · McArdle disease (GSD V) — myophosphorylase deficiency, second-wind phenomenon
+
+<!-- daily 2026-08-04 -->
+- Paediatrics · Pediatric Gastroenterology · Hirschsprung disease — rectal suction biopsy (absent ganglion cells) as gold standard over contrast enema
+- Pharmacology · ANS Pharmacology · pralidoxime reactivates acetylcholinesterase in organophosphate poisoning before aging occurs
+- OBGYN · Gynecology · Meigs syndrome — ovarian fibroma with ascites and pleural effusion resolving after tumour removal
+- Physiology · General Physiology · resting membrane potential lies closest to K+ equilibrium potential due to high resting K+ permeability
+- OBGYN · Gynecology · bacterial vaginosis — clue cells and Amsel's criteria (pH, whiff test, discharge)
+- Orthopaedics · Metabolic Disorders · rickets — metaphyseal cupping and fraying at the wrist distinguishes from adult osteomalacia's Looser zones
+- Surgery · Endocrine Surgery · pheochromocytoma — alpha-blockade before beta-blockade pre-operatively to prevent hypertensive crisis
+- Radiology · Thoracic Radiology · Garland triad (1-2-3 sign) — bilateral hilar + right paratracheal lymphadenopathy in sarcoidosis
+- ENT · Nose and Paranasal Sinuses · beta-2 transferrin most specific test to confirm CSF rhinorrhoea after head trauma
+- PSM · Nutrition and Health · WHO MUAC cutoff <11.5 cm defines severe acute malnutrition in children 6-59 months
+
+<!-- daily 2026-08-05 -->
+- Medicine · Nephrology / Kidney Disease · distal (type 1) RTA presents with nephrocalcinosis/stones, hypokalemia, and urine pH persistently above 5.5
+- Physiology · Nerve Muscle Physiology · absolute refractory period is due to inactivation of voltage-gated Na+ channels
+- PSM · Allied Health Disciplines · occupational therapy vs physiotherapy — ADL/adaptive equipment vs gross motor/mobility
+- Psychiatry · Schizophrenia Spectrum and Other Psychotic Disorders · brief psychotic disorder = psychotic symptoms <1 month with full return to baseline, often stress-precipitated
+- Pathology · Hematology: White Blood Cells · Auer rods in blasts are diagnostic of acute myeloid leukemia
+- Ophthalmology · Optics · in axial myopia the image of a distant object forms in front of the retina
+- Surgery · Plastic Surgery · DIEP flap uses deep inferior epigastric perforators for breast reconstruction while sparing rectus abdominis
+- Pharmacology · ANS Pharmacology · clonidine is a central alpha-2 agonist used in resistant hypertension and withdrawal states
+- PSM · Nutrition and Health · kwashiorkor = edema, hepatomegaly, flag-sign hair, flaky-paint dermatosis with preserved fat, unlike marasmus
+- Microbiology · Virology · Negri bodies (cytoplasmic neuronal inclusions) are diagnostic of rabies virus infection
+
+<!-- daily 2026-08-06 -->
+- OBGYN · Gynecology · endometrial thickness ≤4mm on TVS in postmenopausal bleeding has high NPV, biopsy may be deferred
+- Forensic Medicine · Forensic Toxicology · aluminium phosphide (celphos) — garlic odor, refractory cardiogenic shock, no specific antidote
+- Microbiology · Parasitology · falling leaf motility identifies Giardia lamblia trophozoites on wet mount
+- Pathology · Hematology: White Blood Cells · TRAP-positive stain identifies hairy cell leukemia
+- Ophthalmology · Optics · presbyopia — age-related loss of lens accommodation corrected with convex near-addition lens
+- Biochemistry · Vitamins · thiamine (B1) as cofactor for pyruvate dehydrogenase, deficiency causes lactic acidosis
+- PSM · Vaccines and Cold Chain · shake test detects freeze damage in aluminium-adjuvanted vaccines (DPT, TT, HepB)
+- Surgery · Gastrointestinal Surgery · revised Atlanta classification — APFC vs pseudocyst distinguished by 4-week wall maturation
+- Radiology · Genitourinary Radiology · spinning top/keyhole sign on MCUG diagnostic of posterior urethral valves
+- Biochemistry · Vitamins · periconceptional folic acid supplementation prevents neural tube defects
+
+<!-- case 2026-08-06 fetal-biometry-head-lag -->
+- OBGYN · Fetal Growth and Biometry · head lagging with normal AC/FL is isolated microcephaly, the reverse of head-sparing FGR
+- OBGYN · Fetal Growth and Biometry · abdominal circumference is the earliest and worst-affected parameter in asymmetric FGR
+- OBGYN · Fetal Growth and Biometry · raised umbilical artery resistance with low cerebroplacental ratio is the Doppler signature of placental insufficiency
+- OBGYN · Fetal Microcephaly · fetal microcephaly = HC 3 SD or more below mean on a validated chart, not the postnatal 2 SD
+- OBGYN · Fetal Microcephaly · CMV is the commonest infective cause of microcephaly worldwide
+- OBGYN · Fetal Microcephaly · periventricular calcifications + maternal mononucleosis-like illness = congenital CMV (toxoplasma calcifications are scattered)
+- OBGYN · Fetal Microcephaly · consanguinity is the key history point for autosomal recessive primary microcephaly (MCPH)
+- OBGYN · Fetal Microcephaly · confirm dates against first-trimester CRL before labelling any parameter as lagging
+- OBGYN · Fetal Growth and Biometry · Hadlock EFW combines BPD, HC, AC, FL with AC weighted heaviest
+- OBGYN · Fetal Growth and Biometry · isolated microcephaly with normal Doppler needs workup and counselling, not early delivery
+- Biochemistry · Amino Acid Metabolism · maternal PKU syndrome = microcephaly + congenital heart disease + IUGR regardless of fetal genotype
+- Microbiology · Virology · CMV transmission rises with gestational age but damage severity is worst with first-trimester infection
+- Pathology · Genetics · MCPH is congenital non-progressive microcephaly, autosomal recessive, consanguinity a major risk factor
+
+<!-- daily 2026-08-07 -->
+- ENT · Pharynx · adenoid hypertrophy in children — diagnosis via adenoid facies and confirmed on lateral neck X-ray AN ratio
+- Surgery · Urology · BPH vs carcinoma prostate distinguished by DRE texture (smooth vs nodular) and PSA
+- Anatomy · Lower Limb · common peroneal nerve injury at fibular neck causes foot drop (loss of dorsiflexion + eversion)
+- Medicine · Endocrinology · volume status is the key bedside differentiator between SIADH (euvolemic) and cerebral salt wasting (hypovolemic)
+- ENT · Ear · otosclerosis — paracusis Willisii, normal TM, and Carhart's notch on audiogram in young adult conductive hearing loss
+- Paediatrics · Growth · postnatal serial head circumference plotting (not single measurement) to catch falling growth velocity after antenatal isolated microcephaly
+- Dermatology · Skin Appendages and their Disorders · gradual-onset hirsutism without virilizing features favors PCOS over an androgen-secreting tumor
+- Physiology · Cardiovascular System · MR murmur is pansystolic because the LV-LA pressure gradient persists throughout all of systole, unlike AS's ejection-shaped murmur
+- Pathology · Hematology: Red Blood Cells · increased osmotic fragility in hypotonic saline reflects reduced surface-area-to-volume ratio, classic for hereditary spherocytosis
+- Pharmacology · Endocrine Pharmacology · calcium/iron supplements chelate levothyroxine in the gut, requiring 4-hour dosing separation
+
+<!-- case 2026-08-06 sydenham chorea -->
+- Paediatrics · Rheumatic Fever & Sydenham Chorea · chorea alone satisfies Jones criteria without GAS evidence or a second criterion (2015 revision)
+- Paediatrics · Rheumatic Fever & Sydenham Chorea · eyelid flickering and darting tongue are both motor impersistence, one mechanism
+- Paediatrics · Rheumatic Fever & Sydenham Chorea · echo is mandatory despite a normal cardiac exam — subclinical valvulitis
+- Paediatrics · Rheumatic Fever & Sydenham Chorea · normal ASO does not exclude chorea because of its long latency; anti-DNase B better
+- Paediatrics · Rheumatic Fever & Sydenham Chorea · phenobarbital is the Nelson drug of choice for troublesome chorea; haloperidol/chlorpromazine if it fails
+- Paediatrics · Rheumatic Fever & Sydenham Chorea · secondary prophylaxis duration tiers by carditis status (5y/until 21 if none)
+- Paediatrics · Rheumatic Fever & Sydenham Chorea · Wilson disease is the must-exclude mimic — ceruloplasmin + slit lamp
+- Paediatrics · Rheumatic Fever & Sydenham Chorea · chorea + malar rash + photosensitivity in a teenage girl = SLE, not ARF
+- Paediatrics · Rheumatic Fever & Sydenham Chorea · milkmaid's grip vs pronator sign vs spooning — naming the bedside signs
+- Paediatrics · Rheumatic Fever & Sydenham Chorea · peak incidence girls 5–15 years, ~2:1 female predominance
+- Pathology · Immunopathology & Hypersensitivity · M protein molecular mimicry with basal ganglia neuronal antigens drives Sydenham chorea
+- Pharmacology · CNS Pharmacology - Sedative-Hypnotics · barbiturates increase DURATION of GABA-A chloride channel opening, benzodiazepines increase FREQUENCY
+- Pharmacology · CNS Pharmacology - Sedative-Hypnotics · paradoxical hyperactivity on phenobarbital in children; phenobarbital is a potent CYP450 inducer
+- PSM · Levels of Prevention · benzathine penicillin after an ARF attack = secondary prevention (Park's framework)
+
+<!-- 2026-08-09-daily.md -->
+- Dermatology · Miscellaneous Disorders · SJS/TEN classified by % BSA epidermal detachment: SJS <10%, overlap 10-30%, TEN >30%
+- Anatomy · Pelvis and Perineum · levator ani forms bulk of pelvic diaphragm, most stretched during vaginal delivery
+- Biochemistry · Carbohydrate Metabolism · pyruvate kinase deficiency is commonest glycolytic enzyme defect causing hereditary non-spherocytic hemolytic anemia
+- Psychiatry · Eating Disorders · bulimia nervosa purging causes hypokalemic hypochloremic metabolic alkalosis with paradoxical aciduria
+- Pharmacology · Drugs Affecting Blood and Blood formation · protamine sulfate neutralizes heparin by forming an inactive ionic complex
+- Physiology · Cardiovascular System · dicrotic notch on aortic pressure waveform marks aortic valve closure
+- Paediatrics · Pediatric Nephrology · HUS triad (MAHA, thrombocytopenia, AKI) after bloody diarrhea from Shiga-toxin E. coli; avoid antibiotics
+- OBGYN · Obstetrics · painless bright-red bleeding with soft uterus suggests placenta previa, avoid digital PV exam until USG
+- Physiology · General Physiology · Na+-K+ ATPase extrudes 3 Na+ and imports 2 K+ per ATP hydrolyzed
+- Surgery · Plastic Surgery · Parkland formula 4 mL/kg/%TBSA Ringer lactate, half given in first 8 hours post-burn
+
+<!-- 2026-08-08-daily.md -->
+- PSM · Nutrition and Health · National Vitamin A Prophylaxis Programme dosing schedule (1 lakh IU at 9mo, then 2 lakh IU 6-monthly)
+- Ophthalmology · Cornea · keratoconus scissoring reflex on retinoscopy vs oil-droplet reflex on distant direct ophthalmoscopy
+- Orthopaedics · Metabolic Disorders · Paget disease of bone — raised ALP with normal calcium/phosphate, hat-size increase
+- OBGYN · Gynecology · endometrioma/endometriosis triad (dysmenorrhea + dyspareunia + infertility), ground-glass cyst on TVS
+- Microbiology · Mycology · Cryptococcus neoformans India ink halo sign in HIV-associated meningitis
+- Paediatrics · Pediatric Gastroenterology · biliary atresia — triangular cord sign on USG, Kasai timing <60 days
+- PSM · Vaccines and Cold Chain · freeze-sensitive (adsorbed) vs heat-sensitive (live) vaccines in cold chain
+- ENT · Ear · acute coalescent mastoiditis (pinna pushed forward-down) vs Bezold's abscess
+- Radiology · Head & Neck Imaging · thumb sign (epiglottitis) vs steeple sign (croup) on lateral neck X-ray
+- Medicine · Endocrinology · post-pituitary-surgery central diabetes insipidus, desmopressin response test
+
+<!-- case 2026-08-10 microcytic-anemia-thalassemia-trait -->
+- Paediatrics · Microcytic anemia — differentials · Mentzer <13 with iron-replete studies → next test is HPLC for HbA2, not an iron trial
+- Physiology · Hemoglobin and oxygen transport · why beta-thal major is silent for the first months (HbF = alpha2gamma2 needs no beta chain)
+- Physiology · Hemoglobin and oxygen transport · HbF high O2 affinity mechanism (gamma chain Ser143 → poor 2,3-BPG binding)
+- Physiology · Iron metabolism · iron overload in non-transfused thalassaemia via erythroferrone suppressing hepcidin
+- Pathology · Thalassemia · hair-on-end skull — pathological basis is erythroid marrow expansion (image-described)
+- Pathology · Thalassemia · four-gene alpha deletion → Hb Bart (gamma4) hydrops fetalis
+- Pathology · Iron overload · cardiac iron is the leading cause of death; T2* MRI over ferritin; reversibility
+- Blood Bank · Transfusion practice in thalassemia · leucodepleted PRBC + extended Rh/Kell phenotyping before first transfusion
+- Blood Bank · Transfusion reactions · day-8 fall in Hb with positive DAT and new anti-E → delayed haemolytic transfusion reaction
+- Pharmacology · Iron chelators · chelator identified by weekly ANC requirement (deferiprone agranulocytosis)
+- Pharmacology · Iron poisoning · acute ferrous sulphate ingestion → IV deferoxamine; charcoal does not adsorb iron
+
+<!-- 2026-08-10-daily.md -->
+- Surgery · Cardiothoracic Vascular Surgery · Stanford Type A aortic dissection (ascending aorta) = surgical emergency vs Type B = medical management
+- Forensic Medicine · Court of Law · legally preferred recorder of a dying declaration when magistrate, doctor, police all available (magistrate first)
+- Ophthalmology · Uveitis · mutton-fat KPs + broad posterior synechiae = granulomatous uveitis (TB/sarcoid) vs fine KPs = non-granulomatous
+- Medicine · Rheumatology / Connective Tissue Disorder · drug-induced lupus (hydralazine) — anti-histone antibody positive, anti-dsDNA negative, nephritis/CNS rare, reversible on stopping drug
+- PSM · Vaccines and Cold Chain · VVM stage interpretation — square matching/darker than circle = discard regardless of expiry
+- OBGYN · Gynecology · FIGO PALM-COEIN classification of AUB — discrete intramural mass distorting cavity = leiomyoma (L)
+- Anaesthesia · Neuromuscular Blockade · sugammadex reverses rocuronium by direct encapsulation, not via acetylcholinesterase inhibition
+- ENT · Pharynx · retropharyngeal abscess in a young child — drooling, neck extension, widened prevertebral space, CT + surgical drainage
+- Pharmacology · Endocrine Pharmacology · SGLT2 inhibitor (empagliflozin) mechanism — insulin-independent renal glucosuria
+- Forensic Medicine · Ballistics · entry wound features — inverted margin, abrasion collar, smaller than exit wound
+
+<!-- 2026-08-13-daily.md -->
+- Surgery · Hepatobiliary Pancreatic Surgery · Courvoisier's law — painless jaundice + palpable non-tender GB → Ca head of pancreas
+- Biochemistry · Vitamins · pyridoxine (B6) prevents isoniazid-induced peripheral neuropathy
+- Microbiology · Parasitology · Culex quinquefasciatus vector for Wuchereria bancrofti (nocturnal periodicity)
+- Orthopaedics · Metabolic Disorders · WHO DEXA T-score criteria — osteoporosis vs osteopenia vs normal
+- ENT · Pharynx · Killian's dehiscence as the site of Zenker's diverticulum herniation
+- Orthopaedics · Peripheral Nerve Injuries · axillary nerve injury with anterior shoulder dislocation (deltoid weakness + regimental badge sensory loss)
+- OBGYN · Gynecology · Asherman syndrome after vigorous postpartum curettage — secondary amenorrhoea + cyclical pain
+- Biochemistry · Lipid Metabolism · HMG-CoA reductase — rate-limiting enzyme of cholesterol synthesis, statin target
+- Surgery · Urology · left-sided non-reducing varicocele as a red flag for renal cell carcinoma with renal vein invasion
+- Anatomy · Head and Neck · facial nerve exits skull via stylomastoid foramen
+
+<!-- 2026-08-10-daily-2.md -->
+- Pathology · Neoplasia · AFP as tumor marker for HCC and yolk sac tumor
+- OBGYN · Obstetrics · abruptio placentae vs placenta previa — painful bleeding with tense tender uterus
+- Pharmacology · CVS Pharmacology · furosemide mechanism — NKCC2 inhibition in thick ascending limb
+- Orthopaedics · Peripheral Nerve Injuries · axillary nerve injury in anterior shoulder dislocation — deltoid weakness + regimental badge sensory loss
+- Microbiology · Parasitology · RBC-containing trophozoites diagnostic of Entamoeba histolytica (vs non-pathogenic E. coli)
+- Biochemistry · Lipid Metabolism · HMG-CoA reductase as rate-limiting/statin-target enzyme of cholesterol synthesis
+- PSM · Vaccines and Cold Chain · Open Vial Policy — live reconstituted vaccines (BCG) discarded at session end vs liquid vaccines retained
+- PSM · Nutrition and Health · National Iron Plus Initiative — withhold iron and confirm HPLC in thalassemia-trait-suspect microcytosis with normal iron indices
+- Biochemistry · Carbohydrate Metabolism · G6PD deficiency — primaquine-triggered hemolysis with bite cells/Heinz bodies (HMP shunt)
+- Pharmacology · CVS Pharmacology · statin + fibrate combination risk — myopathy/rhabdomyolysis
+
+<!-- 2026-08-13-daily-2.md -->
+- Surgery · Plastic Surgery · avulsion injury dorsum of hand with exposed tendon needs vascularized flap not skin graft
+- PSM · Concept of Health and Disease · iceberg phenomenon — subclinical disease burden exceeds diagnosed cases
+- Physiology · Excretory System · inulin clearance as gold-standard GFR measurement vs creatinine/PAH
+- OBGYN · Gynecology · Bartholin's gland abscess — classic 4-5 o'clock posterior introital tender swelling
+- Medicine · Liver · West Haven hepatic encephalopathy grading (Grade II = lethargy + asterixis)
+- Dermatology · Skin Appendages and their Disorders · alopecia areata exclamation-mark hairs vs tinea capitis/trichotillomania
+- Pathology · Hematology: Red Blood Cells · hypersegmented neutrophils as marker of megaloblastic anemia
+- Ophthalmology · Retina · cherry-red spot macula in central retinal artery occlusion
+- Pharmacology · Antimicrobials : Anti Bacterial Drugs · fluoroquinolone cartilage damage — contraindicated in children/pregnancy
+- Surgery · Urology · distal ureteric stone ≤6-7mm → medical expulsive therapy with alpha-blocker first-line
+
+<!-- 2026-08-14-daily.md -->
+- Surgery · Gastrointestinal Surgery · sigmoid volvulus coffee-bean sign — endoscopic decompression first-line if no peritonism/gangrene
+- Pharmacology · General Pharmacology · loading dose determined by volume of distribution, not clearance
+- Medicine · Liver · hepatorenal syndrome-AKI diagnosis after failed albumin trial, terlipressin plus albumin first-line
+- Ophthalmology · Optics · regular astigmatism = perpendicular principal meridians, correctable by cylindrical lens
+- Forensic Medicine · Sexual Jurisprudence · two-finger test declared unconstitutional in Lillu v State of Haryana 2013
+- Pathology · Renal System · subepithelial hump-shaped deposits diagnostic of post-streptococcal glomerulonephritis
+- Paediatrics · Pediatric Gastroenterology · celiac disease — duodenal biopsy must be done while still on gluten-containing diet
+- Paediatrics · Growth · mid-parental height formula and target range to distinguish familial from pathological short stature
+- Biochemistry · Vitamins · niacin endogenously synthesized from tryptophan, explains pellagra in Hartnup disease
+- PSM · Allied Health Disciplines · audiologist performs diagnostic hearing testing distinct from speech-language pathologist's therapy role
+
+<!-- 2026-08-14-daily-2.md -->
+- ENT · Nose and Paranasal Sinuses · acute invasive fungal sinusitis (mucormycosis) in DKA — black eschar, emergency debridement plus amphotericin B
+- Anatomy · Pelvis and Perineum · perineal body as the central attachment for perineal muscles, its tearing predisposes to anal sphincter injury
+- Physiology · Nerve Muscle Physiology · Lambert-Eaton myasthenic syndrome — incremental response on high-frequency repetitive nerve stimulation, contrast with MG decrement
+- Pathology · Neoplasia · CA-125 as the tumour marker for monitoring epithelial ovarian carcinoma
+- Microbiology · Parasitology · uterine branch counting (15-20 vs 7-13) differentiates Taenia saginata from Taenia solium
+- Orthopaedics · Peripheral Nerve Injuries · anterior interosseous nerve injury in supracondylar humeral fracture — failed OK sign with intact sensation
+- OBGYN · Gynecology · imperforate hymen causing hematocolpos — cyclical pain with primary amenorrhoea and normal secondary sexual characters
+- Radiology · Thoracic Radiology · boot-shaped heart (coeur en sabot) sign of Tetralogy of Fallot
+- Dermatology · Cutaneous Infections · cutaneous larva migrans (creeping eruption) from Ancylostoma braziliense/caninum after barefoot beach exposure
+- Pathology · Cell Injury · cellular and mitochondrial swelling as the earliest reversible change in hypoxic cell injury
+
+<!-- 2026-08-14-daily-3.md -->
+- Medicine · Nephrology / Kidney Disease · IgA nephropathy synpharyngitic haematuria vs PSGN latent-period timing distinction
+- Pathology · Hematology: White Blood Cells · low LAP score distinguishes CML from a leukemoid reaction
+- Microbiology · Systemic Bacteriology · satellite phenomenon around S. aureus streak identifies X/V-factor-dependent H. influenzae
+- Anaesthesia · Oxygen Therapy and Airway · Mallampati classification — seated mouth-open tongue-protruded oropharyngeal grading for difficult airway prediction
+- Biochemistry · Lipid Metabolism · CPT-I as rate-limiting enzyme for mitochondrial entry of long-chain fatty acids in beta-oxidation
+- Orthopaedics · Pediatric Orthopedics · SCFE in obese adolescent boy — externally rotated limb, knee-referred pain, Klein's line
+- Surgery · Plastic Surgery · pale cool flap with no pinprick bleeding = arterial insufficiency, needs emergency re-exploration
+- PSM · Communicable and Non-communicable Diseases · dog bite Category II (superficial scratch, no bleeding) — vaccine only, no RIG
+- Biochemistry · Lipid Metabolism · familial hypercholesterolemia — tendon xanthomas + very high LDL + premature family CAD, LDL receptor defect
+- Pharmacology · Antimicrobials : Anti Bacterial Drugs · tetracycline avoided under age 8 due to permanent teeth discoloration/enamel hypoplasia
+
+<!-- 2026-08-16-daily.md -->
+- Forensic Medicine · Toxicology - General · Atropinization endpoint in OP poisoning judged by drying of secretions/clear chest, not heart rate or pupil size
+- OBGYN · Gynecology · Adenomyosis — globular tender uterus in parous woman, contrast with leiomyoma's discrete non-tender masses
+- Medicine · Nephrology / Kidney Disease · Minimal change disease — normal light microscopy, EM foot-process effacement, steroid-responsive nephrotic syndrome in children
+- PSM · Concept of Health and Disease · Primordial prevention — preventing risk-factor emergence before establishment, distinct from primary prevention
+- Paediatrics · Pediatric Gastroenterology · Malrotation with midgut volvulus — neonatal bilious vomiting, corkscrew sign on UGI contrast study
+- Orthopaedics · Orthopedics Oncology · Osteosarcoma — sunburst periosteal reaction + Codman triangle at metaphysis in an adolescent
+- Pathology · Neoplasia · CA 19-9 as the tumor marker for pancreatic carcinoma monitoring and recurrence detection
+- Surgery · Endocrine Surgery · Medullary thyroid carcinoma/MEN 2A — amyloid stroma, elevated calcitonin, RET mutation, family history of pheochromocytoma + hyperparathyroidism
+- Medicine · Nephrology / Kidney Disease · ADPKD — bilateral renal + hepatic cysts, family history, hypertension, PKD1 gene chromosome 16
+- Microbiology · Virology · Hepatitis B window period — IgM anti-HBc as sole detectable marker between HBsAg clearance and anti-HBs appearance
+
+<!-- 2026-08-17-daily.md -->
+- Ophthalmology · Optics · hypermetropia forms image behind retina, corrected with convex lens (contrast myopia)
+- Physiology · The Nervous System · muscle spindle Ia afferent mediates the monosynaptic knee-jerk stretch reflex
+- Medicine · Rheumatology / Connective Tissue Disorder · antiphospholipid syndrome: recurrent pregnancy loss + DVT + non-correcting mixing study points to lupus anticoagulant
+- PSM · National Health Programs · PMSMA fixed 9th-of-month free specialist ANC check, distinguished from JSY/JSSK/LaQshya
+- Paediatrics · Growth · constitutional delay of growth and puberty: delayed bone age, normal velocity, positive family "late bloomer" history
+- Anatomy · Head and Neck · foramen rotundum transmits maxillary nerve (V2)
+- Biochemistry · Carbohydrate Metabolism · classic galactosemia caused by GALT deficiency (vs galactokinase deficiency's milder cataract-only form)
+- Pathology · Hematology: Red Blood Cells · coarse basophilic stippling discriminates lead poisoning from beta-thalassemia trait (thal trait lacks stippling)
+- Ophthalmology · Retina · CRVO: "blood and thunder" fundus (disc oedema, venous dilatation, diffuse flame haemorrhages) vs CRAO's cherry-red spot
+- Surgery · Gastrointestinal Surgery · Reynolds' pentad (Charcot's triad + confusion + hypotension) = suppurative ascending cholangitis needing urgent ERCP
+
+<!-- 2026-08-17-daily-2.md -->
+- Biochemistry · Vitamins · Vitamin A (retinal) forms rhodopsin with opsin in rod cells — deficiency causes night blindness
+- Pathology · Genetics · 22q11.2 microdeletion (DiGeorge syndrome) — CATCH-22 features (cardiac defect, hypocalcemia, thymic hypoplasia)
+- Surgery · Plastic Surgery · Keloid extending beyond wound margins — first-line treatment is intralesional triamcinolone
+- Microbiology · Virology · HPV 16 and 18 are the high-risk genotypes most associated with cervical cancer
+- OBGYN · Obstetrics · Shoulder dystocia — McRoberts maneuver with suprapubic pressure is the first-line manoeuvre
+- Pharmacology · Drugs Affecting Blood and Blood formation · Folic acid supplementation in chronic hemolytic anemia (thalassemia major) — rationale is increased consumption from ongoing ineffective erythropoiesis
+- Dermatology · Skin Appendages and their Disorders · Hidradenitis suppurativa is primarily a disease of follicular occlusion, not primary apocrine gland infection
+- Medicine · Endocrinology · High-dose dexamethasone suppression test differentiates pituitary (Cushing disease) from ectopic/adrenal Cushing syndrome
+- OBGYN · Obstetrics · DIPSI single-step 75g OGTT — 2-hour plasma glucose ≥140 mg/dL diagnostic of GDM
+- Forensic Medicine · Ballistics · Exit gunshot wounds are larger with everted margins and no abrasion collar, unlike entry wounds
+
+<!-- 2026-08-17-daily-3.md -->
+- Anatomy · Head and Neck · jugular foramen transmits CN IX, X, XI and internal jugular vein/sigmoid sinus
+- Surgery · Cardiothoracic Vascular Surgery · cardiac tamponade — Beck's triad + pulsus paradoxus after chest trauma
+- Forensic Medicine · Court of Law · fitness of mind (not magistrate-only recording or oath) is the essential requirement for a valid dying declaration
+- Microbiology · Systemic Bacteriology · TCBS agar — yellow colonies for sucrose-fermenting Vibrio cholerae
+- Psychiatry · Mood Disorders · postpartum blues — day 3-5 onset, self-limiting within 2 weeks, vs depression/psychosis
+- Pathology · Hematology: White Blood Cells · smudge (basket) cells on peripheral smear are characteristic of CLL
+- Biochemistry · Genetics · Southern blot detects DNA via labeled probe after gel electrophoresis (SNoW DRoP mnemonic)
+- PSM · National Health Programs · Nikshay portal is the mandatory NTEP case notification system for TB
+- OBGYN · Gynecology · VIA (visual inspection with acetic acid) is the low-cost PHC-level cervical cancer screening test in India
+- Medicine · Nephrology / Kidney Disease · KDIGO AKI staging uses the worse of creatinine-ratio vs urine-output criteria (worked example, Stage 2)
+
+<!-- 2026-08-17-daily-4.md -->
+- PSM · Epidemiology · lead-time bias vs length-time bias — screening test appears to prolong survival without changing actual death date
+- OBGYN · Gynecology · mature cystic teratoma (dermoid) sonographic triad — Rokitansky nodule with acoustic shadow + fat-fluid level
+- Pathology · Respiratory System · caseating granuloma of TB — central caseation, epithelioid cells, Langhans giant cells, lymphocytic cuff
+- Pharmacology · ANS Pharmacology · physostigmine — tertiary amine anticholinesterase that crosses BBB to treat central anticholinergic toxicity
+- Ophthalmology · Uveitis · band keratopathy — calcium deposition in Bowman's layer from chronic anterior uveitis (esp. JIA)
+- Microbiology · Virology · dengue NS1 antigen — detectable day 1-9 of illness, before IgM seroconversion
+- ENT · Pharynx · paediatric OSA from adenotonsillar hypertrophy — adenotonsillectomy as first-line management
+- Medicine · Neurology · Guillain-Barré syndrome — post-diarrhoeal ascending weakness with CSF albuminocytologic dissociation
+- Dermatology · Integrated Essentials · bullous pemphigoid vs pemphigus vulgaris — tense/subepidermal/oral-sparing vs flaccid/intraepidermal/oral-involved
+- Pathology · Respiratory System · small cell lung carcinoma paraneoplastic SIADH — ectopic ADH secretion causing hyponatremia
+
+<!-- 2026-08-17-daily-5.md -->
+- Medicine · Rheumatology / Connective Tissue Disorder · gout vs pseudogout — negatively birefringent needle crystals, podagra
+- Paediatrics · Infectious Diseases · pertussis in under-immunized infant — paroxysmal whoop + absolute lymphocytosis
+- Forensic Medicine · Forensic Thanatology · postmortem lividity (livor mortis) fixation timing, non-blanching/non-shifting after ~6-8 hours
+- Pharmacology · Antimicrobials : Anti Bacterial Drugs · clindamycin as classic trigger for C. difficile pseudomembranous colitis
+- Anatomy · Histology · trachea lined by pseudostratified ciliated columnar epithelium with goblet cells
+- Surgery · Plastic Surgery · split-thickness vs full-thickness skin graft trade-offs (graft take vs contracture)
+- Physiology · The Nervous System · Babinski sign (extensor plantar response) localizes to corticospinal tract lesion
+- Microbiology · Mycology · Candida albicans germ tube test in serum at 37°C
+- Biochemistry · Genetics · anticipation — trinucleotide repeat expansion in Huntington disease and Fragile X syndrome
+- Surgery · Cardiothoracic Vascular Surgery · ruptured abdominal aortic aneurysm classic triad (pain, hypotension, pulsatile mass)
+
+<!-- 2026-08-17-daily-6.md -->
+- Biochemistry · Vitamins · riboflavin (B2) deficiency triad — angular stomatitis, cheilosis, magenta tongue
+- Pharmacology · General Pharmacology · sublingual route bypasses hepatic first-pass metabolism vs oral/rectal-upper/intraperitoneal
+- Paediatrics · Neonatology · modified Bell staging of NEC — pneumatosis intestinalis alone = Stage IIA
+- Medicine · Neurology · Guillain-Barré syndrome post-diarrheal ascending weakness with CSF albuminocytologic dissociation
+- PSM · Epidemiology · herd immunity threshold formula (1 − 1/R0) applied to R0 = 5
+- Surgery · Endocrine Surgery · primary hyperparathyroidism — surgical criteria and minimally invasive parathyroidectomy for localized single adenoma
+- PSM · National Health Programs · National Guidelines for Prevention and Control of Hemoglobinopathies — premarital/antenatal carrier screening (thalassemia case-anchored)
+- ENT · Nose and Paranasal Sinuses · bilateral choanal atresia — cyclical cyanosis relieved by crying, failed catheter passage
+- Anaesthesia · Cardiopulmonary Cerebral Resuscitation · epinephrine redosing interval (every 3–5 min) in ACLS cardiac arrest
+- Ophthalmology · Cornea · vernal keratoconjunctivitis — cobblestone papillae, itching, ropy discharge in young atopic patient
+
+<!-- 2026-08-17-daily-7.md -->
+- OBGYN · Gynecology · Krukenberg tumour — bilateral solid ovarian masses with signet-ring cells, metastatic from a gastric (or colon/breast) primary
+- Pathology · Respiratory System · Honeycomb lung with subpleural/basal fibrosis = usual interstitial pneumonia (UIP/IPF), distinguished from NSIP
+- Pharmacology · ANS Pharmacology · Glycopyrrolate vs atropine — quaternary amine does not cross BBB, preferred premedicant in elderly/pregnancy
+- Microbiology · Systemic Bacteriology · Optochin sensitivity distinguishes Streptococcus pneumoniae from viridans streptococci
+- PSM · Allied Health Disciplines · Genetic counsellor's distinct role vs lab technician/nurse/social worker — case-anchored to thalassaemia-trait family counselling
+- Pharmacology · CVS Pharmacology · Metoprolol cardioselectivity (beta-1) vs non-selective propranolol/nadolol/carvedilol — asthma-safer choice
+- Anatomy · Abdomen · Portal vein formation behind the neck of pancreas: superior mesenteric vein + splenic vein
+- Paediatrics · Fluid and Electrolyte Disturbances · Hypernatremic dehydration — safe max correction rate ~0.5 mEq/L/hr (≤10-12 mEq/L/day) over 48h
+- Ophthalmology · Retina · ROP staging — Stage 1 flat demarcation line vs Stage 2 ridge vs Stage 3 extraretinal proliferation vs Stage 4 detachment
+- ENT · Pharynx · Adenotonsillar hypertrophy causing paediatric obstructive sleep apnea — adenotonsillectomy as definitive management
+
+<!-- 2026-08-17-daily-10.md -->
+- Medicine · Cardiology · Corrigan's (water-hammer) pulse — wide pulse pressure sign of severe aortic regurgitation
+- OBGYN · Gynecology · tender adnexal mass in PID points to tubo-ovarian abscess — TVS then IV antibiotics
+- Paediatrics · Pediatric Nephrology · Alport syndrome triad — hematuria + sensorineural deafness + anterior lenticonus, X-linked pattern
+- Medicine · Endocrinology · Whipple's triad confirms true hypoglycemia before pursuing insulinoma work-up
+- Surgery · Plastic Surgery · dusky/blue flap with brisk dark bleeding = venous congestion, contrast with pale arterial insufficiency
+- Forensic Medicine · Ballistics · tattooing/stippling from unburnt powder grains indicates intermediate (near)-range firearm discharge
+- PSM · Concept of Health and Disease · web of causation models multifactorial disease, contrast with agent-host-environment triad
+- Ophthalmology · Cornea · Kayser-Fleischer ring — copper deposition in Descemet's membrane, Wilson disease
+- OBGYN · Obstetrics · vasa previa — painless bleeding at membrane rupture with sudden fetal bradycardia, velamentous cord insertion
+- Dermatology · Sexually Transmitted Infections · chancroid — painful ragged ulcer + suppurative bubo + school-of-fish Gram stain, contrast with painless syphilitic chancre
+
+<!-- 2026-08-17-daily-11.md -->
+- Microbiology · Parasitology · perianal adhesive tape test (Graham's/NIH swab) each morning, best diagnostic method for Enterobius vermicularis
+- Forensic Medicine · Forensic Toxicology · methanol poisoning — fomepizole/ethanol competitively inhibit alcohol dehydrogenase to block formic acid formation
+- Biochemistry · Genetics · genomic imprinting explains why the same 15q11-13 deletion gives Prader-Willi (paternal) vs Angelman (maternal)
+- Psychiatry · Sexual Disorders · vaginismus — involuntary pelvic floor spasm with normal anatomy, treated with graded dilators + CBT, not surgery
+- Surgery · Endocrine Surgery · papillary thyroid carcinoma — Orphan Annie eye nuclei/psammoma bodies on FNAC, lymphatic spread without major prognostic penalty
+- Medicine · Nephrology / Kidney Disease · membranous nephropathy — spike-and-dome subepithelial deposits, screen older adults for secondary causes (malignancy, hepatitis B, lupus)
+- Surgery · Hepatobiliary Pancreatic Surgery · Mirizzi syndrome — impacted cystic duct stone causing extrinsic CHD compression, mimics hilar malignancy
+- Pathology · Hematology: White Blood Cells · t(9;22) BCR-ABL1 Philadelphia chromosome as the defining cytogenetic abnormality of CML
+- Biochemistry · Carbohydrate Metabolism · hereditary fructose intolerance (aldolase B deficiency) — hypoglycaemia/hepatic injury on introducing fruit/sucrose
+- Medicine · Liver · Budd-Chiari syndrome — hepatic venous outflow obstruction, caudate lobe hypertrophy, OCP/hypercoagulable risk
+
+<!-- 2026-08-17-daily-12.md -->
+- Microbiology · Mycology · Histoplasma capsulatum — intracellular yeast in macrophages after cave/bat-dropping exposure (spelunker's disease)
+- OBGYN · Gynecology · MRKH syndrome — absent uterus with normal ovaries/secondary sexual characters and normal 46XX karyotype, contrast with AIS
+- Dermatology · Miscellaneous Disorders · erythema multiforme — HSV-triggered target lesions, minimal mucosal disease, distinct from drug-triggered SJS/TEN
+- OBGYN · Gynecology · red (carneous) degeneration of a fibroid in pregnancy — acute focal pain and low-grade fever, managed conservatively
+- Biochemistry · Lipid Metabolism · LCAT esterifies HDL-surface free cholesterol, driving reverse cholesterol transport; deficiency causes fish-eye disease
+- Medicine · Endocrinology · primary hyperaldosteronism (Conn) — resistant hypertension, hypokalemic alkalosis, high aldosterone-renin ratio with suppressed renin
+- Surgery · Plastic Surgery · escharotomy for circumferential full-thickness burn causing distal ischemia, distinct from fasciotomy and fluid resuscitation
+- Microbiology · Parasitology · Strongyloides stercoralis unique autoinfective cycle enabling lifelong persistence and hyperinfection in immunosuppression
+- PSM · Communicable and Non-communicable Diseases · Category III dog bite (bleeding transdermal bite) requires vaccine plus RIG, unlike Category II
+- Radiology · Genitourinary Radiology · Bosniak III renal cyst (thick irregular enhancing septa) warrants surgical excision given ~50% malignancy risk
+
+<!-- 2026-08-17-daily-8.md -->
+- PSM · Communicable and Non-communicable Diseases · WHO operational PB vs MB leprosy classification by skin lesion count and slit-skin smear status
+- ENT · Pharynx · nasopharyngeal carcinoma — EBV association, fossa of Rosenmüller mass with unilateral serous otitis media and neck node
+- Paediatrics · Fluid and Electrolyte Disturbances · WHO/IMNCI Plan C severe dehydration IV schedule differs by age (<12mo vs ≥12mo)
+- Medicine · Rheumatology / Connective Tissue Disorder · Takayasu arteritis ("pulseless disease") — young woman with limb claudication and pulse/BP asymmetry
+- Anatomy · Histology · transitional epithelium (urothelium) lines the urinary bladder, allowing distension
+- OBGYN · Gynecology · granulosa cell tumour — oestrogenic, Call-Exner bodies, inhibin B, causes postmenopausal bleeding via endometrial hyperplasia
+- Surgery · Cardiothoracic Vascular Surgery · acute limb ischaemia (embolic, AF source) — 6 P's, immediate heparin plus urgent embolectomy
+- Biochemistry · Carbohydrate Metabolism · fructose-1,6-bisphosphatase as the rate-limiting, allosterically regulated enzyme of gluconeogenesis
+- Pathology · Hematology: White Blood Cells · faggot cells (Auer rod bundles) diagnostic of acute promyelocytic leukemia (AML M3), t(15;17)
+- Pharmacology · Antimicrobials : Anti Bacterial Drugs · linezolid's weak MAO-inhibitory activity risks serotonin syndrome with SSRIs
+
+<!-- 2026-08-17-daily-9.md -->
+- Surgery · Urology · vaginal hydrocele — cystic, transilluminant, examiner can "get above" it, testis impalpable separately (vs hernia/epididymal cyst/varicocele)
+- Microbiology · Systemic Bacteriology · Bordet-Gengou medium as the classical selective medium for Bordetella pertussis
+- Microbiology · Parasitology · Phlebotomus argentipes (sandfly) as the vector for Leishmania donovani / kala-azar in India
+- PSM · Epidemiology · sensitivity calculation from a 2x2 screening-test table, distinguished from specificity/PPV/NPV
+- Pharmacology · Antimicrobials : Anti Bacterial Drugs · metronidazole disulfiram-like reaction via aldehyde dehydrogenase inhibition
+- Radiology · Thoracic Radiology · Kerley B lines as a sign of interstitial pulmonary edema/raised pulmonary venous pressure
+- Medicine · Neurology · forehead sparing distinguishes UMN (stroke) from LMN (Bell's palsy) facial nerve palsy
+- Paediatrics · Pediatric Nephrology · nephrotic syndrome relapse predisposes to spontaneous bacterial peritonitis due to S. pneumoniae (IgG/factor B urinary loss)
+- Biochemistry · Genetics · genomic imprinting — Prader-Willi (paternal 15q11-13 deletion) vs Angelman (maternal deletion, same region)
+- Ophthalmology · Uveitis · HLA-B27-associated acute anterior uveitis — unilateral, recurrent, non-granulomatous, linked to ankylosing spondylitis
+
+<!-- 2026-08-17-daily-13.md -->
+- Pathology · Cell Injury · flocculent amorphous mitochondrial densities on EM mark irreversible cell injury, distinct from reversible mitochondrial swelling
+- Medicine · Nephrology / Kidney Disease · drug-induced acute interstitial nephritis — fever, rash, eosinophiluria, sterile pyuria with WBC casts after a culprit drug (e.g. fluoroquinolone)
+- Pharmacology · Autacoids · PGE1 (alprostadil) infusion maintains ductus arteriosus patency in duct-dependent congenital heart disease
+- Anatomy · Pelvis and Perineum · pudendal canal (Alcock's canal) along the ischiorectal fossa wall carries the pudendal nerve and internal pudendal vessels
+- Anatomy · Histology · oesophageal stratified squamous epithelium transitions to simple columnar at the gastroesophageal (Z-line) junction
+- Pharmacology · Antimicrobials : Anti Bacterial Drugs · daptomycin inactivated by pulmonary surfactant, cannot be used for pneumonia despite gram-positive potency
+- Pathology · Respiratory System · alpha-1 antitrypsin deficiency causes panacinar, lower-lobe emphysema plus cirrhosis in a young non-smoker
+- Pharmacology · ANS Pharmacology · glycopyrrolate's onset best matches neostigmine's, preferred pairing during neuromuscular blockade reversal to avoid tachycardia-bradycardia mismatch
+- Surgery · Hepatobiliary Pancreatic Surgery · choledochal cyst — Type I fusiform dilatation, treated with complete excision plus Roux-en-Y hepaticojejunostomy to prevent cholangiocarcinoma
+- Orthopaedics · Spine + Pelvis + Lower Limb Traumatology · cauda equina syndrome — bilateral leg weakness, saddle anaesthesia, urinary retention needs emergency MRI and urgent decompression
+
+<!-- 2026-08-17-daily-14.md -->
+- Orthopaedics · Metabolic Disorders · X-linked hypophosphatemic rickets — normal calcium/low phosphate/no response to vitamin D distinguishes from nutritional rickets and RTA
+- Anatomy · Abdomen · McBurney's point — junction of lateral 1/3 and medial 2/3 of umbilicus-to-right ASIS line, distinct from midpoint of inguinal ligament
+- Pharmacology · ANS Pharmacology · Phenoxybenzamine — irreversible non-selective alpha blocker for preoperative pheochromocytoma preparation, before beta blockade
+- ENT · Nose and Paranasal Sinuses · septal hematoma after nasal trauma needs urgent incision and drainage to prevent avascular necrosis/saddle nose
+- Surgery · Gastrointestinal Surgery · achalasia cardia — bird-beak barium swallow, esophageal manometry confirms aperistalsis and failed LES relaxation
+- OBGYN · Gynecology · Ovarian hyperstimulation syndrome (OHSS) after gonadotropin-triggered IVF cycle — VEGF-mediated ascites, hemoconcentration, bilateral ovarian enlargement
+- Forensic Medicine · Toxicology - General · kerosene/hydrocarbon poisoning — emesis and gastric lavage contraindicated due to aspiration pneumonitis risk
+- Paediatrics · Fluid and Electrolyte Disturbances · cerebral edema during DKA treatment — headache/bradycardia/falling GCS treated with mannitol or 3% saline and slower fluids
+- Microbiology · Systemic Bacteriology · Wilson-Blair (bismuth sulfite) medium — H2S production gives Salmonella Typhi jet-black colonies
+- Pathology · Cell Injury · massive calcium influx with mitochondrial vacuolization marks the irreversible point of no return in hypoxic cell injury
+
+<!-- 2026-08-17-daily-16.md -->
+- Forensic Medicine · Forensic Toxicology · N-acetylcysteine repletes glutathione to neutralize NAPQI in paracetamol overdose
+- Dermatology · Skin Appendages and their Disorders · isotretinoin mandates dual contraception given pregnancy-category-X teratogenicity
+- OBGYN · Obstetrics · cord prolapse — elevate presenting part off the cord while arranging emergency caesarean
+- Medicine · Endocrinology · thyroid storm drug sequencing — propylthiouracil at least one hour before iodine
+- Pathology · Renal System · focal segmental glomerulosclerosis defined by segmental sclerosis/hyalinosis in some glomeruli, commonest cause of steroid-resistant nephrotic syndrome
+- ENT · Nose and Paranasal Sinuses · Samter's triad — asthma, nasal polyps, NSAID/aspirin hypersensitivity (aspirin-exacerbated respiratory disease)
+- Surgery · Gastrointestinal Surgery · Alvarado score 7-10 supports proceeding straight to appendectomy without further imaging
+- Biochemistry · Carbohydrate Metabolism · glucokinase's high Km and lack of product inhibition make it the beta-cell glucose sensor
+- Anaesthesia · Neuromuscular Blockade · succinylcholine causes exaggerated hyperkalemia via extrajunctional ACh receptor upregulation in burns/denervation
+- PSM · Communicable and Non-communicable Diseases · AFP surveillance case definition — any child under 15 years with sudden flaccid paralysis, any cause
+
+<!-- 2026-08-17-daily-15.md -->
+- Radiology · Basics of Radiology · MRI is the only common imaging modality using no ionizing radiation
+- PSM · Epidemiology · recall bias is greatest in case-control studies due to retrospective exposure recall after outcome is known
+- Surgery · Endocrine Surgery · FNAC "follicular neoplasm" cannot distinguish adenoma from carcinoma — diagnostic lobectomy is mandatory next step
+- Medicine · Nephrology / Kidney Disease · proximal (type 2) RTA with Fanconi syndrome — glucosuria/phosphaturia/aminoaciduria with urine pH falling below 5.5 on acid load, unlike distal RTA
+- OBGYN · Gynecology · Fitz-Hugh-Curtis syndrome — PID-related perihepatitis mimicking cholecystitis with normal LFTs and gallbladder
+- Physiology · The Nervous System · Golgi tendon organ/Ib afferent mediates autogenic inhibition (inverse myotatic reflex), contrast muscle spindle/Ia stretch reflex
+- Surgery · Cardiothoracic Vascular Surgery · Buerger's disease (thromboangiitis obliterans) in a young smoker — corkscrew collaterals, smoking cessation is the only disease-modifying treatment
+- Ophthalmology · Optics · cornea contributes about two-thirds of the eye's total refractive power, more than the crystalline lens
+- OBGYN · Obstetrics · umbilical cord prolapse — manual elevation of presenting part plus knee-chest/Trendelenburg positioning pending emergency cesarean
+
+<!-- 2026-08-17-daily-17.md -->
+- Medicine · Rheumatology / Connective Tissue Disorder · anti-Scl-70 marks diffuse cutaneous systemic sclerosis vs anti-centromere for limited/CREST variant
+- Surgery · Gastrointestinal Surgery · Boerhaave syndrome — forceful vomiting, subcutaneous emphysema, Hamman's crunch after alcohol binge
+- Pharmacology · General Pharmacology · maintenance dose is determined by clearance, contrasted with loading dose determined by volume of distribution
+- Pathology · Genetics · mitochondrial inheritance with heteroplasmy — maternal-only transmission, variable severity from mutant/normal mtDNA ratio
+- Paediatrics · Infectious Diseases · diphtheria — adherent bleeding pseudomembrane, bull neck, in an unimmunized child
+- Pharmacology · Endocrine Pharmacology · metformin's primary mechanism — AMPK activation reducing hepatic gluconeogenesis
+- Ophthalmology · Retina · leukocoria in an infant mandates urgent exclusion of retinoblastoma
+- Dermatology · Miscellaneous Disorders · erythema nodosum — tender non-ulcerating pretibial nodules post-streptococcal, septal panniculitis
+- Paediatrics · Pediatric Nephrology · IgA vasculitis (HSP) tetrad — palpable purpura, arthralgia, abdominal pain, nephritis
+
+<!-- 2026-08-18-daily.md -->
+- Forensic Medicine · Sexual Jurisprudence · marital rape exception age-18 threshold (Independent Thought v UOI 2017)
+- Pharmacology · Antimicrobials: Anti Bacterial Drugs · streptomycin vestibulotoxicity vs cochleotoxic aminoglycosides (amikacin/kanamycin/neomycin)
+- OBGYN · Obstetrics · Bishop score calculation and unfavorable-cervix induction (PGE2/misoprostol before oxytocin)
+- Dermatology · Sexually Transmitted Infections · secondary syphilis staging (palmoplantar rash, condylomata lata, lymphadenopathy)
+- Surgery · Cardiothoracic Vascular Surgery · ABI interpretation and conservative management of mild-moderate PAD
+- Biochemistry · Carbohydrate Metabolism · glucokinase high-Km glucose sensor vs low-Km hexokinase
+- Ophthalmology · Uveitis · Toxoplasma gondii posterior retinochoroiditis ("headlight in fog") vs CMV retinitis
+- Medicine · Rheumatology / Connective Tissue Disorder · GPA c-ANCA target antigen PR3 vs MPA p-ANCA/MPO
+- Paediatrics · Fluid and Electrolyte Disturbances · Holliday-Segar 4-2-1 maintenance fluid calculation
+- Forensic Medicine · Forensic Thanatology · Casper's dictum decomposition ratio air:water:earth (1:2:8)
+
+<!-- 2026-08-19-daily.md -->
+- Surgery · Hepatobiliary Pancreatic Surgery · Courvoisier's law — palpable non-tender GB in jaundice suggests malignant not stone obstruction (fibrotic GB)
+- Paediatrics · Pediatric Gastroenterology · button battery esophageal impaction — emergency removal within 2 hours
+- OBGYN · Gynecology · FIGO leiomyoma classification — Type 0 = pedunculated submucosal entirely intracavitary
+- Biochemistry · Vitamins · vitamin D activation — renal 1-alpha-hydroxylase converts 25(OH)D to active 1,25(OH)2D
+- Psychiatry · Schizophrenia Spectrum and Other Psychotic Disorders · Schneiderian first-rank symptom — thought broadcasting
+- Ophthalmology · Uveitis · sympathetic ophthalmia — minimum latent period ~2 weeks post penetrating trauma (⚠️)
+- Forensic Medicine · Ballistics · distant-range gunshot wound — soot/tattooing absent, only abrasion/grease collar present
+- PSM · Concept of Health and Disease · natural history of disease — subclinical/presymptomatic stage targeted by screening
+- ENT · Ear · Meniere's disease — endolymphatic hydrops causing episodic vertigo/fluctuating SNHL/tinnitus/fullness
+- Medicine · Liver · MELD score used for liver transplant allocation priority (vs Child-Pugh for prognosis)
+- Microbiology · Virology · measles — Warthin-Finkeldey multinucleated giant cells in lymphoid tissue
+- Pharmacology · Autacoids · histamine H2 receptor mediates gastric acid secretion (target of H2 blockers)
+- Physiology · Nerve Muscle Physiology · nicotinic ACh receptor at NMJ — nonselective Na+/K+ channel generating end-plate potential
+- Anaesthesia · Cardiopulmonary Cerebral Resuscitation · ACLS refractory VF/VT — amiodarone 300mg IV first bolus after 3rd shock
+- Paediatrics · Fluid and Electrolyte Disturbances · WHO low-osmolarity ORS sodium content = 75 mmol/L
+- Anatomy · Lower Limb · femoral triangle lateral boundary = medial border of sartorius
+- Pathology · Cell Injury · coagulative necrosis — protein/enzyme denaturation blocks autolysis, preserves architecture
+- Anatomy · Histology · PCT vs DCT — PCT has cuboidal cells with brush border, indistinct lumen
+- Pharmacology · Autacoids · leukotriene B4 — neutrophil chemotactic, distinct from bronchoconstrictor cysteinyl leukotrienes
+- Dermatology · Skin Appendages and their Disorders · hidradenitis suppurativa — recurrent nodules/abscesses/sinus tracts in apocrine-bearing flexures
+- Psychiatry · Neurotic, Stress-Related and Somatoform Disorders · somatic symptom disorder — multiple longstanding physical complaints with distress despite negative workup
+- PSM · Concept of Health and Disease · spectrum of disease — range from subclinical to severe disease in a population
+- PSM · National Health Programs · RBSK covers 0-18 years, screens 4 D's (defects/deficiencies/diseases/developmental delays)
+- Pathology · Cell Injury · ischemia-reperfusion injury — reactive oxygen species burst on reoxygenation
+- Orthopaedics · Miscellaneous · compartment syndrome — pain on passive stretch is earliest sign, pulselessness/paralysis are late
+- OBGYN · Obstetrics · 4 T's of PPH — uterine atony (Tone) is commonest cause, boggy uterus
+- Anaesthesia · Oxygen Therapy and Airway · nasal cannula FiO2 estimation — room air 21% + 4%/L flow rule
+- Medicine · Liver · Wilson disease — tremor/dysarthria/KF ring/low ceruloplasmin, confirmed by 24h urinary copper
+- Pathology · Renal System · minimal change disease — normal LM, no immune deposits, isolated podocyte foot process effacement on EM
+- PSM · National Health Programs · Mission Indradhanush — catch-up immunization drives for unimmunized/partially immunized children
+- Physiology · Cardiovascular System · Frank-Starling law — increased preload/EDV increases stroke volume via length-tension relationship
+- Biochemistry · Vitamins · biotin deficiency from avidin in raw egg white binding biotin, preventing absorption
+- OBGYN · Gynecology · FIGO cervical cancer staging — confined to cervix ≥4cm without parametrial invasion = IB3
+- Microbiology · Mycology · invasive pulmonary aspergillosis — halo sign (early hemorrhagic infarct) vs air crescent sign (later)
+- Surgery · Endocrine Surgery · anaplastic thyroid carcinoma — rapid growth over weeks with local invasion in elderly with prior goitre
+- Pathology · Renal System · IgA nephropathy — synpharyngitic hematuria 1-2 days post-URI, mesangial IgA deposits
+- Orthopaedics · Miscellaneous · chronic osteomyelitis — sequestrum (necrotic bone) vs involucrum (new reactive bone sheath)
+- Orthopaedics · Spine + Pelvis + Lower Limb Traumatology · femoral neck fracture — medial femoral circumflex artery is dominant femoral head blood supply, disrupted causing AVN
+- Psychiatry · Eating Disorders · DSM-5 anorexia nervosa criterion — disturbance in body image/denial of seriousness of low weight
+- Anatomy · Abdomen · inguinal canal floor = inguinal ligament (reinforced medially by lacunar ligament)
+- Surgery · Endocrine Surgery · MEN1 (Wermer syndrome) — parathyroid + pancreatic islet (gastrinoma) + pituitary triad
+- Ophthalmology · Uveitis · Fuchs heterochromic iridocyclitis — heterochromia, stellate KPs, notably NO posterior synechiae
+- Radiology · Genitourinary Radiology · CT urography excretory/delayed phase (5-15min) — best for collecting system/ureter/bladder
+- Surgery · Gastrointestinal Surgery · acute mesenteric ischemia (embolic, AF) — pain out of proportion to exam, later bloody diarrhoea
+- PSM · Vaccines and Cold Chain · ILR/vaccine refrigerator temperature range +2°C to +8°C
+- Physiology · Cardiovascular System · JVP 'c' wave = tricuspid valve bulging into RA during isovolumetric ventricular contraction
+- Pharmacology · Autacoids · endothelin-1 — most potent endogenous vasoconstrictor, acts via ETA receptors
+- Orthopaedics · Peripheral Nerve Injuries · ulnar nerve injury at elbow — claw hand affecting ring/little fingers, hypothenar wasting
+- Medicine · Rheumatology / Connective Tissue Disorder · primary Sjögren syndrome — sicca symptoms + parotid swelling + anti-Ro/La
+- Pharmacology · Antimicrobials : Anti Bacterial Drugs · beta-lactam mechanism — inhibits transpeptidase (PBP), blocks peptidoglycan cross-linking
+
+<!-- 2026-08-20-daily.md -->
+- PSM · National Health Programs · PM-JAY annual cover Rs 5 lakh per family
+- Psychiatry · Mood Disorders · manic vs hypomanic episode duration/impairment discriminator
+- Pathology · Neoplasia · chromogranin A as neuroendocrine tumor marker
+- Paediatrics · Neonatology · subtle neonatal seizure vs jitteriness bedside discriminator
+- Biochemistry · Lipid Metabolism · Tangier disease, ABCA1 defect, orange tonsils
+- Anatomy · Pelvis and Perineum · Colles' fascia urine extravasation pathway sparing thighs
+- Anaesthesia · Cardiopulmonary Cerebral Resuscitation · capnography PETCO2 as CPR quality indicator
+- Orthopaedics · Orthopedics Oncology · Ewing sarcoma onion-skin periosteal reaction
+- Pharmacology · ANS Pharmacology · bethanechol muscarinic agonist for atonic bladder
+- Ophthalmology · Optics · duochrome test, chromatic aberration principle
+- OBGYN · Obstetrics · anti-D prophylaxis timing (28 weeks + postpartum)
+- Microbiology · Parasitology · P. vivax hypnozoites causing relapse, primaquine + G6PD check
+- Pharmacology · Endocrine Pharmacology · sulfonylurea SUR1/KATP channel mechanism
+- Ophthalmology · Cornea · Acanthamoeba keratitis in contact lens wearers
+- Physiology · Cardiovascular System · absent 'a' wave in JVP with atrial fibrillation
+- Paediatrics · Growth · Greulich-Pyle bone age atlas
+- Psychiatry · Mood Disorders · melancholic features of major depressive disorder
+- Forensic Medicine · Ballistics · shotgun pellet spread for range estimation
+- Biochemistry · Vitamins · vitamin E deficiency, hemolytic anemia in preterm infants
+- Dermatology · Miscellaneous Disorders · SJS vs TEN vs erythema multiforme, BSA criteria, carbamazepine trigger
+- Paediatrics · Fluid and Electrolyte Disturbances · pyloric stenosis hypochloremic hypokalemic alkalosis
+- PSM · National Health Programs · National Deworming Day age group 1-19 years
+- Paediatrics · Growth · organic vs non-organic failure to thrive
+- OBGYN · Gynecology · vulvar lichen sclerosus, malignant potential for SCC, biopsy before topical steroid
+- Pathology · Genetics · Cri-du-chat syndrome, 5p deletion
+- Biochemistry · Genetics · Lyonization/X-inactivation and Barr body
+- Surgery · Cardiothoracic Vascular Surgery · coarctation of aorta, radiofemoral delay + rib notching
+- ENT · Pharynx · infectious mononucleosis with amoxicillin-induced rash
+- OBGYN · Obstetrics · antenatal corticosteroids 24-34 weeks for fetal lung maturity
+- Medicine · Rheumatology / Connective Tissue Disorder · ankylosing spondylitis, HLA-B27, bamboo spine
+- Pathology · Neoplasia · psammoma bodies (papillary thyroid, serous ovarian, meningioma)
+- Microbiology · Parasitology · Echinococcus granulosus definitive host (dog)
+- Physiology · General Physiology · Na-K ATPase 3:2 stoichiometry, electrogenic pump
+- Pharmacology · Endocrine Pharmacology · cabergoline first-line for prolactinoma
+- Medicine · Nephrology / Kidney Disease · Mogensen staging, microalbuminuria earliest detectable stage
+- Orthopaedics · Miscellaneous · Barlow and Ortolani maneuvers for DDH
+- OBGYN · Obstetrics · partograph action line crossing, management
+- Medicine · Neurology · myasthenia gravis, ice-pack test, fatigable ptosis
+- Paediatrics · Neonatology · intrapartum antibiotic prophylaxis for early-onset GBS sepsis
+- Biochemistry · Carbohydrate Metabolism · fructokinase deficiency = benign essential fructosuria
+- Surgery · Plastic Surgery · cleft lip repair 'rule of 10s' timing
+- Radiology · Genitourinary Radiology · DMSA scan, gold standard for renal cortical scarring
+- Surgery · Gastrointestinal Surgery · Meckel's diverticulum, rule of 2s, pertechnetate scan
+- Medicine · Neurology · Wernicke's encephalopathy, thiamine before glucose
+- Surgery · Cardiothoracic Vascular Surgery · DVT Wells score + compression ultrasonography
+- Pharmacology · Autacoids · aspirin COX-1, platelet vs endothelial PGI2/TXA2 balance
+- PSM · Communicable and Non-communicable Diseases · WHO four modifiable NCD risk factors
+- PSM · Epidemiology · propagated vs point-source epidemic curve pattern
+- PSM · Concept of Health and Disease · epidemiological triad (agent-host-environment)
+- Pathology · Respiratory System · sarcoidosis non-caseating granuloma vs TB caseating
+
+<!-- 2026-08-22-daily.md -->
+- PSM · Nutrition and Health · WHO/UNICEF zinc supplementation dose (10mg <6mo, 20mg ≥6mo) for 14 days in acute diarrhoea
+- Pathology · Genetics · Turner syndrome 45,X karyotype — webbed neck, coarctation of aorta, streak gonads
+- Anatomy · Lower Limb · great saphenous vein anterior to medial malleolus as venous cutdown landmark
+- OBGYN · Gynecology · Risk of Malignancy Index (RMI = U x M x CA-125) calculation for postmenopausal adnexal mass triage
+- Biochemistry · Vitamins · scurvy clinical features — perifollicular haemorrhage, corkscrew hairs, bleeding gums
+- Dermatology · Cutaneous Infections · tinea versicolor (Malassezia furfur) — spaghetti and meatballs KOH appearance
+- Forensic Medicine · Toxicology - General · acid ingestion causes coagulative necrosis vs alkali's liquefactive necrosis
+- OBGYN · Gynecology · complete hydatidiform mole — snowstorm pattern, markedly raised beta-hCG, theca lutein cysts
+- Physiology · Excretory System · PAH clearance estimates effective renal plasma flow
+- Medicine · Rheumatology / Connective Tissue Disorder · reactive arthritis triad post-chlamydial infection (conjunctivitis, urethritis, oligoarthritis)
+- Medicine · Cardiology · HOCM murmur increases with Valsalva/standing, decreases with squatting (opposite of most murmurs)
+- Pharmacology · Antimicrobials : Anti Bacterial Drugs · nitrofurantoin — haemolysis in G6PD deficiency, inadequate efficacy in renal impairment
+- Orthopaedics · Metabolic Disorders · adult osteomalacia — Looser zones (pseudofractures), waddling gait, malabsorption-related
+- Surgery · Endocrine Surgery · subacute (de Quervain) thyroiditis — painful post-viral goitre, low RAIU
+- Surgery · Plastic Surgery · Z-plasty geometry lengthens linear scar contractures along their axis
+- Ophthalmology · Retina · drusen deposits characterize dry (non-exudative) AMD vs anti-VEGF-treated wet AMD
+- Microbiology · Systemic Bacteriology · Lowenstein-Jensen medium (egg, glycerol, malachite green) for TB culture
+- Medicine · Neurology · internuclear ophthalmoplegia (MLF lesion) as a localizing sign for multiple sclerosis
+- Pathology · Renal System · Kimmelstiel-Wilson nodular glomerulosclerosis is diagnostic of diabetic nephropathy
+- Psychiatry · Mood Disorders · Bipolar II disorder — hypomania plus major depressive episodes, no full mania
+- Anatomy · Head and Neck · foramen ovale transmits the mandibular nerve (V3)
+- Pharmacology · General Pharmacology · competitive antagonism — parallel rightward shift with unchanged Emax
+- Surgery · Gastrointestinal Surgery · Goodsall's rule predicts perianal fistula tract anatomy from external opening position
+- Paediatrics · Infectious Diseases · scarlet fever — sandpaper rash sparing palms/soles, strawberry tongue, GAS toxin
+- Pharmacology · Endocrine Pharmacology · DPP-4 inhibitors prolong incretin (GLP-1) activity to enhance glucose-dependent insulin secretion
+- ENT · Pharynx · Ludwig's angina — odontogenic bilateral submandibular cellulitis, airway is the immediate priority
+- Surgery · Plastic Surgery · tissue expansion exploits mechanical creep/stress relaxation to generate extra local skin
+- Psychiatry · Neurotic, Stress-Related and Somatoform Disorders · la belle indifference classically associated with conversion disorder
+- Physiology · Excretory System · countercurrent multiplier in loop of Henle generates hypertonic medullary interstitium
+- Microbiology · Parasitology · Loeffler syndrome — transient eosinophilic pneumonitis from Ascaris larval pulmonary migration
+- OBGYN · Obstetrics · updated ACOG preeclampsia criteria — end-organ dysfunction can substitute for proteinuria
+- Biochemistry · Genetics · PCR three cyclical steps — denaturation, annealing, extension by Taq polymerase
+- OBGYN · Obstetrics · external cephalic version recommended first-line for eligible term breech before mode-of-delivery decision
+- Anaesthesia · Neuromuscular Blockade · dantrolene is the specific antidote for malignant hyperthermia (RYR1-mediated)
+- Surgery · Gastrointestinal Surgery · anal fissure first-line management — topical nitroglycerin/diltiazem, sitz baths, stool softeners
+- Microbiology · Virology · Japanese encephalitis — Culex tritaeniorhynchus vector, pigs as amplifying host
+- Surgery · Cardiothoracic Vascular Surgery · subclavian steal syndrome — retrograde vertebral flow causing arm-exercise-triggered vertigo
+- Pharmacology · CVS Pharmacology · organic nitrates act via NO-cGMP predominant venodilation, reducing preload
+- Paediatrics · Pediatric Respiratory Disorders · bronchiolitis — RSV, coryzal prodrome then wheeze/crepitations in infants under 2
+- Medicine · Rheumatology / Connective Tissue Disorder · polymyalgia rheumatica overlap with giant cell arteritis — screen for visual symptoms before steroids
+- Dermatology · Cutaneous Infections · scabies — Sarcoptes scabiei burrows in finger webs, nocturnal itch, treat household contacts together
+- Radiology · Basics of Radiology · Hounsfield unit scale — air -1000, water 0, dense bone approximately +1000
+- Orthopaedics · Metabolic Disorders · osteogenesis imperfecta — COL1A1/COL1A2 defect, blue sclerae, multiple fractures, hearing loss
+- Orthopaedics · Pediatric Orthopedics · Legg-Calve-Perthes disease — avascular necrosis of femoral head in boys aged 4-8
+- ENT · Ear · sudden sensorineural hearing loss is an otologic emergency requiring urgent oral corticosteroids
+- Microbiology · Parasitology · Trichomonas vaginalis — strawberry cervix, motile flagellate on wet mount, metronidazole first-line
+- PSM · Concept of Health and Disease · health promotion (general) vs specific protection (targeted) within primary prevention
+- Paediatrics · Pediatric Gastroenterology · meconium ileus soap-bubble sign strongly associated with cystic fibrosis
+- Biochemistry · Vitamins · pantothenic acid (B5) is the precursor of coenzyme A
+- Pathology · Neoplasia · CEA as the classic colorectal carcinoma recurrence-monitoring tumour marker
+
+<!-- 2026-08-23-daily.md -->
+- Medicine · Endocrinology · Plasma free metanephrines have ~96-100% sensitivity for catecholamine-secreting tumours and are the preferred first-line screening test over
+- Radiology · Head & Neck Imaging · Thin-section CT of the orbit with coronal reconstructions is the imaging of choice for blow-out fractures, showing the fracture line and her
+- Microbiology · Virology · Antigenic shift results from reassortment of the influenza virus's 8-segment RNA genome when two different strains co-infect a host cell (e.
+- Surgery · Gastrointestinal Surgery · Carcinoid syndrome (flushing, diarrhea, bronchospasm, right-sided cardiac valve lesions from serotonin) occurs with hepatic metastases bypas
+- Pathology · Respiratory System · Squamous cell carcinoma of the lung is the classic cause of humoral hypercalcemia of malignancy via ectopic secretion of PTH-related peptide
+- Microbiology · Mycology · KOH mount showing branching septate hyphae from an annular scaly plaque is the classic bedside diagnostic finding for dermatophytosis (tinea
+- Microbiology · Virology · Fourth-generation HIV ELISA combines p24 antigen and antibody detection, narrowing the window period because p24 antigen appears in blood be
+- Anaesthesia · Oxygen Therapy and Airway · A non-rebreather mask has a reservoir bag plus one-way valves that minimise (but do not fully abolish) room-air entrainment and rebreathing.
+- Medicine · Rheumatology / Connective Tissue Disorder · Adult-onset Still's disease presents with the classic tetrad of quotidian spiking fevers, an evanescent salmon-colored rash appearing with f
+- OBGYN · Obstetrics · Intrahepatic cholestasis of pregnancy classically causes pruritus of palms/soles without a primary rash in the third trimester; diagnosis is
+- Forensic Medicine · Forensic Thanatology · Under average Indian (tropical/subtropical) conditions, algor mortis proceeds at roughly 0.5 degree C per hour, following a sigmoid (not lin
+- Forensic Medicine · Toxicology - General · Indian polyvalent ASV neutralizes only the Big Four venomous snakes - common cobra, common krait, Russell's viper, and saw-scaled viper; bit
+- PSM · Vaccines and Cold Chain · WHO's AEFI causality classification places an event with an identified alternate cause fully explaining it into the coincidental / inconsist
+- Biochemistry · Lipid Metabolism · Type I hyperlipoproteinemia (familial chylomicronemia syndrome) presents in childhood with massive fasting triglyceride elevation, eruptive
+- PSM · Allied Health Disciplines · The medical social worker is the allied health professional responsible for linking patients and families to government welfare schemes, dis
+- Biochemistry · Vitamins · Vitamin B12 absorption requires intrinsic factor (secreted by gastric parietal cells) to carry B12 to specific cubilin-mediated receptors in
+- Pathology · Hematology: White Blood Cells · TdT (terminal deoxynucleotidyl transferase) positivity marks immature lymphoblasts and is a key immunophenotypic discriminator of acute lymp
+- Pharmacology · Antimicrobials : Anti Bacterial Drugs · Rifampicin is a potent inducer of hepatic cytochrome P450 enzymes (especially CYP3A4), which accelerates metabolism of co-administered drugs
+- Paediatrics · Pediatric Gastroenterology · Toddler's diarrhea (chronic nonspecific diarrhea of childhood) is a functional diagnosis in a thriving 1-3 year-old passing frequent loose s
+- Anatomy · Head and Neck · Within the cavernous sinus, CN III, IV, and V1 (and sometimes V2) run in the lateral wall, while CN VI runs freely through the body of the s
+- Ophthalmology · Retina · The transition from non-proliferative to proliferative diabetic retinopathy is defined by the appearance of retinal or disc neovascularizati
+- Medicine · Cardiology · Intermittent cannon a waves plus a variable-intensity S1 in a patient with a very slow, regular pulse strongly suggests complete heart block
+- Ophthalmology · Cornea · The defining distinction is anatomic: pterygium is a triangular fibrovascular conjunctival growth that actually invades across the limbus on
+- Anaesthesia · Neuromuscular Blockade · Scoline (succinylcholine) apnea results from genetically atypical or quantitatively deficient plasma pseudocholinesterase, which normally ra
+- Physiology · General Physiology · The action potential upstroke in a typical neuron is generated by rapid opening of voltage-gated Na+ channels once the membrane reaches thre
+- ENT · Ear · Brief positional vertigo without auditory symptoms, provoked by head position change, is classic for BPPV; the Dix-Hallpike maneuver is the
+- ENT · Nose and Paranasal Sinuses · Nasal polyps are rare before age 10, so bilateral polyps in a child should prompt exclusion of cystic fibrosis (up to ~40% of children with
+- Paediatrics · Pediatric Nephrology · Post-streptococcal AGN classically presents with the nephritic picture of hematuria, hypertension, and only mild-to-moderate proteinuria (la
+- Microbiology · Parasitology · Wuchereria bancrofti microfilariae exhibit nocturnal periodicity, concentrating in peripheral blood at night (classically 10 PM-2 AM) while
+- Physiology · General Physiology · GLUT transporters move glucose down its concentration gradient via a carrier protein without ATP expenditure - classic facilitated diffusion
+- Surgery · Endocrine Surgery · When antithyroid drugs cannot be used in pregnant Graves' disease, thyroidectomy is the alternative, and the second trimester is the preferr
+- PSM · Concept of Health and Disease · Quaternary prevention protects individuals from the harms of overmedicalization - unnecessary tests, overdiagnosis, and overtreatment - a gr
+- Surgery · Hepatobiliary Pancreatic Surgery · For mild acute gallstone pancreatitis, same-admission cholecystectomy (once the pancreatitis has clinically settled) is now recommended over
+- Paediatrics · Growth · Precocious puberty in girls is defined as onset of secondary sexual characteristics before age 8. Bone age plus basal (ultrasensitive) LH an
+- Pharmacology · General Pharmacology · Time to steady state depends only on the drug's half-life, not on dose size or dosing interval - approximately 4-5 half-lives are needed to
+- Orthopaedics · Metabolic Disorders · Renal osteodystrophy in CKD results from phosphate retention and impaired renal 1-alpha-hydroxylation of vitamin D, both driving secondary h
+- Dermatology · Miscellaneous Disorders · Lichen planus is classically remembered by the 6 P's - pruritic, purple, polygonal, planar, papules/plaques - with a predilection for flexor
+- Paediatrics · Pediatric Respiratory Disorders · Bronchiolitis (classically RSV, first episode of wheeze in an infant with a preceding viral prodrome) is managed supportively - hydration, n
+- Orthopaedics · Miscellaneous · The Kocher criteria (fever above 38.5 degree C, inability to bear weight, ESR above 40mm/hr, WBC above 12,000/microL) stratify the probabili
+- Medicine · Cardiology · ST elevation in II, III, aVF with reciprocal depression in I and aVL localizes an acute MI to the inferior wall, supplied by the right coron
+- Dermatology · Skin Appendages and their Disorders · Acne vulgaris pathogenesis is a four-factor cascade - androgen-driven sebaceous hyperplasia and sebum overproduction, follicular hyperkerati
+- Psychiatry · Neurotic, Stress-Related and Somatoform Disorders · One of the most characteristic distinctions between OCD and psychotic disorders is insight: OCD obsessions and compulsions are usually ego-d
+- OBGYN · Gynecology · In abnormal uterine bleeding, age is a key trigger for endometrial evaluation - women over 45 (or younger with risk factors like obesity, PC
+- Physiology · Nerve Muscle Physiology · Type I (slow oxidative, red) fibers are mitochondria- and myoglobin-rich, rely on oxidative metabolism, and resist fatigue - suited for sust
+- Pharmacology · Endocrine Pharmacology · GLP-1 receptor agonists are incretin mimetics that directly bind and activate GLP-1 receptors, producing glucose-dependent insulin secretion
+- Radiology · Head & Neck Imaging · HRCT temporal bone is the standard preoperative imaging for cholesteatoma, delineating ossicular chain erosion, facial nerve canal dehiscenc
+- Radiology · Genitourinary Radiology · Color Doppler ultrasound is the key emergency investigation distinguishing testicular torsion (absent/reduced flow, a surgical emergency) fr
+- Medicine · Liver · Maddrey's discriminant function (4.6 times the prothrombin time prolongation in seconds, plus serum bilirubin in mg/dL) of 32 or above ident
+- PSM · Nutrition and Health · WHO and IAP both recommend exclusive breastfeeding for the first 6 completed months of life, with timely introduction of complementary semi-
+- Surgery · Plastic Surgery · Superficial partial-thickness (second-degree) burns involve the epidermis and papillary dermis - painful, blistering, with a moist pink base
+
+<!-- 2026-08-23-daily-2.md -->
+- Pharmacology · ANS Pharmacology · Ipratropium is a quaternary ammonium anticholinergic; being charged, it does not cross membranes/BBB well, so inhaled doses act locally on bronchial M3 receptors with minimal systemic absorption — unlike tertiary amines
+- Surgery · Endocrine Surgery · Transient hypocalcemia (from inadvertent parathyroid gland removal, devascularization, or bruising) is the most common cause of post-thyroidectomy tetany, typically presenting within 24-48h as perioral tingling, carpal
+- PSM · Allied Health Disciplines · ASHA workers, introduced under NRHM (2005), are village-level volunteers (one per 1000 population) who link the community with the health system and are compensated primarily through task-based incentives (e.g.,
+- Orthopaedics · Miscellaneous · Volkmann's ischemic contracture follows missed/inadequately treated compartment syndrome after supracondylar fracture — forearm flexor muscle ischemia leads to fibrosis, producing a fixed claw-hand deformity; early
+- Medicine · Cardiology · Pulsus paradoxus (inspiratory fall in SBP >10 mmHg) reflects exaggerated ventricular interdependence when the pericardium is non-compliant, classically seen in cardiac tamponade (also severe asthma/COPD) — a distinct
+- OBGYN · Gynecology · Tamoxifen has an estrogen-agonist effect on the endometrium, increasing risk of hyperplasia and carcinoma; atypical endometrial hyperplasia carries a substantial risk of concurrent or progression to endometrial cancer,
+- ENT · Nose and Paranasal Sinuses · Antrochoanal (Killian's) polyp arises from the maxillary sinus mucosa, prolapses through the natural or accessory ostium, and extends into the nasal cavity and choana/nasopharynx; unlike allergic ethmoidal polyps, it is
+- Anatomy · Pelvis and Perineum · The internal pudendal artery, the main branch of the internal iliac artery's anterior division, is the principal blood supply to the perineum — it re-enters the perineum via the lesser sciatic foramen after looping
+- Pathology · Neoplasia · Choriocarcinoma arises from trophoblastic tissue, which secretes beta-hCG; serial beta-hCG titres are used both for diagnosis and to monitor treatment response/remission in gestational trophoblastic disease.
+- Physiology · General Physiology · The Nernst equation calculates the equilibrium (reversal) potential for a single ion species based on its transmembrane concentration gradient; the GHK equation extends this by weighting multiple ions by their relative
+- PSM · Communicable and Non-communicable Diseases · WHO (2009) revised dengue classification uses warning signs — abdominal pain, persistent vomiting, fluid accumulation, mucosal bleeding, lethargy, liver enlargement, and rising hematocrit with falling platelets — to
+- Microbiology · Parasitology · Naegleria fowleri thrives in warm freshwater, enters via the cribriform plate during swimming/diving, and causes rapidly fatal primary amoebic meningoencephalitis in previously healthy children/young adults — distinct
+- Medicine · Liver · Primary biliary cholangitis classically affects middle-aged women with pruritus, fatigue, and a cholestatic liver pattern (raised ALP/GGT); anti-mitochondrial antibody (AMA) is positive in over 90% of cases and is
+- Orthopaedics · Pediatric Orthopedics · Radial head subluxation ('pulled elbow') results from axial traction on a pronated, extended arm, slipping the annular ligament over the radial head; it is a clinical diagnosis and reduces with gentle
+- Psychiatry · Eating Disorders · Binge eating disorder (DSM-5) is defined by recurrent binge eating (at least once weekly for 3 months) with marked distress, WITHOUT the regular compensatory behaviors that define bulimia nervosa — this absence of
+- Biochemistry · Carbohydrate Metabolism · Pompe disease is unique among the glycogen storage diseases in being a lysosomal storage disorder; acid maltase deficiency causes glycogen to accumulate within cardiac and skeletal muscle lysosomes, producing massive
+- Anaesthesia · Cardiopulmonary Cerebral Resuscitation · Biphasic defibrillators are more efficient than monophasic devices, requiring a lower initial energy (typically 120-200J, device-dependent) versus 360J for monophasic; if the device's effective range is unknown, use
+- PSM · Communicable and Non-communicable Diseases · Under WHO/NLEP guidelines, multibacillary leprosy is treated with 12 months (12 monthly pulses/blister packs) of rifampicin + clofazimine + dapsone, whereas paucibacillary leprosy requires only 6 months of rifampicin +
+- Biochemistry · Vitamins · Transketolase requires TPP as a cofactor and its erythrocyte activity is measured to functionally assess thiamine status; TPP-dependent enzymes are a recurring exam theme — pyruvate dehydrogenase, alpha-ketoglutarate
+- Microbiology · Parasitology · Diphyllobothrium latum, acquired from raw/undercooked freshwater fish, avidly absorbs dietary vitamin B12 within the gut lumen, potentially causing megaloblastic anemia in heavy or prolonged infection.
+- Forensic Medicine · Sexual Jurisprudence · POCSO Act, 2012 defines a child as any person below 18 years of age and provides a gender-neutral framework for offences of sexual assault, harassment, and pornography against children, with mandatory reporting
+- Orthopaedics · Miscellaneous · Gustilo-Anderson Type II open fractures have a wound 1-10 cm long with moderate soft-tissue damage but without extensive stripping, flap requirement, or gross contamination — between the minimal Type I and severe Type
+- Paediatrics · Pediatric Nephrology · Minimal change disease is the most common cause of nephrotic syndrome in children (1-8 years), characteristically steroid-responsive (remission within 2-4 weeks in over 90%), which is why empirical steroid therapy
+- Dermatology · Sexually Transmitted Infections · Lymphogranuloma venereum (LGV), caused by Chlamydia trachomatis serovars L1-L3, classically has three stages — a transient painless ulcer, followed weeks later by painful inguinal/femoral lymphadenopathy that can
+- PSM · Communicable and Non-communicable Diseases · Per NVBDCP guidelines, uncomplicated P. falciparum malaria in India is treated with ACT-SP (artesunate 3 days plus sulfadoxine-pyrimethamine) plus a single dose of primaquine (gametocytocidal, checking G6PD status where
+- Forensic Medicine · Court of Law · Section 45 of the Indian Evidence Act allows the opinion of persons specially skilled in a subject (medicine, science, art) to be treated as relevant fact — the statutory basis for a doctor's role as an expert (medical)
+- Medicine · Nephrology / Kidney Disease · Crush injury releases myoglobin from damaged muscle, which is directly nephrotoxic and precipitates as pigmented casts in the distal tubules (worsened by acidic urine), causing acute tubular necrosis — early aggressive
+- Dermatology · Integrated Essentials · Auspitz sign (pinpoint bleeding on removing psoriatic scale, due to thinned suprapapillary epidermis over dilated dermal capillaries) and the Koebner (isomorphic) phenomenon (new lesions at trauma sites) are two classic
+- Medicine · Cardiology · The triad of exertional syncope, angina, and dyspnea with a slow-rising, low-volume ('parvus et tardus') pulse and an ejection systolic murmur radiating to the carotids is classic for severe aortic stenosis — syncope
+- Ophthalmology · Cornea · Pseudomonas aeruginosa keratitis is strongly associated with soft contact lens wear (biofilm on lens/case) and is notorious for rapid, aggressive stromal melting with a characteristic greenish-yellow, ground-glass
+- Biochemistry · Vitamins · Vitamin D deficiency reduces intestinal calcium absorption, causing low/low-normal serum calcium, which triggers secondary hyperparathyroidism (increasing renal phosphate wasting leading to low phosphate) and increased
+- Pharmacology · CVS Pharmacology · Spironolactone is a non-selective aldosterone antagonist that also has anti-androgenic (blocks androgen receptor, inhibits testosterone synthesis) and progestogenic activity, commonly causing gynecomastia and menstrual
+- Microbiology · Mycology · Mucorales (Mucor, Rhizopus, Rhizomucor) show broad, ribbon-like, aseptate hyphae with wide-angle (near 90-degree) branching — contrasted with Aspergillus's narrow, septate, acute-angle (45-degree) branching hyphae;
+- Surgery · Hepatobiliary Pancreatic Surgery · Infected pancreatic necrosis is managed with a 'step-up approach' — percutaneous catheter or endoscopic transluminal drainage first, escalating to minimally invasive (retroperitoneal or endoscopic) necrosectomy only if
+- Pathology · Respiratory System · Lambert-Eaton myasthenic syndrome (antibodies against presynaptic voltage-gated calcium channels, reducing acetylcholine release) is the classic paraneoplastic neuromuscular syndrome of small cell lung carcinoma; unlike
+- OBGYN · Gynecology · Premature ovarian insufficiency is diagnosed by amenorrhea for at least 4 months before age 40 with FSH above 25-40 IU/L on two occasions at least 4 weeks apart, reflecting depleted ovarian follicular reserve; workup
+- Ophthalmology · Sclera · Rheumatoid arthritis is the systemic disease most frequently underlying necrotizing scleritis, which can progress to scleromalacia perforans and carries significant risk of globe perforation and vision loss — it signals
+- Paediatrics · Neonatology · Respiratory Distress Syndrome (Hyaline Membrane Disease) results from developmental surfactant deficiency in preterm lungs, causing alveolar collapse (increased surface tension), reduced compliance, and the classic
+- Surgery · Plastic Surgery · NPUAP Stage III pressure injury is full-thickness skin loss with visible adipose (subcutaneous fat) but without exposed bone, tendon, or muscle; correct staging guides management — Stage III/IV wounds generally need
+- Medicine · Rheumatology / Connective Tissue Disorder · Dactylitis ('sausage digit,' from combined flexor tenosynovitis and joint inflammation) together with nail pitting/onycholysis in a patient with psoriasis is highly characteristic of psoriatic arthritis — a seronegative
+- OBGYN · Obstetrics · Secondary (delayed) PPH occurs between 24 hours and 6 weeks postpartum and is most commonly due to retained products of conception and/or endometritis, presenting with subinvolution, foul lochia, and fever; management
+- Surgery · Urology · Ischemic (low-flow) priapism is a urological emergency causing corporal anoxia and risking permanent erectile dysfunction beyond 4-6 hours; first-line treatment is corporal aspiration of the stagnant hypoxic blood plus
+- Anatomy · Pelvis and Perineum · Puborectalis, the most medial part of levator ani, forms a U-shaped sling that pulls the anorectal junction anteriorly, creating the anorectal angle (approximately 90 degrees at rest) essential for faecal continence;
+- Anatomy · Histology · Parafollicular (C) cells, derived embryologically from the neural crest (via the ultimobranchial body), lie within the thyroid follicular basement membrane and secrete calcitonin, which lowers serum calcium by
+- Dermatology · Cutaneous Infections · Non-bullous impetigo (the most common form) presents as superficial erosions with a characteristic golden-yellow ('honey-colored') crust, most often caused by Staphylococcus aureus (with Streptococcus pyogenes also
+- Biochemistry · Genetics · FISH uses fluorescently labeled probes complementary to specific chromosomal regions to detect microdeletions, microduplications, and translocations below the resolution of conventional karyotyping — classic exam use is
+- Radiology · Thoracic Radiology · Miliary tuberculosis results from hematogenous dissemination of M. tuberculosis, producing innumerable tiny (1-3 mm), uniformly distributed nodules resembling millet seeds throughout both lung fields — it indicates
+- Radiology · Basics of Radiology · On T1-weighted MRI, fat is bright and water/CSF is dark, giving good anatomical/structural detail; on T2-weighted images the pattern reverses (fluid bright), better for detecting edema/pathology — 'T1 = anatomy, T2 =
+- Microbiology · Mycology · Sporothrix schenckii ('rose gardener's disease') is a dimorphic fungus inoculated through minor skin trauma (thorns, splinters), producing a primary nodule followed by ascending nodular lymphangitis along the draining
+- Physiology · General Physiology · SGLT1 co-transports glucose (and galactose) with sodium down its electrochemical gradient into the enterocyte — the gradient itself is generated by the basolateral Na-K ATPase (primary active transport), making
+
+<!-- 2026-08-24-daily.md -->
+- OBGYN · Obstetrics · uterine scar rupture in VBAC — pain that eases, fetal bradycardia, loss of station of the presenting part
+- Radiology · Genitourinary Radiology · non-contrast CT KUB as investigation of choice for acute ureteric colic over IVU/plain X-ray
+- PSM · Concept of Health and Disease · sufficient-component cause (causal pie) model explains necessary-but-not-sufficient exposure plus other component causes
+- Pharmacology · Drugs Affecting Blood and Blood formation · tranexamic acid blocks lysine-binding sites on plasminogen, antifibrinolytic mechanism
+- Pharmacology · ANS Pharmacology · isoprenaline as a pure non-selective beta-agonist with no alpha activity
+- Pathology · Neoplasia · S-100 protein as immunohistochemical marker for malignant melanoma
+- Forensic Medicine · Sexual Jurisprudence · Section 164A CrPC mandates survivor's consent before medical examination in sexual assault
+- OBGYN · Gynecology · septate uterus (normal fundal contour + internal septum) vs bicornuate (abnormal external contour) on MRI
+- Medicine · Cardiology · constrictive pericarditis — Kussmaul's sign plus pericardial calcification, post-tuberculous
+- Physiology · The Nervous System · dorsal column-medial lemniscus pathway decussates in the medulla, unlike spinothalamic tract at cord level
+- PSM · National Health Programs · HBNC schedule — 6 ASHA home visits (days 3,7,14,21,28,42) for normal-birth-weight institutional delivery
+- Psychiatry · Sexual Disorders · psychogenic vs organic erectile dysfunction — preserved nocturnal/masturbatory erections favors psychogenic
+- Paediatrics · Pediatric Nephrology · recurrent febrile UTI in infant — renal-bladder USG plus MCUG to assess vesicoureteric reflux
+- Biochemistry · Genetics · Knudson's two-hit hypothesis — hereditary retinoblastoma needs only one somatic hit vs two in sporadic disease
+- Forensic Medicine · Forensic Toxicology · forced alkaline diuresis effective for phenobarbital/salicylate (weak acids), not short-acting barbiturates
+- Microbiology · Parasitology · Schistosoma haematobium chronic infection linked to bladder squamous cell carcinoma
+- Paediatrics · Fluid and Electrolyte Disturbances · paediatric DKA — potassium added to fluids once urine output confirmed, never as IV bolus
+- Medicine · Endocrinology · Addisonian crisis — empirical IV hydrocortisone started immediately, never delayed for cortisol confirmation
+- Ophthalmology · Uveitis · hypopyon uveitis as hallmark of Behçet disease with oral/genital ulcers
+- Microbiology · Parasitology · cat as definitive host of Toxoplasma gondii, pregnant women avoid cat litter exposure
+- Surgery · Gastrointestinal Surgery · Forrest IIa visible vessel — endoscopic haemostatic therapy despite no active bleeding
+- Orthopaedics · Orthopedics Oncology · giant cell tumour of bone — epiphyseal soap-bubble lesion in skeletally mature adult
+- ENT · Nose and Paranasal Sinuses · rhinosporidiosis — strawberry-like polyp with white-dot sporangia, India-endemic, stagnant-water exposure
+- Radiology · Basics of Radiology · ALARA principle — As Low As Reasonably Achievable radiation exposure
+- Pathology · Respiratory System · ferruginous (asbestos) bodies — histological hallmark of asbestosis, lower-lobe fibrosis plus pleural plaques
+- Biochemistry · Genetics · 47,XXY karyotype defines Klinefelter syndrome — tall stature, gynecomastia, small firm testes
+- Pharmacology · General Pharmacology · therapeutic index defined as TD50/ED50
+- Paediatrics · Neonatology · jaundice within first 24 hours of life is always pathological, mandates hemolysis workup (blood group, Coombs, reticulocyte count)
+- Surgery · Cardiothoracic Vascular Surgery · left atrial myxoma — fossa ovalis origin, positional syncope, tumor plop
+- Pathology · Hematology: White Blood Cells · Chediak-Higashi syndrome — giant neutrophil granules, partial albinism, recurrent pyogenic infections
+- Anaesthesia · Oxygen Therapy and Airway · Cormack-Lehane Grade III — epiglottis visible, glottis not seen, predicts difficult intubation
+- Psychiatry · Sexual Disorders · premature ejaculation — DSM-5 <1 min IELT criterion, on-demand dapoxetine as first-line pharmacotherapy
+- Surgery · Gastrointestinal Surgery · gastric outlet obstruction from chronic peptic ulcer scarring — succussion splash, non-bilious vomiting of old food
+- Anatomy · Head and Neck · superior orbital fissure transmits CN III, IV, V1, VI
+- Orthopaedics · Metabolic Disorders · brown tumor (osteitis fibrosa cystica) of hyperparathyroidism mimics giant cell tumor of bone histologically
+- Dermatology · Miscellaneous Disorders · pityriasis rosea — herald patch then Christmas-tree pattern along cleavage lines, self-limiting
+- Microbiology · Mycology · Pneumocystis jirovecii — cup-shaped cysts on GMS/silver stain, AIDS-defining at CD4 <200
+- Pharmacology · Antimicrobials : Anti Bacterial Drugs · aminoglycoside once-daily dosing exploits concentration-dependent killing plus post-antibiotic effect
+- OBGYN · Obstetrics · amniotic fluid embolism — sudden collapse and early DIC after tumultuous labor, no antecedent fever
+- Microbiology · Parasitology · Necator americanus identified by two pairs of cutting plates vs Ancylostoma's two pairs of teeth
+- Medicine · Liver · hereditary hemochromatosis — bronze diabetes triad, transferrin saturation >45% as best screening test
+- PSM · Allied Health Disciplines · Community Health Officer (CHO) — mid-level provider at Ayushman Bharat Health and Wellness Centres
+- Forensic Medicine · Trace Evidence · Locard's Exchange Principle — every contact leaves a trace, basis of trace-evidence transfer
+- Surgery · Hepatobiliary Pancreatic Surgery · Tokyo Guidelines — early laparoscopic cholecystectomy within 72 hours for acute cholecystitis
+- Medicine · Cardiology · Dressler syndrome — delayed autoimmune post-MI pericarditis 2-10 weeks out, distinct from early peri-infarction pericarditis
+- Pathology · Respiratory System · silicosis — upper-lobe nodular opacities with eggshell hilar lymph node calcification, sandblasting exposure
+- Medicine · Liver · autoimmune hepatitis type 1 — anti-smooth muscle antibody, hypergammaglobulinemia, corticosteroids plus/minus azathioprine
+- Pathology · Neoplasia · vimentin as the general immunohistochemical marker for mesenchymal-origin tumors (sarcomas), contrast cytokeratin/desmin/chromogranin
+- Radiology · Head & Neck Imaging · MRI preferred for parotid gland mass characterization (soft-tissue contrast)
+- Surgery · Hepatobiliary Pancreatic Surgery · amoebic liver abscess — metronidazole plus luminal amoebicide first-line, aspiration for large/threatened-rupture abscesses
+
+<!-- 2026-08-24-daily-2.md -->
+- Medicine · Endocrinology · HHS vs DKA distinguishing features (minimal ketosis, very high glucose/osmolality)
+- Forensic Medicine · Sexual Jurisprudence · Section 53A CrPC — examination of accused at police request
+- ENT · Nose and Paranasal Sinuses · Chandler staging of orbital complications of sinusitis (subperiosteal abscess)
+- Paediatrics · Pediatric Respiratory Disorders · epiglottitis vs croup — abrupt onset, toxic look, drooling
+- Pharmacology · Antimicrobials : Anti Bacterial Drugs · colistin dose-dependent proximal tubular nephrotoxicity
+- Physiology · Cardiovascular System · S3 mechanism — rapid early-diastolic ventricular filling
+- Ophthalmology · Optics · accommodation mechanism — ciliary contraction relaxes zonules
+- Orthopaedics · Peripheral Nerve Injuries · common peroneal nerve injury at fibular neck — foot drop
+- PSM · Allied Health Disciplines · ANM role at sub-centre — MCH first point of contact
+- Medicine · Cardiology · infective endocarditis — modified Duke major criteria application
+- Surgery · Urology · RCC paraneoplastic syndromes — ectopic EPO and PTHrP
+- OBGYN · Obstetrics · twin-twin transfusion syndrome in monochorionic twins (stuck twin/polyhydramnios)
+- Microbiology · Virology · Monospot heterophile antibody test for infectious mononucleosis
+- Biochemistry · Vitamins · vitamin K as cofactor for gamma-carboxylation of clotting factors
+- Microbiology · Parasitology · LD (amastigote) bodies in bone marrow — visceral leishmaniasis
+- Ophthalmology · Glaucoma · acute angle-closure glaucoma presentation and emergency features
+- Radiology · Genitourinary Radiology · SFU grading of hydronephrosis (grade IV cortical thinning)
+- PSM · Epidemiology · number needed to treat (NNT) calculation from ARR
+- Forensic Medicine · Court of Law · duty to register and report a Medico-Legal Case (MLC)
+- PSM · National Health Programs · LaQshya — labour room quality improvement initiative
+- Pathology · Cell Injury · apoptosis vs necrosis — morphological distinction
+- Psychiatry · Sexual Disorders · gender dysphoria — DSM-5 criteria
+- Physiology · Nerve Muscle Physiology · Henneman's size principle of motor unit recruitment
+- Physiology · General Physiology · Starling forces — net filtration at capillary arteriolar end
+- Pharmacology · Endocrine Pharmacology · thiazolidinediones — PPAR-gamma mechanism, fluid retention/HF risk
+- ENT · Ear · otitis media with effusion (glue ear) in a child
+- Paediatrics · Pediatric Gastroenterology · Hirschsprung disease vs functional constipation — onset since birth
+- Biochemistry · Lipid Metabolism · ApoB-100 as the LDL receptor ligand
+- Paediatrics · Pediatric Nephrology · congenital nephrotic syndrome, Finnish type
+- Anatomy · Abdomen · coeliac trunk — three branches (left gastric, splenic, common hepatic)
+- Surgery · Endocrine Surgery · tertiary hyperparathyroidism in CKD/dialysis patients
+- Anaesthesia · Oxygen Therapy and Airway · oxygen cylinder colour coding in India (IS 3933, verified)
+- OBGYN · Gynecology · CIN 2/3 management — LEEP/cold-knife conization
+- Psychiatry · Eating Disorders · anorexia nervosa — hypothalamic suppression causing amenorrhea
+- Dermatology · Skin Appendages and their Disorders · telogen effluvium — post-stressor diffuse shedding
+- OBGYN · Obstetrics · preterm labour tocolysis with nifedipine
+- Microbiology · Virology · herpes zoster — VZV reactivation from dorsal root ganglia
+- PSM · Communicable and Non-communicable Diseases · scrub typhus — eschar and regional lymphadenopathy
+- Medicine · Rheumatology / Connective Tissue Disorder · anti-CCP antibody specificity for rheumatoid arthritis
+- Biochemistry · Lipid Metabolism · HMG-CoA synthase — rate-limiting step of ketogenesis
+- PSM · National Health Programs · NPCDCS screening at Health and Wellness Centres
+- Surgery · Cardiothoracic Vascular Surgery · thoracic outlet syndrome — positional symptoms/pulse
+- Pathology · Neoplasia · PSA — lack of specificity (elevated in BPH/prostatitis)
+- ENT · Ear · central vs marginal TM perforation — tubotympanic (safe) vs atticoantral (unsafe) CSOM
+- Pathology · Hematology: Red Blood Cells · target cells — causes and hereditary spherocytosis exception
+- Medicine · Cardiology · mitral stenosis — rheumatic heart disease, apical diastolic murmur
+- Psychiatry · Sexual Disorders · exhibitionistic disorder — DSM-5 criteria
+- Physiology · Nerve Muscle Physiology · sliding filament theory — myosin cross-bridge mechanism
+- Psychiatry · Eating Disorders · atypical anorexia nervosa — normal BMI despite AN criteria
+- Dermatology · Skin Appendages and their Disorders · androgenetic alopecia — Norwood-Hamilton scale
+
+<!-- 2026-08-26-daily.md -->
+- Ophthalmology · Glaucoma · normal-tension glaucoma with high CDR/asymmetry despite normal IOP
+- Microbiology · Parasitology · Ancylostoma duodenale anaemia mechanism (chronic blood loss)
+- Pharmacology · ANS Pharmacology · edrophonium/Tensilon test for myasthenia gravis
+- Biochemistry · Genetics · mitochondrial (maternal) inheritance pattern
+- Psychiatry · Sexual Disorders · fetishistic disorder vs transvestic disorder
+- OBGYN · Gynecology · letrozole as first-line ovulation induction in PCOS
+- Paediatrics · Pediatric Respiratory Disorders · IMNCI classification of chest indrawing as severe pneumonia
+- Surgery · Urology · PUJ obstruction on ultrasound/diuretic renogram pattern
+- Medicine · Liver · HBsAg-/anti-HBs+/anti-HBc- as vaccine immunity
+- PSM · Vaccines and Cold Chain · vaccine storage at PHC level (ILR vs deep freezer use)
+- Paediatrics · Pediatric Nephrology · distal (type 1) RTA in a toddler
+- Microbiology · Virology · HBeAg as marker of infectivity/replication
+- Surgery · Gastrointestinal Surgery · Barrett's esophagus and adenocarcinoma risk
+- Psychiatry · Neurotic, Stress-Related and Somatoform Disorders · PTSD vs acute stress disorder timeline
+- Pharmacology · Antimicrobials: Anti Bacterial Drugs · erythromycin and QT prolongation/torsades
+- Forensic Medicine · Court of Law · Bolam test for medical negligence
+- Physiology · General Physiology · primary vs secondary active transport classification
+- Orthopaedics · Miscellaneous · breech presentation as strongest DDH risk factor
+- ENT · Pharynx · Centor score for streptococcal pharyngitis
+- Anatomy · Pelvis and Perineum · structures piercing the urogenital diaphragm
+- Anatomy · Histology · portal triad components of hepatic lobule
+- Medicine · Endocrinology · low T4/inappropriately normal TSH = secondary hypothyroidism
+- Dermatology · Skin Appendages and their Disorders · acne treatment ladder escalation to oral antibiotics
+- Radiology · Genitourinary Radiology · MCUG for VUR grading
+- Physiology · Excretory System · sacral (S2-S4) micturition reflex centre
+- Pathology · Genetics · Marfan syndrome FBN1 gene on chromosome 15q21
+- Physiology · General Physiology · Primary vs secondary active transport distinction (direct ATP use)
+- Microbiology · Virology · HBeAg as marker of high infectivity and active HBV replication
+- OBGYN · Obstetrics · PPROM at 32 weeks — expectant management with latency antibiotics and corticosteroids
+- Anaesthesia · Neuromuscular Blockade · Atracurium — Hofmann elimination, organ-independent metabolism
+- Forensic Medicine · Forensic Toxicology · Sodium thiosulfate as antidote in cyanide poisoning
+- Surgery · Urology · Pelviureteric junction obstruction — Anderson-Hynes pyeloplasty as definitive treatment
+- PSM · Allied Health Disciplines · Dietician/nutritionist role in NCD clinic diabetic diet counseling
+- Biochemistry · Carbohydrate Metabolism · Cori cycle — hepatic gluconeogenesis from muscle lactate
+- Surgery · Plastic Surgery · Full-thickness burn — dry, leathery, insensate eschar features
+- Dermatology · Sexually Transmitted Infections · Condylomata acuminata (HPV) vs condylomata lata — koilocytes
+- OBGYN · Obstetrics · Post-term pregnancy at 41+3 weeks with unfavorable cervix — ripening then induction
+- Pathology · Cell Injury · Caseous necrosis — classic tuberculosis granuloma pattern
+- Anatomy · Lower Limb · Popliteal fossa superomedial boundary — semimembranosus
+- PSM · Allied Health Disciplines · Lab technician's technical role vs pathologist's interpretive role
+- Ophthalmology · Uveitis · JIA-associated anterior uveitis — screening interval by risk category
+- Pathology · Hematology: White Blood Cells · Infectious mononucleosis — atypical (Downey) lymphocytes
+- Anaesthesia · Cardiopulmonary Cerebral Resuscitation · Paediatric single-rescuer BLS compression:ventilation ratio 30:2
+- Orthopaedics · Orthopedics Oncology · Prostate carcinoma — osteoblastic (sclerotic) vertebral metastases
+- Orthopaedics · Metabolic Disorders · Skeletal fluorosis in endemic fluoride-belt regions of India
+- Microbiology · Parasitology · Trichuris trichiura — barrel-shaped ova with bipolar plugs on stool microscopy
+- Orthopaedics · Peripheral Nerve Injuries · Carpal tunnel syndrome — median nerve compression at wrist
+- Anatomy · Abdomen · Hesselbach's triangle — medial border formed by rectus abdominis
+- Pharmacology · Endocrine Pharmacology · Desmopressin — drug of choice for central diabetes insipidus
+- Surgery · Urology · Acute urinary retention in BPH — immediate urethral catheterization
+
+<!-- 2026-08-27-daily.md -->
+- Dermatology · Cutaneous Infections · Leprosy Ridley-Jopling classification — tuberculoid vs lepromatous pole
+- Dermatology · Skin Appendages and their Disorders · Onychomycosis — dermatophyte vs Candida, terbinafine first-line
+- Dermatology · Miscellaneous Disorders · Erythroderma — definition, causes, systemic risks
+- Dermatology · Pigmentary Disorders · Vitiligo — Wood's lamp fluorescence, autoimmune thyroid screening
+- Dermatology · Sexually Transmitted Infections · Genital herpes — Tzanck smear multinucleated giant cells
+- Dermatology · Cutaneous Infections · Erysipelas vs cellulitis — sharply demarcated border, group A Streptococcus
+- Physiology · The Nervous System · Renshaw cell recurrent inhibition
+- Physiology · Cardiovascular System · Bainbridge reflex — atrial stretch causing reflex tachycardia
+- Physiology · Excretory System · Renal blood flow autoregulation range (80–180 mmHg)
+- Physiology · Respiratory System · Bohr effect — CO2/pH/temperature shift of O2-Hb curve
+- Physiology · General Physiology · Law of Laplace — aneurysm wall tension and rupture risk
+- Physiology · The Nervous System · Brown-Séquard syndrome — spinal cord hemisection
+- Physiology · Cardiovascular System · Baroreceptor reflex — orthostatic hypotension mechanism
+- Physiology · Respiratory System · Peripheral chemoreceptors — hypoxic ventilatory drive at altitude
+- Physiology · Nerve Muscle Physiology · Myasthenia gravis — decremental RNS response vs Lambert-Eaton
+- Physiology · General Physiology · Fever — hypothalamic set-point resetting by pyrogens
+- Physiology · The Nervous System · Cerebellar lesion signs — ataxia, intention tremor, dysdiadochokinesia
+- Anatomy · Lower Limb · Tibial nerve — tarsal tunnel syndrome
+- Anatomy · Pelvis and Perineum · Bartholin's gland — homologue of bulbourethral gland
+- Anatomy · Histology · Hepatic acinar zone 3 — hypoxia vulnerability and P450 activity
+- Anatomy · General Embryology · Neural crest derivatives — melanocytes, adrenal medulla, dorsal root ganglia
+- Anatomy · Abdomen · Vermiform appendix — retrocecal position most common
+- Anatomy · Lower Limb · Meralgia paresthetica — lateral cutaneous nerve of thigh entrapment
+- Anatomy · Pelvis and Perineum · Ureter and uterine artery relation — "water under the bridge"
+- Anatomy · General Embryology · Third pharyngeal pouch — thymus and inferior parathyroid
+- Anatomy · Head and Neck · Recurrent laryngeal nerve course — right subclavian vs left aortic arch
+- Anatomy · Abdomen · Calot's triangle boundaries
+- Anaesthesia · Oxygen Therapy and Airway · Guedel oropharyngeal airway sizing
+- Anaesthesia · Neuromuscular Blockade · Pancuronium — vagolytic tachycardia, renal excretion
+- Anaesthesia · Cardiopulmonary Cerebral Resuscitation · Adult CPR compression rate/depth (100–120/min, 5–6cm)
+- Anaesthesia · Pre-Anaesthetic Evaluation · ASA physical status classification
+- Anaesthesia · Neuromuscular Blockade · Train-of-four ratio <0.9 — residual paralysis threshold
+- Anaesthesia · Cardiopulmonary Cerebral Resuscitation · Tension pneumothorax — needle decompression for PEA
+- Paediatrics · Pediatric Respiratory Disorders · Foreign body aspiration — right main bronchus anatomy
+- Paediatrics · Fluid and Electrolyte Disturbances · Symptomatic hyponatremia — slow correction, osmotic demyelination
+- Paediatrics · Pediatric Gastroenterology · Acute appendicitis — classic migratory pain presentation
+- Paediatrics · Pediatric Neurology · Simple febrile seizure — definition and management
+- Paediatrics · Pediatric Nephrology · Autosomal recessive polycystic kidney disease (ARPKD)
+- Paediatrics · Neonatology · Transient tachypnea of the newborn (TTN)
+- Paediatrics · Infectious Diseases · Measles — 3 Cs prodrome, Koplik spots
+- Paediatrics · Pediatric Neurology · Duchenne muscular dystrophy — Gowers sign, calf pseudohypertrophy
+- Paediatrics · Fluid and Electrolyte Disturbances · Hyperkalemia — IV calcium gluconate first step
+- Paediatrics · Pediatric Gastroenterology · H. pylori peptic ulcer disease — triple therapy
+- Paediatrics · Growth · WHO/IAP severe acute malnutrition — MUAC <11.5 cm criterion
+- Paediatrics · Pediatric Neurology · Tuberous sclerosis complex — infantile spasms, ash-leaf macules
+- Radiology · Head & Neck Imaging · Sialolithiasis — submandibular gland/Wharton's duct predilection
+- Radiology · Genitourinary Radiology · Wilms tumor — claw sign confirming renal origin
+- Radiology · Thoracic Radiology · Deep sulcus sign — supine pneumothorax
+- Radiology · Radiotherapy · Fractionation — 4 Rs of radiobiology, normal tissue repair
+- Radiology · Head & Neck Imaging · Retropharyngeal abscess — prevertebral soft tissue widening
+
+<!-- 2026-08-27-daily-2.md -->
+- Physiology · General Physiology · positive feedback example: oxytocin-uterine stretch loop during labour
+- Physiology · The Nervous System · serotonin synthesized from tryptophan via tryptophan hydroxylase
+- Physiology · Cardiovascular System · S1 heart sound = mitral+tricuspid valve closure at onset of systole
+- Physiology · Respiratory System · anatomical dead space definition, ~150 mL conducting airway volume
+- Physiology · Nerve Muscle Physiology · Treppe (staircase phenomenon) — progressive Ca2+ rise with repeated identical stimuli
+- Physiology · General Physiology · isotonic saline distributes predominantly to ECF, not ICF, after IV infusion
+- Physiology · The Nervous System · referred shoulder-tip pain in hemoperitoneum via phrenic (C3-5) afferent convergence
+- Physiology · Respiratory System · restrictive spirometry pattern — proportionate FEV1/FVC fall, normal/raised ratio
+- Physiology · Excretory System · tubuloglomerular feedback — macula densa NaCl sensing, renin release, afferent dilation
+- Physiology · Nerve Muscle Physiology · Type IIb fast glycolytic fibers predominate in sprint/explosive muscle activity
+- Physiology · General Physiology · hypotonic sweat loss raises plasma osmolality, stimulating ADH and thirst
+- Anatomy · Abdomen · ilioinguinal nerve at risk during Lanz/gridiron appendectomy incision
+- Anatomy · Lower Limb · sciatic nerve injury in posterior hip dislocation, foot drop
+- Anatomy · Pelvis and Perineum · infundibulopelvic (suspensory) ligament carries ovarian vessels near the ureter
+- Anatomy · Thorax · thoracic duct drains into the left venous angle
+- Anatomy · Head and Neck · external laryngeal nerve at risk during superior thyroid artery ligation
+- Anatomy · Abdomen · differential arterial supply of anal canal above/below the pectinate line
+- Anatomy · Lower Limb · artery to head of femur (obturator artery branch) in ligamentum teres, childhood femoral head supply
+- Anatomy · Thorax · oesophageal hiatus at T10 with vagal trunks; contrast IVC at T8, aorta at T12
+- Anatomy · Histology · gastric parietal (oxyntic) cells secrete HCl and intrinsic factor
+- Anatomy · Head and Neck · chorda tympani (facial nerve) carries taste from anterior two-thirds of tongue
+- Psychiatry · Schizophrenia Spectrum and Other Psychotic Disorders · Capgras syndrome — delusional impostor-replacement belief
+- Psychiatry · Neurotic, Stress-Related and Somatoform Disorders · panic disorder — discrete unexpected attacks plus anticipatory anxiety
+- Psychiatry · Sexual Disorders · frotteuristic disorder — touching/rubbing a non-consenting person in crowded settings
+- Psychiatry · Substance-Related and Addictive Disorders · delirium tremens — timing (48-96h) and clinical picture vs simple withdrawal/hallucinosis
+- Psychiatry · Eating Disorders · Russell's sign — knuckle calluses from self-induced vomiting in bulimia
+- Psychiatry · Schizophrenia Spectrum and Other Psychotic Disorders · catatonia — mutism/waxy flexibility, benzodiazepine first-line treatment
+- Paediatrics · Infectious Diseases · Kawasaki disease diagnostic criteria and echo screening for coronary aneurysms
+- Paediatrics · Pediatric Respiratory Disorders · WHO/IMNCI fast-breathing cutoff, 2-12 months age band (≥50/min)
+- Paediatrics · Fluid and Electrolyte Disturbances · isotonic vs hypotonic maintenance IV fluids, hospital-acquired hyponatremia risk
+- Paediatrics · Pediatric Endocrinology · classic salt-wasting CAH — 21-hydroxylase deficiency, virilization and salt-wasting crisis
+- Paediatrics · Growth · Tanner stage 2 breast development (B2) — breast budding definition
+- Paediatrics · Pediatric Nephrology · IgA nephropathy (synpharyngitic hematuria, normal C3) vs PSGN contrast
+- Paediatrics · Neonatology · Sarnat stage 1 (mild) HIE — hyperalertness, mild hypotonia, no seizures
+- Paediatrics · Pediatric Endocrinology · congenital hypothyroidism — urgency of early treatment for neurodevelopmental outcome
+- Paediatrics · Pediatric Respiratory Disorders · laryngomalacia — positional stridor, natural resolution by 12-18 months
+- Paediatrics · Fluid and Electrolyte Disturbances · paediatric-modified Parkland formula (3 mL/kg/%TBSA, not adult 4 mL/kg) plus Holliday-Segar maintenance for burns
+- Paediatrics · Pediatric Gastroenterology · physiological GER ("happy spitter") — reassurance-only management in a thriving infant
+- Paediatrics · Pediatric Endocrinology · infant of diabetic mother — fetal hyperinsulinemia mechanism of neonatal hypoglycemia
+- Radiology · Basics of Radiology · eFAST bedside ultrasound for pneumothorax in unstable trauma patients
+- Radiology · Head & Neck Imaging · MRI contraindicated with suspected metallic intraorbital foreign body
+- Radiology · Genitourinary Radiology · obstructive nephrogram sign in acute ureteric obstruction
+- Radiology · Radiotherapy · Law of Bergonié and Tribondeau — radiosensitivity of rapidly dividing, undifferentiated cells
+- Radiology · Basics of Radiology · ultrasound as first-line imaging for paediatric appendicitis (ALARA)
+- Anaesthesia · Neuromuscular Blockade · rocuronium fastest-onset non-depolarizing agent, RSI alternative to succinylcholine
+- Anaesthesia · Cardiopulmonary Cerebral Resuscitation · atropine removed from PEA/asystole algorithm in 2010 AHA guidelines, retained since
+- Anaesthesia · Oxygen Therapy and Airway · paediatric ETT internal diameter formula (age/4 + 4)
+- Anaesthesia · Pre-Anaesthetic Evaluation · NPO fasting guideline — 2 hours for clear fluids
+- Anaesthesia · Cardiopulmonary Cerebral Resuscitation · synchronized cardioversion vs unsynchronized defibrillation for pulseful unstable VT
+- Anaesthesia · Oxygen Therapy and Airway · nasopharyngeal airway contraindicated in suspected base of skull fracture
+
+<!-- 2026-08-28-daily.md -->
+- Radiology · Head & Neck Imaging · thyroglossal duct cyst — midline, moves with tongue protrusion/swallowing on USG
+- Radiology · Genitourinary Radiology · cobra head sign on IVU, ureterocele
+- Radiology · Thoracic Radiology · scimitar sign, scimitar syndrome anomalous pulmonary vein to IVC
+- Radiology · Radiotherapy · Gray unit defined as 1 joule/kg absorbed dose
+- Radiology · Head & Neck Imaging · choanal atresia CT, cyclical neonatal cyanosis relieved by crying
+- Pathology · Renal System · Alport syndrome basket-weave GBM on EM, deafness plus lenticonus
+- Pathology · Respiratory System · EGPA/Churg-Strauss p-ANCA/MPO association with asthma and eosinophilia
+- Pathology · Cell Injury · fibrinoid necrosis of vessel walls in malignant hypertension
+- Pathology · Platelets and Blood Transfusion · von Willebrand disease, reduced ristocetin-induced platelet aggregation with normal platelet count
+- Pathology · Genetics · Fragile X syndrome, FMR1 CGG repeat expansion, macroorchidism
+- Pathology · Hematology: Red Blood Cells · PNH, PIGA mutation, CD55/CD59 deficiency
+- Pathology · Hematology: White Blood Cells · follicular lymphoma t(14;18) BCL2 overexpression
+- Pathology · Platelets and Blood Transfusion · prophylactic platelet transfusion threshold 10,000/microL in stable patients
+- Pathology · Respiratory System · Pancoast syndrome, apical tumor, Horner's triad
+- Pathology · Cell Injury · dystrophic calcification in necrotic tissue with normal serum calcium
+- Pathology · Neoplasia · Warburg effect, aerobic glycolysis in cancer cells
+- Pathology · Platelets and Blood Transfusion · heparin-induced thrombocytopenia, PF4-heparin antibody complex
+- Physiology · Excretory System · erythropoietin source, peritubular interstitial fibroblast-like cells of renal cortex
+- Physiology · Nerve Muscle Physiology · train-of-four fade with non-depolarizing neuromuscular blockers
+- Physiology · General Physiology · IP3 releases calcium from endoplasmic/sarcoplasmic reticulum via Gq pathway
+- Physiology · Respiratory System · hypoxic pulmonary vasoconstriction, Euler-Liljestrand mechanism
+- Physiology · Cardiovascular System · widened pulse pressure in aortic regurgitation
+- Physiology · Excretory System · creatinine clearance overestimates GFR due to proximal tubular secretion
+- Physiology · Nerve Muscle Physiology · troponin C as the calcium-binding subunit in excitation-contraction coupling
+- Physiology · Respiratory System · central chemoreceptors respond to CSF H+ concentration driven by CO2
+- Dermatology · Skin Appendages and their Disorders · psoriatic nail oil-drop sign and coarse pitting vs onychomycosis dermatophytoma
+- Dermatology · Miscellaneous Disorders · fixed drug eruption recurring at same site with co-trimoxazole
+- Dermatology · Integrated Essentials · Tzanck smear acantholytic cells diagnostic of pemphigus vulgaris
+- Dermatology · Pigmentary Disorders · Addison disease ACTH/POMC-driven mucosal and crease hyperpigmentation
+- Dermatology · Cutaneous Infections · Majocchi granuloma from steroid-modified tinea with follicular fungal invasion
+- PSM · Allied Health Disciplines · Lady Health Visitor supervises and trains ANMs for MCH services
+- PSM · Communicable and Non-communicable Diseases · kala-azar (visceral leishmaniasis), rK39 positive, Phlebotomus argentipes vector, elimination target
+- PSM · Epidemiology · specificity calculation from a 2x2 screening-test table (GDM example)
+- PSM · Environment and Health · silicosis in a quarry worker, eggshell hilar calcification, notifiable disease, TB risk
+- PSM · National Health Programs · Anaemia Mukt Bharat 6x6x6 strategy framework (beneficiary groups/interventions/institutional mechanisms)
+- PSM · Vaccines and Cold Chain · Ice-Lined Refrigerator vs Deep Freezer — vaccine storage vs ice-pack conditioning
+- PSM · Nutrition and Health · severe stunting (low HAZ) with preserved weight-for-height distinguished from wasting
+- PSM · Health Care of The Community in India · Ayushman Bharat HWC 12 service packages exclude tertiary trauma/transplant care
+- PSM · Communicable and Non-communicable Diseases · Essen intramuscular anti-rabies vaccination schedule (0,3,7,14,28 days)
+- PSM · Epidemiology · incidence density (rate) calculation using person-years in an occupational cohort
+- PSM · Concept of Health and Disease · Dahlgren-Whitehead rainbow model innermost layer = age/sex/genetic factors
+- PSM · International Health · WHO SEARO and India country office headquartered in New Delhi
+- PSM · Vaccines and Cold Chain · eVIN real-time cold-chain temperature and stock monitoring system
+- Forensic Medicine · Court of Law · Section 304A IPC for death by professional negligence (surgeon technical error)
+- Forensic Medicine · Sexual Jurisprudence · ossification-based radiological age estimation for POCSO applicability
+- Forensic Medicine · Ballistics · skull bone beveling pattern — internal bevel/larger inner-table defect signifies entry wound
+- Forensic Medicine · Forensic Traumatology · defence wounds on palms/forearms distinguished from hesitation cuts
+- Forensic Medicine · Forensic Thanatology · adipocere (saponification) formation in warm anaerobic waterlogged conditions
+- Forensic Medicine · Toxicology - General · Dhatura poisoning anticholinergic toxidrome
+- Forensic Medicine · Court of Law · professional (skilled ordinary) witness vs expert witness distinction
+
+<!-- 2026-08-29-daily.md -->
+- Pathology · Neoplasia · TNM staging reflects anatomical extent of spread, not differentiation/grade
+- Pathology · Genetics · Paternal 15q11-13 deletion = Prader-Willi syndrome (imprinting)
+- Pathology · Hematology: Red Blood Cells · Heinz bodies/bite cells = G6PD deficiency oxidant hemolysis
+- Pathology · Platelets and Blood Transfusion · Bernard-Soulier (GpIb defect, giant platelets) vs Glanzmann (GpIIb/IIIa)
+- Pathology · Renal System · Membranous nephropathy = subepithelial spike-and-dome deposits
+- Pathology · Respiratory System · Curschmann spirals + Charcot-Leyden crystals in asthma sputum
+- Pathology · Cell Injury · Liquefactive necrosis characteristic of cerebral infarction
+- Pathology · Platelets and Blood Transfusion · AB is universal plasma donor (no anti-A/anti-B antibodies)
+- Pathology · Genetics · Anticipation via CAG repeat expansion = Huntington disease
+- Pathology · Hematology: Red Blood Cells · Acanthocytes/spur cells = severe chronic liver disease
+- Pathology · Hematology: White Blood Cells · Dohle bodies + toxic granulation = severe bacterial infection
+- Paediatrics · Fluid and Electrolyte Disturbances · Isotonic (not hypotonic) maintenance IV fluid preferred to avoid hospital-acquired hyponatremia
+- Paediatrics · Pediatric Gastroenterology · Hypertrophic pyloric stenosis causes hypochloremic hypokalemic metabolic alkalosis
+- Paediatrics · Growth · Mid-parental height calculation and interpretation for short stature work-up
+- Paediatrics · Pediatric Neurology · West syndrome (infantile spasms, hypsarrhythmia) treated with ACTH/vigabatrin
+- Paediatrics · Neonatology · Neonatal jaundice reaching palms/soles at phototherapy threshold - start intensive phototherapy
+- Paediatrics · Infectious Diseases · Dengue warning signs (persistent vomiting, rising hematocrit) around defervescence
+- Paediatrics · Pediatric Respiratory Disorders · Congenital diaphragmatic hernia - avoid bag-mask ventilation, intubate + decompress
+- Paediatrics · Pediatric Neurology · Guillain-Barre syndrome post-diarrheal illness, albuminocytologic dissociation
+- Dermatology · Skin Appendages and their Disorders · Trichotillomania vs alopecia areata - irregular vs smooth patch
+- Dermatology · Miscellaneous Disorders · DRESS syndrome from phenytoin - delayed onset, eosinophilia, organ involvement
+- Dermatology · Integrated Essentials · Dermatitis herpetiformis linked to celiac disease, granular IgA at papillary tips
+- Dermatology · Introduction to Dermatology · Vesicle vs bulla size convention (~0.5-1 cm cutoff)
+- Dermatology · Cutaneous Infections · Molluscum contagiosum - umbilicated papules, poxvirus
+- Physiology · The Nervous System · Decerebrate (at/below red nucleus) vs decorticate (above red nucleus) posturing
+- Physiology · Cardiovascular System · Pulsus paradoxus mechanism in cardiac tamponade
+- Physiology · Excretory System · JGA baroreceptor + macula densa mechanisms driving renin release
+- Physiology · Respiratory System · V/Q ratio higher at apex than base in upright lung
+- Physiology · General Physiology · Gibbs-Donnan effect on ion distribution across capillary membrane
+- Physiology · The Nervous System · Syringomyelia - dissociated sensory loss from central cord spinothalamic damage
+- Physiology · Cardiovascular System · Bezold-Jarisch reflex mechanism in vasovagal syncope
+- Physiology · Respiratory System · FEV1/FVC ratio interpretation - obstructive vs restrictive pattern
+- Microbiology · Virology · Rotavirus - leading cause of severe pediatric diarrhea, in India's UIP
+- Microbiology · Systemic Bacteriology · N. gonorrhoeae - intracellular gram-negative diplococci in urethral discharge
+- Microbiology · Parasitology · Trichinella spiralis - undercooked pork, periorbital edema, myositis, eosinophilia
+- Microbiology · Immunology · Anaphylaxis = IgE-mediated Type I hypersensitivity mechanism
+- Microbiology · Virology · Hepatitis A - fecal-oral, self-limited, no chronic carrier state
+- Microbiology · Systemic Bacteriology · Tetanospasmin mechanism - blocks glycine/GABA release via retrograde axonal transport
+- Microbiology · Parasitology · P. falciparum knob-mediated cytoadherence causes cerebral malaria (absent in P. vivax)
+- Microbiology · Immunology · Recurrent meningococcemia points to terminal complement (C5-C9) deficiency
+- Microbiology · Virology · HIV CD4 <200 threshold for cotrimoxazole PJP prophylaxis
+- Microbiology · Systemic Bacteriology · Antibiotic-associated C. difficile pseudomembranous colitis - oral vancomycin/fidaxomicin
+- Microbiology · Parasitology · Neurocysticercosis - ring-enhancing lesion with scolex dot, seizure in child
+- Anatomy · Head and Neck · Hypoglossal nerve (CN XII) exits via hypoglossal canal
+- Anatomy · Abdomen · Esophageal varices from left gastric-azygos portosystemic anastomosis
+- Anatomy · Lower Limb · Adductor canal contents - femoral artery, vein, saphenous nerve
+- Anatomy · General Embryology · Notochord induces neural plate formation (neural induction)
+- Anatomy · Histology · Sertoli cells form blood-testis barrier, support spermatogenesis
+- Anatomy · Head and Neck · Thyroglossal duct cyst - midline neck swelling moves with tongue protrusion
+- Anatomy · Abdomen · Major duodenal papilla (ampulla of Vater) - bile + pancreatic duct union site in D2
+
+<!-- 2026-08-29-daily-2.md -->
+- Radiology · Thoracic Radiology · Westermark sign - focal oligaemia distal to vessel cut-off in PE
+- Radiology · Basics of Radiology · gadolinium contraindicated eGFR<30, nephrogenic systemic fibrosis
+- Radiology · Head & Neck Imaging · lateral neck soft-tissue X-ray for adenoid-nasopharyngeal ratio
+- Radiology · Radiotherapy · Oxygen Enhancement Ratio - hypoxic cell radioresistance
+- Radiology · Thoracic Radiology · tree-in-bud sign - endobronchial spread of TB on HRCT
+- Pathology · Hematology: White Blood Cells · Reed-Sternberg owl-eye cells, CD15/CD30, classical Hodgkin lymphoma
+- Pathology · Renal System · muddy brown granular casts - acute tubular necrosis
+- Pathology · Respiratory System · centriacinar emphysema - smoking, upper lobe, vs panacinar
+- Pathology · Blood Banking and Transfusion Medicine · TRALI vs TACO - normal JVP, no diuretic response
+- Pathology · Neoplasia · Knudson's two-hit hypothesis - bilateral retinoblastoma
+- Pathology · Genetics · genomic imprinting - Angelman (maternal) vs Prader-Willi (paternal) 15q11-13
+- Pathology · Hematology: Red Blood Cells · Howell-Jolly bodies - functional/surgical asplenia in sickle cell
+- Pathology · Blood Banking and Transfusion Medicine · cryoprecipitate composition, lacks factor IX
+- Pathology · Renal System · renal papillary necrosis causes (POSTCARDS), excludes minimal change disease
+- PSM · National Health Programs · ICDS six services package, excludes institutional delivery
+- PSM · Vaccines and Cold Chain · reconstituted BCG/measles vaccine 4-hour discard rule
+- PSM · Nutrition and Health · WHO simplified goitre grading, Grade 1 palpable not visible
+- PSM · International Health · Alma-Ata Declaration 1978 - Health for All, primary health care
+- PSM · Communicable and Non-communicable Diseases · leptospirosis vignette - calf myalgia, conjunctival suffusion, jaundice, AKI
+- PSM · Epidemiology · PPV calculation from sensitivity/specificity/prevalence, low-prevalence screening pitfall
+- PSM · Concept of Health and Disease · tertiary prevention sub-stages - rehabilitation vs disability limitation
+- PSM · Environment and Health · endemic fluorosis vignette - mottled enamel, genu valgum, high-fluoride groundwater
+- PSM · Vaccines and Cold Chain · AEFI cluster from single vial - quarantine batch and report
+- PSM · Nutrition and Health · infantile vitamin B12 deficiency - vegan breastfeeding mother
+- Anatomy · Abdomen · caput medusae - paraumbilical vein portosystemic anastomosis
+- Anatomy · Lower Limb · obturator nerve entrapment, Howship-Romberg sign, obturator hernia
+- Anatomy · Pelvis and Perineum · deep postanal space, horseshoe ischioanal abscess spread
+- Anatomy · General Embryology · gastroschisis vs omphalocele, right umbilical vein involution
+- Anatomy · Head and Neck · Frey syndrome, auriculotemporal nerve aberrant regeneration
+- Anatomy · Abdomen · inferior lumbar triangle of Petit, lumbar hernia site
+- Anatomy · Lower Limb · superior gluteal nerve injury, Trendelenburg sign, gluteal injection
+- Dermatology · Integrated Essentials · lichen planus, lichenoid infiltrate, Wickham striae
+- Dermatology · Sexually Transmitted Infections · donovanosis, Klebsiella granulomatis, Donovan bodies
+- Dermatology · Cutaneous Infections · necrotizing fasciitis, pain out of proportion, crepitus, urgent debridement
+- Dermatology · Pigmentary Disorders · melasma, epidermal vs dermal type on Wood's lamp
+- Dermatology · Miscellaneous Disorders · hereditary angioedema, C1 esterase inhibitor deficiency
+- Surgery · Cardiothoracic Vascular Surgery · Ortner syndrome, left RLN palsy from enlarged left atrium in mitral stenosis
+- Surgery · Endocrine Surgery · toxic adenoma (Plummer's disease), hot nodule on scintigraphy
+- Surgery · Plastic Surgery · Lund-Browder chart vs rule of nines, pediatric head TBSA
+- Surgery · Neurosurgery · extradural hematoma, lucid interval, lens-shaped CT hyperdensity
+- Surgery · Gastrointestinal Surgery · Zenker's diverticulum, Killian's dehiscence
+- Surgery · Urology · posterior urethral valves, antenatal keyhole sign, MCUG
+- Surgery · Cardiothoracic Vascular Surgery · Trendelenburg (Brodie) test, saphenofemoral junction incompetence
+- Surgery · Oncology · Sister Mary Joseph nodule, gastric carcinoma metastasis
+- Surgery · Plastic Surgery · Wagner classification, diabetic foot ulcer grading
+- Surgery · Hepatobiliary Pancreatic Surgery · Ranson's criteria, acute pancreatitis severity at admission
+- Surgery · Gastrointestinal Surgery · familial adenomatous polyposis, APC gene, prophylactic total colectomy
+- Surgery · Head And Neck · branchial cyst, second branchial cleft remnant
+- Surgery · Cardiothoracic Vascular Surgery · Fontaine classification, intermittent claudication staging
+- Surgery · Endocrine Surgery · insulinoma, Whipple's triad, elevated C-peptide
+
+<!-- 2026-08-30-daily.md -->
+- Paediatrics · Neonatology · Erb-Duchenne palsy (C5-C6) after shoulder dystocia — waiter's tip with intact grasp vs Klumpke's
+- Paediatrics · Infectious Diseases · Congenital rubella syndrome — Gregg's triad (cataract, PDA, sensorineural deafness)
+- Paediatrics · Pediatric Respiratory Disorders · Silent chest as the most ominous sign of impending respiratory failure in acute severe asthma
+- Paediatrics · Musculoskeletal Disorders in Children · Barlow vs Ortolani test in DDH screening, breech risk factor
+- Paediatrics · Pediatric Gastroenterology · Food protein-induced allergic proctocolitis in a thriving breastfed infant — maternal dietary elimination
+- Paediatrics · Growth · Growth hormone deficiency work-up — IGF-1 plus GH stimulation test after excluding hypothyroidism/celiac
+- Paediatrics · Pediatric Nephrology · Minimal change disease as classic steroid-responsive nephrotic syndrome with normal C3
+- Microbiology · Virology · HCV RNA (PCR) confirms active infection vs anti-HCV antibody indicating exposure only
+- Microbiology · Systemic Bacteriology · TSST-1 superantigen mechanism (MHC II-TCR bridging) in staphylococcal toxic shock
+- Microbiology · Parasitology · Quartan (72-hour) fever periodicity specific to Plasmodium malariae
+- Microbiology · Immunology · X-linked (Bruton's) agammaglobulinemia — absent B cells/tonsils, infections from 6 months
+- Microbiology · Virology · OPV live-virus VAPP risk vs IPV inactivated safety in India's polio programme
+- Microbiology · Systemic Bacteriology · Klebsiella pneumoniae (Friedlander's) — currant-jelly sputum and bulging fissure sign
+- Microbiology · Parasitology · Toxocara canis visceral larva migrans — pica, puppy contact, eosinophilia
+- Microbiology · Immunology · Type III hypersensitivity — serum sickness after horse-serum antitoxin
+- Surgery · Urology · Timing of orchidopexy for undescended testis (6-18 months)
+- Surgery · Cardiothoracic Vascular Surgery · Percutaneous balloon mitral valvotomy indications by valve morphology (Wilkins score)
+- Surgery · Endocrine Surgery · Unilateral vs bilateral recurrent laryngeal nerve injury after thyroidectomy
+- Surgery · Head And Neck · Thyroglossal cyst vs branchial/dermoid cyst — Sistrunk operation
+- Surgery · Hepatobiliary Pancreatic Surgery · Gallstone ileus and Rigler's triad
+- Surgery · Gastrointestinal Surgery · Esophageal atresia/TEF Gross classification — Type C most common
+- Surgery · Urology · AAST renal trauma grading (Grade IV) and stability-based conservative management
+- Surgery · Neurosurgery · Acute subdural hematoma from bridging vein rupture vs epidural hematoma
+- Surgery · Endocrine Surgery · Zollinger-Ellison syndrome — secretin stimulation test for gastrinoma
+- Surgery · Plastic Surgery · Felon (pulp space infection) — urgent incision and drainage
+- Surgery · Hepatobiliary Pancreatic Surgery · pancreatic pseudocyst — observe asymptomatic/uninfected collection, drain only if complicated after wall matures
+- Surgery · Oncology · melanoma wide local excision margin by Breslow thickness (2.01–4mm → 2cm)
+- Surgery · Urology · paraphimosis as a surgical emergency — immediate manual reduction, dorsal slit/circumcision if it fails
+- ENT · Nose and Paranasal Sinuses · Little's area (Kiesselbach's plexus) as most common epistaxis site
+- ENT · Pharynx · Paradise criteria threshold (≥7 episodes/year) for tonsillectomy
+- ENT · Ear · Rinne/Weber interpretation in unilateral conductive hearing loss
+- ENT · Larynx · bilateral vocal cord palsy — post-thyroidectomy RLN injury as most common cause
+- ENT · Pharynx · polysomnography as gold standard for adult OSA diagnosis
+- ENT · Ear · facial nerve palsy in CSOM/cholesteatoma — tympanic segment most commonly eroded
+- Psychiatry · Neurotic, Stress-Related and Somatoform Disorders · illness anxiety disorder vs somatic symptom disorder (minimal vs prominent somatic symptoms)
+- Psychiatry · Sexual Disorders · SSRI-induced sexual dysfunction (reduced libido, anorgasmia)
+- Psychiatry · Mood Disorders · ECT as first-line for psychotic depression with refusal to eat/high suicide risk
+- Psychiatry · Substance-Related and Addictive Disorders · opioid withdrawal syndrome — lacrimation/rhinorrhoea/piloerection/mydriasis vs intoxication's miosis
+- Psychiatry · Schizophrenia Spectrum and Other Psychotic Disorders · neuroleptic malignant syndrome — recognition and immediate management
+- Medicine · Neurology · IV alteplase 4.5-hour thrombolysis window for acute ischemic stroke
+- Medicine · Liver · SAAG ≥1.1 g/dL indicates portal-hypertensive ascites
+- Medicine · Endocrinology · HbA1c ≥6.5% diagnostic cutoff for diabetes mellitus
+- Medicine · Infections · eschar as pathognomonic lesion of scrub typhus
+- Medicine · Rheumatology / Connective Tissue Disorder · positive pathergy test associated with Behçet's disease
+- Medicine · Cardiology · giant V waves in JVP characteristic of tricuspid regurgitation
+- Medicine · Neurology · IV lorazepam/diazepam as first-line drug for status epilepticus
+- Medicine · Infections · Weil's disease triad (jaundice, AKI, hemorrhage) after flood-water/rodent urine exposure
+- Medicine · Endocrinology · WHO DEXA T-score classification (osteoporosis ≤ −2.5, severe requires fragility fracture)
+- Medicine · Nephrology / Kidney Disease · tall peaked T waves as earliest ECG sign of hyperkalemia
+- Medicine · Rheumatology / Connective Tissue Disorder · Heberden's nodes/DIP involvement distinguishes osteoarthritis from RA
+
+<!-- 2026-08-31-daily.md -->
+- Ophthalmology · Retina · Roth spots (white-centered retinal hemorrhage) classic for infective endocarditis
+- Ophthalmology · Glaucoma · prostaglandin analogues lower IOP by increasing uveoscleral outflow
+- Ophthalmology · Cornea · Munson's sign — V-shaped lower lid indentation on downgaze in advanced keratoconus
+- Ophthalmology · Neuro Ophthalmology · RAPD/Marcus Gunn pupil in unilateral optic neuritis
+- Ophthalmology · Optics · retinoscopy working-distance correction calculation (subtract working-distance factor)
+- Ophthalmology · Uveitis · Vogt-Koyanagi-Harada disease — panuveitis with poliosis, tinnitus, sunset-glow fundus
+- Pathology · Genetics · uniparental disomy definition
+- Pathology · Hematology: Red Blood Cells · schistocytes/helmet cells define microangiopathic hemolytic anemia (TTP/HUS/DIC)
+- Pathology · Hematology: White Blood Cells · CD5+CD23+ immunophenotype defines CLL/SLL vs mantle cell lymphoma
+- Pathology · Platelets and Blood Transfusion · platelets stored at 20-24°C with continuous agitation
+- Pathology · Respiratory System · psammoma bodies in papillary malignant mesothelioma
+- Pathology · Cell Injury · fatty change (steatosis) as reversible hepatocyte injury
+- Pathology · Neoplasia · Krukenberg tumor — bilateral ovarian mets with signet-ring cells from gastric primary
+- Pathology · Platelets and Blood Transfusion · O negative as universal RBC donor
+- PSM · Communicable and Non-communicable Diseases · Japanese encephalitis — Culex vector, pigs as amplifying host
+- PSM · Epidemiology · population attributable risk percentage (PAR%) calculation
+- PSM · Concept of Health and Disease · active case finding + immediate DOTS as secondary prevention
+- PSM · International Health · International Health Regulations (2005) — PHEIC notification obligation
+- PSM · Vaccines and Cold Chain · icepack conditioning required before packing freeze-sensitive vaccines (DPT/TT)
+- PSM · Nutrition and Health · Bitot's spots = WHO xerophthalmia stage X1B
+- PSM · Allied Health Disciplines · NPCB Paramedical Ophthalmic Assistant runs school eye-screening camps, refers disease to ophthalmologist
+- PSM · Environment and Health · chronic arsenicosis from groundwater in Ganga-Brahmaputra delta
+- PSM · Epidemiology · positive likelihood ratio calculation and interpretation
+- PSM · Concept of Health and Disease · Rose's prevention paradox — population vs high-risk strategy
+- Medicine · Rheumatology / Connective Tissue Disorder · relapsing polychondritis — lobule-sparing auricular chondritis, saddle nose
+- Medicine · Cardiology · WPW with pre-excited AF — AV-nodal blockers contraindicated, risk of VF
+- Medicine · Neurology · lateral medullary (Wallenberg) syndrome from PICA occlusion
+- Medicine · Pulmonology · Berlin ARDS criteria — P/F ratio classification (mild/moderate/severe)
+- Medicine · Endocrinology · subacute (De Quervain) thyroiditis — painful goitre, low RAIU, triphasic course
+- Medicine · Nephrology / Kidney Disease · Alport syndrome — X-linked COL4A5, basket-weave GBM, deafness, lenticonus
+- Medicine · Rheumatology / Connective Tissue Disorder · polyarteritis nodosa — HBV-associated, ANCA-negative, medium-vessel microaneurysms
+- Medicine · Pulmonology · Light's criteria for exudative pleural effusion calculation
+- Medicine · Neurology · normal pressure hydrocephalus — triad, tap test, VP shunt
+- Medicine · Liver · King's College Criteria — arterial pH <7.30 as standalone transplant indication in paracetamol ALF
+- Medicine · Endocrinology · pheochromocytoma — alpha-blockade before beta-blockade, risk of unopposed alpha crisis
+- Medicine · Pulmonology · Wells score + D-dimer algorithm — negative D-dimer excludes PE in low/intermediate probability, not high
+- Biochemistry · Carbohydrate Metabolism · pyruvate dehydrogenase complex deficiency — lactic acidosis, ketogenic diet
+- Biochemistry · Lipid Metabolism · abetalipoproteinemia (Bassen-Kornzweig) — MTP deficiency, acanthocytosis
+- Biochemistry · Genetics · Northern blot detects RNA (vs Southern=DNA, Western=protein)
+- Biochemistry · Introduction · competitive inhibition — Km increases, Vmax unchanged (Lineweaver-Burk)
+- Biochemistry · Carbohydrate Metabolism · Cori disease (GSD III, debranching enzyme) — normal lactate unlike Von Gierke
+- Biochemistry · Lipid Metabolism · CPT-II deficiency — adult exertional myopathy/myoglobinuria
+- Biochemistry · Genetics · myotonic dystrophy type 1 — CTG repeat in DMPK gene
+- Biochemistry · Introduction · glycine is the only achiral amino acid
+- Physiology · Excretory System · ADH acts via V2 receptor-mediated aquaporin-2 insertion in collecting duct
+- Physiology · Nerve Muscle Physiology · Troponin T binds tropomyosin (vs Troponin C=calcium, Troponin I=inhibitory)
+- Physiology · General Physiology · Gs protein-coupled receptor signaling via adenylate cyclase/cAMP/PKA
+- Physiology · Respiratory System · DPPC is the principal surface-tension-reducing component of surfactant
+- Physiology · Cardiovascular System · Fick principle for cardiac output — VO2/(CaO2-CvO2)
+- Physiology · Excretory System · renal threshold for glucose ~180 mg/dL (SGLT2 saturation)
+
+<!-- 2026-09-01-daily.md -->
+- ENT · Pharynx · diphtheria — bleeding pseudomembrane extending beyond tonsils in an unimmunized child
+- ENT · Ear · malignant (necrotizing) otitis externa in a diabetic — Pseudomonas, granulation tissue at bony-cartilaginous junction
+- ENT · Nose and Paranasal Sinuses · granulomatosis with polyangiitis (Wegener's) — saddle nose, hemoptysis, c-ANCA/PR3
+- ENT · Larynx · laryngomalacia — positional inspiratory stridor in a young infant, most common cause of infantile stridor
+- ENT · Ear · vestibular schwannoma (acoustic neuroma) — unilateral progressive SNHL with absent corneal reflex
+- OBGYN · Obstetric Haemorrhage · tranexamic acid mortality benefit in PPH only within 3 hours of delivery (WOMAN trial)
+- OBGYN · Labour and Delivery · active management of third stage — oxytocin timing within 1 minute of birth, before placental delivery
+- OBGYN · Reproductive Anatomy and Physiology · uterine artery crosses anterior/superior to the ureter — "water under the bridge"
+- OBGYN · Puerperium, Newborn and Lactation · puerperal mastitis vs engorgement vs abscess — continue feeding + antibiotics
+- OBGYN · Menstrual and Endocrine Disorders · prolactinoma — secondary amenorrhea, galactorrhea, markedly elevated prolactin with normal TSH
+- OBGYN · Gynaecological Oncology · obesity + diabetes as the unopposed-estrogen risk profile pointing to endometrioid carcinoma
+- OBGYN · Early Pregnancy and Abortion · pregnancy of unknown location — beta-hCG near discriminatory zone needs serial trend, not immediate action
+- OBGYN · Hypertensive Disorders of Pregnancy · HELLP syndrome — epigastric pain, low platelets, elevated LFTs, schistocytes
+- OBGYN · Obstetric Haemorrhage · placenta accreta spectrum — sonographic triad (lost clear space, lacunae, bladder interruption) with prior cesareans/previa
+- OBGYN · Labour and Delivery · variable decelerations from cord compression — position change/amnioinfusion, not augmentation
+- OBGYN · Reproductive Anatomy and Physiology · OHVIRA syndrome — uterus didelphys, obstructed hemivagina, ipsilateral renal agenesis
+- Biochemistry · Lipid Metabolism · ApoE2/E2 homozygosity — Type III hyperlipoproteinemia (dysbetalipoproteinemia), palmar xanthomas
+- Biochemistry · Genetics · Western blot detects protein, historically confirmatory in HIV testing
+- Biochemistry · Vitamins · vitamin E deficiency in preterm neonates — hemolytic anemia from red cell membrane fragility
+- Biochemistry · Oxidative Phosphorylation · cyanide inhibits Complex IV (cytochrome c oxidase), causing lactic acidosis despite normal SpO2
+- Biochemistry · Lipid Metabolism · MCAD deficiency — most common fatty acid oxidation disorder, hypoketotic hypoglycemia
+- Biochemistry · Genetics · Down syndrome — meiotic nondisjunction, advanced maternal age as main risk factor
+- Biochemistry · Vitamins · vitamin D3 (skin, UVB) vs D2 (plant) synthesis, two-step hepatic + renal activation
+- Orthopaedics · Miscellaneous · Monteggia fracture-dislocation — posterior interosseous nerve injury, finger drop with preserved wrist extension
+- Orthopaedics · Spine + Pelvis + Lower Limb Traumatology · posterior hip dislocation — sciatic nerve injury, dashboard injury mechanism
+- Orthopaedics · Orthopedics Oncology · osteoid osteoma — nidus, night pain dramatically relieved by NSAIDs
+- Orthopaedics · Bone and Joint Infections · Pott's disease (TB spine) — gibbus deformity, cold abscess
+- Orthopaedics · Pediatric Orthopedics · Osgood-Schlatter disease — traction apophysitis of tibial tuberosity in adolescent athlete
+- Surgery · Plastic Surgery · electrical burn — iceberg tissue damage, myoglobinuria, fluid resuscitation targeting high urine output
+- Surgery · Hepatobiliary Pancreatic Surgery · hepatic hydatid cyst — daughter cysts, eosinophilia, endemic sheep exposure
+- Surgery · Gastrointestinal Surgery · hypertrophic pyloric stenosis — hypochloremic hypokalemic metabolic alkalosis
+- Surgery · Head And Neck · carotid body tumor — Lyre sign splaying of carotid bifurcation
+- Surgery · Cardiothoracic Vascular Surgery · tension pneumothorax — immediate needle decompression before imaging
+- Surgery · Endocrine Surgery · glucagonoma — necrolytic migratory erythema, diabetes, DVT tetrad
+- Surgery · Plastic Surgery · Dupuytren's contracture — palmar cord, ring/little finger flexion in a diabetic
+- Surgery · Neurosurgery · uncal herniation — ipsilateral CN III compression causing fixed dilated pupil
+- Surgery · Gastrointestinal Surgery · intussusception — redcurrant jelly stool, image-guided enema reduction first-line
+- Surgery · Urology · Wilms tumor — avoid vigorous palpation, risk of capsular rupture/spillage
+- Surgery · Cardiothoracic Vascular Surgery · flail chest — underlying pulmonary contusion is the true driver of hypoxia
+- Surgery · Oncology · Krukenberg tumor — bilateral signet-ring-cell ovarian mets from gastric primary
+- Medicine · Nephrology / Kidney Disease · AEIOU mnemonic for emergency dialysis indications
+- Medicine · Rheumatology / Connective Tissue Disorder · Felty syndrome — RA + splenomegaly + neutropenia
+- Medicine · Cardiology · Austin Flint murmur — apical mid-diastolic rumble in severe AR
+- Medicine · GIT · anti-tTG IgA as first-line celiac disease screening serology
+- Medicine · Liver · Hepatitis E — highest fulminant hepatic failure risk in third-trimester pregnancy
+- Medicine · Endocrinology · Sheehan syndrome — postpartum pituitary necrosis, failed lactation
+- Medicine · Nephrology / Kidney Disease · type 4 RTA — hyperkalemic RTA from hypoaldosteronism in diabetic nephropathy
+- Medicine · GIT · H. pylori standard triple eradication therapy (PPI + amoxicillin + clarithromycin)
+- Medicine · Cardiology · Brugada syndrome — coved ST elevation V1-V3, structurally normal heart
+- Medicine · Neurology · trigeminal neuralgia — carbamazepine first-line
+
+<!-- 2026-09-02-daily.md -->
+- Biochemistry · Genetics · Turner syndrome (45,X) is the most common cause of primary amenorrhea with short stature; about half of patients have the classic 45,X karyo
+- Biochemistry · Vitamins · All neonates should receive a single IM dose of vitamin K1 1 mg at birth (0.5 mg if birth weight under 1500 g) to prevent VKDB; oral regimen
+- Biochemistry · Carbohydrate Metabolism · Pyruvate carboxylase (biotin-dependent, mitochondrial) is a key gluconeogenic and anaplerotic enzyme; its deficiency causes lactic acidosis
+- Biochemistry · Enzymes · LDH isoenzyme pattern is now historical (troponin has replaced it), but classically LDH1 greater than LDH2 (flipped pattern) indicated MI oc
+- Biochemistry · Genetics · Robertsonian translocation Down syndrome — unrelated to maternal age, needs parental karyotyping for recurrence risk
+- Biochemistry · Vitamins · Chronic hypervitaminosis A (excess retinol, from megadose supplements or isotretinoin misuse) causes raised intracranial pressure, hepatotox
+- Biochemistry · Carbohydrate Metabolism · Essential pentosuria is a benign inborn error of the glucuronic acid pathway (L-xylulose reductase deficiency), important only because it ca
+- Surgery · Cardiothoracic Vascular Surgery · Leriche syndrome results from atherosclerotic occlusion at the aortic bifurcation; the classic triad should prompt CT angiography and consid
+- Surgery · Endocrine Surgery · Every adrenal incidentaloma needs biochemical evaluation for hyperfunction (overnight dexamethasone suppression test, plasma free metanephri
+- Surgery · Plastic Surgery · Chemical burns need immediate copious water irrigation (20-30 minutes or until pH normalizes), not neutralization — attempting to neutralize
+- Surgery · Neurosurgery · Brown-Séquard syndrome from spinal cord hemisection classically follows penetrating trauma. The lateralized dissociated sensory loss pattern
+- Surgery · Gastrointestinal Surgery · Toxic megacolon is a surgical emergency in fulminant colitis — NPO, IV steroids and broad-spectrum antibiotics, with serial abdominal exams;
+- Surgery · Urology · Tumor markers guide testicular germ cell tumor management: elevated AFP always implies a non-seminomatous component (managed as NSGCT even i
+- Surgery · Cardiothoracic Vascular Surgery · Empyema thoracis progresses through exudative, fibrinopurulent, and organizing stages; management escalates from simple chest tube drainage
+- Surgery · Oncology · Sentinel lymph node biopsy has replaced routine axillary dissection for clinically node-negative early breast cancer, dramatically reducing
+- Surgery · Plastic Surgery · Skin graft take occurs in phases: plasmatic imbibition (0-48h) then inosculation (day 2-3) then revascularization (day 4-7). Graft failure o
+- Surgery · Hepatobiliary Pancreatic Surgery · The 'double duct sign' on imaging is highly suggestive of periampullary/pancreatic head malignancy. In resectable disease, pancreaticoduoden
+- Surgery · Gastrointestinal Surgery · Goligher's classification grades internal hemorrhoids by prolapse behavior: I (no prolapse) to II (spontaneous reduction) to III (manual red
+- PSM · Allied Health Disciplines · Distinguish the three key frontline village-level workers: ASHA (NHM, community mobilization), ANM (sub-centre, clinical MCH services), and
+- PSM · Communicable and Non-communicable Diseases · Negri bodies remain the classic post-mortem histopathological confirmation of rabies, though direct fluorescent antibody testing on brain ti
+- PSM · Epidemiology · The relationship P = I x D explains why a disease with high incidence but short duration (common cold) can have low prevalence, while a dise
+- PSM · International Health · Flag: SDG 3.1 global MMR target (under 70 per 100,000 live births by 2030) should be verified against the latest WHO/NHM document, as India'
+- PSM · National Health Programs · RBSK's 4-D's screening includes congenital deafness — delivery-point OAE, DEIC referral for diagnostic ABR, free early intervention
+- PSM · Vaccines and Cold Chain · diluents for freeze-dried vaccines (BCG, measles/MR) must be stored in the cold chain at 2-8°C, warm diluent degrades potency
+- PSM · Nutrition and Health · SAM triage hinges on the appetite test and presence of complications or edema: complicated SAM needs inpatient care with F-75 then F-100/RUT
+- PSM · Environment and Health · Flag: colour-coding under Bio-Medical Waste Management Rules 2016 (as amended) has been revised more than once — verify the current category
+- Medicine · Endocrinology · MODY should be suspected in young, non-obese diabetics with a strong autosomal-dominant family history, negative islet autoantibodies, and p
+- Medicine · Nephrology / Kidney Disease · Contrast-induced nephropathy risk is highest in patients with pre-existing CKD and diabetes; the mainstay of prevention is periprocedural is
+- Medicine · Rheumatology / Connective Tissue Disorder · MCTD ('Sharp syndrome') is the classic overlap syndrome with anti-U1RNP as its serologic signature; puffy 'sausage' fingers plus Raynaud's p
+- Medicine · Pulmonology · COPD diagnosis requires post-bronchodilator FEV1/FVC under 0.70 (fixed ratio); GOLD staging by FEV1 percent predicted runs 1 (80% or more, m
+- Medicine · Neurology · Parkinson's disease is a clinical diagnosis based on bradykinesia plus at least one of rest tremor or rigidity, with asymmetric onset and go
+- Medicine · Liver · Alpha-1 antitrypsin deficiency is the classic cause of early-onset, lower-lobe-predominant panacinar emphysema, especially in non-smokers; t
+- Medicine · Endocrinology · The water deprivation test with desmopressin challenge differentiates the three causes of polyuria: central DI (no response to fluid restric
+- Medicine · Pulmonology · NTEP recommends upfront NAAT (CBNAAT/Truenat) as the initial test for presumptive pulmonary TB, giving same-day rifampicin-resistance detection
+- Medicine · Rheumatology / Connective Tissue Disorder · Adult-onset Still's disease is a diagnosis of exclusion (Yamaguchi criteria) — the combination of quotidian fever, evanescent salmon rash, s
+- Medicine · Cardiology · Jones criteria (revised 2015, with population risk-stratification) diagnose acute rheumatic fever; India uses the moderate/high-risk criteri
+- Pharmacology · Drugs Affecting Blood and Blood formation · Warfarin's anticoagulant effect is delayed by 2-3 days because it blocks synthesis of new clotting factors rather than inhibiting existing o
+- Pharmacology · ANS Pharmacology · Dobutamine's relatively selective beta-1 agonism makes it useful for inotropic support in cardiogenic shock or heart failure without the mar
+- Pharmacology · General Pharmacology · Drugs with high first-pass metabolism (propranolol, lidocaine, GTN, morphine) have markedly lower oral bioavailability than parenteral; subl
+- Pharmacology · Anticancer Drugs · High-dose methotrexate with leucovorin rescue exploits the fact that tumor cells are exposed to lethal methotrexate concentrations before re
+- Pharmacology · CVS Pharmacology · Amiodarone is a class III antiarrhythmic with a uniquely long half-life (25-110 days) and extensive tissue accumulation; its high iodine con
+- Pharmacology · Endocrine Pharmacology · Methimazole is first-line for most non-pregnant hyperthyroid patients but is avoided in the first trimester due to methimazole embryopathy;
+- Pharmacology · Antimicrobials : Anti Bacterial Drugs · Clindamycin is classically associated with C. difficile-associated pseudomembranous colitis, though any broad-spectrum antibiotic can cause
+- Pharmacology · Respiratory Pharmacology · Distinguish the two anti-leukotriene drug classes: leukotriene receptor antagonists (montelukast, zafirlukast) versus the synthesis inhibito
+- Anatomy · Head and Neck · The parotid gland is traversed by the facial nerve (motor), which divides into 5 terminal branches (mnemonic: Two Zebras Bit My Cat — Tempor
+- Anatomy · Abdomen · SMA syndrome results from a narrowed aortomesenteric angle due to loss of the mesenteric fat pad, compressing the third part of duodenum; th
+- Anatomy · Lower Limb · Acute compartment syndrome is a surgical emergency (pain out of proportion, pain on passive stretch, paresthesia, pallor, pulselessness as a
+- Anatomy · Thorax · Flag: the right main bronchus's wider, shorter, more vertical course explains why aspiration occurs more often on the right; the exact depen
+- Anatomy · Histology · Islet of Langerhans cytoarchitecture classically shows beta cells (insulin) dominating centrally, with alpha (glucagon), delta (somatostatin
+- Anatomy · Head and Neck · The single most reliable operative distinction between ICA and ECA is that the ICA has no branches in the neck while the ECA gives off multi
+
+<!-- 2026-09-03-daily.md -->
+- Forensic Medicine · Toxicology - General · Mees' lines chronic arsenic poisoning
+- Forensic Medicine · Court of Law · hostile witness definition
+- Forensic Medicine · Sexual Jurisprudence · impotence vs sterility distinction
+- Forensic Medicine · IPC Sections · Section 320 grievous hurt fracture/dislocation
+- Forensic Medicine · Forensic Toxicology · Marsh's test detects arsenic
+- Forensic Medicine · Forensic Thanatology · cadaveric spasm vs rigor mortis
+- Forensic Medicine · Toxicology - General · digitalis toxicity xanthopsia
+- Surgery · Endocrine Surgery · familial hypocalciuric hypercalcemia vs primary HPT
+- Surgery · Plastic Surgery · random pattern flap on the leg restricted to 1:1 ratio (vs 1.5-2:1 elsewhere)
+- Surgery · Hepatobiliary Pancreatic Surgery · Klatskin tumor Bismuth-Corlette type IV
+- Surgery · Oncology · Virchow's node/Troisier's sign gastric cancer
+- Surgery · Urology · posterior urethral injury retrograde urethrogram before catheter
+- Surgery · Cardiothoracic Vascular Surgery · popliteal aneurysm bilateral AAA association
+- Surgery · Endocrine Surgery · Conn syndrome saline infusion confirmatory test
+- Surgery · Head And Neck · Frey's syndrome gustatory sweating post-parotidectomy
+- Surgery · Hepatobiliary Pancreatic Surgery · chronic pancreatitis modified Puestow procedure
+- Surgery · Gastrointestinal Surgery · Crohn's disease vs intestinal TB
+- Surgery · Urology · Fournier's gangrene urgent debridement
+- Surgery · Neurosurgery · Cushing's triad raised ICP
+- Surgery · Endocrine Surgery · Riedel's thyroiditis woody fixed benign fibrosis
+- Surgery · Plastic Surgery · Seddon's classification axonotmesis
+- Surgery · Hepatobiliary Pancreatic Surgery · grade III liver trauma non-operative management
+- Surgery · Oncology · Trousseau's sign of malignancy pancreatic cancer
+- ENT · Ear · Schwartze sign otosclerosis
+- ENT · Nose and Paranasal Sinuses · Pott's puffy tumor frontal sinusitis
+- ENT · Pharynx · Eagle syndrome — elongated styloid process post-tonsillectomy neck/throat pain
+- ENT · Larynx · Recurrent respiratory papillomatosis HPV 6/11 vertical transmission
+- ENT · Nose and Paranasal Sinuses · Posterior epistaxis sphenopalatine artery, Woodruff's plexus
+- ENT · Pharynx · Plummer-Vinson syndrome postcricoid web, iron deficiency anemia
+- Pathology · Cell Injury · Superoxide dismutase converts superoxide to hydrogen peroxide
+- Pathology · Neoplasia · Calcitonin marker for medullary thyroid carcinoma
+- Pathology · Genetics · Klinefelter syndrome 47,XXY hypogonadism
+- Pathology · Blood Banking and Transfusion Medicine · Irradiated blood products prevent TA-GVHD
+- Pathology · Hematology: White Blood Cells · Negative NBT test diagnoses chronic granulomatous disease
+- Pathology · Renal System · Nephrotic syndrome defined by proteinuria >3.5g/day
+- Pathology · Respiratory System · ARDS diffuse alveolar damage hyaline membranes
+- Pathology · Blood Banking and Transfusion Medicine · Anti-D immunoglobulin timing 28 weeks and postpartum
+- Pathology · Neoplasia · Li-Fraumeni syndrome TP53 germline mutation
+- Pathology · Genetics · Myotonic dystrophy type 1 CTG repeat expansion DMPK
+- Pathology · Hematology: Red Blood Cells · Pencil cells on smear in iron deficiency anemia
+- Dermatology · Miscellaneous Disorders · Acanthosis nigricans obese adolescent insulin resistance marker
+- Dermatology · Integrated Essentials · Nickel contact dermatitis patch test type IV hypersensitivity
+- Dermatology · Sexually Transmitted Infections · Early congenital syphilis snuffles, hepatosplenomegaly, palmoplantar rash
+- Dermatology · Introduction to Dermatology · Fitzpatrick skin phototype I highest burn risk
+- Dermatology · Skin Appendages and their Disorders · Rosacea central facial flushing and papulopustules without comedones
+- Radiology · Basics of Radiology · Piezoelectric effect basis of ultrasound transducer
+- Radiology · Head & Neck Imaging · Second branchial cleft cyst anterior SCM border
+- Radiology · Genitourinary Radiology · Adrenal adenoma CT washout >60% absolute
+- Radiology · Radiotherapy · G2/M phase most radiosensitive in cell cycle
+- Radiology · Basics of Radiology · CT windowing selects HU range for tissue contrast
+
+<!-- 2026-09-04-daily.md -->
+- Anaesthesia · Cardiopulmonary Cerebral Resuscitation · post-ROSC targeted temperature management 32-36C for 24h
+- Anaesthesia · Oxygen Therapy and Airway · LMA does not protect against aspiration, sits above vocal cords
+- Anaesthesia · Neuromuscular Blockade · succinylcholine Phase II block with repeated/prolonged dosing shows TOF fade
+- Anaesthesia · Pre-Anaesthetic Evaluation · STOP-BANG questionnaire screens for obstructive sleep apnea risk
+- OBGYN · Reproductive Anatomy and Physiology · round ligament pain in second trimester, positional groin pain
+- OBGYN · Antenatal Care and Fetal Assessment · reactive NST criteria — 2 accelerations ≥15bpm ≥15sec in 20min
+- OBGYN · Menstrual and Endocrine Disorders · premature ovarian insufficiency diagnostic criteria (elevated FSH x2, 4wk apart)
+- OBGYN · Contraception and Sterilisation · combined OCP contraindicated in migraine with aura (WHO MEC category 4)
+- OBGYN · Early Pregnancy and Abortion · MTP Amendment Act 2021 — 24-week limit only for special categories, 2 RMP opinions
+- OBGYN · Genital Infections, Prolapse and Urogynaecology · Trichomonas vaginalis — strawberry cervix, motile flagellates on wet mount
+- OBGYN · Obstetric Haemorrhage · vasa previa — painless bleeding after ROM with fetal bradycardia, mother stable
+- OBGYN · Infertility and ART · hydrosalpinx reduces IVF success, salpingectomy before IVF improves outcomes
+- OBGYN · Reproductive Anatomy and Physiology · cervical mucus Spinnbarkeit changes signal fertile window pre-ovulation
+- OBGYN · Antenatal Care and Fetal Assessment · oligohydramnios AFI <5cm, workup for causes and increased surveillance
+- OBGYN · Menstrual and Endocrine Disorders · Kallmann syndrome — hypogonadotropic hypogonadism plus anosmia
+- OBGYN · Puerperium, Newborn and Lactation · Sheehan syndrome — postpartum pituitary necrosis after severe PPH, failed lactation earliest sign
+- Pharmacology · Autacoids · sumatriptan 5-HT1B/1D agonism contraindicated in ischemic heart disease
+- Pharmacology · CVS Pharmacology · adenosine ultra-short half-life for SVT, caution in asthma (bronchospasm)
+- Pharmacology · Endocrine Pharmacology · teriparatide PTH(1-34) anabolic agent, contraindicated in Paget disease/prior radiation
+- Pharmacology · Chemotherapy of Specific Microbial Diseases · isoniazid peripheral neuropathy prevented by pyridoxine (B6)
+- Pharmacology · Drugs Affecting Blood and Blood formation · heparin-induced thrombocytopenia — PF4 antibodies, stop heparin use argatroban
+- Pharmacology · ANS Pharmacology · timolol non-selective beta-blockade decreases aqueous humor, caution in asthma
+- Pharmacology · General Pharmacology · CYP2D6 ultra-rapid metabolizer + codeine — infant morphine toxicity via breast milk
+- Pharmacology · Renal Pharmacology · acetazolamide carbonic anhydrase inhibition causes hyperchloremic metabolic acidosis
+- Pharmacology · CVS Pharmacology · milrinone PDE3 inhibition — inodilator mechanism in cardiogenic shock
+- Pharmacology · Endocrine Pharmacology · cinacalcet calcimimetic — increases CaSR sensitivity, reduces PTH in secondary hyperparathyroidism
+- Forensic Medicine · Ballistics · contact GSW gas laceration/stellate tear with muzzle imprint
+- Forensic Medicine · Forensic Toxicology · iron poisoning deferoxamine antidote
+- Forensic Medicine · Forensic Thanatology · cadaveric spasm instantaneous grasp in violent death
+- Forensic Medicine · IPC Sections · Section 320 grievous hurt privation of sight
+- Forensic Medicine · Court of Law · res ipsa loquitur retained surgical sponge
+- Forensic Medicine · Sexual Jurisprudence · amended Section 375 IPC (2013) includes object insertion as rape
+- Biochemistry · Carbohydrate Metabolism · Andersen disease GSD IV branching enzyme cirrhosis
+- Biochemistry · Lipid Metabolism · Smith-Lemli-Opitz syndrome 7-dehydrocholesterol reductase deficiency
+- Biochemistry · Genetics · Fragile X syndrome FMR1 CGG repeat expansion
+- Biochemistry · Introduction · non-competitive inhibition Km unchanged Vmax decreased
+- Biochemistry · Carbohydrate Metabolism · Tarui disease GSD VII muscle PFK deficiency with hemolysis
+- Biochemistry · Lipid Metabolism · Refsum disease phytanic acid alpha-oxidation defect
+- Biochemistry · Genetics · Barr body count rule 47,XXX triple X two Barr bodies
+- Biochemistry · Introduction · zero-order kinetics at saturating substrate = Vmax
+- PSM · Concept of Health and Disease · Wilson and Jungner screening criteria
+- PSM · National Health Programs · Janani Suraksha Yojana cash incentive institutional delivery
+- PSM · Vaccines and Cold Chain · at PHC level all UIP vaccines incl. OPV/measles are stored in the ILR (+2 to +8C); deep freezer at PHC is for ice-pack prep only, bulk OPV/measles deep-freeze storage is district-level+
+- PSM · International Health · Gavi Vaccine Alliance new vaccine introduction financing
+- PSM · Allied Health Disciplines · Anganwadi Worker ICDS role distinct from ASHA/ANM
+- PSM · Communicable and Non-communicable Diseases · filariasis MDA triple-drug DEC+Albendazole+Ivermectin
+- PSM · Epidemiology · Standardized Mortality Ratio occupational cohort
+- PSM · Environment and Health · break-point chlorination water treatment
+- PSM · National Health Programs · PPTCT Option B+ lifelong ART irrespective of CD4
+- PSM · Vaccines and Cold Chain · Auto-Disable (AD) syringe mandatory in UIP
+
+<!-- 2026-09-04-daily-2.md -->
+- Paediatrics · Fluid and Electrolyte Disturbances · hospital-acquired hyponatremic seizure from hypotonic maintenance fluid and non-osmotic ADH release
+- Paediatrics · Pediatric Gastroenterology · pyloric stenosis — correct electrolytes before pyloromyotomy, surgery never an emergency
+- Paediatrics · Growth · flat growth velocity plus bone age vs chronological age as the discriminator for pathological short stature
+- Paediatrics · Pediatric Neurology · sixth nerve palsy as a false localising sign of raised intracranial pressure in posterior fossa tumour
+- Paediatrics · Neonatology · subgaleal hemorrhage after vacuum delivery — crosses sutures, expands, risk of hypovolemic shock
+- Paediatrics · Infectious Diseases · severe/impending-failure croup — persistent at-rest stridor despite treatment mandates airway readiness
+- Paediatrics · Pediatric Respiratory Disorders · silent chest with falling respiratory rate as life-threatening asthma, not improvement
+- Anatomy · Head and Neck · Arnold's nerve (auricular branch of vagus) and referred otalgia from laryngopharyngeal disease
+- Anatomy · Abdomen · appendicular artery as end-artery branch of ileocolic artery (from SMA), explaining rapid gangrene in appendicitis
+- Anatomy · Lower Limb · common peroneal nerve at fibular neck causing foot drop
+- Anatomy · Thorax · surface marking of the oblique fissure of the right lung (T3 to 6th costal cartilage via 5th rib mid-axillary)
+- Anatomy · Histology · Sertoli cells forming the blood-testis barrier via tight junctions
+- Anatomy · Head and Neck · greater petrosal nerve as parasympathetic root of pterygopalatine ganglion
+- Pathology · Hematology: White Blood Cells · Chediak-Higashi syndrome — giant lysosomal granules on smear with recurrent infections
+- Pathology · Renal System · Kimmelstiel-Wilson nodules as pathognomonic of diabetic nephropathy
+- Pathology · Respiratory System · asbestosis — bibasilar/lower-zone fibrosis with pleural plaques, dual bronchogenic carcinoma/mesothelioma risk (vs silicosis, carcinoma risk only)
+- Pathology · Platelets and Blood Transfusion · fibrinogen falls earliest in massive transfusion, driving early cryoprecipitate use
+- Pathology · Neoplasia · beta-2 microglobulin as a prognostic marker in multiple myeloma staging
+- Pathology · Genetics · cri-du-chat syndrome — 5p deletion with cat-like cry, microcephaly, hypertelorism
+- Pathology · Hematology: Red Blood Cells · acanthocytes (spur cells) in chronic liver disease from altered membrane lipid ratio
+- Pathology · Platelets and Blood Transfusion · septic transfusion reaction from bacterial contamination of room-temperature-stored platelets
+- Medicine · Rheumatology / Connective Tissue Disorder · Behcet's disease — pathergy test with oral/genital ulcers and uveitis
+- Medicine · Cardiology · HFpEF from hypertensive concentric LVH with impaired relaxation (reduced E/A ratio)
+- Medicine · Neurology · pupil-sparing third nerve palsy in diabetes as microvascular ischemia vs compressive aneurysm
+- Medicine · Infections · leptospirosis — conjunctival suffusion, Weil's disease, pulmonary hemorrhage syndrome
+- Medicine · Endocrinology · Somogyi effect vs dawn phenomenon distinguished by 3 AM glucose
+- Medicine · Nephrology / Kidney Disease · lithium-induced nephrogenic diabetes insipidus via aquaporin-2 downregulation
+- Medicine · Rheumatology / Connective Tissue Disorder · Sjogren's syndrome increased risk of MALT-type non-Hodgkin lymphoma
+- Medicine · Infections · cryptococcal meningitis in HIV — aggressive management of raised ICP with serial LPs, delayed ART
+- Medicine · Neurology · Wallenberg (lateral medullary/PICA) syndrome — crossed sensory pattern, Horner's, no motor weakness
+- Medicine · Liver · early vasoactive drug (octreotide/terlipressin) therapy before endoscopy in variceal hemorrhage
+- Medicine · Endocrinology · acromegaly confirmatory test — OGTT with GH suppression, pitfall of random GH unreliability
+- Pharmacology · Autacoids · montelukast as CysLT1 receptor antagonist vs zileuton's 5-LOX inhibition
+- Pharmacology · CVS Pharmacology · ivabradine selectively inhibits the funny (If) current in SA node
+- Pharmacology · Endocrine Pharmacology · acarbose/miglitol alpha-glucosidase inhibitors targeting postprandial glucose
+- Pharmacology · CNS Pharmacology · flumazenil as competitive GABA-A benzodiazepine site antagonist, withdrawal seizure risk
+- Pharmacology · Drugs Affecting Blood and Blood formation · rivaroxaban direct factor Xa inhibition without antithrombin cofactor
+- Pharmacology · ANS Pharmacology · bethanechol as direct muscarinic agonist resistant to cholinesterase, used in ileus/retention
+- Pharmacology · General Pharmacology · large volume of distribution reflects extensive peripheral tissue sequestration
+- Pharmacology · Chemotherapy of Specific Microbial Diseases · ethambutol optic neuritis with red-green colour blindness
+- Pharmacology · CVS Pharmacology · sacubitril as neprilysin inhibitor, combined with ARB not ACEI (angioedema risk)
+- Pharmacology · Endocrine Pharmacology · octreotide as somatostatin analogue for acromegaly only — NOT indicated for hyperprolactinemia/prolactinoma (that's dopamine agonists)
+- Biochemistry · Vitamins · pantothenic acid (B5) deficiency causing burning feet syndrome via coenzyme A role
+- Biochemistry · Carbohydrate Metabolism · Hers disease (GSD VI) — mild hypoglycemia/normal lactate-uric acid sparing muscle isoform, contrasted with Von Gierke's severe picture
+- Biochemistry · Lipid Metabolism · MCAD deficiency causing hypoketotic hypoglycemia during fasting/illness
+- Biochemistry · Amino Acids and Proteins Chemistry · homocystinuria (CBS deficiency) — downward lens dislocation, thrombosis, positive cyanide-nitroprusside test
+- Biochemistry · Vitamins · late vitamin K deficiency bleeding — intracranial hemorrhage in unprophylaxed breastfed infants
+- Biochemistry · Carbohydrate Metabolism · classic galactosemia (GALT deficiency) — cataracts, hepatorenal picture, dietary galactose exclusion
+- Biochemistry · Lipid Metabolism · low malonyl-CoA disinhibiting CPT-I as driver of diabetic ketoacidosis ketogenesis
+- Biochemistry · Amino Acids and Proteins Chemistry · OTC deficiency — X-linked urea cycle disorder, low citrulline, high orotic acid
+
+<!-- 2026-09-04-daily-3.md -->
+- Microbiology · Virology · Hepatitis D virus as a defective RNA virus requiring HBsAg for assembly, superinfection risk
+- Microbiology · Systemic Bacteriology · Mycoplasma pneumoniae IgM cold agglutinins (anti-I) as bedside atypical pneumonia clue
+- Microbiology · Parasitology · Cyclops copepod as intermediate host for Dracunculus medinensis (guinea worm)
+- Microbiology · Immunology · Chronic granulomatous disease — defective NADPH oxidase, abnormal NBT/DHR test
+- Microbiology · Virology · Parvovirus B19 erythema infectiosum and transient aplastic crisis in hemolytic anemia
+- Microbiology · Systemic Bacteriology · GBS (S. agalactiae) recto-vaginal screening at 35-37 weeks, CAMP test
+- Microbiology · Parasitology · Simulium blackfly vector for Onchocerca volvulus (river blindness)
+- PSM · Communicable and Non-communicable Diseases · Indian Diabetes Risk Score (IDRS) 4-parameter screening tool
+- PSM · Epidemiology · Kappa statistic for inter-observer agreement beyond chance
+- PSM · Concept of Health and Disease · WHO 1948 definition of health — physical, mental, social well-being
+- PSM · Environment and Health · CPCB residential ambient noise limit 55/45 dB(A) day/night
+- PSM · Vaccines and Cold Chain · vaccine carrier vs cold box vs ILR — field transport equipment
+- PSM · Nutrition and Health · IAP Vitamin D prophylaxis 400 IU/day for breastfed infants
+- PSM · Allied Health Disciplines · occupational therapist role — ADL functional independence
+- PSM · Health Care of The Community in India · IPHS PHC population norm 30,000 (plain area)
+- PSM · Epidemiology · confounder definition — coffee/smoking/lung cancer example
+- Physiology · Nerve Muscle Physiology · DHP receptor–ryanodine receptor (RyR1) EC coupling
+- Physiology · General Physiology · fluid mosaic model — Singer and Nicolson
+- Physiology · The Nervous System · GABA as principal brain inhibitory neurotransmitter
+- Physiology · Respiratory System · lung compliance increased in emphysema
+- Physiology · Excretory System · loop of Henle as counter-current multiplier
+- Physiology · Nerve Muscle Physiology · MEPP — single quantum ACh release at NMJ
+- Medicine · Rheumatology / Connective Tissue Disorder · anti-Sm antibody most specific for SLE
+- Medicine · Cardiology · murmur thrill first appears at grade 4/6
+- Medicine · Neurology · S. pneumoniae most common cause adult bacterial meningitis
+- Medicine · Pulmonology · CURB-65 scoring and severity-based disposition
+- Medicine · Endocrinology · PCOS diagnosis via Rotterdam criteria (2 of 3)
+- Medicine · Nephrology / Kidney Disease · steroid-resistant nephrotic syndrome definition (4 weeks daily steroids)
+- Medicine · Rheumatology / Connective Tissue Disorder · Löfgren syndrome — acute sarcoidosis triad
+- Medicine · Pulmonology · primary spontaneous pneumothorax management (stable, large)
+- Medicine · Neurology · GBS respiratory monitoring via bedside FVC
+- Medicine · Liver · liver biopsy gold standard for NASH vs simple steatosis
+- Medicine · Endocrinology · hypercalcemia of malignancy — saline then IV bisphosphonate
+- Surgery · Orthopedics · Volkmann's ischemic contracture — cast removal/emergency fasciotomy
+- Surgery · Hepatobiliary Pancreatic Surgery · pancreatic cancer borderline resectable (NCCN vascular criteria)
+- Surgery · Gastrointestinal Surgery · inguinal hernia occlusion test — direct vs indirect
+- Surgery · Head And Neck · parotid pleomorphic adenoma — superficial parotidectomy
+- Surgery · Cardiothoracic Vascular Surgery · NSCLC stage IIIA (N2) — multimodality therapy
+- Surgery · Endocrine Surgery · adrenal incidentaloma — non-functioning, surveillance
+- Surgery · Plastic Surgery · degloved wound with exposed bone/tendon — free flap over graft
+- Surgery · Neurosurgery · infantile hydrocephalus — VP shunt definitive management
+- Surgery · Gastrointestinal Surgery · colon cancer stage III (node-positive) — adjuvant chemotherapy
+- Surgery · Urology · T1 non-muscle-invasive bladder cancer — TURBT + intravesical BCG
+- Surgery · Cardiothoracic Vascular Surgery · thymoma with myasthenia gravis — thymectomy
+- Surgery · Oncology · CA-125 role — monitoring/recurrence, not screening
+- Psychiatry · Sexual Disorders · Dhat syndrome — India-specific culture-bound presentation
+- Psychiatry · Mood Disorders · lithium-thiazide interaction causing toxicity
+- Psychiatry · Eating Disorders · ARFID vs anorexia nervosa distinction
+- Psychiatry · Substance-Related and Addictive Disorders · alcohol withdrawal seizure timing (6–48h)
+- Psychiatry · Neurotic, Stress-Related and Somatoform Disorders · factitious disorder vs malingering
+
+<!-- 2026-09-05-daily.md -->
+- Physiology · Nerve Muscle Physiology · length-tension relationship, optimal sarcomere overlap for maximum tetanic tension
+- Physiology · General Physiology · Evans blue (T-1824) dye dilution for plasma volume measurement
+- Physiology · The Nervous System · REM sleep EEG shows desynchronized beta-like "paradoxical" activity
+- Physiology · Respiratory System · 2,3-DPG rise right-shifts the O2-Hb curve, aiding tissue O2 unloading
+- Physiology · Excretory System · PCT reabsorbs ~65-70% of filtered bicarbonate via NHE3/carbonic anhydrase
+- Physiology · Nerve Muscle Physiology · muscle fatigue driven by H+ and inorganic phosphate accumulation
+- Physiology · General Physiology · phosphate and protein are the dominant intracellular buffers vs bicarbonate extracellularly
+- Paediatrics · Pediatric Nephrology · renal vein thrombosis as a hypercoagulable complication of nephrotic relapse
+- Paediatrics · Neonatology · NRP step for HR 60-100 after 30s effective PPV is MR SOPA reassessment, not compressions
+- Paediatrics · Infectious Diseases · scrub typhus eschar in a child with prolonged antibiotic/antimalarial-unresponsive fever
+- Paediatrics · Pediatric Endocrinology · ISPAD severity grading of pediatric DKA by pH/bicarbonate (moderate category)
+- Paediatrics · Fluid and Electrolyte Disturbances · cerebral salt wasting vs SIADH in meningitis-associated hyponatremia
+- Paediatrics · Pediatric Gastroenterology · gastroschisis vs omphalocele — anatomy and associated-anomaly rate
+- Paediatrics · Growth · Kallmann syndrome — anosmia plus delayed/absent puberty in a boy
+- Orthopaedics · Metabolic Disorders · hypophosphatasia — low ALP paradox in a rachitic-picture bone disease
+- Orthopaedics · Pediatric Orthopedics · Ponseti clubfoot casting started in the neonatal period for best correction
+- Orthopaedics · Peripheral Nerve Injuries · Klumpke's palsy (claw hand plus Horner syndrome) vs Erb's palsy
+- Orthopaedics · General + Upper Limb Traumatology · scaphoid fracture with normal initial X-ray — snuffbox tenderness management
+- Orthopaedics · Spine + Pelvis + Lower Limb Traumatology · Achilles tendon rupture and the Thompson (Simmonds) test
+- Orthopaedics · Orthopedics Oncology · multiple myeloma punched-out lytic skull lesions with M-band
+- Forensic Medicine · Toxicology - General · organophosphate mechanism — irreversible acetylcholinesterase inhibition
+- Forensic Medicine · Court of Law · the fourth "D" of medical negligence — direct causation
+- Forensic Medicine · Sexual Jurisprudence · age of consent raised to 18 years by the Criminal Law Amendment Act, 2013
+- Forensic Medicine · IPC Sections · Section 304B dowry death — definition and burden-shifting presumption
+- Forensic Medicine · Forensic Toxicology · flumazenil as benzodiazepine reversal antidote
+- Forensic Medicine · Forensic Thanatology · putrefaction as a conclusive sign of death vs presumptive signs
+- Surgery · Gastrointestinal Surgery · early gastric cancer definition by depth of invasion (mucosa/submucosa) regardless of nodal status
+- Surgery · Urology · staghorn/struvite renal calculus with Proteus UTI and alkaline urine, managed by PCNL
+- Surgery · Cardiothoracic Vascular Surgery · multiple (staged) tourniquet test localizing incompetent perforator below mid-thigh
+- Surgery · Oncology · breast cancer AJCC TNM staging worked example (T2N1M0, Stage IIB)
+- Surgery · Plastic Surgery · hypertrophic scar vs keloid distinguished by boundary confinement and spontaneous regression
+- Surgery · Hepatobiliary Pancreatic Surgery · HCC surveillance protocol (6-monthly USG ± AFP) in cirrhosis
+- Surgery · Gastrointestinal Surgery · diverticulitis Hinchey I pericolic abscess with size-based drainage threshold
+- Surgery · Head And Neck · Ludwig's angina airway-first management priority
+- Surgery · Cardiothoracic Vascular Surgery · AV fistula maturation signs (Rule of 6s) confirming readiness for cannulation
+- Surgery · Endocrine Surgery · multinodular goitre with compressive symptoms as absolute indication for total thyroidectomy
+- Surgery · Plastic Surgery · paronychia diagnosis and nail-fold drainage, distinguished from felon
+- Surgery · Neurosurgery · pituitary macroadenoma causing bitemporal hemianopia via chiasmal compression
+- Surgery · Gastrointestinal Surgery · full-thickness rectal prolapse distinguished from prolapsed hemorrhoids by concentric mucosal folds
+- Surgery · Urology · epididymo-orchitis vs testicular torsion discrimination using Prehn's sign and cremasteric reflex
+- PSM · National Health Programs · JSSK zero out-of-pocket entitlements for institutional delivery
+- PSM · Vaccines and Cold Chain · BCG contraindicated in symptomatic HIV/immunocompromised infants
+- PSM · Nutrition and Health · NIDDCP minimum iodine content of salt at consumer level
+- PSM · Environment and Health · IMD heat wave definition (temperature + departure-from-normal criteria)
+- PSM · Communicable and Non-communicable Diseases · NTEP bacteriologically confirmed TB case definition (Xpert MTB/RIF)
+- PSM · Epidemiology · negative predictive value rises as disease prevalence falls
+- PSM · Concept of Health and Disease · ORT for established diarrhoea as an example of secondary prevention
+- PSM · Health Care of The Community in India · three-tier rural referral pyramid (Sub-centre-PHC-CHC-District Hospital)
+- PSM · Vaccines and Cold Chain · Vaccine Vial Monitor rationale as a per-vial cumulative heat-exposure indicator
+- PSM · Nutrition and Health · RUTF composition (peanut paste, milk powder, sugar, oil, micronutrients) for outpatient SAM management
+
+<!-- 2026-09-07-daily.md -->
+- PSM · Communicable and Non-communicable Diseases · IDSP P/L/S form - clinical diagnosis without lab = P form
+- PSM · Epidemiology · ecological fallacy - group-level to individual-level inference error
+- PSM · Concept of Health and Disease · disease without illness - asymptomatic TB found on screening
+- PSM · Health Care of The Community in India · IPHS CHC 4-specialist norm (surgeon, physician, OBG, paediatrician)
+- PSM · Vaccines and Cold Chain · Walk-In Cooler (WIC) +2 to +8C bulk state-level vaccine storage
+- PSM · Nutrition and Health · Mid-Day Meal Scheme upper primary 700kcal/20g protein norm
+- PSM · Allied Health Disciplines · Prosthetist and Orthotist vs physiotherapist role in limb fitting
+- PSM · International Health · SDG 3.2 under-5 mortality target <=25/1000 live births
+- PSM · Epidemiology · effect modification vs confounding - asbestos-smoking interaction
+- PSM · Concept of Health and Disease · statistical/Gaussian normalcy = mean plus or minus 2SD
+- Microbiology · Mycology · Rhinosporidium seeberi - sporangia with endospores, stagnant pond bathing
+- Microbiology · Virology · Hepatitis E - fulminant hepatitis in pregnancy, no chronic carrier state
+- Microbiology · Systemic Bacteriology · Pseudomonas aeruginosa pyocyanin blue-green pigment in burns
+- Microbiology · Immunology · Type IV hypersensitivity - Mantoux/tuberculin test mechanism
+- Microbiology · Mycology · Wood's lamp green fluorescence - Microsporum tinea capitis
+- Microbiology · Virology · Chikungunya - Aedes vector, IgM ELISA, persistent polyarthralgia
+- Microbiology · Systemic Bacteriology · Staph aureus coagulase test vs coagulase-negative staph
+- Microbiology · Immunology · Lectin pathway - mannose-binding lectin, antibody-independent complement activation
+- Microbiology · Mycology · Candida albicans chlamydospores on cornmeal agar
+- Pharmacology · General Pharmacology · bioequivalence - AUC and Cmax comparison for generics
+- Pharmacology · Autacoids · ondansetron 5-HT3 antagonist mechanism for chemo-induced vomiting
+- Pharmacology · CVS Pharmacology · sodium nitroprusside cyanide toxicity on prolonged infusion
+- Pharmacology · CNS Pharmacology · lithium-induced nephrogenic diabetes insipidus
+- Pharmacology · Antimicrobials: Anti Bacterial Drugs · aztreonam - safe monobactam in penicillin allergy
+- Pharmacology · Drugs Affecting Blood and Blood formation · clopidogrel P2Y12 prodrug, CYP2C19 poor metabolisers
+- Pharmacology · ANS Pharmacology · prazosin first-dose postural hypotension in BPH plus hypertension
+- Pharmacology · Chemotherapy of Specific Microbial Diseases · NTEP intensive-phase HRZE fixed-dose combination
+- Pharmacology · Autacoids · dinoprostone (PGE2) cervical ripening mechanism
+- Pharmacology · CVS Pharmacology · hydralazine direct arteriolar vasodilator, lupus-like syndrome
+- Pharmacology · Endocrine Pharmacology · glucocorticoid HPA axis suppression, need for tapering
+- Orthopaedics · Spine + Pelvis + Lower Limb Traumatology · Weber classification of ankle fracture at syndesmosis level
+- Orthopaedics · Orthopedics Oncology · chondrosarcoma - popcorn calcification in older-adult pelvis
+- Orthopaedics · Metabolic Disorders · infantile scurvy - pseudoparalysis, Frankel's white line
+- Orthopaedics · General + Upper Limb Traumatology · Colles fracture - FOOSH mechanism, dinner-fork deformity
+- Orthopaedics · Peripheral Nerve Injuries · long thoracic nerve injury - winging of scapula post axillary dissection
+- Orthopaedics · Miscellaneous · De Quervain's tenosynovitis - Finkelstein's test
+- Anaesthesia · Cardiopulmonary Cerebral Resuscitation · Hs and Ts - hyperkalemia in missed-dialysis PEA arrest
+- Anaesthesia · Oxygen Therapy and Airway · simple face mask minimum 5-6 L/min to prevent CO2 rebreathing
+- Anaesthesia · Neuromuscular Blockade · TOF monitoring - ulnar nerve/adductor pollicis standard site
+- Anaesthesia · Pre-Anaesthetic Evaluation · ASA fasting - 6h for light meal/solids/non-human milk
+- Anaesthesia · Oxygen Therapy and Airway · bag-valve-mask reservoir plus high flow approaches 100% FiO2
+- Pathology · Genetics · translocation Down syndrome - higher recurrence risk if parent is carrier
+- Pathology · Hematology: Red Blood Cells · isoniazid-induced sideroblastic anaemia, ringed sideroblasts
+- Pathology · Hematology: White Blood Cells · leukemoid reaction vs CML - LAP score distinction
+- Pathology · Blood Banking and Transfusion Medicine · direct Coombs test in haemolytic disease of newborn
+- Pathology · Respiratory System · lobar pneumonia gross stages - grey hepatisation
+- Pathology · Cell Injury · fat necrosis in pancreatitis - saponification and hypocalcaemia
+- Pathology · Neoplasia · grading (differentiation) vs staging (TNM) - independent prognostic information
+- Pathology · Blood Banking and Transfusion Medicine · Kleihauer-Betke test quantifies fetomaternal haemorrhage
+- Pathology · Hematology: Red Blood Cells · polycythaemia vera - JAK2 V617F mutation, low serum EPO
