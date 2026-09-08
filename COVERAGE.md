@@ -1801,3 +1801,55 @@ Format: one line per question — `- Subject · Topic · one-line gist`. When yo
 - Pharmacology · Drugs Affecting Blood and Blood formation · vitamin K cofactor for gamma-glutamyl carboxylation of factors II/VII/IX/X
 - Pharmacology · Respiratory Pharmacology · theophylline levels raised by macrolide/fluoroquinolone CYP1A2 inhibition
 - Pharmacology · General Pharmacology · Phase I trials — first-in-human, healthy volunteers, safety/PK focus
+
+<!-- 2026-09-07-daily-3.md -->
+- OBGYN · Antenatal Care and Fetal Assessment · quickening timing primigravida vs multigravida
+- OBGYN · Menstrual and Endocrine Disorders · AMH as cycle-independent ovarian reserve marker
+- OBGYN · Gynaecological Oncology · quadrivalent HPV vaccine genotype coverage 6/11/16/18
+- OBGYN · Infertility and ART · mid-luteal day-21 progesterone confirms ovulation
+- OBGYN · Genital Infections, Prolapse and Urogynaecology · rectocele posterior splinting to defecate
+- OBGYN · Obstetric Haemorrhage · acute uterine inversion after forceful placental removal
+- OBGYN · Labour and Delivery · persistent occipito-posterior position diagnosis on VE
+- OBGYN · Puerperium, Newborn and Lactation · postpartum psychosis vs blues vs depression timeline
+- OBGYN · Antenatal Care and Fetal Assessment · ductus venosus reversed a-wave in severe FGR
+- OBGYN · Menstrual and Endocrine Disorders · functional hypothalamic amenorrhea in an athlete
+- OBGYN · Gynaecological Oncology · sentinel node biopsy in early unifocal vulvar carcinoma
+- Biochemistry · Carbohydrate Metabolism · GLUT4 as the insulin-dependent muscle/adipose glucose transporter
+- Biochemistry · Lipid Metabolism · Apo A-I as structural protein of HDL
+- Biochemistry · Genetics · chromosomal microarray first-tier test for developmental delay
+- Biochemistry · Introduction · phenylalanine as glucogenic and ketogenic amino acid
+- Biochemistry · Carbohydrate Metabolism · LDH regenerates NAD+ in anaerobic glycolysis
+- Biochemistry · Lipid Metabolism · chylomicrons of long-chain fatty acids reach circulation via intestinal lacteals, bypassing portal vein
+- Biochemistry · Genetics · sickle cell disease as a missense point mutation
+- Pharmacology · CVS Pharmacology · ranolazine inhibits late inward sodium current
+- Pharmacology · Endocrine Pharmacology · denosumab inhibits RANKL
+- Pharmacology · Antimicrobials: Anti Bacterial Drugs · fluoroquinolones inhibit DNA gyrase
+- Pharmacology · Chemotherapy of Specific Microbial Diseases · NVBDCP ACT first-line for falciparum malaria
+- Pharmacology · ANS Pharmacology · botulinum toxin cleaves SNARE proteins
+- Pharmacology · General Pharmacology · grapefruit juice inhibits intestinal CYP3A4
+- Pharmacology · Autacoids · histidine decarboxylase synthesizes histamine
+- Pharmacology · Renal Pharmacology · mannitol osmotic diuresis mechanism
+- Pharmacology · Endocrine Pharmacology · ketoconazole/metyrapone for Cushing's medical management
+- Surgery · Urology · extraperitoneal vs intraperitoneal bladder rupture management
+- Surgery · Cardiothoracic Vascular Surgery · carotid endarterectomy for symptomatic ≥70% stenosis
+- Surgery · Endocrine Surgery · non-recurrent laryngeal nerve linked to aberrant right subclavian artery
+- Surgery · Head And Neck · Warthin's tumour bilateral cystic parotid tail mass in smokers
+- Surgery · Hepatobiliary Pancreatic Surgery · porcelain gallbladder prophylactic cholecystectomy
+- Surgery · Gastrointestinal Surgery · cecal diameter threshold in closed-loop obstruction
+- Surgery · Urology · fibromuscular dysplasia string-of-beads renal artery stenosis
+- Surgery · Neurosurgery · pituitary apoplexy in known macroadenoma
+- Surgery · Endocrine Surgery · MIBG scintigraphy for extra-adrenal pheochromocytoma localization
+- Surgery · Plastic Surgery · Curling's ulcer stress prophylaxis in major burns
+- Surgery · Hepatobiliary Pancreatic Surgery · ruptured hepatic adenoma with OCP use
+- Ophthalmology · Glaucoma · automated Humphrey perimetry for progression monitoring
+- Ophthalmology · Cornea · arcus senilis vs arcus juvenilis significance
+- Ophthalmology · Sclera · blue sclera in osteogenesis imperfecta
+- Ophthalmology · Diseases of Lens · superotemporal lens dislocation in Marfan syndrome
+- Ophthalmology · Uveitis · Fuchs heterochromic iridocyclitis features
+- Ophthalmology · Retina · rhegmatogenous retinal detachment mechanism after PVD
+- Paediatrics · Pediatric Nephrology · steroid-resistant nephrotic syndrome biopsy shows FSGS
+- Paediatrics · Neonatology · symptomatic neonatal hypoglycemia treatment threshold
+- Paediatrics · Infectious Diseases · mumps orchitis timing post-parotitis
+- Paediatrics · Pediatric Neurology · complex febrile seizure definition (focal/prolonged/recurrent)
+- Paediatrics · Fluid and Electrolyte Disturbances · central diabetes insipidus water deprivation test
+- Paediatrics · Pediatric Gastroenterology · pediatric acute liver failure referral criteria
