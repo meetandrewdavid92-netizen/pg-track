@@ -1853,3 +1853,55 @@ Format: one line per question — `- Subject · Topic · one-line gist`. When yo
 - Paediatrics · Pediatric Neurology · complex febrile seizure definition (focal/prolonged/recurrent)
 - Paediatrics · Fluid and Electrolyte Disturbances · central diabetes insipidus water deprivation test
 - Paediatrics · Pediatric Gastroenterology · pediatric acute liver failure referral criteria
+
+<!-- 2026-09-09-daily.md -->
+- Orthopaedics · Metabolic Disorders · osteopetrosis (marble bone disease) — erlenmeyer flask deformity with pancytopenia from osteoclast failure
+- Orthopaedics · Pediatric Orthopedics · Blount's disease (tibia vara) distinguished from physiological genu varum by metaphyseal-diaphyseal angle
+- Orthopaedics · Peripheral Nerve Injuries · musculocutaneous nerve injury — biceps/brachialis weakness with lateral forearm sensory loss
+- Orthopaedics · General + Upper Limb Traumatology · Galeazzi fracture-dislocation — distal radial shaft fracture with DRUJ disruption
+- Orthopaedics · Spine + Pelvis + Lower Limb Traumatology · Hangman's fracture — traumatic C2 pars interarticularis fracture from hyperextension
+- Orthopaedics · Orthopedics Oncology · osteochondroma — most common benign bone tumor, cartilage-capped exostosis
+- Physiology · Nerve Muscle Physiology · rigor mortis — ATP depletion prevents actin-myosin cross-bridge detachment
+- Physiology · General Physiology · NO/ANP act via cGMP-PKG guanylyl cyclase pathway for vascular smooth muscle relaxation
+- Physiology · The Nervous System · Wernicke's aphasia — fluent, nonsensical speech with impaired comprehension
+- Physiology · Respiratory System · Haldane effect — deoxyhemoglobin's higher affinity for CO2/H+
+- Physiology · Excretory System · filtration fraction calculation (GFR/RPF)
+- Physiology · Nerve Muscle Physiology · hypocalcemic tetany mechanism — lowered voltage-gated Na+ channel threshold
+- Physiology · General Physiology · Na+/Ca2+ exchanger (NCX) as secondary active antiport transport
+- Surgery · Endocrine Surgery · adrenocortical carcinoma — rapid virilization with large irregular adrenal mass needs open en bloc resection
+- Surgery · Plastic Surgery · high-pressure injection injury of the hand — deceptively benign appearance, needs emergency debridement
+- Surgery · Hepatobiliary Pancreatic Surgery · gallbladder polyp >1cm in patient >50 years — indication for cholecystectomy
+- Surgery · Oncology · PTHrP-mediated humoral hypercalcemia of malignancy in squamous cell lung cancer
+- Surgery · Urology · retroperitoneal fibrosis (Ormond's disease) — medial ureteral deviation with bilateral hydronephrosis
+- Surgery · Cardiothoracic Vascular Surgery · aortoenteric fistula — herald bleed after prior AAA graft repair
+- Surgery · Endocrine Surgery · ectopic ACTH secretion from small cell lung carcinoma — dexamethasone-resistant Cushing syndrome
+- Surgery · Head And Neck · ranula (sublingual gland mucocele) — bluish floor-of-mouth swelling lateral to midline
+- Surgery · Hepatobiliary Pancreatic Surgery · mucinous cystic neoplasm vs serous cystadenoma — intracystic CEA differentiates
+- Surgery · Gastrointestinal Surgery · Ogilvie syndrome (acute colonic pseudo-obstruction) in immobile postoperative patient
+- Surgery · Urology · nutcracker syndrome — left renal vein entrapment between SMA and aorta
+- Surgery · Neurosurgery · aneurysmal subarachnoid hemorrhage — normal early CT still needs LP for xanthochromia
+- Surgery · Endocrine Surgery · parathyroid carcinoma — markedly elevated calcium/PTH needs en bloc resection without FNAC
+- Surgery · Plastic Surgery · Marjolin's ulcer — squamous cell carcinoma arising in a chronic burn scar
+- OBGYN · Early Pregnancy and Abortion · ESHRE definition of recurrent pregnancy loss (2 or more losses)
+- OBGYN · Genital Infections, Prolapse and Urogynaecology · first-line azithromycin for chlamydial cervicitis in pregnancy
+- OBGYN · Obstetric Haemorrhage · genital tract laceration as cause of PPH despite a firm uterus
+- OBGYN · Puerperium, Newborn and Lactation · puerperal endometritis triad and clindamycin+gentamicin regimen
+- OBGYN · Reproductive Anatomy and Physiology · ischial spine as pudendal nerve block landmark
+- OBGYN · Antenatal Care and Fetal Assessment · biophysical profile 6/10 with oligohydramnios at term warrants delivery
+- OBGYN · Menstrual and Endocrine Disorders · von Willebrand screening in adolescent heavy menstrual bleeding
+- OBGYN · Hypertensive Disorders of Pregnancy · low-dose aspirin prophylaxis before 16 weeks in chronic hypertension
+- OBGYN · Early Pregnancy and Abortion · septic abortion managed by resuscitation, antibiotics, then evacuation
+- OBGYN · Genital Infections, Prolapse and Urogynaecology · vesicovaginal fistula after obstructed labour
+- OBGYN · Obstetric Haemorrhage · abruption-triggered DIC managed with cryoprecipitate/FFP and delivery
+- OBGYN · Medical Disorders in Pregnancy · decompensating mitral stenosis in pregnancy managed medically then valvotomy
+- OBGYN · Reproductive Anatomy and Physiology · discriminatory hCG zone and absent intrauterine sac suggesting ectopic/PUL
+- Anaesthesia · Cardiopulmonary Cerebral Resuscitation · 15:2 compression-ventilation ratio in two-rescuer infant CPR
+- Anaesthesia · Oxygen Therapy and Airway · continuous waveform capnography as gold standard for ETT confirmation
+- Anaesthesia · Neuromuscular Blockade · neostigmine requires co-administered atropine/glycopyrrolate for muscarinic effects
+- Anaesthesia · Pre-Anaesthetic Evaluation · <4 METs functional capacity threshold for perioperative cardiac risk
+- Anaesthesia · Oxygen Therapy and Airway · Mapleson A for spontaneous, Mapleson D for controlled ventilation
+- Radiology · Genitourinary Radiology · diuretic MAG3 renogram for functional assessment of UPJ obstruction
+- Radiology · Thoracic Radiology · snowman/figure-of-8 sign in supracardiac TAPVC
+- Radiology · Basics of Radiology · water-soluble contrast preferred over barium in suspected GI perforation
+- Radiology · Radiotherapy · Sievert as the unit of equivalent/effective radiation dose
+- Radiology · Genitourinary Radiology · uric acid calculi are radiolucent on X-ray but visible on USG/CT
