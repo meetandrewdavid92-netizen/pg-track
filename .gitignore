@@ -18,3 +18,7 @@
 !sw.js
 !icons/
 !icons/*.png
+
+# Access gate — runs on Vercel's edge before any file is served.
+!middleware.js
+!package.json
