@@ -1905,3 +1905,55 @@ Format: one line per question — `- Subject · Topic · one-line gist`. When yo
 - Radiology · Basics of Radiology · water-soluble contrast preferred over barium in suspected GI perforation
 - Radiology · Radiotherapy · Sievert as the unit of equivalent/effective radiation dose
 - Radiology · Genitourinary Radiology · uric acid calculi are radiolucent on X-ray but visible on USG/CT
+
+<!-- 2026-09-10-daily.md -->
+- Medicine · Endocrinology · Euglycemic DKA mechanism with SGLT2 inhibitors and reduced intake/surgery as triggers
+- Medicine · Nephrology / Kidney Disease · Fibromuscular dysplasia — young woman, string-of-beads renal artery, angioplasty definitive
+- Medicine · Rheumatology / Connective Tissue Disorder · HCV-associated mixed cryoglobulinemia — purpura/arthralgia/neuropathy triad with low C4
+- Medicine · Infections · Melioidosis — diabetic, monsoon soil/water exposure, intrinsic colistin resistance
+- Medicine · Neurology · Miller Fisher syndrome — ophthalmoplegia-ataxia-areflexia triad, anti-GQ1b antibody
+- Medicine · Liver · Primary sclerosing cholangitis — UC association, beaded MRCP, cholangiocarcinoma risk
+- Medicine · Endocrinology · MEN2A triad (pheo + medullary thyroid ca + hyperparathyroidism), RET gene
+- Medicine · Infections · Amoebic liver abscess — right lobe, anchovy sauce pus, metronidazole + luminal agent
+- Medicine · Rheumatology / Connective Tissue Disorder · IgA vasculitis (HSP) — purpura/arthritis/abdominal pain/nephritis tetrad in a child
+- Medicine · Cardiology · Peripartum cardiomyopathy — timing definition, EF<45%, avoid ACEI/ARB in pregnancy
+- Pathology · Genetics · Achondroplasia — FGFR3 gain-of-function mutation
+- Pathology · Hematology: Red Blood Cells · Beta-thalassemia major — "hair-on-end" skull X-ray
+- Pathology · Hematology: White Blood Cells · Rouleaux formation on smear pointing to multiple myeloma
+- Pathology · Blood Banking and Transfusion Medicine · Massive transfusion protocol — 1:1:1 PRBC:FFP:platelet ratio
+- Pathology · Respiratory System · Signet ring sign on HRCT — bronchiectasis
+- Pathology · Cell Injury · Squamous metaplasia in smoker's bronchial epithelium as reversible adaptation
+- Pathology · Neoplasia · CA 15-3 as breast carcinoma tumour marker
+- OBGYN · Gynaecological Oncology · ASC-US Pap smear with positive reflex HPV — next step is colposcopy
+- OBGYN · Early Pregnancy and Abortion · Complete hydatidiform mole karyotype (46,XX, paternal origin) vs partial mole
+- OBGYN · Genital Infections, Prolapse and Urogynaecology · Chancroid (H. ducreyi) — painful ragged ulcer + painful suppurative bubo, vs painless syphilitic chancre
+- OBGYN · Infertility and ART · Ovarian hyperstimulation syndrome — PCOS risk factor, VEGF mechanism
+- OBGYN · Labour and Delivery · Shoulder dystocia — turtle sign, McRoberts maneuver first-line
+- OBGYN · Reproductive Anatomy and Physiology · Pouch of Douglas as most dependent peritoneal recess, culdocentesis
+- OBGYN · Antenatal Care and Fetal Assessment · Nuchal translucency scan timing (11-13+6 weeks)
+- OBGYN · Puerperium, Newborn and Lactation · Postpartum hemorrhage due to uterine atony — oxytocin first-line uterotonic
+- OBGYN · Gynaecological Oncology · Postmenopausal bleeding — thickened endometrium on TVS needs biopsy
+- OBGYN · Early Pregnancy and Abortion · Threatened abortion — closed os with viable pregnancy, conservative management
+- OBGYN · Genital Infections, Prolapse and Urogynaecology · Genital tuberculosis — infertility cause in India, beaded HSG, caseating granulomas
+- Microbiology · Virology · Nipah virus — Pteropus bat reservoir, raw date palm sap transmission (Bangladesh/West Bengal route; Kerala route unconfirmed)
+- Microbiology · Systemic Bacteriology · Elek's gel precipitation test for C. diphtheriae toxigenicity
+- Microbiology · Parasitology · Babesia microti — Maltese cross tetrad on peripheral smear
+- Microbiology · Immunology · Selective IgA deficiency — anaphylactic transfusion reaction mechanism
+- Microbiology · Virology · Mumps orchitis — post-pubertal complication, unilateral, MMR prevention
+- Microbiology · Systemic Bacteriology · Cutaneous anthrax — painless eschar, bamboo-stick bacilli, medusa head colonies
+- Microbiology · Parasitology · Sarcoptes scabiei — finger web burrows, nocturnal itching, household treatment
+- Ophthalmology · Sclera · Phenylephrine blanching test differentiating episcleritis from scleritis
+- Ophthalmology · Optics · Prism diopter definition and use in strabismus measurement
+- Ophthalmology · Uveitis · Ocular sarcoidosis — bilateral granulomatous panuveitis, elevated ACE, hilar lymphadenopathy
+- Ophthalmology · Diseases of Lens · Homocystinuria — inferonasal lens dislocation contrasted with Marfan
+- Ophthalmology · Glaucoma · Primary congenital glaucoma — buphthalmos, Haab's striae, triad of symptoms
+- Ophthalmology · Cornea · Khodadoust line — endothelial corneal graft rejection
+- Pharmacology · Antimicrobials : Anti Bacterial Drugs · Nitrofurantoin contraindicated in G6PD deficiency
+- Pharmacology · Drugs Affecting Blood and Blood formation · Erythropoietin mechanism — stimulates erythroid progenitors via EPO receptor
+- Pharmacology · ANS Pharmacology · Terbutaline as beta-2 agonist tocolytic in preterm labour
+- Pharmacology · CNS Pharmacology · Valproate teratogenicity — neural tube defects
+- Pharmacology · Autacoids · Cyproheptadine as antidote in serotonin syndrome
+- Pharmacology · CVS Pharmacology · Dronedarone contraindicated in severe/decompensated heart failure
+- Pharmacology · Endocrine Pharmacology · Renal 1-alpha-hydroxylase activates calcitriol
+- Pharmacology · Chemotherapy of Specific Microbial Diseases · Primaquine for radical cure of P. vivax, G6PD screening required
+- Pharmacology · Drugs Affecting Blood and Blood formation · Hydroxyurea mechanism in sickle cell disease — HbF induction
