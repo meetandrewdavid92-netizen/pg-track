@@ -1957,3 +1957,55 @@ Format: one line per question — `- Subject · Topic · one-line gist`. When yo
 - Pharmacology · Endocrine Pharmacology · Renal 1-alpha-hydroxylase activates calcitriol
 - Pharmacology · Chemotherapy of Specific Microbial Diseases · Primaquine for radical cure of P. vivax, G6PD screening required
 - Pharmacology · Drugs Affecting Blood and Blood formation · Hydroxyurea mechanism in sickle cell disease — HbF induction
+
+<!-- 2026-09-11-daily.md -->
+- Biochemistry · Vitamins · pyridoxal phosphate as cofactor for ALA synthase, deficiency causes sideroblastic anemia
+- Biochemistry · Carbohydrate Metabolism · fructose-2,6-bisphosphate as the most potent allosteric activator of PFK-1
+- Biochemistry · Lipid Metabolism · X-linked adrenoleukodystrophy (ABCD1) — peroxisomal VLCFA beta-oxidation defect, demyelination plus adrenal insufficiency
+- Biochemistry · Amino Acids and Proteins Chemistry · classic PKU (phenylalanine hydroxylase deficiency) — musty odour, screening, dietary Phe restriction
+- Biochemistry · Vitamins · B12-dependent methionine synthase reaction causes the methyl-folate trap
+- Biochemistry · Carbohydrate Metabolism · GLUT2 as insulin-independent hepatocyte/beta-cell transporter vs insulin-dependent GLUT4
+- Biochemistry · Lipid Metabolism · primary carnitine deficiency (OCTN2 defect) — hypoketotic hypoglycemia, cardiomyopathy, low plasma carnitine
+- Biochemistry · Amino Acids and Proteins Chemistry · alkaptonuria (homogentisate oxidase deficiency) — black urine, ochronosis
+- PSM · Nutrition and Health · endemic neurological cretinism from severe maternal iodine deficiency
+- PSM · Allied Health Disciplines · RBSK District Early Intervention Centre (DEIC) as referral/confirmation hub
+- PSM · Communicable and Non-communicable Diseases · cholera — Vibrio cholerae, rice-water stools, secretory diarrhoea mechanism
+- PSM · Health Care of The Community in India · Sub-Centre population norm (5000 plain/3000 hilly), ANM-staffed first contact
+- PSM · Concept of Health and Disease · Blum's model of health determinants (environment, lifestyle, heredity, health services)
+- PSM · National Health Programs · Anemia Mukt Bharat 6x6x6 strategy
+- PSM · Vaccines and Cold Chain · OPV frozen storage at state/regional level as a live heat-labile vaccine
+- PSM · International Health · World Health Assembly as WHO's supreme decision-making body
+- PSM · Allied Health Disciplines · Health/Sanitary Inspector role — sanitation surveillance and outbreak investigation at PHC
+- Pharmacology · CVS Pharmacology · digoxin mechanism — Na+/K+-ATPase inhibition driving Na+/Ca2+ exchanger-mediated positive inotropy
+- Pharmacology · Endocrine Pharmacology · SGLT2 inhibitors — glucosuria mechanism, genital mycotic infection and euglycemic DKA risk
+- Pharmacology · Antimicrobials : Anti Bacterial Drugs · vancomycin red man syndrome — rate-related histamine release, not true allergy
+- Pharmacology · Anticancer Drugs · vincristine — tubulin-binding, peripheral neuropathy/constipation, minimal myelosuppression
+- Pharmacology · ANS Pharmacology · neostigmine — quaternary anticholinesterase for myasthenia and neuromuscular blockade reversal
+- Pharmacology · General Pharmacology · zero-order (saturation) kinetics — phenytoin as classic example
+- Pharmacology · Autacoids · misoprostol — PGE1 analogue, obstetric use plus NSAID-ulcer prophylaxis
+- Pharmacology · Respiratory Pharmacology · omalizumab — anti-IgE monoclonal for severe allergic asthma
+- Pharmacology · Endocrine Pharmacology · pegvisomant GH-receptor antagonist lowers IGF-1 in resistant acromegaly
+- Pharmacology · Antimicrobials : Anti Bacterial Drugs · ceftaroline binds PBP2a for MRSA coverage
+- Medicine · Neurology · idiopathic intracranial hypertension in obese woman, raised CSF opening pressure
+- Medicine · Liver · hepatopulmonary syndrome platypnea-orthodeoxia in cirrhosis
+- Medicine · Endocrinology · MEN1 3-Ps (parathyroid/pancreas/pituitary), menin gene
+- Medicine · Infections · dengue warning signs (rising Hct, falling platelets) predict DSS
+- Medicine · Rheumatology / Connective Tissue Disorder · EGPA (Churg-Strauss) asthma + eosinophilia + mononeuritis multiplex
+- Medicine · Cardiology · Wellens syndrome T-wave pattern predicts critical LAD stenosis, stress test contraindicated
+- Medicine · Neurology · normal pressure hydrocephalus triad + tap-test response
+- Medicine · Infections · typhoid Faget sign (relative bradycardia), blood culture best in week 1
+- Medicine · Endocrinology · postpartum thyroiditis low RAIU distinguishes from Graves
+- Medicine · Nephrology / Kidney Disease · FSGS most common adult nephrotic cause, steroid-resistant, post-transplant recurrence
+- Medicine · Rheumatology / Connective Tissue Disorder · scleroderma renal crisis treated with ACE inhibitors despite AKI
+- Forensic Medicine · Forensic Toxicology · pralidoxime reactivates AChE only before aging in OP poisoning
+- Forensic Medicine · Forensic Thanatology · diatom test confirms ante-mortem drowning via bone marrow/organ diatoms
+- Forensic Medicine · Toxicology - General · copper sulfate poisoning: blue-green vomitus, hemolysis, methemoglobinemia
+- Forensic Medicine · Forensic Traumatology · contrecoup brain injury mechanism opposite impact site
+- Forensic Medicine · Sexual Jurisprudence · consent invalid if intoxication precludes understanding nature/consequences of act
+- Forensic Medicine · Ballistics · rifling striations individualize bullet to weapon via comparison microscope
+- Physiology · Nerve Muscle Physiology · denervation hypersensitivity — extrajunctional ACh receptor spread
+- Physiology · General Physiology · osmotic fragility test increased in hereditary spherocytosis
+- Physiology · The Nervous System · flexor withdrawal reflex paired with crossed extensor reflex
+- Physiology · Respiratory System · DLCO reduced in both emphysema and pulmonary fibrosis
+- Physiology · Excretory System · aldosterone acts on principal cells of cortical collecting duct via ENaC
+- Physiology · Nerve Muscle Physiology · Wallerian degeneration of distal axon/myelin after nerve transection
