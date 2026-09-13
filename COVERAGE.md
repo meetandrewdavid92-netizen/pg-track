@@ -2009,3 +2009,55 @@ Format: one line per question — `- Subject · Topic · one-line gist`. When yo
 - Physiology · Respiratory System · DLCO reduced in both emphysema and pulmonary fibrosis
 - Physiology · Excretory System · aldosterone acts on principal cells of cortical collecting duct via ENaC
 - Physiology · Nerve Muscle Physiology · Wallerian degeneration of distal axon/myelin after nerve transection
+
+<!-- 2026-09-12-daily.md -->
+- Physiology · The Nervous System · acetylcholine as the neurotransmitter released by all preganglionic autonomic neurons
+- Physiology · Cardiovascular System · Korotkoff Phase V (disappearance of sound) defines diastolic BP
+- Physiology · Excretory System · thick ascending limb of the loop of Henle stays water-impermeable regardless of ADH
+- Physiology · Respiratory System · medium-sized bronchi, not terminal bronchioles, carry the greatest total airway resistance
+- Physiology · General Physiology · Winter's formula predicts expected respiratory compensation for metabolic acidosis
+- Physiology · The Nervous System · Argyll Robertson pupil — light-near dissociation from a pretectal lesion, classic in tabes dorsalis
+- Anatomy · Lower Limb · femoral canal contains Cloquet's node, the compartment femoral hernias push through
+- Anatomy · Pelvis and Perineum · obturator internus and its fascia form the lateral wall of the ischioanal fossa
+- Anatomy · Histology · vagina and ectocervix lined by non-keratinized stratified squamous epithelium
+- Anatomy · Thorax · lung apex/cervical pleura extends ~2.5 cm above the medial third of the clavicle
+- Anatomy · Abdomen · ligamentum teres hepatis is the obliterated remnant of the fetal left umbilical vein
+- Anatomy · Lower Limb · pectineus receives dual innervation from both femoral and obturator nerves
+- Medicine · Rheumatology / Connective Tissue Disorder · antisynthetase syndrome (anti-Jo-1) — myositis + mechanic's hands + ILD
+- Medicine · Cardiology · torsades de pointes from drug-induced QT prolongation, treated with IV magnesium regardless of level
+- Medicine · Neurology · cluster headache — nightly periorbital pain with ipsilateral autonomic features, first-line 100% oxygen
+- Medicine · Pulmonology · obstructive sleep apnoea severity grading by AHI (mild/moderate/severe) and CPAP as first-line treatment
+- Medicine · Endocrinology · primary hyperparathyroidism — bones/stones/abdominal groans tetrad, parathyroidectomy definitive
+- Medicine · Nephrology / Kidney Disease · Shiga toxin-producing E. coli HUS — post-diarrhoeal MAHA, thrombocytopenia, AKI in a child
+- Medicine · Rheumatology / Connective Tissue Disorder · familial Mediterranean fever — MEFV/pyrin, colchicine prevents AA amyloidosis
+- Medicine · Pulmonology · hypersensitivity pneumonitis (farmer's lung) — thermophilic actinomycetes in mouldy hay
+- Medicine · Neurology · anterior spinal artery syndrome — dissociated sensory loss with preserved dorsal columns after hypotension
+- Medicine · Liver · HBV reactivation risk with rituximab in resolved hepatitis B (anti-HBc positive), prophylactic antivirals
+- Medicine · Endocrinology · classic salt-wasting congenital adrenal hyperplasia — 21-hydroxylase deficiency, elevated 17-OHP
+- Surgery · Plastic Surgery · necrotising fasciitis — pain out of proportion, crepitus, bullae, needs emergency debridement
+- Surgery · Hepatobiliary Pancreatic Surgery · biliary colic vs acute cholecystitis distinguished by absence of gallbladder wall inflammation
+- Surgery · Gastrointestinal Surgery · watershed ischemic colitis at the splenic flexure (Griffith's point) after AAA repair
+- Surgery · Head And Neck · cystic hygroma in the posterior triangle of an infant, brilliantly transilluminant
+- Surgery · Cardiothoracic Vascular Surgery · May-Thurner syndrome — right common iliac artery compressing left common iliac vein causing left iliofemoral DVT
+- Surgery · Endocrine Surgery · missed parathyroid gland at re-exploration most often found in anterior mediastinum within thymic tissue
+- Surgery · Plastic Surgery · microtia reconstruction timed to ~6 years of age for adequate costal cartilage and ear size match
+- Surgery · Neurosurgery · diffuse axonal injury — coma disproportionate to a near-normal CT, grey-white junction petechiae
+- Surgery · Gastrointestinal Surgery · afferent loop syndrome after Billroth II — postprandial pain relieved by projectile bilious vomiting
+- Surgery · Urology · horseshoe kidney predisposing to UPJ obstruction and stone formation from malrotation/high ureteric insertion
+- Surgery · Cardiothoracic Vascular Surgery · traumatic aortic transection at the ligamentum arteriosum/isthmus, widened mediastinum, CT angiography
+- Surgery · Oncology · Paget's disease of the breast — eczematous nipple lesion needs full-thickness biopsy despite normal mammogram
+- Pathology · Neoplasia · NSE as the tumour marker for neuroblastoma monitoring
+- Pathology · Genetics · Beckwith-Wiedemann syndrome (11p15 imprinting) — Wilms tumour and hepatoblastoma surveillance
+- Pathology · Hematology: Red Blood Cells · Cabot rings — mitotic spindle remnants in severe megaloblastic anaemia and lead poisoning
+- Pathology · Platelet and Bleeding Disorders · haemophilia A lab pattern — isolated aPTT prolongation with normal PT/platelets/bleeding time
+- Pathology · Renal System · thin basement membrane disease — diffuse GBM thinning, benign familial haematuria, contrast with Alport
+- Pathology · Respiratory System · haemosiderin-laden macrophages (siderophages) as evidence of prior alveolar/pulmonary haemorrhage
+- Pathology · Cell Injury · catalase detoxifies hydrogen peroxide to water, downstream of superoxide dismutase
+- Pathology · Platelet and Bleeding Disorders · platelet transfusion threshold of at least 50,000/microL before an invasive procedure like lumbar puncture
+- Microbiology · Systemic Bacteriology · Widal test limitation — cross-reactivity with other Salmonella serotypes/prior vaccination causing false positives
+- Microbiology · Parasitology · Anopheles as the sole mosquito genus transmitting human malaria in India
+- Microbiology · Mycology · Malassezia furfur — "spaghetti and meatballs" KOH pattern in pityriasis versicolor
+- Microbiology · Immunology · Goodpasture syndrome mechanism classified as Type II (antibody-mediated cytotoxic) hypersensitivity
+- Microbiology · Systemic Bacteriology · Quellung (capsular swelling) reaction for serotyping Streptococcus pneumoniae
+- Microbiology · Parasitology · Paragonimus westermani — crab-eating history, TB-mimicking cavitary lung disease, operculated ova in sputum
+- Microbiology · Mycology · aspergilloma (fungus ball) in a healed TB cavity — mobile mass with air crescent sign, contrast invasive aspergillosis
