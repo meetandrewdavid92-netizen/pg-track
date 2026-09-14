@@ -2061,3 +2061,55 @@ Format: one line per question — `- Subject · Topic · one-line gist`. When yo
 - Microbiology · Systemic Bacteriology · Quellung (capsular swelling) reaction for serotyping Streptococcus pneumoniae
 - Microbiology · Parasitology · Paragonimus westermani — crab-eating history, TB-mimicking cavitary lung disease, operculated ova in sputum
 - Microbiology · Mycology · aspergilloma (fungus ball) in a healed TB cavity — mobile mass with air crescent sign, contrast invasive aspergillosis
+
+<!-- 2026-09-14-daily.md -->
+- Biochemistry · Genetics · wobble hypothesis explains genetic code degeneracy at 3rd codon position
+- Biochemistry · Vitamins · vitamin C reduces Fe3+ to Fe2+, enhances non-heme iron absorption
+- Biochemistry · Carbohydrate Metabolism · glycogen phosphorylase is rate-limiting enzyme of glycogenolysis
+- Biochemistry · Enzymes · ethanol/alcohol dehydrogenase follows zero-order kinetics at physiological levels
+- Biochemistry · Genetics · mosaicism (one zygote, two cell lines) vs chimerism (two zygotes)
+- Biochemistry · Vitamins · hepatic B12 stores last 3-5 years vs folate's 3-4 months
+- Biochemistry · Carbohydrate Metabolism · glycogen synthase is rate-limiting enzyme of glycogenesis, insulin-activated
+- PSM · Communicable and Non-communicable Diseases · NLEP paucibacillary MDT regimen: Rifampicin+Dapsone, 6 months
+- PSM · Epidemiology · cross-sectional study design measures prevalence, not incidence
+- PSM · Concept of Health and Disease · epidemiological triad: agent-host-environment
+- PSM · Environment and Health · Minamata disease — methylmercury poisoning from contaminated fish
+- PSM · Vaccines and Cold Chain · Pentavalent vaccine route/site: IM, anterolateral thigh
+- PSM · Nutrition and Health · height-for-age reflects stunting (chronic) vs weight-for-height (acute wasting)
+- PSM · Allied Health Disciplines · Multi-Purpose Health Worker (Male) role: vector control, male sterilization follow-up
+- PSM · Health Care of The Community in India · PM-JAY cover: Rs 5 lakh per family per year
+- PSM · Epidemiology · attrition bias from differential loss to follow-up in cohort studies
+- Paediatrics · Fluid and Electrolyte Disturbances · refeeding syndrome — hypophosphatemia during SAM nutritional rehab
+- Paediatrics · Pediatric Gastroenterology · acute pancreatitis diagnostic criteria (2 of 3: pain, enzymes, imaging) in a child
+- Paediatrics · Growth · growth faltering defined by crossing two major percentile channels
+- Paediatrics · Inborn Errors of Metabolism · urea cycle disorder — hyperammonemia with respiratory alkalosis, no acidosis
+- Paediatrics · Neonatology · PPHN — pre/post-ductal SpO2 gradient >10% as bedside diagnostic clue
+- Paediatrics · Infectious Diseases · EBV infectious mononucleosis — amoxicillin-induced rash, not true allergy
+- OBGYN · Early Pregnancy and Abortion · incomplete abortion — open os with partial expulsion, retained products
+- OBGYN · Genital Infections, Prolapse and Urogynaecology · bacterial vaginosis — Amsel's criteria, clue cells, whiff test
+- OBGYN · Obstetric Haemorrhage · WHO AMTSL first-line uterotonic: oxytocin 10 IU IM/IV
+- OBGYN · Puerperium, Newborn and Lactation · breast milk jaundice vs breastfeeding jaundice timing/mechanism
+- OBGYN · Reproductive Anatomy and Physiology · ureter at risk within infundibulopelvic ligament during oophorectomy
+- OBGYN · Antenatal Care and Fetal Assessment · MCA-PSV Doppler for fetal anaemia in alloimmunization
+- OBGYN · Menstrual and Endocrine Disorders · Rotterdam criteria for PCOS diagnosis
+- OBGYN · Hypertensive Disorders of Pregnancy · earliest sign of MgSO4 toxicity (loss of patellar reflex)
+- OBGYN · Early Pregnancy and Abortion · methotrexate eligibility criteria for ectopic pregnancy
+- OBGYN · Genital Infections, Prolapse and Urogynaecology · Trichomonas vaginalis — simultaneous empirical partner treatment regardless of symptoms
+- OBGYN · Obstetric Haemorrhage · uterine rupture/scar dehiscence signs in VBAC trial
+- Surgery · Plastic Surgery · pain on passive stretch as earliest sign of compartment syndrome
+- Surgery · Hepatobiliary Pancreatic Surgery · Kasai portoenterostomy timing for biliary atresia
+- Surgery · Gastrointestinal Surgery · gastric MALT lymphoma treated with H. pylori eradication
+- Surgery · Head And Neck · juvenile nasopharyngeal angiofibroma, avoid biopsy, Holman-Miller sign
+- Surgery · Cardiothoracic Vascular Surgery · Takayasu arteritis (pulseless disease) in young woman
+- Surgery · Endocrine Surgery · bedside wound decompression for post-thyroidectomy haematoma airway emergency
+- Surgery · Plastic Surgery · paramedian forehead flap for nasal tip reconstruction
+- Surgery · Neurosurgery · normal pressure hydrocephalus triad and CSF tap test
+- Surgery · Gastrointestinal Surgery · GIST diagnosis via CD117/c-KIT positivity
+- Surgery · Urology · uric acid renal stones treated with urinary alkalinization
+- Surgery · Cardiothoracic Vascular Surgery · constrictive pericarditis and Kussmaul's sign
+- Physiology · Cardiovascular System · S4 heart sound mechanism (atrial kick into stiff ventricle)
+- Physiology · Excretory System · ANP mechanism of natriuresis and renin suppression
+- Physiology · Nerve Muscle Physiology · axon diameter/myelination determine conduction velocity (Erlanger-Gasser)
+- Physiology · Respiratory System · apneustic centre (lower pons) unopposed by pneumotaxic centre
+- Physiology · The Nervous System · Broca's aphasia (non-fluent, preserved comprehension)
+- Physiology · Cardiovascular System · Law of Laplace and dilated ventricle oxygen demand
