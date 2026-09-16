@@ -2165,3 +2165,55 @@ Format: one line per question — `- Subject · Topic · one-line gist`. When yo
 - Pharmacology · Autacoids · Substance P acting on NK1 receptors in the brainstem is the dominant mediator of the delayed phase (>24h) of chemotherapy-induced emesis,...
 - Pharmacology · Chemotherapy of Specific Microbial Diseases · Rifampicin harmlessly colours body secretions (urine, tears, sweat, contact lenses) orange-red due to the drug's own pigmentation; this...
 - Pharmacology · Endocrine Pharmacology · Primary adrenal insufficiency involves loss of both glucocorticoid and mineralocorticoid secretion; hydrocortisone alone has some intrinsic...
+
+<!-- 2026-09-16-daily.md -->
+- Radiology · Basics of Radiology · MRI absolute contraindication - incompatible pacemaker
+- Radiology · Head & Neck Imaging · Holman-Miller sign - JNA posterior maxillary wall bowing
+- Radiology · Genitourinary Radiology · Drooping lily sign - duplex kidney obstructed upper moiety
+- Radiology · Radiotherapy · Cobalt-60 half-life ~5.3 years
+- Radiology · Basics of Radiology · USG frequency-resolution-penetration tradeoff
+- Psychiatry · Eating Disorders · Female athlete triad in a restricting athlete
+- Psychiatry · Schizophrenia Spectrum and Other Psychotic Disorders · Schizoaffective disorder - 2-week psychosis without mood episode
+- Psychiatry · Neurotic, Stress-Related and Somatoform Disorders · GAD 6-month multi-domain worry criteria
+- Psychiatry · Substance-Related and Addictive Disorders · Thiamine before/with glucose to prevent Wernicke's
+- Psychiatry · Mood Disorders · Rapid cycling bipolar - four or more episodes per year
+- OBGYN · Menstrual and Endocrine Disorders · Asherman syndrome after postpartum D&C
+- OBGYN · Gynaecological Oncology · Meigs syndrome - fibroma, ascites, pleural effusion
+- OBGYN · Early Pregnancy and Abortion · Threatened abortion - closed os, live IUP
+- OBGYN · Puerperium, Newborn and Lactation · Galactocele vs mastitis/abscess
+- OBGYN · Obstetric Haemorrhage · Secondary PPH definition (24h-12wk)
+- OBGYN · Labour and Delivery · Partograph action line crossing - obstructed labour
+- OBGYN · Reproductive Anatomy and Physiology · LH surge to ovulation interval (~36h)
+- OBGYN · Hypertensive Disorders of Pregnancy · Gestational hypertension vs preeclampsia vs chronic HTN
+- OBGYN · Menstrual and Endocrine Disorders · Complete androgen insensitivity syndrome
+- OBGYN · Gynaecological Oncology · Choriocarcinoma - cannonball lung mets post-mole
+- OBGYN · Early Pregnancy and Abortion · Ruptured ectopic - emergency surgery
+- OBGYN · Medical Disorders in Pregnancy · DIPSI test - GDM 2-hr cutoff 140 mg/dL
+- OBGYN · Obstetric Haemorrhage · B-Lynch suture - fertility-sparing step after balloon tamponade fails
+- Microbiology · Systemic Bacteriology · M. leprae uncultivable in vitro - armadillo/mouse footpad
+- Microbiology · Parasitology · Fasciolopsis buski - water caltrop ingestion
+- Microbiology · Mycology · Coccidioides immitis - spherules with endospores
+- Microbiology · Immunology · DiGeorge syndrome - 22q11.2 deletion
+- Microbiology · Systemic Bacteriology · Legionella pneumophila - BCYE agar, cooling tower outbreak
+- Microbiology · Parasitology · Angiostrongylus cantonensis - eosinophilic meningitis from snails
+- Microbiology · Mycology · Chromoblastomycosis - Medlar/sclerotic bodies
+- Microbiology · Immunology · Hyper-IgE (Job) syndrome - cold abscesses, high IgE
+- Pharmacology · General Pharmacology · Ion trapping - urinary alkalinization in salicylate poisoning
+- Pharmacology · Autacoids · Cyproheptadine - antidote for serotonin syndrome
+- Pharmacology · CVS Pharmacology · Lidocaine Class IB - inactivated Na channel binding
+- Pharmacology · Respiratory Pharmacology · Roflumilast - PDE4 inhibitor in severe COPD
+- Pharmacology · Antimicrobials : Anti Bacterial Drugs · Isoniazid mechanism - mycolic acid synthesis inhibition
+- Pharmacology · Drugs Affecting Blood and Blood formation · Idarucizumab - dabigatran reversal
+- Pharmacology · ANS Pharmacology · Succinylcholine - Phase I depolarizing block
+- Pharmacology · CNS Pharmacology · Carbidopa rationale with levodopa
+- Pharmacology · Autacoids · Paracetamol - central PGE2 inhibition for fever
+- Pharmacology · CVS Pharmacology · Methyldopa - safe antihypertensive in pregnancy
+- Pharmacology · Endocrine Pharmacology · Raloxifene - SERM, bone agonist/breast-endometrium antagonist
+- Biochemistry · Genetics · Lyonization - random X-inactivation
+- Biochemistry · Vitamins · Vitamin E deficiency neuropathy in cholestasis/fat malabsorption
+- Biochemistry · Carbohydrate Metabolism · Lactase deficiency - hydrogen breath test
+- Biochemistry · Enzymes · CK-MB - short half-life, detects reinfarction
+- Biochemistry · Genetics · Multifactorial inheritance - NTD recurrence risk ~3-5%
+- Biochemistry · Vitamins · Schilling test - B12 absorption localization
+- Biochemistry · Carbohydrate Metabolism · 2,3-BPG - rightward shift of O2 dissociation curve
+- Biochemistry · Enzymes · Allopurinol - suicide inhibition of xanthine oxidase
