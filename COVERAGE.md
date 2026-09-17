@@ -2217,3 +2217,55 @@ Format: one line per question — `- Subject · Topic · one-line gist`. When yo
 - Biochemistry · Vitamins · Schilling test - B12 absorption localization
 - Biochemistry · Carbohydrate Metabolism · 2,3-BPG - rightward shift of O2 dissociation curve
 - Biochemistry · Enzymes · Allopurinol - suicide inhibition of xanthine oxidase
+
+<!-- 2026-09-17-daily.md -->
+- Surgery · Plastic Surgery · Zone II ('no man's land') runs from the A1 pulley to the FDS insertion; both FDS and FDP lie together in a tight fibro-osseous sheath here, making pri
+- Surgery · Hepatobiliary Pancreatic Surgery · Strasberg Type A is the commonest post-cholecystectomy bile leak - from the cystic duct stump or a minor hepatic radicle - with the main biliary tree
+- Surgery · Gastrointestinal Surgery · Enterocutaneous fistula management follows SNAP - Sepsis control, Nutrition, Anatomy definition, Planned surgery - with a 4-6 week window for spontane
+- Surgery · Head And Neck · Peritonsillar abscess (quinsy) is a clinical diagnosis (trismus, hot-potato voice, uvular deviation, tonsillar bulge); drainage combined with antibiot
+- Surgery · Cardiothoracic Vascular Surgery · The IABP inflates in diastole to augment coronary perfusion and deflates in systole to reduce afterload; in severe AR, diastolic inflation worsens reg
+- Surgery · Endocrine Surgery · Bethesda III (Atypia/Follicular lesion of Undetermined Significance) carries roughly a 10-30% malignancy risk; guidelines recommend repeat FNAC or mol
+- Surgery · Plastic Surgery · ISL Stage II lymphoedema features tissue fibrosis and non-pitting oedema no longer reversible with elevation alone (unlike Stage I, which pits and red
+- Surgery · Neurosurgery · Spinal epidural abscess with a new neurological deficit is a surgical emergency; urgent decompressive laminectomy and drainage plus prolonged antibiot
+- Surgery · Gastrointestinal Surgery · Siewert type I tumours (epicentre 1-5 cm above the GEJ) arise from Barrett's oesophagus and are managed as oesophageal cancer with oesophagectomy; typ
+- Surgery · Urology · Stress urinary incontinence results from urethral sphincter/pelvic floor weakness; urodynamics show leakage with raised intra-abdominal pressure (coug
+- Surgery · Cardiothoracic Vascular Surgery · Ebstein's anomaly is defined by apical displacement of the septal and posterior tricuspid leaflets, 'atrialising' part of the right ventricle; classic
+- Medicine · Endocrinology · Levothyroxine absorption is significantly reduced by food, coffee, soy, and calcium/iron supplements; it should be taken on an empty stomach, 30-60 mi
+- Medicine · Nephrology / Kidney Disease · Nephrotic-range proteinuria is defined as urinary protein excretion >3
+- Medicine · Rheumatology / Connective Tissue Disorder · ANA is a highly sensitive but non-specific screening test; anti-dsDNA is highly specific for SLE, and rising titres correlate with disease activity, p
+- Medicine · Pulmonology · The peak flow traffic-light system: green (80%+ personal best) is good control, yellow (50-79%) is caution/step up therapy, red (under 50%) is a medic
+- Medicine · Neurology · Childhood absence epilepsy shows generalized, bilaterally synchronous 3 Hz spike-and-wave discharges, classically provoked by hyperventilation; ethosu
+- Medicine · Liver · Non-selective beta-blockers reduce portal pressure by decreasing cardiac output (beta-1 blockade) and causing splanchnic vasoconstriction via unoppose
+- Medicine · Endocrinology · In primary adrenal insufficiency, loss of cortisol negative feedback raises ACTH/POMC-derived peptides causing hyperpigmentation, while aldosterone de
+- Medicine · Pulmonology · The Usual Interstitial Pneumonia (UIP) pattern - subpleural/basal reticulation, honeycombing, traction bronchiectasis, minimal ground-glass - is the H
+- Medicine · Rheumatology / Connective Tissue Disorder · ANA-positive oligoarticular JIA carries the highest risk of chronic, asymptomatic anterior uveitis, which can silently cause vision-threatening compli
+- Medicine · Cardiology · Acute pericarditis classically shows diffuse, non-territorial concave-upward ST elevation with PR depression (best seen in lead II; aVR shows PR eleva
+- Anaesthesia · Oxygen Therapy and Airway · Standard 2-wavelength pulse oximeters cannot differentiate carboxyhemoglobin from oxyhemoglobin, so SpO2 reads falsely normal/high in CO poisoning; tr
+- Anaesthesia · Neuromuscular Blockade · A sustained 5-second head lift (or hand grip/tongue depressor test) correlates with a TOF ratio of roughly 0
+- Anaesthesia · Cardiopulmonary Cerebral Resuscitation · Beyond 20 weeks, the gravid uterus compresses the IVC/aorta in the supine position, reducing venous return and cardiac output during CPR; continuous m
+- Anaesthesia · Pre-Anaesthetic Evaluation · The Revised Cardiac Risk Index (Lee index) uses six predictors - high-risk surgery, ischemic heart disease, congestive heart failure, cerebrovascular
+- Pharmacology · CVS Pharmacology · Non-selective beta-blockers (e
+- Pharmacology · Endocrine Pharmacology · Agranulocytosis is a rare but life-threatening idiosyncratic reaction to thionamides (carbimazole/methimazole, PTU)
+- Pharmacology · Antimicrobials : Anti Bacterial Drugs · Linezolid (an oxazolidinone) retains activity against VRE by acting on the 50S ribosomal subunit at a site distinct from glycopeptide action; daptomyc
+- Pharmacology · Respiratory Pharmacology · Tiotropium is a LAMA used for COPD maintenance; blocking M3 receptors reduces bronchoconstriction and mucus secretion, with a long duration allowing o
+- Pharmacology · ANS Pharmacology · Topical alpha-1 agonists like oxymetazoline and xylometazoline relieve congestion by vasoconstriction, but use beyond 3-5 days risks rebound congestio
+- Pharmacology · General Pharmacology · Conjugation reactions (glucuronidation, sulfation, acetylation, glycine conjugation) are Phase II metabolism - attaching a polar group to increase wat
+- Pharmacology · Autacoids · Topical PGF2-alpha analogues (latanoprost, travoprost, bimatoprost) increase uveoscleral outflow but cause a characteristic, often irreversible increa
+- Pharmacology · CNS Pharmacology · Ethosuximide is first-line for uncomplicated absence seizures; it blocks T-type calcium channels in thalamic neurons generating the 3-Hz spike-wave di
+- Pharmacology · Endocrine Pharmacology · Bromocriptine is an ergot-derived dopamine D2 receptor agonist used for hyperprolactinemia when cabergoline is unavailable or not tolerated, and remai
+- Anatomy · Head and Neck · The internal laryngeal nerve (branch of the superior laryngeal nerve) pierces the thyrohyoid membrane to supply sensation to the laryngeal mucosa down
+- Anatomy · Abdomen · The right gastroepiploic (from gastroduodenal artery) and left gastroepiploic (from splenic artery) anastomose along the greater curvature - relevant
+- Anatomy · Lower Limb · The tibial nerve supplies the posterior leg compartment; injury at the popliteal fossa paralyses the plantarflexors (gastrocnemius, soleus), producing
+- Anatomy · General Embryology · Hypospadias results from incomplete fusion of the urogenital folds on the ventral penis, leaving the urethral meatus opening proximal to its normal ti
+- Anatomy · Histology · Leydig (interstitial) cells, in the connective tissue between seminiferous tubules, synthesize testosterone in response to LH; Sertoli cells, by contr
+- Anatomy · Head and Neck · The glossopharyngeal nerve supplies general and taste sensation to the posterior third of the tongue and forms the afferent limb of the gag reflex; it
+- OBGYN · Antenatal Care and Fetal Assessment · A single umbilical artery (two-vessel cord) occurs in about 1% of pregnancies and is associated with increased risk of structural anomalies (especiall
+- OBGYN · Menstrual and Endocrine Disorders · Rapid-onset virilization over months should raise suspicion for an androgen-secreting ovarian or adrenal tumour rather than PCOS, which develops gradu
+- OBGYN · Gynaecological Oncology · A partial hydatidiform mole classically arises from dispermic fertilization of a normal ovum, giving a triploid karyotype (69,XXY most commonly) with
+- OBGYN · Infertility and ART · Normal testicular volume and normal FSH suggest intact spermatogenesis with an obstructive block downstream (e
+- OBGYN · Genital Infections, Prolapse and Urogynaecology · Urge incontinence (overactive bladder) presents with urgency, frequency, and nocturia with leakage preceded by an uncontrollable urge, reflecting detr
+- OBGYN · Obstetric Haemorrhage · Massive obstetric haemorrhage protocols recommend transfusing red cells, fresh frozen plasma, and platelets in a roughly 1:1:1 ratio to avoid dilution
+- OBGYN · Labour and Delivery · Late decelerations - onset after the contraction peak, with delayed return to baseline - reflect uteroplacental insufficiency and fetal hypoxia, manag
+- OBGYN · Puerperium, Newborn and Lactation · Unlike high-resource settings where formula feeding is preferred to avoid all transmission risk, Indian national guidance (aligned with WHO recommenda
+- OBGYN · Antenatal Care and Fetal Assessment · Microcytic anaemia with a normal serum ferritin (an acute-phase reactant, so check CRP too) argues against simple iron deficiency and should prompt ha
+- OBGYN · Menstrual and Endocrine Disorders · For heavy menstrual bleeding with a normal pelvic scan and endometrial sampling (non-structural AUB), the levonorgestrel-releasing intrauterine system
