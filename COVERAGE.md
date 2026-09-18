@@ -2269,3 +2269,55 @@ Format: one line per question — `- Subject · Topic · one-line gist`. When yo
 - OBGYN · Puerperium, Newborn and Lactation · Unlike high-resource settings where formula feeding is preferred to avoid all transmission risk, Indian national guidance (aligned with WHO recommenda
 - OBGYN · Antenatal Care and Fetal Assessment · Microcytic anaemia with a normal serum ferritin (an acute-phase reactant, so check CRP too) argues against simple iron deficiency and should prompt ha
 - OBGYN · Menstrual and Endocrine Disorders · For heavy menstrual bleeding with a normal pelvic scan and endometrial sampling (non-structural AUB), the levonorgestrel-releasing intrauterine system
+
+<!-- 2026-09-18-daily.md -->
+- Dermatology · Miscellaneous Disorders · Pyoderma gangrenosum — pathergic undermined ulcer associated with IBD, treat with immunosuppression not debridement
+- Dermatology · Integrated Essentials · DIF biopsy must be taken from perilesional normal skin, not the lesion itself
+- Dermatology · Sexually Transmitted Infections · Reactive arthritis (Reiter) post-chlamydial urethritis — arthritis, conjunctivitis, circinate balanitis triad
+- Dermatology · Pigmentary Disorders · Cafe-au-lait macules — NF1 NIH diagnostic criterion (>=6, size cutoffs by puberty)
+- Dermatology · Skin Appendages and their Disorders · Koilonychia (spoon nails) as a sign of iron deficiency anemia
+- Biochemistry · Vitamins · Transcobalamin II is the plasma transport protein delivering B12 to tissues after ileal absorption
+- Biochemistry · Carbohydrate Metabolism · Hexokinase is product-inhibited by glucose-6-phosphate; glucokinase is not
+- Biochemistry · Lipid Metabolism · Glucagon activates hormone-sensitive lipase via cAMP-PKA; insulin inhibits it
+- Biochemistry · Amino Acids and Proteins Chemistry · Elevated urinary orotic acid distinguishes OTC deficiency from CPS-I deficiency in hyperammonemia
+- Biochemistry · Vitamins · Riboflavin (B2) is the precursor of FAD and FMN flavin coenzymes
+- Biochemistry · Carbohydrate Metabolism · Aldose reductase/polyol pathway sorbitol accumulation in diabetic cataract, retinopathy, neuropathy
+- Biochemistry · Lipid Metabolism · Zellweger syndrome — peroxisome biogenesis (PEX gene) disorder with elevated VLCFA, distinct from X-ALD
+- Biochemistry · Amino Acids and Proteins Chemistry · Tyrosinemia type I — fumarylacetoacetate hydrolase deficiency, succinylacetone, treated with nitisinone (NTBC)
+- Biochemistry · Vitamins · Vitamin D 25-hydroxylation occurs in the liver (calcidiol formation), before renal 1-alpha-hydroxylation
+- Biochemistry · Carbohydrate Metabolism · Glucose-alanine (Cahill) cycle transports nitrogen from muscle to liver, distinct from the lactate-based Cori cycle
+- Surgery · Cardiothoracic Vascular Surgery · massive hemothorax — thoracotomy indicated for >1500mL initial drainage or >200mL/hr
+- Surgery · Endocrine Surgery · thyroid storm post-surgery — beta-blocker + thionamide before iodine, then steroids
+- Surgery · Plastic Surgery · latissimus dorsi myocutaneous flap for breast reconstruction when abdominal donor tissue inadequate
+- Surgery · Neurosurgery · basilar skull fracture — halo sign CSF rhinorrhea, managed conservatively first
+- Surgery · Gastrointestinal Surgery · irreducible tender erythematous inguinal hernia — emergency exploration for strangulation, no taxis
+- Surgery · Urology · seminoma is radiosensitive — surveillance/radiotherapy preferred over RPLND unlike NSGCT
+- Surgery · Cardiothoracic Vascular Surgery · superior vena cava syndrome from bronchogenic carcinoma compression
+- Surgery · Oncology · inflammatory breast carcinoma — dermal lymphatic emboli, neoadjuvant chemo before surgery
+- Surgery · Plastic Surgery · unstageable pressure injury — slough/eschar obscuring wound base
+- Surgery · Hepatobiliary Pancreatic Surgery · pyogenic liver abscess (Klebsiella, diabetic) needs drainage + antibiotics unlike amoebic
+- Surgery · Gastrointestinal Surgery · painless lower GI bleed in elderly — diverticular most common, CT angiography/tagged scan if obscured
+- Surgery · Head And Neck · sialolithiasis of Wharton's duct — meal-time pain, occlusal radiograph
+- Surgery · Cardiothoracic Vascular Surgery · Tetralogy of Fallot hypercyanotic (Tet) spell — knee-chest, oxygen, morphine, propranolol
+- Surgery · Endocrine Surgery · ACTH-independent Cushing's adenoma — unilateral adrenalectomy with perioperative steroid cover
+- Surgery · Plastic Surgery · simple syndactyly release timing 12-18 months for central digits; thumb-index and ring-little pairs need earlier release (~3-6 months)
+- ENT · Nose and Paranasal Sinuses · maxillary sinus is the commonest site of sinusitis (dependent ostium, dental proximity)
+- ENT · Pharynx · Tornwaldt's cyst — midline nasopharyngeal notochordal remnant, chronic discharge + occipital headache
+- ENT · Ear · Ramsay Hunt syndrome — VZV reactivation, vesicles + facial palsy + SNHL
+- ENT · Larynx · acute epiglottitis — avoid throat exam, secure airway in OT
+- ENT · Pharynx · Lemierre syndrome — post-anginal IJV thrombophlebitis with septic pulmonary emboli
+- ENT · Ear · acute diffuse otitis externa (swimmer's ear) — tragal tenderness after water exposure
+- Ophthalmology · Retina · night blindness (nyctalopia) is the earliest symptom of retinitis pigmentosa
+- Ophthalmology · Glaucoma · timolol lowers IOP by decreasing aqueous production (ciliary beta-2 blockade)
+- Ophthalmology · Cornea · Fleischer ring — iron deposition at base of cone in keratoconus
+- Ophthalmology · Neuro Ophthalmology · Argyll Robertson pupil — light-near dissociation in neurosyphilis
+- Ophthalmology · Optics · Jackson cross-cylinder refines astigmatic axis/power during subjective refraction
+- Ophthalmology · Uveitis · pars planitis — vitreous snowballs and inferior snowbanking
+- Ophthalmology · Retina · BRVO occurs at arteriovenous crossing points
+- Anatomy · Head and Neck · lingual nerve hooks below and crosses medial to Wharton's duct
+- Anatomy · Abdomen · arcuate line — only transversalis fascia posterior to rectus below it
+- Anatomy · Lower Limb · sural nerve formed by medial sural cutaneous nerve + peroneal communicating branch
+- Anatomy · General Embryology · second arch (Reichert's cartilage) — stapes, styloid process, stylohyoid ligament, lesser horn of hyoid
+- Anatomy · Histology · macula densa senses distal tubular NaCl, triggers renin from JG cells
+- Anatomy · Head and Neck · carotid sheath encloses common carotid artery, IJV, vagus nerve (sympathetic chain outside)
+- Anatomy · Abdomen · tail of pancreas at risk during splenic hilar vessel ligation in splenectomy
