@@ -2321,3 +2321,55 @@ Format: one line per question — `- Subject · Topic · one-line gist`. When yo
 - Anatomy · Histology · macula densa senses distal tubular NaCl, triggers renin from JG cells
 - Anatomy · Head and Neck · carotid sheath encloses common carotid artery, IJV, vagus nerve (sympathetic chain outside)
 - Anatomy · Abdomen · tail of pancreas at risk during splenic hilar vessel ligation in splenectomy
+
+<!-- 2026-09-21-daily.md -->
+- Pathology · Hematology: Red Blood Cells · Rouleaux formation classically seen in multiple myeloma (paraprotein-driven)
+- Pathology · Hematology: White Blood Cells · Cerebriform nuclei on smear = Sezary syndrome (leukemic CTCL)
+- Pathology · Renal System · Ribbon-like intramembranous dense deposits on EM = dense deposit disease (MPGN II/C3 glomerulopathy)
+- Pathology · CVS, Blood Vessels and Vasculitis · Polyarteritis nodosa: medium-vessel, Hep B-associated, lung-sparing, renal microaneurysms
+- Pathology · Cell Injury · Metastatic calcification = calcium deposit in normal tissue from hypercalcemia (vs dystrophic)
+- Pathology · Neoplasia · SIADH is a classic paraneoplastic feature of small cell lung carcinoma
+- Pathology · Genetics · Trisomy 18 (Edwards): clenched overlapping fingers, rocker-bottom feet
+- Pathology · CVS, Blood Vessels and Vasculitis · GPA (Wegener): cANCA/PR3, sinonasal + pulmonary + renal necrotizing granulomatous vasculitis
+- Pathology · Hematology: White Blood Cells · Pelger-Huet anomaly: benign bilobed pince-nez neutrophil nuclei
+- Pathology · Renal System · Clear cell RCC linked to VHL gene loss on chromosome 3p
+- Paediatrics · Pediatric Gastroenterology · NEC: pneumoperitoneum is the one absolute indication for surgery
+- Paediatrics · Growth · SGA infant with no catch-up growth by 2 years is a GH-therapy evaluation candidate
+- Paediatrics · Pediatric Nephrology · Antenatal Bartter syndrome: polyhydramnios, hypokalemic alkalosis, normotension
+- Paediatrics · Musculoskeletal Disorders in Children · SCFE in obese adolescent: knee-referred pain, Drehmann sign
+- Paediatrics · Infectious Diseases · Roseola infantum (HHV-6): rash appears only after fever resolves
+- Paediatrics · Pediatric Respiratory Disorders · Cystic fibrosis diagnosed by repeat sweat chloride >60 mEq/L
+- Paediatrics · Fluid and Electrolyte Disturbances · Late neonatal hypocalcemia from high-phosphate cow's milk feeding
+- Pharmacology · Drugs Affecting Blood and Blood formation · LMWH anticoagulant effect monitored with anti-Factor Xa assay, not aPTT
+- Pharmacology · ANS Pharmacology · Tamsulosin: alpha-1A selective, uroselective for BPH, less postural hypotension
+- Pharmacology · General Pharmacology · CYP2C19 poor metabolizers show clopidogrel treatment failure
+- Pharmacology · Anticancer Drugs · Doxorubicin: cumulative dose-dependent dilated cardiomyopathy
+- Pharmacology · CVS Pharmacology · Diltiazem: negative chrono/inotropy, AV block risk with beta-blockers
+- Pharmacology · Endocrine Pharmacology · Insulin glargine: peakless basal analogue, once-daily
+- Pharmacology · Antimicrobials : Anti Bacterial Drugs · Macrolides bind 23S rRNA of the 50S ribosomal subunit
+- Pharmacology · Respiratory Pharmacology · Formoterol's rapid onset allows SMART/MART reliever use, unlike salmeterol
+- Pharmacology · ANS Pharmacology · Hyoscine butylbromide's quaternary structure prevents CNS anticholinergic effects
+- Pharmacology · General Pharmacology · Lithium requires routine TDM due to narrow therapeutic index
+- Pharmacology · Autacoids · PAF is uniquely phospholipid-derived among autacoids
+- Pharmacology · CNS Pharmacology · TCA overdose QRS widening treated with sodium bicarbonate
+- Forensic Medicine · Forensic Thanatology · Rigor mortis fully established throughout body by approximately 12 hours postmortem
+- Forensic Medicine · Toxicology - General · Opioid toxidrome: miosis, respiratory depression, needle marks
+- Forensic Medicine · Court of Law · Informed consent must be procedure-specific; incidental unrelated surgery needs fresh consent
+- Forensic Medicine · Asphyxial Deaths · Hanging ligature mark: oblique, non-continuous, above thyroid cartilage
+- Forensic Medicine · Ballistics · Graze (tangential) gunshot wound: gutter furrow, single-sided abrasion collar
+- Forensic Medicine · Forensic Toxicology · Ethylene glycol poisoning: calcium oxalate crystalluria, AKI, metabolic acidosis
+- Forensic Medicine · Forensic Thanatology · Heat stiffening: thermal muscle coagulation producing pugilistic attitude in fire victims
+- Microbiology · Mycology · Sabouraud dextrose agar is the standard primary fungal culture medium
+- Microbiology · Virology · Influenza neuraminidase mediates release of virions; target of oseltamivir
+- Microbiology · Systemic Bacteriology · EHEC (O157:H7) Shiga-like toxin causes HUS after hemorrhagic colitis
+- Microbiology · Immunology · Wiskott-Aldrich syndrome: eczema, thrombocytopenia with small platelets, infections
+- Microbiology · Mycology · Blastomyces dermatitidis: broad-based budding yeast, pulmonary + verrucous skin disease
+- Microbiology · Virology · EBV VCA IgM+/EBNA- serology pattern indicates acute infection
+- Microbiology · Systemic Bacteriology · Leptospirosis (Weil's disease): conjunctival suffusion after flood-water exposure
+- Microbiology · Immunology · Chronic mucocutaneous candidiasis: Candida-specific T-cell defect, APECED/AIRE link
+- Microbiology · Mycology · White piedra (Trichosporon): soft pale hair-shaft nodules vs hard black piedra
+- Dermatology · Cutaneous Infections · Bullous impetigo in neonate: localized staphylococcal exfoliative toxin, flaccid bullae, no systemic illness
+- Dermatology · Skin Appendages and their Disorders · Epidermoid (sebaceous) cyst: central punctum, cheesy discharge
+- Dermatology · Miscellaneous Disorders · Guttate psoriasis: post-streptococcal, drop-like salmon-pink papules
+- Dermatology · Pigmentary Disorders · Peutz-Jeghers syndrome: perioral/mucosal melanotic macules with GI hamartomatous polyps
+- Dermatology · Sexually Transmitted Infections · TPHA confirms syphilis and excludes a biological false-positive VDRL
