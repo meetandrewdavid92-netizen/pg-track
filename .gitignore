@@ -22,3 +22,11 @@
 # Access gate — runs on Vercel's edge before any file is served.
 !middleware.js
 !package.json
+
+# Question bank SOURCE files. tools/build.js bakes these into index.html
+# before every deploy — the app itself never fetches them — but we back
+# them up in git so per-subject editing history survives a machine change.
+!data/
+!data/*.json
+!tools/
+!tools/*.js

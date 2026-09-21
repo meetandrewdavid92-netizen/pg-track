@@ -1,0 +1,105 @@
+{
+  "total": 2205,
+  "subjects": [
+    {
+      "subject": "Anaesthesia",
+      "file": "bank-anaesthesia.json",
+      "count": 46
+    },
+    {
+      "subject": "Anatomy",
+      "file": "bank-anatomy.json",
+      "count": 100
+    },
+    {
+      "subject": "Biochemistry",
+      "file": "bank-biochemistry.json",
+      "count": 137
+    },
+    {
+      "subject": "Blood Bank",
+      "file": "bank-blood-bank.json",
+      "count": 2
+    },
+    {
+      "subject": "Dermatology",
+      "file": "bank-dermatology.json",
+      "count": 62
+    },
+    {
+      "subject": "ENT",
+      "file": "bank-ent.json",
+      "count": 56
+    },
+    {
+      "subject": "Forensic Medicine",
+      "file": "bank-forensic-medicine.json",
+      "count": 69
+    },
+    {
+      "subject": "Medicine",
+      "file": "bank-medicine.json",
+      "count": 183
+    },
+    {
+      "subject": "Microbiology",
+      "file": "bank-microbiology.json",
+      "count": 126
+    },
+    {
+      "subject": "OBGYN",
+      "file": "bank-obgyn.json",
+      "count": 179
+    },
+    {
+      "subject": "Ophthalmology",
+      "file": "bank-ophthalmology.json",
+      "count": 57
+    },
+    {
+      "subject": "Orthopaedics",
+      "file": "bank-orthopaedics.json",
+      "count": 63
+    },
+    {
+      "subject": "Paediatrics",
+      "file": "bank-paediatrics.json",
+      "count": 147
+    },
+    {
+      "subject": "Pathology",
+      "file": "bank-pathology.json",
+      "count": 152
+    },
+    {
+      "subject": "Pharmacology",
+      "file": "bank-pharmacology.json",
+      "count": 181
+    },
+    {
+      "subject": "Physiology",
+      "file": "bank-physiology.json",
+      "count": 118
+    },
+    {
+      "subject": "PSM",
+      "file": "bank-psm.json",
+      "count": 162
+    },
+    {
+      "subject": "Psychiatry",
+      "file": "bank-psychiatry.json",
+      "count": 48
+    },
+    {
+      "subject": "Radiology",
+      "file": "bank-radiology.json",
+      "count": 57
+    },
+    {
+      "subject": "Surgery",
+      "file": "bank-surgery.json",
+      "count": 260
+    }
+  ]
+}
