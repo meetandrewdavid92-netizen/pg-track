@@ -2373,3 +2373,55 @@ Format: one line per question — `- Subject · Topic · one-line gist`. When yo
 - Dermatology · Miscellaneous Disorders · Guttate psoriasis: post-streptococcal, drop-like salmon-pink papules
 - Dermatology · Pigmentary Disorders · Peutz-Jeghers syndrome: perioral/mucosal melanotic macules with GI hamartomatous polyps
 - Dermatology · Sexually Transmitted Infections · TPHA confirms syphilis and excludes a biological false-positive VDRL
+
+<!-- 2026-09-22-daily.md -->
+- Ophthalmology · Optics · Hofstetter's formula for minimum amplitude of accommodation by age
+- Ophthalmology · Uveitis · Koeppe nodules at pupillary margin vs Busacca nodules on iris stroma
+- Ophthalmology · Retina · Coats disease as a leukocoria mimicker of retinoblastoma, no calcification on imaging
+- Ophthalmology · Neuro Ophthalmology · Adie tonic pupil with light-near dissociation and areflexia (Holmes-Adie syndrome)
+- Ophthalmology · Cornea · Interstitial keratitis of congenital syphilis, Hutchinson's triad
+- Ophthalmology · Sclera · Posterior scleritis, B-scan 'T-sign'
+- PSM · Communicable and Non-communicable Diseases · Rabies Category III exposure requires vaccine + immunoglobulin
+- PSM · Epidemiology · Youden's Index calculation from sensitivity and specificity
+- PSM · Concept of Health and Disease · Ottawa Charter (1986) 5 action areas for health promotion
+- PSM · Health Care of The Community in India · RBSK age group covered (0–18 years)
+- PSM · Vaccines and Cold Chain · Deep freezer temperature range (−15°C to −25°C) for icepack freezing
+- PSM · Nutrition and Health · WIFS weekly adolescent IFA tablet dose (100 mg iron + 500 mcg folic acid)
+- PSM · Allied Health Disciplines · Special educator's role in DEIC team (individualized education plans)
+- PSM · International Health · WHO FCTC, India's ratification and COTPA link
+- PSM · Epidemiology · Bradford Hill criterion — biological gradient (dose-response)
+- PSM · Concept of Health and Disease · Social model of health vs biomedical model (social determinants)
+- Physiology · Cardiovascular System · Pulsus alternans — mechanism and clinical significance
+- Physiology · Excretory System · vasa recta as passive countercurrent exchanger vs loop of Henle multiplier
+- Physiology · Nerve Muscle Physiology · isometric vs isotonic vs auxotonic vs eccentric contraction definitions
+- Physiology · Respiratory System · P50 ~26-27 mmHg defines oxygen-haemoglobin dissociation curve position
+- Physiology · The Nervous System · substantia nigra pars compacta dopaminergic loss in Parkinson's disease
+- Physiology · Cardiovascular System · JVP 'v' wave = passive atrial filling against closed tricuspid in systole
+- Physiology · Excretory System · external urethral sphincter voluntary control via pudendal nerve
+- Surgery · Cardiothoracic Vascular Surgery · blunt cardiac contusion after sternal fracture, monitor 24-48h
+- Surgery · Endocrine Surgery · lingual thyroid — confirm functioning thyroid tissue elsewhere via scan before excision
+- Surgery · Plastic Surgery · mallet finger — terminal extensor tendon avulsion, DIP extension splinting
+- Surgery · Neurosurgery · metastatic spinal cord compression — emergency MRI + corticosteroids
+- Surgery · Gastrointestinal Surgery · necrotising enterocolitis — pneumatosis intestinalis in preterm neonate
+- Surgery · Urology · classic bladder exstrophy — neonatal emergency wound care and referral
+- Surgery · Cardiothoracic Vascular Surgery · mycotic (infected) aortic aneurysm — extra-anatomic bypass, avoid in-situ graft
+- Surgery · Oncology · phyllodes tumour — wide local excision margin, no axillary dissection needed
+- Surgery · Plastic Surgery · Volkmann's ischaemic contracture from missed forearm compartment syndrome
+- Surgery · Hepatobiliary Pancreatic Surgery · post-ERCP pancreatitis prevention with rectal NSAIDs
+- Surgery · Gastrointestinal Surgery · Park's classification of anal fistula — transsphincteric tract
+- Surgery · Head And Neck · submandibular sialolithiasis, mealtime pain, Wharton's duct stone
+- Surgery · Cardiothoracic Vascular Surgery · Eisenmenger syndrome — shunt reversal contraindicates VSD/ASD closure
+- Forensic Medicine · Court of Law · Section 88 IPC, good-faith act, no intent to kill/cause grievous hurt
+- Forensic Medicine · Sexual Jurisprudence · POCSO Section 21 punishment for failure to report (duty under Section 19)
+- Forensic Medicine · Ballistics · shotgun wad recovery indicates close range (<6 feet)
+- Forensic Medicine · Forensic Traumatology · bruise age dating, green-yellow discoloration ~5-7 days
+- Forensic Medicine · Forensic Thanatology · mummification requires hot, dry, well-ventilated conditions vs adipocere's moist anaerobic
+- Forensic Medicine · Toxicology - General · aluminium phosphide, garlic odor, refractory shock
+- Microbiology · Parasitology · Hymenolepis nana, only cestode completing cycle in one host (autoinfection)
+- Microbiology · Mycology · otomycosis, Aspergillus niger most common cause in India
+- Microbiology · Virology · Zika virus, congenital microcephaly syndrome
+- Microbiology · Immunology · C3 deficiency, recurrent pyogenic infections vs C5-C9 Neisserial pattern
+- Microbiology · Parasitology · Trypanosoma cruzi, Romana's sign, Chagas disease
+- Microbiology · Mycology · Madurella mycetomatis, eumycetoma, Madura foot black grains
+- Microbiology · Virology · Molluscum contagiosum virus, umbilicated papules, poxvirus
+- Microbiology · Immunology · Chediak-Higashi syndrome, giant granules, partial albinism
