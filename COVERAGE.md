@@ -2425,3 +2425,55 @@ Format: one line per question — `- Subject · Topic · one-line gist`. When yo
 - Microbiology · Mycology · Madurella mycetomatis, eumycetoma, Madura foot black grains
 - Microbiology · Virology · Molluscum contagiosum virus, umbilicated papules, poxvirus
 - Microbiology · Immunology · Chediak-Higashi syndrome, giant granules, partial albinism
+
+<!-- 2026-09-23-daily.md -->
+- Medicine · Nephrology / Kidney Disease · linear IgG on IF as the hallmark distinguishing anti-GBM (Goodpasture) disease from other glomerulonephritides
+- Medicine · Rheumatology / Connective Tissue Disorder · anti-RNA polymerase III marks highest risk of diffuse SSc and scleroderma renal crisis
+- Medicine · Cardiology · acute digoxin toxicity causes hyperkalemia via Na+/K+-ATPase blockade, correlating with mortality
+- Medicine · Oncology · bronchogenic carcinoma as the most common cause of malignant superior vena cava syndrome
+- Medicine · Liver · serum ammonia supports but does not grade or solely confirm hepatic encephalopathy diagnosis
+- Medicine · Endocrinology · metformin withheld around iodinated contrast to avoid lactic acidosis if contrast-AKI develops
+- Medicine · Nephrology / Kidney Disease · ACE inhibitors precipitate AKI in bilateral renal artery stenosis by removing angiotensin-II efferent constriction
+- Medicine · Oncology · Trousseau's sign (migratory thrombophlebitis) classically associated with pancreatic adenocarcinoma
+- Medicine · Cardiology · Beck's triad (hypotension, muffled heart sounds, raised JVP) as bedside sign of cardiac tamponade
+- Medicine · Neurology · Charcot's triad (nystagmus, intention tremor, scanning speech) classic for multiple sclerosis
+- Medicine · Liver · IV albumin replacement (6-8 g/L beyond 5L) to prevent post-paracentesis circulatory dysfunction
+- Paediatrics · Neonatology · ROP first screening timed to 4 weeks postnatal age or 31 weeks postmenstrual age, whichever later
+- Paediatrics · Infectious Diseases · enteric fever ileal (Peyer's patch) perforation classically in the third week of illness
+- Paediatrics · Pediatric Respiratory Disorders · overnight polysomnography as gold standard for pediatric OSA from adenotonsillar hypertrophy
+- Paediatrics · Inborn Errors of Metabolism · classic galactosemia (GALT deficiency) — neonatal jaundice, E. coli sepsis, non-glucose urine reducing substance
+- Paediatrics · Pediatric Gastroenterology · eosinophilic esophagitis in an atopic child — dysphagia/food impaction, esophageal eosinophilia on biopsy
+- Paediatrics · Growth · Turner syndrome — karyotype as the confirmatory test for short stature with webbed neck/cubitus valgus
+- Paediatrics · Pediatric Nephrology · Fanconi syndrome (proximal tubulopathy) — normoglycemic glucosuria, aminoaciduria, phosphaturia, rickets; cystinosis as classic cause
+- Pharmacology · Autacoids · histamine H1 receptor mediates the triple response of Lewis (wheal and flare)
+- Pharmacology · CVS Pharmacology · CAST trial — Class IC antiarrhythmics (flecainide) increase post-MI mortality
+- Pharmacology · Endocrine Pharmacology · GnRH agonist (leuprolide) initial testosterone flare before pituitary desensitization
+- Pharmacology · CNS Pharmacology · dantrolene blocks ryanodine receptor for neuroleptic malignant syndrome/malignant hyperthermia
+- Pharmacology · Drugs Affecting Blood and Blood formation · eltrombopag as thrombopoietin-receptor agonist in refractory chronic ITP
+- Pharmacology · ANS Pharmacology · tachyphylaxis with repeated ephedrine dosing — depletion of releasable noradrenaline
+- Pharmacology · General Pharmacology · potency vs efficacy distinction on the dose-response curve
+- Pharmacology · Chemotherapy of Specific Microbial Diseases · bedaquiline inhibits mycobacterial ATP synthase in MDR-TB
+- Pharmacology · CVS Pharmacology · levosimendan as a calcium sensitizer (troponin C) inotrope in acute decompensated heart failure
+- Dermatology · Sexually Transmitted Infections · primary syphilis painless chancre — dark-field microscopy for rapid confirmation
+- Dermatology · Cutaneous Infections · tinea corporis annular plaque with advancing scaly border — KOH septate hyphae, tinea incognito from steroid misuse
+- Dermatology · Skin Appendages and their Disorders · infantile seborrheic dermatitis (cradle cap) — benign, conservative management
+- Dermatology · Pigmentary Disorders · oculocutaneous albinism — tyrosinase deficiency, nystagmus/iris translucency/foveal hypoplasia
+- Dermatology · Integrated Essentials · Darier's sign in cutaneous mastocytosis (urticaria pigmentosa) — mast-cell degranulation
+- OBGYN · Labour and Delivery · Category III CTG (absent variability plus late decelerations) mandates expedited delivery
+- OBGYN · Reproductive Anatomy and Physiology · broad ligament subdivisions — mesosalpinx suspends the fallopian tube
+- OBGYN · Antenatal Care and Fetal Assessment · single deepest vertical pocket (SDP), not AFI, for amniotic fluid assessment in twin pregnancy
+- OBGYN · Hypertensive Disorders of Pregnancy · ACE inhibitor/ARB fetotoxicity in pregnancy — switch to labetalol on conception regardless of BP control
+- OBGYN · Gynaecological Oncology · dysgerminoma — raised LDH with normal AFP/beta-hCG in an adolescent solid ovarian mass
+- OBGYN · Early Pregnancy and Abortion · heterotopic pregnancy risk after IVF — live IUP plus adnexal mass and free fluid
+- OBGYN · Genital Infections, Prolapse and Urogynaecology · vulvovaginal candidiasis in pregnancy treated with topical azole, not oral fluconazole
+- OBGYN · Medical Disorders in Pregnancy · levothyroxine dose increased ~25-30% on confirming pregnancy in known hypothyroidism
+- OBGYN · Labour and Delivery · vacuum extraction contraindicated in face/non-vertex presentation, unlike forceps
+- OBGYN · Reproductive Anatomy and Physiology · cardinal (Mackenrodt's) ligament as main lateral support of uterus/cervix, prolapse mechanism
+- OBGYN · Antenatal Care and Fetal Assessment · second-trimester quadruple marker test components (AFP, hCG, unconjugated estriol, inhibin A)
+- OBGYN · Contraception and Sterilisation · copper IUCD as most effective emergency contraception, effective to day 5, doubles as ongoing method
+- Physiology · The Nervous System · facial nerve (chorda tympani) carries taste from anterior two-thirds of tongue
+- Physiology · Cardiovascular System · left ventricular coronary perfusion occurs mainly during diastole
+- Physiology · Excretory System · PTH increases calcium reabsorption at the distal convoluted tubule
+- Physiology · Respiratory System · Bohr's equation calculates physiological dead space
+- Physiology · General Physiology · steroid hormones act via intracellular/nuclear receptors altering gene transcription
+- Physiology · The Nervous System · A-delta fibres mediate fast, sharp, well-localized first pain vs C-fibre second pain
