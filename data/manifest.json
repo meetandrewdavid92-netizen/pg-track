@@ -1,5 +1,5 @@
 {
-  "total": 2205,
+  "total": 2305,
   "subjects": [
     {
       "subject": "Anaesthesia",
@@ -24,7 +24,7 @@
     {
       "subject": "Dermatology",
       "file": "bank-dermatology.json",
-      "count": 62
+      "count": 67
     },
     {
       "subject": "ENT",
@@ -34,27 +34,27 @@
     {
       "subject": "Forensic Medicine",
       "file": "bank-forensic-medicine.json",
-      "count": 69
+      "count": 75
     },
     {
       "subject": "Medicine",
       "file": "bank-medicine.json",
-      "count": 183
+      "count": 194
     },
     {
       "subject": "Microbiology",
       "file": "bank-microbiology.json",
-      "count": 126
+      "count": 134
     },
     {
       "subject": "OBGYN",
       "file": "bank-obgyn.json",
-      "count": 179
+      "count": 191
     },
     {
       "subject": "Ophthalmology",
       "file": "bank-ophthalmology.json",
-      "count": 57
+      "count": 63
     },
     {
       "subject": "Orthopaedics",
@@ -64,7 +64,7 @@
     {
       "subject": "Paediatrics",
       "file": "bank-paediatrics.json",
-      "count": 147
+      "count": 154
     },
     {
       "subject": "Pathology",
@@ -74,17 +74,17 @@
     {
       "subject": "Pharmacology",
       "file": "bank-pharmacology.json",
-      "count": 181
+      "count": 190
     },
     {
       "subject": "Physiology",
       "file": "bank-physiology.json",
-      "count": 118
+      "count": 131
     },
     {
       "subject": "PSM",
       "file": "bank-psm.json",
-      "count": 162
+      "count": 172
     },
     {
       "subject": "Psychiatry",
@@ -99,7 +99,7 @@
     {
       "subject": "Surgery",
       "file": "bank-surgery.json",
-      "count": 260
+      "count": 273
     }
   ]
 }
