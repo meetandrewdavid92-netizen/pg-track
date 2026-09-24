@@ -2477,3 +2477,55 @@ Format: one line per question — `- Subject · Topic · one-line gist`. When yo
 - Physiology · Respiratory System · Bohr's equation calculates physiological dead space
 - Physiology · General Physiology · steroid hormones act via intracellular/nuclear receptors altering gene transcription
 - Physiology · The Nervous System · A-delta fibres mediate fast, sharp, well-localized first pain vs C-fibre second pain
+
+<!-- 2026-09-24-daily.md -->
+- Psychiatry · Sexual Disorders · delayed ejaculation disorder — normal masturbatory ejaculation but delayed with partner distinguishes it from ED
+- Psychiatry · Mood Disorders · postpartum psychosis — command hallucinations re infant, emergency admission vs self-limiting postpartum blues
+- Psychiatry · Eating Disorders · pica in a toddler — geophagia causing iron-deficiency anemia, bidirectional relationship
+- Psychiatry · Substance-Related and Addictive Disorders · gambling disorder — DSM-5's non-substance behavioural addiction, online real-money gaming apps
+- Psychiatry · Neurotic, Stress-Related and Somatoform Disorders · body dysmorphic disorder — minimal/absent defect, mirror-checking, distinguished from delusional disorder
+- Pathology · Hematology: White Blood Cells · MPO positivity confirms myeloid lineage, distinguishing AML from ALL
+- Pathology · Renal System · crescents in RPGN formed by proliferating parietal epithelial cells plus macrophages in Bowman's space
+- Pathology · Respiratory System · squamous cell lung carcinoma — central, keratin pearls, intercellular bridges vs peripheral adenocarcinoma
+- Pathology · CVS, Blood Vessels and Vasculitis · Kawasaki disease — medium-vessel vasculitis, coronary artery aneurysm is the feared complication
+- Pathology · Neoplasia · serum LDH as prognostic tumour-burden marker in germ cell tumours and lymphoma
+- Pathology · Genetics · Williams syndrome — 7q11.23 microdeletion, elastin gene, supravalvular AS, hypersociable personality
+- Pathology · Hematology: Red Blood Cells · teardrop cells plus leukoerythroblastic picture = primary myelofibrosis
+- Pathology · CVS, Blood Vessels and Vasculitis · Aschoff bodies/Anitschkow cells pathognomonic of acute rheumatic carditis
+- Surgery · Gastrointestinal Surgery · Hirschsprung disease — rectal suction biopsy showing aganglionosis is the gold standard
+- Surgery · Urology · post-traumatic urethral stricture after pelvic fracture — urethroplasty is definitive, not repeated dilatation
+- Surgery · Cardiothoracic Vascular Surgery · chronic severe aortic regurgitation — surgical timing at symptom onset or LV dysfunction/dilation
+- Surgery · Oncology · anal canal squamous cell carcinoma — Nigro protocol chemoradiotherapy as primary treatment, not upfront APR
+- Surgery · Plastic Surgery · Jackson's zone of stasis converting to necrosis with inadequate burn resuscitation
+- Surgery · Hepatobiliary Pancreatic Surgery · incidental gallbladder carcinoma T1a managed by simple cholecystectomy alone
+- Surgery · Gastrointestinal Surgery · duodenal atresia double-bubble sign, Down syndrome association
+- Surgery · Head And Neck · hoarseness >3 weeks in a smoker mandates laryngoscopy and biopsy for Ca larynx
+- Surgery · Cardiothoracic Vascular Surgery · acute mitral regurgitation from post-MI papillary muscle rupture needs emergency surgery
+- Surgery · Endocrine Surgery · follicular thyroid carcinoma diagnosed by capsular/vascular invasion, haematogenous spread
+- Surgery · Plastic Surgery · cleft palate repair timing (9-12 months) distinct from cleft lip's rule of 10s
+- Surgery · Neurosurgery · neurogenic shock (bradycardia+hypotension) vs spinal shock after high cervical cord injury
+- Surgery · Gastrointestinal Surgery · strangulated femoral hernia — below/lateral to pubic tubercle, high strangulation risk
+- Anaesthesia · Oxygen Therapy and Airway · emergency cricothyroidotomy as definitive CICV rescue
+- Anaesthesia · Neuromuscular Blockade · vecuronium hepatobiliary elimination, prolonged action in liver failure
+- Anaesthesia · Cardiopulmonary Cerebral Resuscitation · ventilation rate with advanced airway in adult CPR — 1 breath every 6 s (10/min), continuous compressions
+- Anaesthesia · Pre-Anaesthetic Evaluation · preoperative smoking cessation ≥4 weeks reduces pulmonary complications
+- PSM · Nutrition and Health · WHO low birth weight cutoff <2500g regardless of gestation
+- PSM · Allied Health Disciplines · ICTC counsellor does pre/post-test HIV counselling and ART linkage; lab technician does the tests (NACP)
+- PSM · Communicable and Non-communicable Diseases · neonatal tetanus as an indicator of poor MCH/safe-delivery services
+- PSM · Environment and Health · byssinosis in a cotton mill worker — Monday morning chest tightness pattern
+- PSM · Concept of Health and Disease · disease (objective) vs illness (subjective) vs sickness (social dysfunction) distinction
+- PSM · National Health Programs · Rashtriya Vayoshri Yojana — free assistive devices for BPL elderly
+- PSM · Vaccines and Cold Chain · heat excursion (ILR 11°C) — quarantine, label, inform, judge by VVM; shake test only for suspected freezing
+- PSM · Health Care of The Community in India · Village Health and Nutrition Day (VHND) — monthly ANM-ASHA-AWW outreach
+- PSM · Allied Health Disciplines · psychiatric social worker's home-visit/family/school liaison role in DMHP team
+- PSM · Communicable and Non-communicable Diseases · India H1N1 clinical categorization — Category A mild illness, no testing/antiviral needed
+- Pharmacology · Endocrine Pharmacology · pioglitazone avoided in bladder cancer history due to recurrence risk
+- Pharmacology · Antimicrobials : Anti Bacterial Drugs · tazobactam — irreversible suicide inhibition of bacterial beta-lactamase
+- Pharmacology · Drugs Affecting Blood and Blood formation · fondaparinux — indirect factor Xa inhibition via antithrombin, HIT-safe
+- Pharmacology · Renal Pharmacology · thiazide diuretics increase distal tubular calcium reabsorption, used in calcium stone recurrence
+- Pharmacology · General Pharmacology · enalapril as prodrug requiring hepatic hydrolysis to enalaprilat
+- Pharmacology · Autacoids · ACE2 converts angiotensin II to angiotensin (1-7), acting via Mas receptor
+- Pharmacology · CVS Pharmacology · esmolol ultra-short half-life via RBC esterase hydrolysis for perioperative rate control
+- Pharmacology · Anticancer Drugs · mesna neutralizes acrolein to prevent cyclophosphamide/ifosfamide hemorrhagic cystitis
+- Pharmacology · Antimicrobials : Anti Bacterial Drugs · co-trimoxazole synergy — sequential blockade of bacterial folate synthesis
+- Pharmacology · Drugs Affecting Blood and Blood formation · vitamin B12 deficiency — megaloblastic anaemia plus subacute combined degeneration of cord

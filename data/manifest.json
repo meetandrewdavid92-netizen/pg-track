@@ -1,10 +1,10 @@
 {
-  "total": 2305,
+  "total": 2355,
   "subjects": [
     {
       "subject": "Anaesthesia",
       "file": "bank-anaesthesia.json",
-      "count": 46
+      "count": 50
     },
     {
       "subject": "Anatomy",
@@ -69,12 +69,12 @@
     {
       "subject": "Pathology",
       "file": "bank-pathology.json",
-      "count": 152
+      "count": 160
     },
     {
       "subject": "Pharmacology",
       "file": "bank-pharmacology.json",
-      "count": 190
+      "count": 200
     },
     {
       "subject": "Physiology",
@@ -84,12 +84,12 @@
     {
       "subject": "PSM",
       "file": "bank-psm.json",
-      "count": 172
+      "count": 182
     },
     {
       "subject": "Psychiatry",
       "file": "bank-psychiatry.json",
-      "count": 48
+      "count": 53
     },
     {
       "subject": "Radiology",
@@ -99,7 +99,7 @@
     {
       "subject": "Surgery",
       "file": "bank-surgery.json",
-      "count": 273
+      "count": 286
     }
   ]
 }
