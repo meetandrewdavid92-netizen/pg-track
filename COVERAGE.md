@@ -2529,3 +2529,55 @@ Format: one line per question — `- Subject · Topic · one-line gist`. When yo
 - Pharmacology · Anticancer Drugs · mesna neutralizes acrolein to prevent cyclophosphamide/ifosfamide hemorrhagic cystitis
 - Pharmacology · Antimicrobials : Anti Bacterial Drugs · co-trimoxazole synergy — sequential blockade of bacterial folate synthesis
 - Pharmacology · Drugs Affecting Blood and Blood formation · vitamin B12 deficiency — megaloblastic anaemia plus subacute combined degeneration of cord
+
+<!-- 2026-09-25-daily.md -->
+- Radiology · Head & Neck Imaging · Eagle syndrome — elongated/calcified styloid process over 2.5 cm causes throat and neck pain on rotation
+- Radiology · Genitourinary Radiology · CT macroscopic fat (negative HU) within a renal mass is diagnostic of angiomyolipoma, distinguishing it from RCC
+- Radiology · Thoracic Radiology · Golden S sign — elevated fissure plus central mass indicates right upper lobe collapse from an obstructing bronchogenic carcinoma
+- Radiology · Radiotherapy · Iridium-192 is the standard source for modern HDR intracavitary brachytherapy (e.g. carcinoma cervix)
+- Microbiology · Mycology · Candida auris — MDR yeast commonly misidentified as C. haemulonii on standard biochemical panels, causes nosocomial outbreaks
+- Microbiology · Virology · SSPE — delayed fatal measles complication from persistent defective virus, years after primary infection
+- Microbiology · Systemic Bacteriology · Brucella isolated on Castaneda's biphasic medium; acquired from cattle/unpasteurized dairy exposure
+- Microbiology · Immunology · Hyperacute transplant rejection — Type II hypersensitivity from preformed antibodies against donor endothelium, occurs within minutes
+- Microbiology · Mycology · Aspergillus flavus aflatoxin contaminating groundnuts/maize is a potent hepatocarcinogen linked to HCC
+- Microbiology · Virology · Hand-foot-mouth disease caused by Coxsackievirus A16/Enterovirus 71 — oral plus palmoplantar vesicular rash in children
+- Microbiology · Systemic Bacteriology · Actinomyces israelii — sulfur granules in chronic sinus tracts, associated with prolonged IUCD use
+- Microbiology · Immunology · MHC class I presents endogenous antigen to CD8+ cytotoxic T cells; MHC class II presents exogenous antigen to CD4+ helper T cells
+- Orthopaedics · Spine + Pelvis + Lower Limb Traumatology · Anterior cord syndrome — bilateral motor/spinothalamic loss with preserved dorsal columns after flexion-axial spinal injury
+- Orthopaedics · Orthopedics Oncology · McCune-Albright fibrous dysplasia — ground-glass lesion, shepherd's crook femur, irregular cafe-au-lait spots, precocious puberty
+- Orthopaedics · Metabolic Disorders · Primary hyperparathyroidism — subperiosteal bone resorption at radial middle phalanges with hypercalcaemia/hypophosphataemia
+- Orthopaedics · General + Upper Limb Traumatology · Bennett fracture — two-part intra-articular first metacarpal base fracture-dislocation from a punching injury
+- Orthopaedics · Peripheral Nerve Injuries · Tarsal tunnel syndrome — posterior tibial nerve entrapment behind medial malleolus causing plantar burning pain, positive Tinel's
+- Orthopaedics · Miscellaneous · Salter-Harris II growth plate fracture (metaphyseal fragment, physis-sparing epiphysis)
+- Biochemistry · Vitamins · pyridoxal phosphate (B6) as coenzyme for transamination reactions
+- Biochemistry · Carbohydrate Metabolism · GLUT1 as insulin-independent glucose transporter of RBCs and blood-brain-barrier endothelium
+- Biochemistry · Lipid Metabolism · liver lacks thiophorase (SCOT) so cannot utilise its own ketone bodies
+- Biochemistry · Amino Acids and Proteins Chemistry · cystinuria COLA transporter defect causing hexagonal renal stones
+- Biochemistry · Vitamins · Bitot's spots as early conjunctival sign of vitamin A deficiency
+- Biochemistry · Carbohydrate Metabolism · glycogenin as autoglucosylating primer protein for glycogen synthesis
+- Biochemistry · Lipid Metabolism · CETP transfers cholesteryl esters from HDL to VLDL/LDL for triglycerides
+- Biochemistry · Amino Acids and Proteins Chemistry · prealbumin's short half-life makes it a sensitive acute nutritional marker vs albumin
+- OBGYN · Gynaecological Oncology · high-grade serous ovarian carcinoma — papillary architecture with psammoma bodies
+- OBGYN · Early Pregnancy and Abortion · interstitial (cornual) ectopic pregnancy ruptures later with catastrophic haemorrhage
+- OBGYN · Genital Infections, Prolapse and Urogynaecology · lymphogranuloma venereum — painless ulcer then groove sign lymphadenopathy
+- OBGYN · Puerperium, Newborn and Lactation · early-onset GBS neonatal sepsis prevented by intrapartum antibiotic prophylaxis
+- OBGYN · Labour and Delivery · ACOG-revised active labour threshold at 6cm (Zhang curve) before diagnosing arrest
+- OBGYN · Reproductive Anatomy and Physiology · right ovarian vein anatomy explains right-sided predominance of postpartum ovarian vein thrombosis
+- OBGYN · Antenatal Care and Fetal Assessment · CVS cannot screen for neural tube defects (no amniotic fluid AFP sampled)
+- OBGYN · Hypertensive Disorders of Pregnancy · new-onset postpartum preeclampsia can occur up to 6 weeks after delivery
+- OBGYN · Gynaecological Oncology · post-molar surveillance protocol — serial beta-hCG (weekly then monthly) with contraception to detect persistent GTN
+- OBGYN · Early Pregnancy and Abortion · mifepristone-priming plus misoprostol regimen for medical management of missed abortion
+- OBGYN · Genital Infections, Prolapse and Urogynaecology · three-swab dye test localizes vesicovaginal vs ureterovaginal fistula after obstructed labour
+- OBGYN · Medical Disorders in Pregnancy · preconceptional switch from valproate to a lower-risk antiepileptic plus high-dose folic acid
+- Medicine · Liver · transient elastography (FibroScan) for non-invasive staging of hepatic fibrosis
+- Medicine · Endocrinology · TSH receptor antibody (TRAb) as the specific confirmatory test for Graves' disease
+- Medicine · Nephrology / Kidney Disease · spot urine protein-to-creatinine ratio approximates 24-hour proteinuria in grams/day
+- Medicine · Oncology · febrile neutropenia — empirical IV antibiotics within 1 hour of presentation
+- Medicine · Cardiology · SGLT2 inhibitors as the fourth foundational pillar drug class in HFrEF regardless of diabetes status
+- Medicine · Neurology · cauda equina syndrome — MRI confirms compression, urgent surgical decompression is the emergency
+- Medicine · Liver · primary SBP prophylaxis criteria — low ascitic protein plus advanced liver disease markers, norfloxacin
+- Medicine · Oncology · CRAB criteria and clonal plasma cells define symptomatic multiple myeloma requiring treatment
+- Medicine · Nephrology / Kidney Disease · analgesic nephropathy — chronic NSAID abuse causing papillary necrosis and sterile pyuria
+- Medicine · Rheumatology / Connective Tissue Disorder · septic arthritis — urgent aspiration plus empirical IV antibiotics without waiting for culture
+- Medicine · Cardiology · Stanford type A (ascending aorta involved) aortic dissection is a surgical emergency
+- Medicine · Oncology · malignant spinal cord compression — immediate dexamethasone plus urgent MRI whole spine and decompression

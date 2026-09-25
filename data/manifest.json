@@ -1,5 +1,5 @@
 {
-  "total": 2355,
+  "total": 2405,
   "subjects": [
     {
       "subject": "Anaesthesia",
@@ -14,7 +14,7 @@
     {
       "subject": "Biochemistry",
       "file": "bank-biochemistry.json",
-      "count": 137
+      "count": 145
     },
     {
       "subject": "Blood Bank",
@@ -39,17 +39,17 @@
     {
       "subject": "Medicine",
       "file": "bank-medicine.json",
-      "count": 194
+      "count": 206
     },
     {
       "subject": "Microbiology",
       "file": "bank-microbiology.json",
-      "count": 134
+      "count": 142
     },
     {
       "subject": "OBGYN",
       "file": "bank-obgyn.json",
-      "count": 191
+      "count": 203
     },
     {
       "subject": "Ophthalmology",
@@ -59,7 +59,7 @@
     {
       "subject": "Orthopaedics",
       "file": "bank-orthopaedics.json",
-      "count": 63
+      "count": 69
     },
     {
       "subject": "Paediatrics",
@@ -94,7 +94,7 @@
     {
       "subject": "Radiology",
       "file": "bank-radiology.json",
-      "count": 57
+      "count": 61
     },
     {
       "subject": "Surgery",
