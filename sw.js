@@ -5,10 +5,11 @@
      index.html, so a JMO with signal must always get the newest copy; the
      cached copy is only the fallback when the network fails. This also means
      Dr. Andy never has to bump a version number here to publish content.
-   - Icons/manifest are CACHE-FIRST — they never change.
-   Bump CACHE only if the shell file list below changes. */
+   - Icons/manifest are CACHE-FIRST — they rarely change.
+   Bump CACHE if the shell file list below changes, OR if an icon is redrawn
+   under the same file name (cache-first would keep serving the old one). */
 
-const CACHE = "pgtrack-shell-v1";
+const CACHE = "pgtrack-shell-v2";
 const SHELL = [
   "./",
   "./index.html",
@@ -17,6 +18,7 @@ const SHELL = [
   "./icons/icon-512.png",
   "./icons/icon-maskable-512.png",
   "./icons/apple-touch-icon.png",
+  "./icons/favicon-48.png",
 ];
 
 self.addEventListener("install", e => {

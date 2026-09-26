@@ -102,8 +102,17 @@ function loginPage(message, tone) {
   button:hover{background:var(--accent);}
   .note{font-size:13px;color:var(--soft);margin:22px 0 0;line-height:1.5;}
   .note.bad{color:var(--accent);}
+  .mark{width:72px;height:72px;border-radius:17px;overflow:hidden;margin:0 0 18px;
+        box-shadow:0 12px 26px -16px rgba(60,45,30,.55);}
+  .mark svg{display:block;width:100%;height:100%}
+  .mark .d{stroke-dasharray:1 1;animation:draw .5s cubic-bezier(.3,0,.4,1) .15s both}
+  .mark .g{animation:beat .7s ease-out .5s both}
+  @keyframes draw{from{stroke-dashoffset:1;opacity:0}6%{opacity:1}to{stroke-dashoffset:0}}
+  @keyframes beat{0%{opacity:0}35%{opacity:1}100%{opacity:.7}}
+  @media (prefers-reduced-motion:reduce){.mark *{animation:none!important}}
 </style></head><body>
 <div class="card">
+  <div class="mark" aria-hidden="true"><svg viewBox="0 0 400 400"><defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e8d7c4"/><stop offset="1" stop-color="#c8ab8d"/></linearGradient><filter id="gl" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="7"/></filter></defs><rect width="400" height="400" fill="url(#g)"/><rect y="300" width="400" height="100" fill="#bfa184" opacity=".45"/><path d="M40 300 H196 L214 300 L230 256 L248 344 L266 176 L284 300 H360" fill="none" stroke="#e9dccd" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><g fill="none" stroke-width="34" stroke-linecap="round" stroke-linejoin="round"><path d="M110 300 V100 H186 A60 60 0 0 1 186 220 H110" transform="translate(14 16)" stroke="#9c7e61"/><path d="M110 300 V100 H186 A60 60 0 0 1 186 220 H110" transform="translate(7 8)" stroke="#6e5641"/><path d="M110 300 V100 H186 A60 60 0 0 1 186 220 H110" stroke="#201e1d"/></g><g fill="none" stroke-linecap="round" stroke-linejoin="round"><path class="g" d="M40 300 H196 L214 300 L230 256 L248 344 L266 176 L284 300 H360" stroke="#e8603c" stroke-width="22" opacity=".7" filter="url(#gl)"/><path class="d" pathLength="1" d="M40 300 H196 L214 300 L230 256 L248 344 L266 176 L284 300 H360" stroke="#cf5433" stroke-width="12"/><path class="d" pathLength="1" d="M40 300 H196 L214 300 L230 256 L248 344 L266 176 L284 300 H360" stroke="#ffd9c8" stroke-width="3"/></g></svg></div>
   <h1>PG Track</h1>
   <p class="sub">NEET PG coaching &middot; Dr. Andy</p>
   <form method="POST" action="/__gate">

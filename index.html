@@ -6,7 +6,8 @@
 <meta name="theme-color" content="#f6f4f0">
 <title>PG Track</title>
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="icon" href="icons/icon-192.png" type="image/png">
+<link rel="icon" href="icons/favicon-48.png" type="image/png" sizes="48x48">
+<link rel="icon" href="icons/icon-192.png" type="image/png" sizes="192x192">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -876,11 +877,89 @@
   #bankSubjList{transform-origin:50% 0;transition:transform .32s var(--ease-land),opacity .32s}
   body.sheeton #bankSubjList{transform:scale(calc(1 - .03*var(--sheetp,1)));opacity:calc(1 - .35*var(--sheetp,1))}
   body.sheetdrag #bankSubjList,body.sheetdrag .sheetbg{transition:none}
+  /* 9. Brand mark + launch splash. The icon is drawn as its real layers
+     (sand tile, P with two stacked shadows, faint trace, glowing ECG) so it
+     can build itself: the P writes, its shadows step out, then the ECG beats
+     across. Layers only animate under .pgplay; without it they sit in their
+     finished state, so the same markup doubles as a static logo. */
+  .pgm{display:block;width:100%;height:100%}
+  .pgm .lp,.pgm .lt,.pgm .le,.pgm .lh{stroke-dasharray:1 1}
+  .pgm .ls1{transform:translate(7px,8px)} .pgm .ls2{transform:translate(14px,16px)}
+  .pgm .lg{opacity:.7}
+  .pgplay .lp{animation:pgdraw .45s cubic-bezier(.6,0,.3,1) .1s both}
+  .pgplay .ls1{animation:pgstep .3s var(--ease-land) .5s both}
+  .pgplay .ls2{animation:pgstep .3s var(--ease-land) .56s both}
+  .pgplay .lt{animation:pgdraw .4s linear .6s both}
+  .pgplay .le{animation:pgdraw .45s cubic-bezier(.3,0,.4,1) .62s both}
+  .pgplay .lh{animation:pgdraw .45s cubic-bezier(.3,0,.4,1) .68s both}
+  .pgplay .lg{animation:pgbeat .7s ease-out .85s both}
+  @keyframes pgdraw{from{stroke-dashoffset:1;opacity:0}6%{opacity:1}to{stroke-dashoffset:0}}
+  @keyframes pgstep{from{transform:translate(0,0);opacity:0}}
+  @keyframes pgbeat{0%{opacity:0}35%{opacity:1}100%{opacity:.7}}
+
+  #splash{position:fixed;inset:0;z-index:100;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:18px;background:var(--paper);
+    transition:opacity .3s ease,visibility .3s}
+  #splash.out{opacity:0;visibility:hidden}
+  .spTile{width:124px;height:124px;border-radius:28px;overflow:hidden;
+    box-shadow:0 22px 44px -22px rgba(60,45,30,.6);
+    animation:spin .45s var(--ease-land) both;transition:transform .3s ease}
+  #splash.out .spTile{transform:scale(1.06)}
+  .spName{font-family:var(--serif);font-size:1.6rem;font-weight:600;letter-spacing:-.5px;
+    color:var(--ink);animation:spup .4s var(--ease-land) .45s both}
+  .spSub{font-size:.82rem;color:var(--mut);margin-top:-12px;animation:spup .4s var(--ease-land) .55s both}
+  @keyframes spin{from{opacity:0;transform:scale(.88)}}
+  @keyframes spup{from{opacity:0;transform:translateY(6px)}}
+  /* Cards hold their rise until the splash lifts, so it isn't spent unseen. */
+  body.splashing .screen.on .card{animation-play-state:paused}
+
+  .hmark{flex:0 0 auto;width:30px;height:30px;border-radius:8px;display:block;
+    box-shadow:0 1px 2px rgba(60,45,30,.18)}
+  .aboutmark{width:84px;height:84px;border-radius:20px;overflow:hidden;margin:6px 2px 14px;
+    box-shadow:0 14px 30px -18px rgba(60,45,30,.55)}
+  @media (prefers-reduced-motion:reduce){
+    .pgplay *,.spTile,.spName,.spSub{animation:none!important}
+  }
 </style>
 </head>
 <body>
+<!-- Brand mark, layer by layer (source: icons/export/PgPal-icon.svg). "pgK"
+     is swapped for a per-copy key so two copies never share gradient ids. -->
+<template id="pgMarkTpl"><svg class="pgm" viewBox="0 0 400 400" aria-hidden="true"><defs><linearGradient id="pgK-g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e8d7c4"/><stop offset="1" stop-color="#c8ab8d"/></linearGradient><filter id="pgK-gl" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="7"/></filter></defs><rect width="400" height="400" fill="url(#pgK-g)"/><rect y="300" width="400" height="100" fill="#bfa184" opacity=".45"/><path class="lt" pathLength="1" d="M40 300 H196 L214 300 L230 256 L248 344 L266 176 L284 300 H360" fill="none" stroke="#e9dccd" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><g fill="none" stroke-width="34" stroke-linecap="round" stroke-linejoin="round"><path class="ls2" d="M110 300 V100 H186 A60 60 0 0 1 186 220 H110" stroke="#9c7e61"/><path class="ls1" d="M110 300 V100 H186 A60 60 0 0 1 186 220 H110" stroke="#6e5641"/><path class="lp" pathLength="1" d="M110 300 V100 H186 A60 60 0 0 1 186 220 H110" stroke="#201e1d"/></g><g fill="none" stroke-linecap="round" stroke-linejoin="round"><path class="lg" d="M40 300 H196 L214 300 L230 256 L248 344 L266 176 L284 300 H360" stroke="#e8603c" stroke-width="22" filter="url(#pgK-gl)"/><path class="le" pathLength="1" d="M40 300 H196 L214 300 L230 256 L248 344 L266 176 L284 300 H360" stroke="#cf5433" stroke-width="12"/><path class="lh" pathLength="1" d="M40 300 H196 L214 300 L230 256 L248 344 L266 176 L284 300 H360" stroke="#ffd9c8" stroke-width="3"/></g></svg></template>
+
+<!-- Launch splash: once per browser session, tap to skip. It also covers the
+     seconds a 3 MB page takes to parse on ward Wi-Fi, so it lifts only when
+     the page is ready AND the mark has finished drawing. -->
+<div id="splash" aria-hidden="true">
+  <div class="spTile pgplay"></div>
+  <div class="spName">PG Track</div>
+  <div class="spSub">NEET PG, from the ward up</div>
+</div>
+<script>
+window.pgMark=function(k){return document.getElementById("pgMarkTpl").innerHTML.replace(/pgK/g,"pg"+k)};
+(function(){
+  var sp=document.getElementById("splash"),seen=false;
+  try{seen=sessionStorage.getItem("pgSplash")==="1";sessionStorage.setItem("pgSplash","1")}catch(e){}
+  if(seen){sp.remove();return}
+  sp.firstElementChild.innerHTML=pgMark("S");
+  document.body.classList.add("splashing");
+  var t0=Date.now(),done=false,
+      min=matchMedia("(prefers-reduced-motion: reduce)").matches?0:1350;
+  function hide(){
+    if(done)return;done=true;
+    sp.classList.add("out");document.body.classList.remove("splashing");
+    setTimeout(function(){sp.remove()},350);
+  }
+  function ready(){setTimeout(hide,Math.max(0,min-(Date.now()-t0)))}
+  if(document.readyState!=="loading")ready();
+  else document.addEventListener("DOMContentLoaded",ready);
+  sp.addEventListener("click",hide);
+  setTimeout(hide,8000);
+})();
+</script>
 
 <header class="wrap">
+  <img class="hmark" src="icons/icon-192.png" alt="" width="30" height="30">
   <h1 id="appTitle" aria-hidden="true"></h1>
   <p id="appSub"></p>
   <button class="hact" id="themeBtn" onclick="cycleTheme()" title="Light / dark">◐</button>
@@ -1082,6 +1161,7 @@
 
   <!-- ABOUT -->
   <section class="screen" id="scr-about">
+    <div class="aboutmark" id="aboutMark"></div>
     <h2 class="scrtitle">The PG Track</h2>
     <div class="card">
       <h2>Daily Goal</h2>
@@ -1481,6 +1561,10 @@ function go(name,btn){
   ab.classList.toggle("on",name==="about");
   ab.textContent=name==="about"?"✕":"i";
   ab.title=name==="about"?"Close":"About the program";
+  /* The About mark redraws itself on every open -- the one place the logo
+     gets to move after launch. Reflow between remove and add restarts it. */
+  if(name==="about"){const m=$("#aboutMark");if(!m.firstChild)m.innerHTML=pgMark("A");
+    m.classList.remove("pgplay");void m.offsetWidth;m.classList.add("pgplay");}
   /* The runner only owns the Practice tab; leaving it must give the brand back. */
   if(name!=="timer")document.body.classList.remove("runner");
   document.body.classList.toggle("nothome",name!=="home");
